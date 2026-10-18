@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fundamentos de Acústica</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-color: #3B82F6;
+      --accent-color: #0EA5E9;
+
+      --bg-color: #0B1120;
+      --surface-color: #151F32;
+      --surface-light: #1d2942;
+
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+
+      --border-color: #27354d;
+
+      --radius-md: 0.5rem;
+      --radius-lg: 0.75rem;
+
+      --container-width: 1100px;
+    }
+
+    body {
+      background: var(--bg-color);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      line-height: 1.8;
+      font-size: 1.15rem;
+    }
+
+    .container {
+      max-width: var(--container-width);
+      margin: auto;
+      padding: 0 1.5rem;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 8rem 0 7rem;
+      text-align: center;
+      background: radial-gradient(circle at center, #1a2438 0%, #0B1120 100%);
+    }
+
+    .hero h1 {
+      font-size: 3.4rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero p {
+      font-size: 1.35rem;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: auto;
+    }
+
+    section {
+      padding: 6rem 0;
+    }
+
+    h2.section-title {
+      font-size: 2.6rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      font-weight: 700;
+    }
+
+    .card {
+      background: var(--surface-color);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 3rem 2.5rem;
+      margin-bottom: 4.5rem;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+      font-size: 1.15rem;
+    }
+
+    .card h3 {
+      margin-top: 2.5rem;
+      color: var(--primary-color);
+      font-size: 1.55rem;
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+      margin-top: 1.5rem;
+    }
+
+
+    /* ---------- CARRUSEL ESCALABLE ---------- */
+
+    .carousel {
+      position: relative;
+      width: 100%;
+      height: 600px;
+      overflow: hidden;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    }
+
+    .carousel-inner {
+      display: flex;
+      height: 100%;
+      transition: transform 0.6s ease-in-out;
+    }
+
+    .carousel-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      flex-shrink: 0;
+      background: #000;
+    }
+
+    /* Botones laterales */
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.4);
+      border: none;
+      color: white;
+      padding: 0.8rem 1rem;
+      font-size: 1.8rem;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: background .25s;
+      z-index: 10;
+    }
+
+    .carousel-btn:hover {
+      background: rgba(0,0,0,0.7);
+    }
+
+    .prev { left: 10px; }
+    .next { right: 10px; }
+
+    /* Indicadores */
+    .carousel-indicators {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+    }
+
+    .indicator {
+      width: 12px;
+      height: 12px;
+      background: var(--text-muted);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .indicator.active {
+      background: var(--primary-color);
+      transform: scale(1.2);
+    }
+  </style>
+<link rel="stylesheet" href="../../assets/back.css">
+</head>
+
+<body>
+<a class="portal-back" href="../../index.html">&larr; Portal</a>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Preamp, EQ, Compresor y Noise Gate</h1>
+  <p>Básicos para controlar la mesa X32 Kompact.</p>
+</section>
+
+<!-- 1.  -->
+<section>
+  <div class="container">
+    <div class="card">
+
+    <img src="../assets/sonido2/sonido2-1.jpg" alt="">
+      <!-- CARRUSEL ESCALABLE -->
+      <div class="carousel" id="carousel1">
+
+        <button class="carousel-btn prev">&#10094;</button>
+        <button class="carousel-btn next">&#10095;</button>
+
+        <div class="carousel-inner">
+          <!-- Solo cambia esta lista, puedes agregar tantas imágenes como quieras -->
+          <img src="https://th-i.thgim.com/public/children/9yus9m/article25203082.ece/alternates/FREE_1200/21istbdeforest2jpg" alt="">
+          <img src="https://www.planetaanalogico.com/wp-content/uploads/2023/03/preamp.jpg" alt="">
+          <img src="https://cdn.micandmod.com/wp-content/uploads/2022/01/preamplifier-blog-post-1-1024x769.png" alt="">
+        </div>
+
+        <div class="carousel-indicators"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- 2. -->
+<section>
+  <div class="container">
+    <div class="card">
+      <img src="../assets/sonido2/sonido2-2.jpg" alt="">
+      <img src="../assets/sonido2/sonido2-3.jpg" alt="">
+      <img src="../assets/sonido2/sonido2-4.jpg" alt="">
+      <img src="https://www.musicguymixing.com/wp-content/uploads/2024/04/EQ-Settings-1024x576.jpg" alt="">
+      <img src="../assets/sonido2/sonido2-5.jpg" alt="">
+      <img src="../assets/sonido2/eq_filters.jpg" alt="">
+      
+        <div class="carousel" id="carousel2">
+
+        <button class="carousel-btn prev">&#10094;</button>
+        <button class="carousel-btn next">&#10095;</button>
+
+        <div class="carousel-inner">
+          <!-- Solo cambia esta lista, puedes agregar tantas imágenes como quieras -->
+          <img src="https://m.media-amazon.com/images/I/71lEqTqZOeL._AC_SL1440_.jpg" alt="">
+          <img src="https://cdn-b.fabfilter.com/img/products/pro-q-3-intro.jpg?v=1710150538" alt="">
+          <img src="https://tecnoiglesia.com/wp-content/uploads/2022/04/Como-funcionan-los-ecualizadores.jpg" alt="">
+        </div>
+
+        <div class="carousel-indicators"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. -->
+<section>
+  <div class="container">
+    <div class="card">
+      <img src="../assets/sonido2/sonido2-6.jpg" alt="">
+      <img src="../assets/sonido2/sonido2-7.jpg" alt="">
+      <img src="../assets/sonido2/sonido2-8.jpg" alt="">
+      <img src="https://d29rinwu2hi5i3.cloudfront.net/article_media/157c7977-0aac-4606-bcc3-e495c6254806/pic_1.jpg" alt="">
+        
+      <div class="carousel" id="carousel3">
+
+        <button class="carousel-btn prev">&#10094;</button>
+        <button class="carousel-btn next">&#10095;</button>
+
+        <div class="carousel-inner">
+          <!-- Solo cambia esta lista, puedes agregar tantas imágenes como quieras -->
+          <img src="https://files.soniccdn.com/files/2015/02/26/jdk-r22.jpg" alt="">
+          <img src="https://www.creatupropiamusica.com/wp-content/uploads/2021/04/ataque-del-compresor-1024x421.jpg" alt="">
+          <img src="https://thumbs.static-thomann.de/thumb/padthumb600x600/pics/bdb/_38/384086/15201333_800.jpg" alt="">
+        </div>
+
+        <div class="carousel-indicators"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. -->
+<section>
+  <div class="container">
+    <div class="card">
+      <img src="../assets/sonido2/sonido2-9.jpg" alt="">
+      <img src="../assets/sonido2/sonido2-10.jpg" alt="">
+      <img src="https://www.fabfilter.com/img/products/pro-g-screenshot.jpg" alt="">
+        <div class="carousel" id="carousel4">
+
+        <button class="carousel-btn prev">&#10094;</button>
+        <button class="carousel-btn next">&#10095;</button>
+
+        <div class="carousel-inner">
+          <!-- Solo cambia esta lista, puedes agregar tantas imágenes como quieras -->
+          <img src="https://thumbs.static-thomann.de/thumb/padthumb600x600/pics/bdb/_22/226701/7207192_800.jpg" alt="">
+          <img src="https://www.sonible.com/wp-content/uploads/2023/09/drawmer.png" alt="">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Alesis_Micro_Gate_9006.jpg/1280px-Alesis_Micro_Gate_9006.jpg" alt="">
+        </div>
+
+        <div class="carousel-indicators"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 
+<section>
+  <div class="container">
+    <h2 class="section-title">7. Referencias Útiles</h2>
+
+    
+    <div style="display: grid; gap: 2.5rem;">
+
+
+      <div class="video-card" style="
+        background: var(--surface-light);
+        padding: 1.5rem;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--border-color);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+      ">
+        <h3 style="color: var(--primary-color); margin-top: 0;">Pero, ¿qué es la transformada de Fourier? Una introducción visual.</h3>
+
+        <div style="
+          position: relative;
+          padding-bottom: 56.25%;
+          height: 0;
+          overflow: hidden;
+          border-radius: var(--radius-md);
+          border: 1px solid var(--border-color);
+        ">
+          <iframe 
+            src="https://www.youtube.com/embed/spUNpyF58BY" 
+            title="Video 1"
+            frameborder="0"
+            allowfullscreen
+            style="
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+            ">
+          </iframe>
+        </div>
+      </div>
+
+
+      <div class="video-card" style="
+        background: var(--surface-light);
+        padding: 1.5rem;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--border-color);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+      ">
+        <h3 style="color: var(--primary-color); margin-top: 0;">Peter Gilliam - Musical Fourier (#SoME1)</h3>
+
+        <div style="
+          position: relative;
+          padding-bottom: 56.25%;
+          height: 0;
+          overflow: hidden;
+          border-radius: var(--radius-md);
+          border: 1px solid var(--border-color);
+        ">
+          <iframe 
+            src="https://www.youtube.com/embed/Eayo7pZ2g7A" 
+            title="Video 2"
+            frameborder="0"
+            allowfullscreen
+            style="
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+            ">
+          </iframe>
+        </div>
+      </div>
+  </div>
+</section> -->
+
+
+<!-- JS DEL CARRUSEL ESCALABLE -->
+<script>
+function initCarousel(id) {
+  const carousel = document.getElementById(id);
+  const inner = carousel.querySelector(".carousel-inner");
+  const prev = carousel.querySelector(".prev");
+  const next = carousel.querySelector(".next");
+  const indicators = carousel.querySelector(".carousel-indicators");
+  const slides = inner.children;
+
+  let index = 0;
+  const total = slides.length;
+
+  for (let i = 0; i < total; i++) {
+    const dot = document.createElement("div");
+    dot.classList.add("indicator");
+    if (i === 0) dot.classList.add("active");
+    dot.addEventListener("click", () => goTo(i));
+    indicators.appendChild(dot);
+  }
+
+  const dots = indicators.querySelectorAll(".indicator");
+
+  function update() {
+    inner.style.transform = `translateX(${-index * 100}%)`;
+    dots.forEach(d => d.classList.remove("active"));
+    dots[index].classList.add("active");
+  }
+
+  function goTo(i) {
+    index = i;
+    update();
+  }
+
+  prev.addEventListener("click", () => {
+    index = (index === 0) ? total - 1 : index - 1;
+    update();
+  });
+
+  next.addEventListener("click", () => {
+    index = (index + 1) % total;
+    update();
+  });
+}
+
+// Inicializar TODOS los carruseles que existan
+initCarousel("carousel1");
+initCarousel("carousel2");
+initCarousel("carousel3");
+initCarousel("carousel4");
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal educativo | FP Comunicación Audiovisual</title>
+<meta name="description" content="Material didáctico de los módulos de FP de Comunicación Audiovisual.">
+<link rel="stylesheet" href="assets/portal.css">
+<script type="importmap">
+{ "imports": { "three": "./assets/vendor/three.module.min.js" } }
+</script>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+
+<header class="top">
+  <span class="brand">PORTAL<span class="dash"> —</span> MATERIAL DIDÁCTICO</span>
+  <span class="meta">FP · COMUNICACIÓN AUDIOVISUAL</span>
+</header>
+
+<main>
+  <section class="hero">
+    <p class="kicker">+ Profesor: Andrés Vidal Martín</p>
+    <h1 class="glitch" data-text="Módulos de Comunicación Audiovisual">Módulos de<br>Comunicación Audiovisual</h1>
+    <p class="lead">Apuntes, prácticas y recursos de cada módulo en un solo lugar.</p>
+    <a class="scroll" href="#modulos">Ver módulos ↓</a>
+  </section>
+
+  <section id="modulos" aria-labelledby="t-mod">
+    <h2 id="t-mod" class="sr-only">Módulos</h2>
+    <ul class="grid">
+      <li>
+        <a class="card" href="deim/index.html" data-shape="0">
+          <span class="fig">FIG 0.1</span>
+          <h3>DEIM</h3>
+          <p class="mod">Diseño de Entornos Interactivos Multimedia</p>
+          <p>Programación creativa con p5.js y Unity (C#): código, repositorios y tareas.</p>
+          <span class="go">Entrar →</span>
+        </a>
+      </li>
+      <li>
+        <a class="card" href="isde/index.html" data-shape="1">
+          <span class="fig">FIG 0.2</span>
+          <h3>ISDE</h3>
+          <p class="mod">Instalaciones de Sonorización de Eventos</p>
+          <p>Sonido en directo: equipos, ecualización y referencias.</p>
+          <span class="go">Entrar →</span>
+        </a>
+      </li>
+      <li>
+        <a class="card" href="realizacion-tv/index.html" data-shape="2">
+          <span class="fig">FIG 0.3</span>
+          <h3>PRTV</h3>
+          <p class="mod">Procesos de Realización de Televisión</p>
+          <p>Emisión de piezas de vídeo y fuentes en programas informativos.</p>
+          <span class="go">Entrar →</span>
+        </a>
+      </li>
+      <li>
+        <a class="card" href="laboratorio-mezcla/index.html" data-shape="3">
+          <span class="fig">FIG 0.4</span>
+          <h3>Laboratorio de mezcla</h3>
+          <p class="mod">Práctica de mezcla de audio</p>
+          <p>Laboratorio interactivo con pistas para practicar la mezcla.</p>
+          <span class="go">Entrar →</span>
+        </a>
+      </li>
+      <li>
+        <a class="card" href="planificacion-montaje/index.html" data-shape="4">
+          <span class="fig">FIG 0.5</span>
+          <h3>Montaje</h3>
+          <p class="mod">Planificación del montaje y postproducción</p>
+          <p>Plantilla provisional: temario, prácticas, recursos y evaluación.</p>
+          <span class="go">Entrar →</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+</main>
+
+<footer>© <span id="y"></span> · Andrés Vidal Martín · Material educativo</footer>
+
+<noscript><style>#bg{display:none}</style></noscript>
+<script type="module" src="assets/portal.js"></script>
+<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Repositorio de Códigos · Unity · DEIM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../style.css">
+
+    <!-- Prism -->
+    <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.css" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/back.css">
+</head>
+
+<body>
+<a class="portal-back" href="../../index.html">&larr; Portal</a>
+
+<header class="site-header">
+    <div class="container header-container">
+        <a href="../index.html" class="logo">DEIM<span class="dot">.</span></a>
+    </div>
+</header>
+
+<main class="container" style="padding:4rem 0;">
+
+    <h1 class="section-title">Repositorio de Códigos Unity</h1>
+    <p class="section-description">
+        Ejemplos de scripts en C# listos para usar y modificar en Unity.
+    </p>
+
+    <!-- ================= PRIMEROS PASOS ================= -->
+    <h2 class="repo-category-title">Primeros pasos</h2>
+    <div class="modules-grid">
+
+        <article class="module-card" onclick="openCode('hello')">
+            <h3 class="card-title">Hello World</h3>
+            <p class="card-text">o la importancia del Debug</p>
+            <pre class="code-preview"><code>
+    Debug.Log("Hola mundo");
+            </code></pre>
+        </article>
+
+        <article class="module-card" onclick="openCode('variables')">
+            <h3 class="card-title">Variables públicas</h3>
+            <p class="card-text">Exponer valores en el Inspector.</p>
+            <pre class="code-preview"><code>
+    public int lives = 3;
+    public float speed = 5f;
+    public bool isAlive = true;
+            </code></pre>
+        </article>
+
+    </div>
+
+    <!-- ================= MOVIMIENTO ================= -->
+    <h2 class="repo-category-title">Movimiento</h2>
+    <div class="modules-grid">
+
+        <article class="module-card" onclick="openCode('movement')">
+            <h3 class="card-title">Movimiento con Input</h3>
+            <p class="card-text">Movimiento básico. Interacción con transform.</p>
+            <pre class="code-preview"><code>
+float x = Input.GetAxis("Horizontal");
+        rb.velocity = new Vector2(
+            xInput * moveSpeed,
+            rb.velocity.y
+        );
+            </code></pre>
+        </article>
+
+
+
+</main>
+
+<!-- ================= OVERLAY ================= -->
+<div id="codeOverlay" class="code-overlay">
+    <div class="code-modal">
+        <button class="close-modal" onclick="closeCode()">×</button>
+
+        <h2 id="overlay-title"></h2>
+        <p id="overlay-description"></p>
+        <p id="overlay-explanation" class="card-explanation"></p>
+
+        <div class="code-window">
+            <pre><code id="overlay-code" class="language-csharp"></code></pre>
+        </div>
+
+        <div class="code-actions">
+            <button id="copyBtn" class="copy-btn" onclick="copyCode()">
+                Copiar código
+            </button>
+        </div>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="container footer-bottom">
+        <p>&copy; 2025 DEIM</p>
+    </div>
+</footer>
+
+<!-- Prism -->
+<script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-csharp.min.js"></script>
+
+<script>
+const repo = {
+    hello: {
+        title: "Hello World",
+        explanation: "Debug.log imprime un valor en la consola. Esto sirve para saber que esta pasando. Es muy útil para localizar errores o conocer el funcionamiento real de nuestros procesos. Te sorprenderá la cantidad de veces que las cosas no están funcionando como tu te piensas. Cuando esto pase: calma y paciencia, debuggea y lee con atención.",
+        file: "codes/hello.cs"
+    },
+    variables: {
+        title: "Variables públicas",
+        description: "Variables visibles desde el Inspector.",
+        explanation: "Permite modificar valores desde el Inspector sin tocar el código.",
+        file: "codes/variables.cs"
+    },
+    movement: {
+        title: "Movimiento con Input",
+        explanation: "Primer código de movimiento usando variables públicas y funciones",
+        file: "codes/MoveController.cs"
+    },
+};
+
+function openCode(key) {
+    const data = repo[key];
+
+    document.getElementById("overlay-title").textContent = data.title;
+    document.getElementById("overlay-description").textContent = data.description;
+    document.getElementById("overlay-explanation").textContent = data.explanation;
+    document.getElementById("overlay-code").textContent = "Cargando código...";
+    document.getElementById("codeOverlay").classList.add("active");
+
+    fetch(data.file)
+        .then(res => {
+            if (!res.ok) throw new Error();
+            return res.text();
+        })
+        .then(code => {
+            document.getElementById("overlay-code").textContent = code;
+            Prism.highlightAll();
+        })
+        .catch(() => {
+            document.getElementById("overlay-code").textContent =
+                "Error al cargar el archivo.";
+        });
+}
+
+function closeCode() {
+    document.getElementById("codeOverlay").classList.remove("active");
+}
+
+function copyCode() {
+    const code = document.getElementById("overlay-code").innerText;
+    navigator.clipboard.writeText(code);
+
+    const btn = document.getElementById("copyBtn");
+    btn.textContent = "Copiado ✓";
+    btn.classList.add("copied");
+
+    setTimeout(() => {
+        btn.textContent = "Copiar código";
+        btn.classList.remove("copied");
+    }, 1500);
+}
+</script>
+
+</body>
+</html>

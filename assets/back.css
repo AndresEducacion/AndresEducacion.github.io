@@ -1,0 +1,2 @@
+﻿.portal-back{position:fixed;top:12px;left:12px;z-index:99999;display:inline-flex;align-items:center;gap:6px;padding:8px 12px;font:500 12px/1 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase;color:#d7ffe3;background:rgba(5,8,6,.82);border:1px solid #2aff6b;border-radius:2px;text-decoration:none;backdrop-filter:blur(4px)}
+.portal-back:hover,.portal-back:focus-visible{background:#2aff6b;color:#050806;outline:none}

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Básicos de la programación</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-color: #3B82F6;
+      --accent-color: #0EA5E9;
+
+      --bg-color: #0B1120;
+      --surface-color: #151F32;
+      --surface-light: #1d2942;
+
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+
+      --border-color: #27354d;
+
+      --radius-md: 0.5rem;
+      --radius-lg: 0.75rem;
+
+      --container-width: 1100px;
+    }
+
+    body {
+      background: var(--bg-color);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      line-height: 1.8;
+      font-size: 1.15rem;
+    }
+
+    .container {
+      max-width: var(--container-width);
+      margin: auto;
+      padding: 0 1.5rem;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 8rem 0 7rem;
+      text-align: center;
+      background: radial-gradient(circle at center, #1a2438 0%, #0B1120 100%);
+    }
+
+    .hero h1 {
+      font-size: 3.4rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero p {
+      font-size: 1.35rem;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: auto;
+    }
+
+    /* Sections */
+    section {
+      padding: 6rem 0;
+    }
+
+    h2.section-title {
+      font-size: 2.6rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      font-weight: 700;
+    }
+
+    /* Card */
+    .card {
+      background: var(--surface-color);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 3rem 2.5rem;
+      margin-bottom: 4.5rem;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+      font-size: 1.15rem;
+    }
+
+    /* Imagen dentro de card */
+    .card img {
+      width: 100%;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+      margin-top: 1.5rem;
+    }
+
+    /* Titulos internos */
+    .card h3 {
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      font-size: 1.55rem;
+      color: var(--primary-color);
+    }
+
+    /* Code block */
+    pre {
+      background: var(--surface-light);
+      padding: 1.4rem 1.6rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      overflow-x: auto;
+      font-size: 1rem;
+      font-family: "JetBrains Mono", monospace;
+      line-height: 1.6;
+      margin: 2rem 0;
+      color: #d6e3f5;
+    }
+  </style>
+    <link rel="stylesheet" href="../style.css">
+    <!-- Prism.js CSS -->
+<link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+<!-- Prism.js core -->
+<script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+
+<!-- Lenguaje C# -->
+<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-csharp.min.js"></script>
+
+<link rel="stylesheet" href="../../assets/back.css">
+</head>
+
+    <!-- Header sencillo -->
+    <header class="site-header">
+        <div class="container header-container">
+            <a href="../index.html" class="logo">DEIM<span class="dot">.</span></a>
+        </div>
+    </header>
+
+<body>
+<a class="portal-back" href="../../index.html">&larr; Portal</a>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Básicos de la programación</h1>
+  <p>Conceptos fundamentales para aprender a programar (en C#).</p>
+</section>
+
+<!-- 1. QUÉ ES LA PROGRAMACIÓN -->
+<section>
+  <div class="container">
+    <div class="card">
+      <img src="../assets/codigo2/codigo2.png" alt="Diapositiva ¿Qué es la programación?">
+      
+    </div>
+  </div>
+</section>
+
+<!-- 2. VARIABLES -->
+<section>
+  <div class="container">
+    <div class="card">
+      <img src="../assets/codigo2/codigo3.png" alt="Diapositiva variables">
+
+      <img src="../assets/codigo2/codigo4.png" alt="Diapositiva elementos de la variable">
+<h3>Declarar variables</h3>
+      <pre><code class="language-csharp">let lifes = 3;    // JavaScript
+int damage = 120; // C#
+// p5.js
+</code></pre>
+
+      <pre><code class="language-csharp">let x = 50;  // Guardamos un número en la variable “x”
+circle(x, 200, 50); // En vez de poner un número ponemos “x”
+</code></pre>
+
+      <img src="../assets/codigo2/codigo5.png" alt="Diapositiva tipos de variables">
+
+      <h3>Tipos de variables</h3>
+      <pre><code class="language-csharp">
+int lives = 3; // números enteros
+float attack = 2.47f; // números decimales (le ponemos una f de float)
+string = "Heyyy!"; // texto (siempre entre comillas)
+bool puertaAbierta = false; // ¿esta la puerta abierta o cerrada? cerrada en este caso
+string[] frutas = { "manzana", "uva", "melón" }; //array de strings
+int[] puntuaciones = { 100, 200, 350, 900 }; //array de enteros
+string[] frutas = [ "melón", "manzana", "pera" ]; // Así también se puede, de hecho a mí me gusta más []
+      </code></pre>
+    </div>
+  </div>
+</section>
+
+
+<!-- 3 y 4. ESTRUCTURAS DE CONTROL y OPERADORES -->
+<section>
+  <div class="container">
+    <div class="card">
+
+      <img src="../assets/codigo2/codigo6.png" alt="Diapositiva estructuras de control">
+
+
+      <h3>Operadores artiméticos</h3>
+<pre><code class="language-csharp">
+int suma = a + b;
+int resta = a - b;
+int multiplicacion = a * b;
+int division = a / b;
+int modulo = a % b; 
+</code></pre>
+
+<h3>Operadores de comparación</h3>
+<pre><code class="language-csharp">
+bool esMayor = a > b;      // true
+bool esMenor = a < b;      // false
+bool esIgual = a == b;     // false
+bool esDistinto = a != b;  // true
+bool mayorOIgual = a >= b; // true
+bool menorOIgual = a <= b; // false
+</code></pre>
+
+      
+      <img src="../assets/codigo2/codigo7.png" alt="Diapositiva operadores lógicos">
+<h3>Condicionales</h3>
+<pre><code class="language-csharp">if (impact > defense) {
+  alive = false;
+}
+else if (impact < defense) {
+  live = live - (defense - impact);
+}
+else {
+  frozenState = true;
+}
+</code></pre>
+
+    
+
+<img src="../assets/codigo2/codigo8.png" alt="Diapositiva operadores lógicos">
+<h3>Operadores lógicos</h3>
+<pre><code class="language-csharp">bool x = true;
+bool y = false;
+
+bool andLogico = x && y; // false (solo true si ambos son true)
+bool orLogico  = x || y; // true  (true si al menos uno es true)
+bool negacion  = !x;     // false (invierte el valor)
+</code></pre>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 5. BUCLES -->
+<section>
+  <div class="container">
+
+    <div class="card">
+      <img src="../assets/codigo2/codigo9.png" alt="Diapositiva bucles">
+
+      <h3>bucle while()</h3>
+
+      <pre><code class="language-csharp">while (num < 10) {
+  print(num);
+  num++; 
+}
+
+// bucle que se repite 10 veces, mientras la variable num sea menor que diez 
+// se ejecutan las acciones de imprimir el número en la consola y sumarle uno.
+// Cuando suma 11 la condición hace que se rompa el bucle.
+</code></pre>
+
+  </div>
+
+  <div class="card">
+      <img src="../assets/codigo2/codigo10.png" alt="Diapositiva bucles">
+
+      <h3>bucle for()</h3>
+
+<pre><code class="language-csharp">for (int num = 0; num >= 10, num++) {
+  print num 
+}
+
+// Literalmente es el mismo ejemplo de la anterior diapósitiva
+// hecho con un bucle for() en vez de con un while(), es una manera de atajar la cuenta. 
+// Se usa sobre todo en acciones secuenciales.
+
+</code></pre>
+
+    </div>
+</section>
+
+<!-- 6. FUNCIONES -->
+<section>
+  <div class="container">
+
+    <div class="card">
+
+      <img src="../assets/codigo2/codigo11.png" alt="Diapositiva funciones">
+      <img src="../assets/codigo2/codigo12.png" alt="Diapositiva funciones">
+
+      <pre><code class="language-csharp">void SaludoPersonalizado (string saludo) {
+  print(saludo);
+}
+
+SaludoPersonalizado("Heyyy");
+
+
+// Al crear mi función, le digo a qué va a referir la variable que le voy a pasar al llamarla.
+// En este caso mi variable será un saludo.
+// La acción es imprimir el saludo.
+</code></pre>
+
+      <img src="../assets/codigo2/codigo13.png" alt="Diapositiva ampliación funciones">
+
+
+    </div>
+  </div>
+</section>
+
+
+
+
+<section>
+  <div class="container">
+
+    <div class="card">
+
+      <img src="img/consejos.png" alt="Diapositiva consejos">
+
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section>
+  <div class="container">
+    <h2 class="section-title">Referencias útiles</h2>
+    <div class="card">
+      
+
+    <!-- CONTENEDOR DE VIDEOS -->
+    <div style="display: grid; gap: 2.5rem;">
+
+      <!-- VIDEO 1 -->
+      <div class="video-card" style="
+        background: var(--surface-light);
+        padding: 1.5rem;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--border-color);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+      ">
+        <h3 style="color: var(--primary-color); margin-top: 0;">How Two Programmers Built The Most Complex Automation Game</h3>
+
+        <div style="
+          position: relative;
+          padding-bottom: 56.25%;
+          height: 0;
+          overflow: hidden;
+          border-radius: var(--radius-md);
+          border: 1px solid var(--border-color);
+        ">
+          <iframe 
+            src="https://www.youtube.com/embed/l7HA2HneXU4&t=1225s" 
+            title="Video 1"
+            frameborder="0"
+            allowfullscreen
+            style="
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+            ">
+          </iframe>
+        </div>
+      </div>
+
+      <!-- VIDEO 2 -->
+      <div class="video-card" style="
+        background: var(--surface-light);
+        padding: 1.5rem;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--border-color);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+      ">
+        <h3 style="color: var(--primary-color); margin-top: 0;">Best Code Architectures For Indie Games</h3>
+
+        <div style="
+          position: relative;
+          padding-bottom: 56.25%;
+          height: 0;
+          overflow: hidden;
+          border-radius: var(--radius-md);
+          border: 1px solid var(--border-color);
+        ">
+          <iframe 
+            src="https://www.youtube.com/embed/8WqYQ1OwxJ4" 
+            title="Video 2"
+            frameborder="0"
+            allowfullscreen
+            style="
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+            ">
+          </iframe>
+        </div>
+      </div>
+
+<h3>Links</h3>
+        <a href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/" target="_blank" style="
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.9rem 2rem;
+    background: var(--primary-color);
+    color: white;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  ">
+    Referencia de C#
+  </a>
+    </div>
+
+  </div>
+  </div>
+</section>
+
+</body>
+</html>

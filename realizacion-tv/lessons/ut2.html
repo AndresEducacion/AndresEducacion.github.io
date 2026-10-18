@@ -1,0 +1,1598 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UT2. Emisión de piezas de vídeo y fuentes en informativos</title>
+  <meta name="description" content="Unidad de trabajo 2 de Procesos de Realización de Televisión: informativos, piezas, colas, totales, grafismo, grabación, producción y emisión en directo.">
+  <meta name="theme-color" content="#0B1120">
+  <meta name="color-scheme" content="dark">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="UT2. Emisión de piezas de vídeo y fuentes en informativos">
+  <meta property="og:description" content="Lección interactiva con presentación, simuladores y test sobre informativos de televisión.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B1120'/%3E%3Ctext x='32' y='43' font-family='Arial' font-weight='700' font-size='30' text-anchor='middle' fill='%233B82F6'%3EP.%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-color: #3B82F6;
+      --primary-dark: #2563EB;
+      --accent-color: #0EA5E9;
+      --live: #EF4444;
+      --ok: #22C55E;
+      --warn: #F59E0B;
+
+      --bg-color: #0B1120;
+      --surface-color: #151F32;
+      --surface-light: #1d2942;
+
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+
+      --border-color: #27354d;
+
+      --radius-md: 0.5rem;
+      --radius-lg: 0.75rem;
+
+      --container-width: 1100px;
+      --bar-height: 56px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--bar-height) + 16px); }
+
+    body {
+      background: var(--bg-color);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      line-height: 1.75;
+      font-size: 1.08rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--accent-color); }
+    button { font-family: inherit; }
+    .container { max-width: var(--container-width); margin: auto; padding: 0 1.5rem; }
+
+    /* ---------- BARRA SUPERIOR + PROGRESO ---------- */
+    .topbar {
+      position: sticky; top: 0; z-index: 100;
+      height: var(--bar-height);
+      background: rgba(11,17,32,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      display: flex; align-items: center;
+    }
+    .topbar-inner { display: flex; align-items: center; gap: .6rem; width: 100%; max-width: 1400px; margin: auto; padding: 0 1rem; }
+    .topbar .home {
+      font-weight: 700; text-decoration: none; color: var(--text-main);
+      padding: .3rem .6rem; border-radius: var(--radius-md); white-space: nowrap;
+    }
+    .topbar .home span { color: var(--primary-color); }
+    .toc { display: flex; gap: .35rem; overflow-x: auto; scrollbar-width: none; flex: 1; }
+    .toc::-webkit-scrollbar { display: none; }
+    .toc a {
+      font-size: .82rem; font-weight: 500; text-decoration: none; white-space: nowrap;
+      color: var(--text-muted); padding: .3rem .7rem; border-radius: 99px;
+      border: 1px solid transparent; transition: .2s;
+    }
+    .toc a:hover { color: var(--text-main); }
+    .toc a.active { color: #fff; background: var(--primary-color); }
+    .progress { position: absolute; left: 0; bottom: -1px; height: 3px; width: 0; background: linear-gradient(90deg, var(--primary-color), var(--accent-color)); }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      padding: 7rem 0 6rem; text-align: center;
+      background: radial-gradient(circle at center, #1a2438 0%, #0B1120 100%);
+    }
+    .on-air {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: #fff; background: rgba(239,68,68,.15); border: 1px solid rgba(239,68,68,.5);
+      padding: .3rem .8rem; border-radius: 99px; margin-bottom: 1.5rem;
+    }
+    .on-air::before { content: ""; width: .6rem; height: .6rem; border-radius: 50%; background: var(--live); animation: blink 1.2s infinite; }
+    @keyframes blink { 50% { opacity: .2; } }
+    .hero h1 { font-size: 3.1rem; line-height: 1.15; font-weight: 700; margin: 0 0 1.2rem; }
+    .hero h1 .hl { background: linear-gradient(to right, var(--primary-color), var(--accent-color)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 720px; margin: 0 auto 2rem; }
+    .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-block; padding: .7rem 1.4rem; border-radius: var(--radius-md);
+      font-weight: 600; font-size: .95rem; cursor: pointer; text-decoration: none; transition: .2s;
+      border: 1px solid var(--primary-color); background: transparent; color: var(--primary-color);
+    }
+    .btn:hover { background: var(--primary-color); color: #fff; }
+    .btn.primary { background: var(--primary-color); color: #fff; }
+    .btn.primary:hover { background: var(--primary-dark); }
+    .btn.small { padding: .4rem .9rem; font-size: .85rem; }
+
+    /* ---------- SECCIONES ---------- */
+    section { padding: 5rem 0; }
+    section.alt { background: rgba(21,31,50,.45); }
+    .section-head { text-align: center; margin-bottom: 2.5rem; }
+    h2.section-title { font-size: 2.3rem; margin: 0 0 .6rem; font-weight: 700; line-height: 1.25; }
+    .section-head .lead { color: var(--text-muted); max-width: 720px; margin: 0 auto; font-size: 1.05rem; }
+    .pdf-link {
+      display: inline-flex; align-items: center; gap: .4rem; margin-top: 1rem;
+      font-size: .8rem; font-weight: 600; color: var(--text-muted); background: var(--surface-color);
+      border: 1px solid var(--border-color); border-radius: 99px; padding: .25rem .8rem; cursor: pointer;
+    }
+    .pdf-link:hover { color: var(--text-main); border-color: var(--primary-color); }
+
+    .card {
+      background: var(--surface-color); border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg); padding: 2.2rem 2rem;
+      box-shadow: 0 10px 20px rgba(0,0,0,.25);
+    }
+    .card + .card { margin-top: 2rem; }
+    .card h3 { margin: 0 0 .8rem; color: var(--primary-color); font-size: 1.45rem; }
+    .card h4 { margin: 1.4rem 0 .4rem; font-size: 1.05rem; color: var(--text-main); }
+    .card p { margin: .5rem 0; }
+    .muted { color: var(--text-muted); }
+    .tag {
+      display: inline-block; font-size: .75rem; font-weight: 600; letter-spacing: .03em;
+      color: var(--accent-color); background: rgba(14,165,233,.12); padding: .15rem .6rem; border-radius: 99px; margin: .15rem .2rem .15rem 0;
+    }
+    ul.clean { padding-left: 1.2rem; margin: .5rem 0; }
+    ul.clean li { margin: .35rem 0; }
+    ul.clean li::marker { color: var(--primary-color); }
+    .note {
+      border-left: 3px solid var(--primary-color); background: rgba(59,130,246,.08);
+      padding: .8rem 1.1rem; border-radius: 0 var(--radius-md) var(--radius-md) 0; margin: 1.2rem 0; font-size: 1rem;
+    }
+    .note.warn { border-color: var(--warn); background: rgba(245,158,11,.08); }
+
+    /* ---------- VISOR PDF ---------- */
+    .viewer-bar { display: flex; gap: .6rem; flex-wrap: wrap; align-items: center; margin-bottom: 1rem; }
+    .viewer-bar select, .viewer-bar input {
+      background: var(--bg-color); color: var(--text-main); border: 1px solid var(--border-color);
+      border-radius: var(--radius-md); padding: .4rem .6rem; font-size: .9rem; font-family: inherit;
+    }
+    .viewer-bar input { width: 4.5rem; text-align: center; }
+    .viewer-bar select { min-width: 0; max-width: 100%; flex: 1 1 14rem; }
+    .viewer-bar .spacer { flex: 1; }
+    .pdf-frame { width: 100%; height: 78vh; min-height: 520px; border: 1px solid var(--border-color); border-radius: var(--radius-md); background: #1b1b1b; }
+    .pdf-fallback { color: var(--text-muted); font-size: .9rem; margin-top: .8rem; }
+
+    /* ---------- TIMELINE ---------- */
+    .timeline { position: relative; display: flex; gap: .5rem; overflow-x: auto; padding: 1.4rem .2rem 1rem; }
+    .timeline::before { content: ""; position: absolute; left: 0; right: 0; top: 2.05rem; height: 2px; background: var(--border-color); }
+    .tl-item { position: relative; flex: 1 0 118px; background: none; border: 0; color: var(--text-muted); cursor: pointer; text-align: center; padding: 0 .2rem; }
+    .tl-dot { display: block; width: 1.3rem; height: 1.3rem; margin: 0 auto .7rem; border-radius: 50%; background: var(--surface-light); border: 2px solid var(--border-color); position: relative; transition: .2s; }
+    .tl-item:hover .tl-dot { border-color: var(--primary-color); }
+    .tl-item.active .tl-dot { background: var(--primary-color); border-color: var(--accent-color); transform: scale(1.2); }
+    .tl-item.active { color: var(--text-main); }
+    .tl-year { font-weight: 700; font-size: .95rem; display: block; }
+    .tl-short { font-size: .75rem; display: block; line-height: 1.3; }
+    .panel { background: var(--surface-light); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.4rem 1.6rem; margin-top: 1rem; min-height: 8rem; animation: fade .3s; }
+    .panel h4 { margin: 0 0 .5rem; font-size: 1.15rem; color: var(--text-main); }
+    @keyframes fade { from { opacity: 0; transform: translateY(4px); } }
+
+    /* ---------- TABS ---------- */
+    .tabs { display: flex; gap: .4rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .tab {
+      background: var(--bg-color); color: var(--text-muted); border: 1px solid var(--border-color);
+      border-radius: 99px; padding: .4rem 1rem; font-size: .88rem; font-weight: 500; cursor: pointer; transition: .2s;
+    }
+    .tab:hover { color: var(--text-main); border-color: var(--primary-color); }
+    .tab[aria-selected="true"] { background: var(--primary-color); border-color: var(--primary-color); color: #fff; }
+
+    /* ---------- GRID DE TARJETAS EXPANDIBLES ---------- */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.2rem; }
+    .mini {
+      text-align: left; background: var(--surface-light); border: 1px solid var(--border-color);
+      border-radius: var(--radius-md); padding: 1.2rem 1.3rem; color: var(--text-main); cursor: pointer; transition: .2s;
+    }
+    .mini:hover { border-color: var(--primary-color); transform: translateY(-3px); }
+    .mini .ico { font-size: 1.6rem; display: block; margin-bottom: .3rem; }
+    .mini strong { display: block; font-size: 1.05rem; }
+    .mini .body { display: none; color: var(--text-muted); font-size: .95rem; margin-top: .6rem; line-height: 1.6; }
+    .mini[aria-expanded="true"] { border-color: var(--primary-color); }
+    .mini[aria-expanded="true"] .body { display: block; }
+    .mini .more { font-size: .8rem; color: var(--primary-color); font-weight: 600; margin-top: .5rem; display: block; }
+    .mini[aria-expanded="true"] .more { display: none; }
+
+    /* ---------- ACORDEÓN ---------- */
+    .acc-item { border: 1px solid var(--border-color); border-radius: var(--radius-md); background: var(--surface-light); margin-bottom: .7rem; overflow: hidden; }
+    .acc-btn {
+      width: 100%; text-align: left; background: none; border: 0; color: var(--text-main);
+      padding: 1rem 1.3rem; font-size: 1.02rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: .8rem;
+    }
+    .acc-btn .letter { flex: none; width: 1.9rem; height: 1.9rem; border-radius: 50%; background: rgba(59,130,246,.2); color: var(--primary-color); display: grid; place-items: center; font-size: .85rem; }
+    .acc-btn .chev { margin-left: auto; transition: .25s; color: var(--text-muted); }
+    .acc-item.open .chev { transform: rotate(180deg); }
+    .acc-item.open { border-color: var(--primary-color); }
+    .acc-body { display: none; padding: 0 1.3rem 1.2rem 4.1rem; color: var(--text-muted); font-size: .98rem; line-height: 1.7; }
+    .acc-item.open .acc-body { display: block; }
+    .acc-body strong { color: var(--text-main); }
+
+    /* ---------- STEPPER (ESTRUCTURA INFORMATIVO) ---------- */
+    .rundown { display: grid; grid-template-columns: 280px 1fr; gap: 1.5rem; align-items: start; }
+    .rd-list { display: flex; flex-direction: column; gap: .4rem; }
+    .rd-step {
+      display: flex; align-items: center; gap: .8rem; text-align: left; width: 100%;
+      background: var(--surface-light); border: 1px solid var(--border-color); border-left: 4px solid var(--border-color);
+      color: var(--text-muted); border-radius: var(--radius-md); padding: .6rem .9rem; cursor: pointer; font-size: .95rem; transition: .2s;
+    }
+    .rd-step .n { font-weight: 700; color: var(--text-muted); font-size: .8rem; width: 1.3rem; }
+    .rd-step:hover { color: var(--text-main); }
+    .rd-step.active { color: #fff; border-left-color: var(--primary-color); background: rgba(59,130,246,.15); }
+    .rd-step.active .n { color: var(--primary-color); }
+    .rd-nav { display: flex; gap: .6rem; margin-top: 1rem; }
+
+    /* ---------- CHIPS DE FORMATO ---------- */
+    .chips { display: flex; flex-wrap: wrap; gap: .45rem; }
+    .chip {
+      background: var(--bg-color); color: var(--text-main); border: 1px solid var(--border-color);
+      border-radius: 99px; padding: .35rem .9rem; font-size: .88rem; cursor: pointer; transition: .2s;
+    }
+    .chip:hover { border-color: var(--primary-color); }
+    .chip[aria-pressed="true"] { background: var(--primary-color); border-color: var(--primary-color); }
+    .chip.simple { border-style: dashed; }
+    .formula { display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; margin: .6rem 0; }
+    .formula .tok { background: rgba(14,165,233,.14); color: var(--accent-color); border-radius: 6px; padding: .1rem .55rem; font-weight: 600; font-size: .9rem; }
+    .formula .plus { color: var(--text-muted); font-weight: 700; }
+
+    /* ---------- DATOS CLAVE ---------- */
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+    .stat { background: var(--surface-light); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem; text-align: center; }
+    .stat b { display: block; font-size: 1.7rem; color: var(--accent-color); line-height: 1.2; }
+    .stat span { font-size: .85rem; color: var(--text-muted); line-height: 1.4; display: block; margin-top: .2rem; }
+
+    /* ---------- MAQUETA DE TELEVISOR ---------- */
+    .tv-wrap { display: grid; grid-template-columns: 1.35fr 1fr; gap: 1.5rem; align-items: start; }
+    .tv {
+      position: relative; aspect-ratio: 16/9; border-radius: var(--radius-md); overflow: hidden;
+      border: 3px solid #000; box-shadow: 0 8px 24px rgba(0,0,0,.5);
+      background:
+        radial-gradient(circle at 50% 38%, #3a4f78 0 9%, transparent 9.5%),
+        radial-gradient(ellipse at 50% 100%, #2a3a5c 0 26%, transparent 26.5%),
+        linear-gradient(160deg, #16233f, #0d1526 70%);
+      font-size: clamp(.55rem, 1.35vw, .85rem);
+    }
+    .tv .ov { position: absolute; opacity: 0; transform: translateY(8px); transition: .3s; pointer-events: none; }
+    .tv .ov.on { opacity: 1; transform: none; }
+    .ov-total { left: 5%; bottom: 17%; background: #fff; color: #111; padding: .35em .9em; border-left: .5em solid var(--primary-color); font-weight: 700; line-height: 1.25; }
+    .ov-total small { display: block; font-weight: 500; font-size: .8em; color: #444; }
+    .ov-pres { left: 5%; bottom: 36%; background: #0f3d91; color: #fff; padding: .35em .9em; font-weight: 700; line-height: 1.25; border-left: .5em solid #fff; }
+    .ov-pres small { display: block; font-weight: 500; font-size: .8em; opacity: .8; }
+    .ov-loc { left: 4%; top: 6%; display: flex; gap: .5em; align-items: center; }
+    .ov-loc .live { background: var(--live); color: #fff; font-weight: 700; padding: .15em .6em; border-radius: .25em; letter-spacing: .08em; }
+    .ov-loc .place { background: rgba(0,0,0,.65); color: #fff; padding: .15em .6em; border-radius: .25em; }
+    .ov-mosca { right: 4%; top: 6%; background: rgba(255,255,255,.9); color: #0f3d91; font-weight: 800; padding: .15em .7em; border-radius: .3em; letter-spacing: .05em; }
+    .ov-scroll { left: 0; right: 0; bottom: 0; height: 12%; background: #0f3d91; color: #fff; overflow: hidden; display: flex; align-items: center; border-top: .2em solid #fff; }
+    .ov-scroll span { white-space: nowrap; padding-left: 100%; animation: scroll 14s linear infinite; font-weight: 500; }
+    @keyframes scroll { to { transform: translateX(-100%); } }
+    .ov-pip { right: 4%; bottom: 20%; width: 30%; aspect-ratio: 16/9; border: .2em solid #fff; background: linear-gradient(160deg, #5a2d2d, #2b1414); box-shadow: 0 4px 14px rgba(0,0,0,.6); display: grid; place-items: center; color: #fff; font-weight: 600; }
+    .ov-pip::after { content: "corresponsal"; position: absolute; bottom: .2em; left: .4em; font-size: .75em; opacity: .85; }
+    .ov-id { right: 4%; bottom: 22%; background: rgba(0,0,0,.6); color: #fff; padding: .2em .7em; border-radius: .25em; font-size: .85em; }
+    .tv-toggles { display: flex; flex-direction: column; gap: .45rem; }
+    .tv-toggles .chip { text-align: left; border-radius: var(--radius-md); }
+    .tv-info { margin-top: 1rem; font-size: .95rem; color: var(--text-muted); min-height: 6.5rem; }
+    .tv-info strong { color: var(--text-main); }
+
+    /* ---------- CALCULADORA / MEZCLADOR ---------- */
+    .tools { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .tool { background: var(--surface-light); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.4rem 1.5rem; }
+    .tool h4 { margin: 0 0 1rem; font-size: 1.1rem; }
+    .tool label { display: flex; justify-content: space-between; font-size: .9rem; color: var(--text-muted); margin-top: .8rem; }
+    .tool label b { color: var(--text-main); font-variant-numeric: tabular-nums; }
+    input[type=range] { width: 100%; accent-color: var(--primary-color); }
+    .out { margin-top: 1rem; padding: .9rem 1rem; background: var(--bg-color); border-radius: var(--radius-md); border: 1px solid var(--border-color); font-size: .95rem; }
+    .out b { color: var(--accent-color); }
+    .meter { height: 12px; background: var(--bg-color); border-radius: 99px; overflow: hidden; border: 1px solid var(--border-color); margin-top: .35rem; position: relative; }
+    .meter i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--ok), var(--ok) 70%, var(--warn) 85%, var(--live)); transition: width .15s; }
+    .meter u { position: absolute; top: 0; bottom: 0; width: 2px; background: #fff; opacity: .7; }
+    .status { font-weight: 600; margin-top: .9rem; padding: .7rem .9rem; border-radius: var(--radius-md); font-size: .92rem; }
+    .status.ok { background: rgba(34,197,94,.12); color: #86efac; }
+    .status.bad { background: rgba(245,158,11,.12); color: #fcd34d; }
+
+    /* ---------- CHECKLIST ---------- */
+    .checklist { list-style: none; padding: 0; margin: 1rem 0 0; }
+    .checklist li { margin: .4rem 0; }
+    .checklist label { display: flex; gap: .7rem; align-items: flex-start; cursor: pointer; padding: .5rem .7rem; border-radius: var(--radius-md); }
+    .checklist label:hover { background: var(--surface-light); }
+    .checklist input { margin-top: .45rem; accent-color: var(--primary-color); width: 1.1rem; height: 1.1rem; flex: none; }
+    .checklist input:checked + span { color: var(--text-muted); text-decoration: line-through; }
+    .check-progress { display: flex; align-items: center; gap: .8rem; font-size: .85rem; color: var(--text-muted); }
+    .check-progress .meter { flex: 1; margin: 0; }
+    .check-progress .meter i { background: var(--primary-color); }
+
+    /* ---------- PASOS NUMERADOS ---------- */
+    .steps { counter-reset: s; list-style: none; padding: 0; margin: 1rem 0; }
+    .steps li { counter-increment: s; position: relative; padding: .6rem 0 .6rem 3rem; color: var(--text-muted); }
+    .steps li strong { color: var(--text-main); }
+    .steps li::before {
+      content: counter(s); position: absolute; left: 0; top: .5rem; width: 2rem; height: 2rem; border-radius: 50%;
+      background: rgba(59,130,246,.18); color: var(--primary-color); display: grid; place-items: center; font-weight: 700; font-size: .9rem;
+    }
+
+    /* ---------- TABLA ESCALETA ---------- */
+    .table-wrap { overflow-x: auto; margin-top: 1rem; }
+    table.escaleta { width: 100%; border-collapse: collapse; font-size: .92rem; min-width: 620px; }
+    .escaleta th, .escaleta td { padding: .6rem .8rem; border-bottom: 1px solid var(--border-color); text-align: left; }
+    .escaleta th { color: var(--text-muted); font-weight: 600; font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; }
+    .escaleta tr.new { background: rgba(239,68,68,.12); animation: fade .4s; }
+    .escaleta td.n { font-weight: 700; color: var(--accent-color); font-variant-numeric: tabular-nums; }
+
+    /* ---------- SIMULADOR DE CONTROL ---------- */
+    .sim { background: #05080f; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.4rem; font-family: ui-monospace, Consolas, monospace; }
+    .sim-clock { font-size: 2.6rem; font-weight: 700; text-align: center; color: var(--text-main); font-variant-numeric: tabular-nums; }
+    .sim-clock small { font-size: .9rem; color: var(--text-muted); display: block; font-weight: 400; }
+    .sim .meter { height: 8px; margin: .8rem 0 1rem; }
+    .sim .meter i { background: var(--primary-color); transition: width .2s linear; }
+    .sim-log { min-height: 11rem; font-size: .92rem; display: flex; flex-direction: column; gap: .3rem; }
+    .sim-log div { animation: fade .3s; }
+    .sim-log .who { color: var(--accent-color); font-weight: 700; }
+    .sim-log .who.real { color: #fbbf24; }
+    .sim-log .tc { color: var(--text-muted); margin-right: .5rem; }
+
+    /* ---------- ROLES ---------- */
+    .role { text-align: left; }
+    .role .badge { position: absolute; top: .9rem; right: .9rem; font-size: .7rem; font-weight: 600; padding: .1rem .55rem; border-radius: 99px; }
+    .badge.on { background: rgba(34,197,94,.15); color: #86efac; }
+    .badge.off { background: rgba(148,163,184,.15); color: var(--text-muted); }
+    .mini.role { position: relative; cursor: default; }
+    .mini.role:hover { transform: none; }
+    .mini.role .body { display: block; }
+
+    /* ---------- FLIP CARDS ---------- */
+    .flips { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1rem; }
+    .flip { perspective: 800px; height: 190px; background: none; border: 0; padding: 0; cursor: pointer; color: inherit; font: inherit; text-align: center; }
+    .flip-in { position: relative; width: 100%; height: 100%; transition: transform .5s; transform-style: preserve-3d; }
+    .flip.on .flip-in { transform: rotateY(180deg); }
+    .face { position: absolute; inset: 0; backface-visibility: hidden; border-radius: var(--radius-md); border: 1px solid var(--border-color); padding: 1rem; display: grid; place-items: center; }
+    .face.front { background: var(--surface-light); font-weight: 700; font-size: 1.15rem; }
+    .face.front small { display: block; font-weight: 400; color: var(--text-muted); font-size: .75rem; margin-top: .3rem; }
+    .face.back { background: var(--primary-dark); transform: rotateY(180deg); font-size: .85rem; line-height: 1.5; overflow: auto; }
+
+    /* ---------- VÍDEOS ---------- */
+    .video-card { background: var(--surface-light); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: 0 6px 18px rgba(0,0,0,.35); }
+    .video-card + .video-card { margin-top: 2rem; }
+    .video-card h3 { margin: 0 0 1rem; color: var(--primary-color); font-size: 1.2rem; }
+    .video-frame { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: var(--radius-md); border: 1px solid var(--border-color); }
+    .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .links { list-style: none; padding: 0; margin: 1.5rem 0 0; display: grid; gap: .6rem; }
+    .links a { display: flex; gap: .8rem; padding: .8rem 1.1rem; background: var(--surface-light); border: 1px solid var(--border-color); border-radius: var(--radius-md); text-decoration: none; color: var(--text-main); }
+    .links a:hover { border-color: var(--primary-color); }
+    .links small { color: var(--text-muted); display: block; }
+
+    /* ---------- QUIZ ---------- */
+    .quiz-top { display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); font-size: .9rem; margin-bottom: 1rem; }
+    .quiz q { display: block; quotes: none; font-size: 1.25rem; font-weight: 600; margin-bottom: 1.2rem; line-height: 1.5; }
+    .opts { display: grid; gap: .6rem; }
+    .opt { text-align: left; background: var(--surface-light); border: 1px solid var(--border-color); color: var(--text-main); border-radius: var(--radius-md); padding: .8rem 1.1rem; font-size: 1rem; cursor: pointer; transition: .2s; }
+    .opt:hover:not(:disabled) { border-color: var(--primary-color); }
+    .opt.right { border-color: var(--ok); background: rgba(34,197,94,.12); }
+    .opt.wrong { border-color: var(--live); background: rgba(239,68,68,.12); }
+    .opt:disabled { cursor: default; }
+    .explain { margin-top: 1rem; }
+    .quiz-actions { margin-top: 1.2rem; display: flex; gap: .7rem; justify-content: flex-end; }
+    .result { text-align: center; }
+    .result .score { font-size: 3.6rem; font-weight: 700; color: var(--accent-color); line-height: 1.2; }
+
+    footer { text-align: center; padding: 3rem 1rem; color: #6b7280; font-size: .85rem; border-top: 1px solid var(--border-color); }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 860px) {
+      body { font-size: 1rem; }
+      .hero h1 { font-size: 2.1rem; }
+      h2.section-title { font-size: 1.7rem; }
+      section { padding: 3.5rem 0; }
+      .card { padding: 1.5rem 1.1rem; }
+      .rundown, .tv-wrap, .tools { grid-template-columns: 1fr; }
+      .rd-list { flex-direction: row; overflow-x: auto; padding-bottom: .4rem; }
+      .rd-step { flex: none; width: auto; }
+      .acc-body { padding-left: 1.3rem; }
+      .pdf-frame { height: 70vh; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+      html { scroll-behavior: auto; }
+    }
+
+    /* =========================================================
+       MEJORAS DE DISEÑO Y ACCESIBILIDAD
+       ========================================================= */
+    .skip { position: absolute; left: -999px; top: 0; z-index: 200; background: var(--primary-color); color: #fff; padding: .6rem 1rem; border-radius: 0 0 var(--radius-md) 0; }
+    .skip:focus { left: 0; }
+    :focus-visible { outline: 2px solid var(--accent-color); outline-offset: 2px; border-radius: 4px; }
+    ::selection { background: rgba(59,130,246,.45); }
+
+    /* Hero con rejilla y resplandor */
+    .hero { position: relative; overflow: hidden; isolation: isolate; }
+    .hero::before {
+      content: ""; position: absolute; inset: 0; z-index: -1;
+      background-image: linear-gradient(rgba(148,163,184,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,.07) 1px, transparent 1px);
+      background-size: 48px 48px;
+      -webkit-mask-image: radial-gradient(circle at 50% 40%, #000 0, transparent 70%); mask-image: radial-gradient(circle at 50% 40%, #000 0, transparent 70%);
+    }
+    .hero::after {
+      content: ""; position: absolute; width: 520px; height: 520px; left: 50%; top: -240px; margin-left: -260px; z-index: -1;
+      background: radial-gradient(circle, rgba(59,130,246,.35), transparent 65%); filter: blur(30px);
+      animation: glow 8s ease-in-out infinite alternate;
+    }
+    @keyframes glow { to { transform: translateY(40px) scale(1.15); opacity: .7; } }
+    .hero-stats { display: flex; gap: .7rem; justify-content: center; flex-wrap: wrap; margin-top: 2.5rem; }
+    .hero-stats span { font-size: .85rem; color: var(--text-muted); background: rgba(21,31,50,.7); border: 1px solid var(--border-color); border-radius: 99px; padding: .3rem .9rem; }
+    .hero-stats b { color: var(--text-main); }
+
+    /* Títulos y tarjetas */
+    h2.section-title::after { content: ""; display: block; width: 56px; height: 4px; border-radius: 4px; margin: .9rem auto 0; background: linear-gradient(90deg, var(--primary-color), var(--accent-color)); }
+    .card { position: relative; overflow: hidden; transition: border-color .25s, transform .25s; }
+    .card::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: linear-gradient(90deg, var(--primary-color), var(--accent-color)); opacity: .55; }
+    .card:hover { border-color: #35496b; }
+    .mini:focus-visible, .chip:focus-visible, .tab:focus-visible { outline-offset: 3px; }
+
+    /* Aparición al hacer scroll */
+    .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+    .js .reveal.in { opacity: 1; transform: none; }
+
+    /* Visor PDF perezoso */
+    .pdf-poster {
+      display: grid; place-items: center; text-align: center; gap: 1rem; width: 100%; min-height: 360px; padding: 2rem 1rem;
+      border: 1px dashed var(--border-color); border-radius: var(--radius-md);
+      background: radial-gradient(circle at 50% 0, rgba(59,130,246,.14), transparent 70%), var(--bg-color);
+    }
+    .pdf-poster .big { font-size: 3rem; line-height: 1; }
+    .pdf-poster p { margin: 0; color: var(--text-muted); max-width: 440px; }
+
+    /* Botón volver arriba */
+    .totop {
+      position: fixed; right: 1.1rem; bottom: 1.1rem; z-index: 90; width: 46px; height: 46px; border-radius: 50%;
+      background: var(--primary-color); color: #fff; border: 0; font-size: 1.3rem; cursor: pointer; box-shadow: 0 6px 18px rgba(0,0,0,.45);
+      opacity: 0; transform: translateY(12px); pointer-events: none; transition: .25s;
+    }
+    .totop.show { opacity: 1; transform: none; pointer-events: auto; }
+    .totop:hover { background: var(--primary-dark); }
+
+    @media print {
+      .topbar, .totop, .hero-actions, .viewer-bar, #pdfHost, .pdf-fallback, .skip { display: none !important; }
+      body { background: #fff; color: #111; }
+      .card, .panel, .mini { background: #fff !important; color: #111 !important; box-shadow: none !important; border-color: #ccc !important; }
+      .muted, .lead { color: #444 !important; }
+      .mini .body, .acc-body { display: block !important; }
+      .js .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+  <script>document.documentElement.classList.add("js");</script>
+<link rel="stylesheet" href="../../assets/back.css">
+</head>
+
+<body>
+<a class="portal-back" href="../../index.html">&larr; Portal</a>
+
+<a class="skip" href="#presentacion">Saltar al contenido</a>
+<button class="totop" id="toTop" type="button" aria-label="Volver arriba">↑</button>
+
+<!-- BARRA SUPERIOR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="home" href="../index.html">PRTV<span>.</span></a>
+    <nav class="toc" id="toc" aria-label="Índice de la unidad"></nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="on-air">UT2 · Informativos</div>
+    <h1>Emisión de piezas de vídeo y <span class="hl">fuentes en informativos</span></h1>
+    <p>Del género informativo al control de realización: formatos de pieza, grafismo, grabación, producción y emisión en directo del telediario.</p>
+    <div class="hero-actions">
+      <a href="#presentacion" class="btn primary">Ver la presentación</a>
+      <a href="#autoevaluacion" class="btn">Ir al test</a>
+    </div>
+    <div class="hero-stats"><span><b>30</b> páginas</span><span><b>15</b> secciones</span><span><b>6</b> herramientas interactivas</span><span><b>10</b> preguntas de test</span></div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ 0. PRESENTACIÓN ============ -->
+<section id="presentacion" data-title="Presentación">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">La presentación completa</h2>
+      <p class="lead">Dos formatos: la <strong>presentación interactiva</strong> (60 diapositivas con esquemas) y los <strong>apuntes completos en PDF</strong> (30 páginas), integrados abajo. Usa el botón «Ver en la presentación» de cada sección para saltar al PDF.</p>
+      <p style="margin-top:1.2rem"><a class="btn primary" href="presentacion.html">▶ Abrir la presentación interactiva</a></p>
+    </div>
+    <div class="card">
+      <div class="viewer-bar">
+        <button class="btn small" id="pdfPrev" aria-label="Página anterior">&larr;</button>
+        <label class="muted" style="font-size:.9rem">Pág. <input type="number" id="pdfPage" min="1" max="30" value="1"> / 30</label>
+        <button class="btn small" id="pdfNext" aria-label="Página siguiente">&rarr;</button>
+        <select id="pdfTopic" aria-label="Ir a un tema"></select>
+        <span class="spacer"></span>
+        <a class="btn small" id="pdfOpen" href="../assets/UT2.%20EMISI%C3%93N%20PIEZAS%20V%C3%8DDEO%20Y%20FUENTES%20EN%20PROGRAMAS%20DE%20TELEVISI%C3%93N.%20INFORMATIVOS.pdf" target="_blank" rel="noopener">Abrir en pestaña</a>
+        <a class="btn small primary" href="../assets/UT2.%20EMISI%C3%93N%20PIEZAS%20V%C3%8DDEO%20Y%20FUENTES%20EN%20PROGRAMAS%20DE%20TELEVISI%C3%93N.%20INFORMATIVOS.pdf" download>Descargar PDF</a>
+      </div>
+      <div id="pdfHost"></div>
+      <p class="pdf-fallback">¿No se ve el documento? Tu navegador puede bloquear el visor incrustado: usa «Abrir en pestaña» o «Descargar PDF».</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 1. ORIGEN ============ -->
+<section id="origen" class="alt" data-title="Origen">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">1. Origen y evolución del género</h2>
+      <p class="lead">Los informativos son los programas que dan noticias de actualidad (política, social, deportiva…) con una versión lo más «fiel» posible de la realidad. Suelen ser el programa seña de identidad de la cadena.</p>
+      <button class="pdf-link" data-pdf="1">📄 Ver en la presentación · pág. 1–2</button>
+    </div>
+    <div class="card">
+      <h3>Línea del tiempo</h3>
+      <p class="muted">Pulsa en cada hito.</p>
+      <div class="timeline" id="timeline" role="tablist" aria-label="Hitos históricos"></div>
+      <div class="panel" id="timelinePanel" aria-live="polite"></div>
+    </div>
+    <div class="card">
+      <h3>Vigencia de los programas informativos</h3>
+      <p>Hoy los informativos mantienen audiencias equiparables, e incluso superiores, a la ficción dramática por dos rasgos:</p>
+      <ul class="clean">
+        <li><strong>Opinión sobre información:</strong> expertos que explican y argumentan los hechos noticiados.</li>
+        <li><strong>Mezcla de géneros:</strong> tratamiento espectacular próximo al entretenimiento o incluso a la dramatización con reconstrucciones.</li>
+      </ul>
+      <div class="note">A la nueva televisión se le exige sobre todo <strong>verosimilitud, veracidad y autenticidad</strong>. Por eso se construye la información sobre el <strong>directo</strong> y el testimonio del protagonista.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. CLASIFICACIÓN ============ -->
+<section id="clasificacion" data-title="Clasificación">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">2. Clasificación de los programas informativos</h2>
+      <p class="lead">Los subgéneros se determinan por el grado de actualidad, la frecuencia de emisión, el estilo o la producción.</p>
+      <button class="pdf-link" data-pdf="2">📄 Ver en la presentación · pág. 2–3</button>
+    </div>
+    <div class="card">
+      <div class="tabs" id="classTabs" role="tablist" aria-label="Criterios de clasificación"></div>
+      <div class="panel" id="classPanel" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. MEDIOS TÉCNICOS ============ -->
+<section id="medios" class="alt" data-title="Medios técnicos">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">3. Medios técnicos de producción</h2>
+      <p class="lead">La constante actualidad y la frecuencia diaria exigen un plató propio, con menos exigencias de puesta en escena, y equipos exteriores muy reducidos.</p>
+      <button class="pdf-link" data-pdf="3">📄 Ver en la presentación · pág. 3–4</button>
+    </div>
+    <div class="grid" id="mediosGrid"></div>
+  </div>
+</section>
+
+<!-- ============ 4. ESTILOS DE PRESENTACIÓN ============ -->
+<section id="estilos" data-title="Estilos de pieza">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">4. Estilos de presentación característicos</h2>
+      <p class="lead">Técnica monocámara, plano master y planos recurso: rara vez se repite una situación real, así que se graba abundante material <strong>siempre con sonido ambiente</strong>.</p>
+      <button class="pdf-link" data-pdf="4">📄 Ver en la presentación · pág. 4–7</button>
+    </div>
+
+    <div class="card">
+      <h3>Qué evaluar antes de grabar</h3>
+      <div class="grid" id="evalGrid"></div>
+    </div>
+
+    <div class="card">
+      <h3>Los formatos de registro, uno a uno</h3>
+      <p class="muted">Elige un formato para ver cómo se cubre.</p>
+      <div class="chips" id="styleChips" role="group" aria-label="Formatos"></div>
+      <div class="panel" id="stylePanel" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. FORMATOS ============ -->
+<section id="formatos" class="alt" data-title="Formatos">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">5. Formatos de la información</h2>
+      <p class="lead">Son las fórmulas informativas: el «contenedor» en el que se presentan los géneros periodísticos en televisión.</p>
+      <button class="pdf-link" data-pdf="8">📄 Ver en la presentación · pág. 8–12</button>
+    </div>
+    <div id="formatAcc"></div>
+  </div>
+</section>
+
+<!-- ============ 6. TELEDIARIO ============ -->
+<section id="telediario" data-title="Telediario">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">6. El informativo diario o telediario</h2>
+      <p class="lead">«Las noticias nunca suceden. Las noticias se crean»: todo informativo es una representación de la realidad, sesgada por el punto de vista de quienes lo construyen.</p>
+      <button class="pdf-link" data-pdf="13">📄 Ver en la presentación · pág. 13–20</button>
+    </div>
+
+    <div class="card">
+      <h3>Configuración estructural</h3>
+      <p class="muted">Recorre los módulos de un telediario en orden.</p>
+      <div class="rundown">
+        <div class="rd-list" id="rdList" role="tablist" aria-label="Módulos del informativo"></div>
+        <div>
+          <div class="panel" id="rdPanel" aria-live="polite" style="margin-top:0"></div>
+          <div class="rd-nav">
+            <button class="btn small" id="rdPrev">&larr; Anterior</button>
+            <button class="btn small primary" id="rdNext">Siguiente &rarr;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Paso de locutor</h3>
+      <p>Es la introducción a cada pieza. Debe explicarse por sí mismo, sin imágenes, y sintetiza los elementos principales de la noticia. Equivale a la <strong>entradilla</strong> de una noticia escrita.</p>
+      <div class="chips" style="margin:.8rem 0">
+        <span class="tag">¿Qué?</span><span class="tag">¿A quién?</span><span class="tag">¿Dónde?</span><span class="tag">¿Cuándo?</span><span class="tag">¿Por qué?</span><span class="tag">¿Cómo?</span>
+      </div>
+      <ul class="clean">
+        <li>Se escribe sabiendo que se <strong>leerá en voz alta</strong>: frases cortas, palabras sencillas y lenguaje directo.</li>
+        <li>Sin ambigüedades, tópicos, ironías ni dobles sentidos, y sin fórmulas de protocolo.</li>
+        <li><strong>No repetir</strong> palabras ni construcciones del vídeo al que da paso, y nunca terminar con la frase con que empieza la pieza.</li>
+        <li>Si la noticia ya salió como avance o titular, el texto no se repite: enfoques diversos, complementarios y no contradictorios.</li>
+        <li>La pieza, a su vez, debe entenderse sin el paso del locutor.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Colas (mudos)</h3>
+      <p>Sucesión de imágenes montadas sobre las que el presentador lee un texto ajustado a la secuencia. El nombre viene de la época del cine, cuando se filmaba <em>sin sonido</em>; hoy <strong>toda imagen debe llevar su sonido ambiente</strong> (canal 2).</p>
+      <h4>¿Cuándo se usan?</h4>
+      <ul class="clean">
+        <li>Falta de espacio o urgencia (no hay tiempo de hacer una pieza).</li>
+        <li>Para abrir un bloque temático que necesita introducción detallada.</li>
+        <li>Imágenes impactantes a las que se quiere dar protagonismo.</li>
+        <li>La noticia tiene menor relevancia informativa.</li>
+      </ul>
+      <div class="grid" style="margin-top:1.2rem">
+        <div class="mini" style="cursor:default"><strong>Con paso de locutor</strong><span class="body" style="display:block">Los primeros segundos los relata el locutor en plató; en un punto fijado en el guion entran las imágenes, que acompañan su voz hasta el final.</span></div>
+        <div class="mini" style="cursor:default"><strong>Sin paso de locutor</strong><span class="body" style="display:block">Las imágenes van con la voz del presentador sin que éste aparezca en plano. Suelen agruparse en un bloque, separadas por un efecto visual del control.</span></div>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>≥ 50 s</b><span>montaje mínimo de unas colas</span></div>
+        <div class="stat"><b>60 s</b><span>recomendado en colas ordinarias</span></div>
+        <div class="stat"><b>1'30"–2'</b><span>para cierres</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Montaje: recomendaciones</h3>
+      <div class="grid">
+        <div class="mini" style="cursor:default"><strong>Duración de planos</strong><span class="body" style="display:block">Entre <b>2 y 5 s</b>. Cuanto más amplio es el plano, más información contiene y más tiempo se mantiene.</span></div>
+        <div class="mini" style="cursor:default"><strong>Alternancia</strong><span class="body" style="display:block">Empezar con un general para situar y seguir con planos más cortos y detalles. Volver a un general de vez en cuando.</span></div>
+        <div class="mini" style="cursor:default"><strong>Evitar el raccord roto</strong><span class="body" style="display:block">No unir planos de tamaño parecido (americano → medio) ni dar saltos bruscos (general → detalle): hace falta un plano intermedio.</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Declaraciones o totales</h3>
+      <p>Apariciones en pantalla de personas, conocidas o anónimas, que ofrecen opiniones y testimonios sobre un hecho, sin aditamentos narrativos o técnicos. También se llaman así los <em>cortes</em> dentro de una pieza.</p>
+      <div class="stats">
+        <div class="stat"><b>10–20 s</b><span>duración de un total</span></div>
+        <div class="stat"><b>2–3 frames</b><span>de blanco para separar cortes del mismo entrevistado</span></div>
+      </div>
+      <ul class="clean">
+        <li>Breves y relevantes (opinión personal o análisis de un experto), reflejando el <strong>contraste o pluralidad</strong> de opiniones: acción–reacción, causa–efecto, acusación–réplica.</li>
+        <li>El texto previo <strong>no puede enunciar miméticamente</strong> lo que dirá el total.</li>
+        <li><strong>Las preguntas nunca aparecen</strong> en el montaje final.</li>
+        <li>Plano fijo, corto y frontal con el rostro ligeramente ladeado; el redactor junto a la cámara para que el entrevistado le mire a él.</li>
+      </ul>
+      <h4>Colas + total</h4>
+      <p>Por espacio y urgencia es habitual: las colas acotan el hecho y el total ofrece el testimonio. Se montan en cintas separadas y las colas deben ser holgadas por si el presentador se demora o improvisa. Si en una rueda de prensa no hay tiempo de montar, el cámara graba los planos recurso <strong>antes</strong> de que empiece.</p>
+    </div>
+
+    <div class="card">
+      <h3>Directo a cámara o entradilla</h3>
+      <p>El redactor, de pie y a menudo con micrófono en mano, se dirige al objetivo para relatar los hechos y dar testimonio de su presencia en el lugar. También llamado <em>in situ</em> o <em>speech</em>. Es cuando el redactor <strong>firma</strong> (rótulo) la noticia.</p>
+      <ul class="clean">
+        <li>Plano medio ante un fondo representativo de la noticia (al menos el <strong>50 %</strong> del encuadre). Primero se encuadra el fondo y luego se coloca al periodista, generalmente a un lado.</li>
+        <li>Plano fijo, <strong>máximo 15 s</strong>; o con panorámica/zoom para terminar en algo importante, sacando al redactor de plano. Todo movimiento tiene principio y final.</li>
+        <li>Plano muy cerrado → periodista centrado; plano abierto → a un lado.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Pieza o noticia</h3>
+      <p>Es el formato elemental sobre el que se articula un informativo diario: una pieza ya editada que puede contener:</p>
+      <div class="chips" style="margin:.6rem 0 1.2rem">
+        <span class="tag">Voz en off</span><span class="tag">Planos recurso con sonido ambiente</span><span class="tag">Declaraciones / totales / encuestas</span><span class="tag">Entradilla, medianilla o salidilla</span><span class="tag">Gráficos y postproducción</span>
+      </div>
+      <h4>Formatos sencillos y combinados</h4>
+      <p class="muted">Pulsa en una fórmula para verla desglosada. Las combinaciones dan <strong>dinamismo</strong> y permiten fórmulas más cortas, fragmentadas para dar más impacto y ritmo.</p>
+      <div class="chips" id="formulaChips" role="group" aria-label="Fórmulas de formato"></div>
+      <div class="panel" id="formulaPanel" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. GRAFISMO ============ -->
+<section id="grafismo" class="alt" data-title="Grafismo">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">7. Grafismo en pantalla</h2>
+      <p class="lead">Rótulos, ventanas, barras y ráfagas: los elementos gráficos que se «impresionan» sobre la imagen. Activa cada uno en la pantalla de pruebas.</p>
+      <button class="pdf-link" data-pdf="19">📄 Ver en la presentación · pág. 19–20</button>
+    </div>
+    <div class="card">
+      <div class="tv-wrap">
+        <div>
+          <div class="tv" id="tv" aria-label="Pantalla de ejemplo">
+            <div class="ov ov-loc" data-k="loc"><span class="live">● DIRECTO</span><span class="place">MADRID · 09/10/2026</span></div>
+            <div class="ov ov-mosca" data-k="id">PRTV NOTICIAS</div>
+            <div class="ov ov-total" data-k="total">María Gómez<small>Portavoz de la plataforma vecinal</small></div>
+            <div class="ov ov-pres" data-k="pres">Pedro Sánchez-Quintana<small>Presentador</small></div>
+            <div class="ov ov-pip" data-k="pip"></div>
+            <div class="ov ov-scroll" data-k="scroll"><span>ÚLTIMA HORA · El Consejo de Redacción fija la escaleta del informativo · Los resultados de la jornada, en el bloque de deportes · Mañana, tiempo estable en toda la península</span></div>
+          </div>
+          <div class="tv-info" id="tvInfo" aria-live="polite"><span class="muted">Activa un elemento de la derecha para ver su definición.</span></div>
+        </div>
+        <div class="tv-toggles" id="tvToggles"></div>
+      </div>
+    </div>
+
+    <div class="grid" style="margin-top:2rem">
+      <div class="mini" style="cursor:default"><span class="ico">🌀</span><strong>Ráfagas y caretas</strong><span class="body" style="display:block">Separan bloques o informativos. Pueden ser grafismos con movimientos de cámara (cabeza caliente) y sintonía derivada de la principal, solo imágenes en movimiento con música, o solo grafismos con música. Las <em>caretas de sección</em> identifican una sección y son algo más largas.</span></div>
+      <div class="mini" style="cursor:default"><span class="ico">🎨</span><strong>Grafismos y animaciones</strong><span class="body" style="display:block">Generados en una paleta gráfica o estación de tratamiento de imágenes: bono-loto, resultados de liga, el tiempo…</span></div>
+      <div class="mini" style="cursor:default"><span class="ico">🖥️</span><strong>Chyrons (rótulos)</strong><span class="body" style="display:block">Los crea un generador de rótulos; hoy suele ser un ordenador que a veces tiene funciones de estación gráfica (movimiento, color…). Las noticias se editan <strong>sin rótulos</strong> para agilizar: se impresionan en directo.</span></div>
+    </div>
+
+    <div class="card">
+      <h3>Espacios informativos especiales</h3>
+      <div class="grid">
+        <div class="mini" style="cursor:default"><span class="ico">⚽</span><strong>Deportes</strong><span class="body" style="display:block">Realización similar al resto del informativo, pero con más juego en elementos decorativos (cortinillas, efectos…). Menos duración, mismos recursos de producción.</span></div>
+        <div class="mini" style="cursor:default"><span class="ico">⛅</span><strong>El tiempo</strong><span class="body" style="display:block">Integra desde siempre gráficos e imagen real. Tradicionalmente con chroma key; hoy también pantallas planas de alto brillo, videowalls y pantallas interactivas.</span></div>
+      </div>
+      <div class="note"><strong>Chroma key:</strong> tratamiento electrónico que permite incrustar sobre un fondo azul (o verde) una imagen que aparece superpuesta a todo lo que se coloque delante. El objeto o persona es la <em>señal clave</em> y el fondo la <em>señal key</em>. Se usa azul/verde porque no están presentes en la piel; el presentador <strong>no puede llevar prendas de ese color</strong>.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. GRABACIÓN ============ -->
+<section id="grabacion" data-title="Grabación y edición">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">8. Grabación y edición de una noticia</h2>
+      <p class="lead">Hay que prever la estructura de la noticia para saber qué planos grabar. Usa la lista de comprobación y las herramientas de abajo.</p>
+      <button class="pdf-link" data-pdf="21">📄 Ver en la presentación · pág. 21–24</button>
+    </div>
+
+    <div class="card">
+      <h3>Lista de comprobación del rodaje</h3>
+      <div class="check-progress"><div class="meter"><i id="checkBar"></i></div><span id="checkText">0 / 0</span></div>
+      <ul class="checklist" id="checklist"></ul>
+      <button class="btn small" id="checkReset" style="margin-top:1rem">Reiniciar</button>
+    </div>
+
+    <div class="tools" style="margin-top:2rem">
+      <div class="tool">
+        <h4>🎞️ Calculadora de material</h4>
+        <p class="muted" style="margin:0;font-size:.9rem">¿Cuánto hay que grabar para una pieza?</p>
+        <label>Duración de la pieza <b id="calcDurLabel">1'00"</b></label>
+        <input type="range" id="calcDur" min="30" max="240" step="15" value="60">
+        <div class="out" id="calcOut"></div>
+      </div>
+      <div class="tool">
+        <h4>🎚️ Mezcla de la pieza</h4>
+        <p class="muted" style="margin:0;font-size:.9rem">Canal 1: off, entradillas y totales · Canal 2: ambiente. Referencia: <b>−12 dB</b> y <b>−20 dB</b>.</p>
+        <label>Canal 1 (voz) <b id="ch1Label">−12 dB</b></label>
+        <input type="range" id="ch1" min="-40" max="0" step="1" value="-12">
+        <div class="meter"><i id="m1"></i><u style="left:70%"></u></div>
+        <label>Canal 2 (ambiente) <b id="ch2Label">−20 dB</b></label>
+        <input type="range" id="ch2" min="-40" max="0" step="1" value="-20">
+        <div class="meter"><i id="m2"></i><u style="left:50%"></u></div>
+        <div class="status ok" id="mixStatus"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Edición paso a paso</h3>
+      <p class="muted">Escritura del texto tras visionar el material: se apuntan códigos de tiempo y pies de entradillas y totales, y se minutan los planos para cubrir el off. Después:</p>
+      <ol class="steps">
+        <li><strong>Negro o barras</strong> antes de la noticia: 1'30" (en edición lineal).</li>
+        <li><strong>Coleo de 2 s</strong> de imagen y sonido ambiente antes de que entre el sonido principal.</li>
+        <li><strong>Grabar la voz en off</strong> en el canal 1. En lineal se hacen pausas y se meten entradillas y totales; en no lineal se graba todo el off y luego se divide.</li>
+        <li><strong>Insertar entradillas, medianillas, salidillas y totales</strong>; su sonido queda en el canal 1.</li>
+        <li><strong>Tapar la pieza</strong> (cubrir los espacios del off) con planos recurso: 3 s plano medio/entero fijo · 4 s plano general · 2 s plano detalle · 5 s si hay movimiento. «Asfaltar» es hacerlo rápido, sin reflexión.</li>
+        <li><strong>Sonido ambiente en el canal 2</strong>, con nivel menor que el canal 1.</li>
+        <li><strong>Colas finales</strong>: el último plano debe ser largo para coger la última palabra del off y durar aún unos segundos para que el realizador pueda cortar. Si no es posible, la escaleta señala que la salida es un <strong>«capón»</strong>.</li>
+      </ol>
+      <div class="note warn">En edición no lineal <strong>no hay que capturar todo el material</strong> grabado: se capturan solo los planos que se van a utilizar. Capturarlo todo ralentiza el trabajo.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9. REPORTAJE ============ -->
+<section id="reportaje" class="alt" data-title="Reportaje">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">9. El reportaje en el informativo</h2>
+      <p class="lead">Información completa que desarrolla una historia con lógica: precisa un elemento conductor y una narración clásica con <strong>presentación, nudo y desenlace</strong>.</p>
+      <button class="pdf-link" data-pdf="24">📄 Ver en la presentación · pág. 24</button>
+    </div>
+    <div class="card">
+      <h3>¿A qué se refiere?</h3>
+      <ul class="clean">
+        <li>Hechos de actualidad <strong>sin tono de urgencia</strong>.</li>
+        <li>Historias antiguas con novedades de reciente conocimiento.</li>
+        <li>Revisión de hechos por aniversarios, recordatorios o efemérides.</li>
+      </ul>
+      <p>En un informativo diario suele durar alrededor de <strong>3 minutos</strong>.</p>
+      <h4>Posibilidades del relato</h4>
+      <div class="chips"><span class="tag">Cronológico o secuencial</span><span class="tag">Testigos y expertos</span><span class="tag">Enfrentar a partes en litigio</span><span class="tag">Fórmula híbrida y global</span></div>
+      <div class="note"><strong>El primer párrafo es fundamental</strong> para atraer la atención: tiene que persuadir y avanzar la tesis. Si la historia se cuenta a través de un personaje, es obligatorio <strong>comenzar por él</strong>.</div>
+      <p class="muted">El periodista aporta su visión en la elección de personajes, grabaciones, sentido estético y montaje, pero <strong>no debe incurrir en opiniones subjetivas</strong>: expone lo que ha visto, lo que sabe y lo que le han dicho.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10. PRODUCCIÓN ============ -->
+<section id="produccion" data-title="Producción y emisión">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">10. Producción de un informativo en directo</h2>
+      <p class="lead">Desde el consejo de redacción hasta el fin de la emisión: siete momentos clave.</p>
+      <button class="pdf-link" data-pdf="24">📄 Ver en la presentación · pág. 24–28</button>
+    </div>
+
+    <div class="card">
+      <h3>Línea de producción</h3>
+      <div class="timeline" id="prodTimeline" role="tablist" aria-label="Fases de producción"></div>
+      <div class="panel" id="prodPanel" aria-live="polite"></div>
+    </div>
+
+    <div class="card">
+      <h3>La escaleta</h3>
+      <p>Es el <strong>documento primario de trabajo</strong> de cualquier informativo diario: delimita el orden y la estructura de los contenidos. Todos los responsables deben tener una copia actualizada hasta la emisión. La escaleta electrónica propaga los cambios al instante a todo el equipo.</p>
+      <div class="table-wrap">
+        <table class="escaleta" id="escaleta">
+          <thead><tr><th>Nº</th><th>Línea / VTR</th><th>Gráficos</th><th>Redactor / origen</th><th>Loc</th><th>Formato</th></tr></thead>
+          <tbody>
+            <tr><td class="n">10</td><td>Cabecera</td><td>Cabecera</td><td>—</td><td>—</td><td>Cabecera</td></tr>
+            <tr><td class="n">20</td><td>Cámara 1</td><td>Sumario</td><td>Presentador</td><td>Sí</td><td>Titulares</td></tr>
+            <tr><td class="n">30</td><td>VTR 1</td><td>Rótulo redactor</td><td>L. Pérez</td><td>Sí</td><td>Pieza</td></tr>
+            <tr><td class="n">40</td><td>VTR 2</td><td>—</td><td>Delegación</td><td>Sí</td><td>Colas + total</td></tr>
+            <tr><td class="n">50</td><td>Línea 4 (SNG)</td><td>Localizador DIRECTO</td><td>R. Díaz</td><td>Sí</td><td>Conexión en directo</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted" style="font-size:.9rem;margin-top:.8rem">Un informativo tiene unas 30 noticias numeradas de 10 en 10 para dejar huecos a los imprevistos. <em>(Ejemplo ilustrativo.)</em></p>
+      <button class="btn small" id="addFlash">⚡ Entra un flash de última hora</button>
+    </div>
+
+    <div class="card">
+      <h3>El parte de emisión</h3>
+      <p>Cada noticia lleva su parte, hecho por un ayudante de realización. Sirve en el control para saber la duración al dar paso al siguiente bloque y para conocer posibles defectos del vídeo.</p>
+      <div class="grid">
+        <div class="mini" style="cursor:default"><strong>TC IN / TC OUT</strong><span class="body" style="display:block">Código de tiempo <em>horas:minutos:segundos:cuadros</em>. En Europa: 25 cuadros (50 campos) por segundo. Se escribe en la cinta y no se puede resetear.</span></div>
+        <div class="mini" style="cursor:default"><strong>CTL / LTC</strong><span class="body" style="display:block">Código de tiempo lineal: se puede resetear a 0 y da la duración exacta del vídeo. En digital se tiende a quedarse solo con la duración.</span></div>
+        <div class="mini" style="cursor:default"><strong>Coleo</strong><span class="body" style="display:block">Tiempo desde el final de la locución hasta el final del vídeo (2–3 s de margen). Sin coleo hay <em>capón</em> (o <em>caponazo</em> si es extremo).</span></div>
+        <div class="mini" style="cursor:default"><strong>Pie</strong><span class="body" style="display:block">Las últimas palabras de la locución (suelen bastar las tres últimas).</span></div>
+        <div class="mini" style="cursor:default"><strong>Printer</strong><span class="body" style="display:block">Momento (CTL) en que debe entrar cada rótulo del generador de caracteres. Si se reconoce al personaje de un total, se indica.</span></div>
+      </div>
+      <div class="note">El <strong>guion</strong>, a diferencia de la escaleta, solo lo maneja el equipo directivo; recoge los textos de los presentadores y, si es posible, los de las noticias elaboradas.</div>
+    </div>
+
+    <div class="card">
+      <h3>Control de realización: las «líneas»</h3>
+      <div class="grid">
+        <div class="mini" style="cursor:default"><strong>Imagen</strong><span class="body" style="display:block">Cámaras (≈4, mínimo 2) · VTR (2 o 3) · printer/tituladora · señales exteriores (móviles, satélite) · grafismos.</span></div>
+        <div class="mini" style="cursor:default"><strong>Sonido</strong><span class="body" style="display:block">Micrófonos · vídeos · directos · sintonías (CD, minidisc u ordenador). Lo correcto: locución en audio 1 y ambiente/música en audio 2.</span></div>
+      </div>
+      <h4>Simulador: cantar los tiempos</h4>
+      <p class="muted">El ayudante de realización «canta» el tiempo que queda a –20" y –10", indicando pie y coleo. Lanza una pieza de 30 s y observa el diálogo.</p>
+      <div class="sim">
+        <div class="sim-clock"><span id="simTime">0:30</span><small id="simLabel">Pieza lista en línea 2</small></div>
+        <div class="meter"><i id="simBar"></i></div>
+        <div class="sim-log" id="simLog" aria-live="polite"></div>
+        <div style="margin-top:1rem;display:flex;gap:.6rem">
+          <button class="btn small primary" id="simGo">▶ Lanzar pieza</button>
+          <button class="btn small" id="simReset">Reiniciar</button>
+        </div>
+      </div>
+      <div class="note">Algunas órdenes implican a todo el equipo y otras solo a una persona: <strong>«dentro cámara 2»</strong> solo concierne al mezclador de imagen; <strong>«dentro vídeo»</strong> implica al operador que da al play, al de sonido y al mezclador, que espera a que el vídeo se estabilice.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 11. ORGANIGRAMA ============ -->
+<section id="organigrama" class="alt" data-title="Organigrama">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">11. Organigrama de un informativo</h2>
+      <p class="lead">Quién hace qué, y quién aparece en pantalla.</p>
+      <button class="pdf-link" data-pdf="28">📄 Ver en la presentación · pág. 28–29</button>
+    </div>
+    <div class="tabs" id="roleTabs" role="group" aria-label="Filtro de perfiles">
+      <button class="tab" aria-selected="true" data-f="all">Todos</button>
+      <button class="tab" aria-selected="false" data-f="on">Aparecen en pantalla</button>
+      <button class="tab" aria-selected="false" data-f="off">No aparecen</button>
+    </div>
+    <div class="grid" id="roles"></div>
+  </div>
+</section>
+
+<!-- ============ 12. GLOSARIO ============ -->
+<section id="glosario" data-title="Glosario">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">12. Glosario de bolsillo</h2>
+      <p class="lead">Pulsa en cada tarjeta para dar la vuelta y comprobar la definición. Intenta recordarla antes.</p>
+    </div>
+    <div class="flips" id="flips"></div>
+  </div>
+</section>
+
+<!-- ============ 13. REFERENCIAS ============ -->
+<section id="referencias" class="alt" data-title="Referencias">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">13. Referencias útiles</h2>
+    </div>
+    <div class="video-card">
+      <h3>Historia de Antena 3 Noticias</h3>
+      <div class="video-frame"><iframe src="https://www.youtube.com/embed/hd5Io2t34BU" title="Historia Antena 3" loading="lazy" allowfullscreen></iframe></div>
+    </div>
+    <div class="video-card">
+      <h3>Ejemplo de colas y totales</h3>
+      <div class="video-frame"><iframe src="https://www.youtube.com/embed/SP0RJwV_Zgk" title="Ejemplo de colas y totales" loading="lazy" allowfullscreen></iframe></div>
+    </div>
+    <ul class="links">
+      <li><a href="https://www.youtube.com/watch?v=A9H1-dsIQfY" target="_blank" rel="noopener"><span>🎬</span><span>Reporteros del telediario (póker)<small>youtube.com</small></span></a></li>
+      <li><a href="http://www.rtve.es/mediateca/videos/20090922/informe-semanal-como-hace-reportaje/590947.shtml" target="_blank" rel="noopener"><span>📺</span><span>Cómo se hace un reportaje en Informe Semanal<small>rtve.es · el enlace puede haber cambiado</small></span></a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 14. AUTOEVALUACIÓN ============ -->
+<section id="autoevaluacion" data-title="Test">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">Autoevaluación</h2>
+      <p class="lead">Diez preguntas para comprobar lo aprendido.</p>
+    </div>
+    <div class="card quiz" id="quiz"></div>
+  </div>
+</section>
+
+</main>
+
+<footer>&copy; 2026 Andrés Vidal Martín Martín · Contenidos basados en los apuntes de Raúl Frutos, <em>Procesos Realización Televisión</em>.</footer>
+
+<script>
+/* =========================================================
+   DATOS
+   ========================================================= */
+const TIMELINE = [
+  { y: "1948", s: "Primer boletín", t: "Douglas Edwards with the News (CBS)", d: "Un breve boletín de 10 minutos con alguna ilustración visual (fotografías o dibujos). Hasta entonces las noticias se leían «al modo radiofónico»." },
+  { y: "1953", s: "Guerra de Corea", t: "Llegan las imágenes filmadas", d: "La información sobre la guerra de Corea generaliza el uso de imágenes filmadas al modo cinematográfico, con sonido en directo o con <strong>colas</strong> con locución." },
+  { y: "1950–60", s: "Se fija el noticiario", t: "Características básicas del noticiario", d: "Relato del locutor desde el estudio, imágenes de sucesos, entrevistas, sonidos ambiente y rótulos de personajes y escenarios. En <strong>1963</strong> TVE establece el noticiario de 30 minutos." },
+  { y: "1970", s: "Magacines y flases", t: "Nuevos formatos", d: "Aparece el <strong>magacine de actualidad</strong> (actuaciones, entrevistas, tertulias) y, de ahí, los talk shows. Se impone la fórmula de avances, sumarios, boletines y flases (1 a 5 minutos). Nacen también las revistas de actualidad." },
+  { y: "1975–80", s: "Periodismo electrónico", t: "ENG", d: "Se desarrolla el <strong>ENG</strong>: imagen instantánea, equipos más ligeros, conexión en directo con la emisora central, imagen y sonido sincronizados en el mismo soporte (una pista para locución y otra para ambiente) y reutilización del soporte." },
+  { y: "1980", s: "Vuelta al directo", t: "El directo desplaza al estudio", d: "Apoyándose en el ENG, la mirada vuelve al directo, que trata de desplazar a los relatos desde el estudio." },
+  { y: "1985", s: "Postproducción e infografía", t: "Los noticiarios se espectacularizan", d: "Se generaliza la postproducción y los sistemas de infografía. Los noticiarios, tradicionalmente sobrios, incorporan efectos, manipulación de la imagen, gráficos y movimientos de cámara." },
+  { y: "1990", s: "Cadenas privadas", t: "Competencia y satélite", d: "Nuevas orientaciones: tecnología digital, transmisión por satélite y espectacularidad; en contenidos, resurgimiento del periodismo de opinión, de denuncia, sucesos y prensa rosa." }
+];
+
+const CLASSES = [
+  { k: "Periodicidad", d: `<h4>Por su periodicidad o frecuencia de emisión</h4>
+    <ul class="clean"><li><strong>Diarios:</strong> producción con cierta rutina, buscan proximidad y actualidad. Piezas breves (1–2 minutos) agrupadas en secciones.</li>
+    <li><strong>No diarios</strong> (semanales, quincenales, irregulares): admiten temas que exceden los límites de la noticia; equilibrio entre información y opinión.</li>
+    <li><strong>Especiales:</strong> por su carácter intempestivo (directo con máxima actualidad) o por su circunstancia excepcional (viajes políticos, grandes eventos sociales y deportivos).</li></ul>` },
+  { k: "Contenido", d: `<h4>Por su contenido temático</h4>
+    <p>Subgéneros que se identifican con el periodismo tradicional:</p>
+    <div class="chips"><span class="tag">Boletines</span><span class="tag">Avances</span><span class="tag">Noticiarios</span><span class="tag">Meteorología</span><span class="tag">Información general</span><span class="tag">Reportajes</span><span class="tag">Info-show / magacines</span><span class="tag">Entrevistas</span><span class="tag">Debates</span><span class="tag">Información política</span><span class="tag">Transmisiones parlamentarias</span><span class="tag">Acontecimientos especiales</span></div>` },
+  { k: "Formato", d: `<h4>Por su formato o estilo de presentación</h4>
+    <div class="chips"><span class="tag">Pieza o noticia</span><span class="tag">Reportaje</span><span class="tag">Entrevista</span><span class="tag">Declaraciones</span><span class="tag">Encuesta</span><span class="tag">Directo a cámara</span><span class="tag">Rueda de prensa</span><span class="tag">Conferencia</span><span class="tag">Actos culturales</span><span class="tag">Espectáculos</span><span class="tag">Conexiones en directo</span><span class="tag">Colas o mudos</span><span class="tag">Fotomontajes</span><span class="tag">Títulos</span><span class="tag">Gráficos</span></div>` },
+  { k: "Lugar", d: `<h4>Por su lugar de producción</h4>
+    <p>Entre el estudio y el exterior. La máxima aspiración informativa es relatar los hechos desde el escenario del acontecimiento, aunque no siempre es posible.</p>
+    <p><strong>Fórmula mixta:</strong> el presentador, desde el estudio, entrevista al protagonista o dialoga con el corresponsal en un plató externo (pantalla partida en dos).</p>` },
+  { k: "Modalidad", d: `<h4>Por su modalidad de producción</h4>
+    <ul class="clean"><li><strong>En estudio, en directo:</strong> desde el estudio principal, uno secundario (corresponsalía) o desplazado (unidad móvil). Propio de los diarios.</li>
+    <li><strong>En estudio, en diferido (pregrabado):</strong> por estrategia de producción (ocupación del plató, calendario de presentadores, presentadores nuevos…), aunque la realización sea como en directo.</li>
+    <li><strong>En exteriores:</strong> una cámara (plano secuencia) si la producción es sencilla; unidad móvil con varias cámaras si es compleja; y realización monocámara con registro plano a plano para editar, por economía.</li></ul>` }
+];
+
+const MEDIOS = [
+  { i: "🎙️", t: "Estudios de informativos", d: "La sala de control tiene monitores, controladores del <strong>apuntador electrónico (autocue)</strong> instalado en las cámaras de los locutores y mezcladores con gran número de fuentes. Dos o tres cámaras más, a veces una <em>cabeza caliente</em> para el plano de entrada; portátiles en la mesa, videowall y auriculares (pinganillos) para recibir órdenes." },
+  { i: "📡", t: "Reporterismo gráfico (ENG / SNG)", d: "Desde los 90, el ENG se suma a las telecomunicaciones por satélite con enlaces transportables: el <strong>SNG</strong> (Satellite News Gathering). Se prescinde cada vez más de la iluminación artificial (como mucho una antorcha), jugando con ganancia y obturación." },
+  { i: "🚐", t: "Producción electrónica ligera (PEL)", d: "Unidades móviles ligeras con un máximo de tres cámaras, mezclador y equipamiento de audio." },
+  { i: "✂️", t: "Edición", d: "Salas de edición con tituladores, generadores de efectos y locutorios directos para incorporar locuciones en off. Se deja atrás la edición «al corte», donde había que planificar las transiciones." },
+  { i: "🎬", t: "Postproducción y grafismo", d: "Condicionados por la preproducción: cabeceras, logos y cortinillas fijas para toda una serie, con aplicaciones de capas, 3D, chroma, animaciones y gráficos." },
+  { i: "🗄️", t: "Archivo y documentación", d: "Recurso fundamental: puede argumentar visualmente un alto porcentaje de las noticias del día, cuando no hay imágenes actuales. Exige un sistema analítico que identifique cada plano por referencias genéricas, específicas y personales." }
+];
+
+const EVAL = [
+  { i: "📖", t: "Contenido temático", d: "La historia y los personajes condicionan escenario (sobre todo en entrevistas), momento del día, ambiente y composición. Importa más en estudio que en exteriores." },
+  { i: "📺", t: "Programa de destino", d: "Impone el estilo del subgénero o de la fórmula de programa, con criterios unificadores. Muy habitual en informativos." },
+  { i: "⏱️", t: "Duración", d: "Marca el número mínimo de tomas: un exceso complica la edición y un defecto obliga a repetir o alargar planos. Para una pieza de 1'30\", grabar un mínimo de 3' o 4' solo de recursos." },
+  { i: "🎥", t: "Características formales", d: "Anticipar imagen y sonido: encuadre, composición, iluminación, movimientos y tipo de micro (mano, solapa, ambientes, mudos)." },
+  { i: "📋", t: "Orden del relato", d: "Se graba sin guion, pero conviene una relación de secuencias con el orden de rodaje para simplificar la edición." }
+];
+
+const STYLES = [
+  { k: "Pieza o noticia", d: "Registro de unos hechos durante su desarrollo, con imagen y sonido. Incluye testimonio de los protagonistas y puede llevar imágenes de archivo como contexto.", c: ["Plano master + planos recurso, detalles e identificación (lugar, hora).", "Entradillas y testimonios con encuadre corto y fijo.", "Se completa en montaje con rótulos y firma del reportero.", "Proceso: registro → redactar y locutar → esqueleto (off + declaraciones) → tapar con planos de 3 s (fijos) o 5 s (movimiento)."] },
+  { k: "Reportaje", d: "Profundiza la noticia (periodismo interpretativo), narra la realidad sin ficción ni dramatización (si no, sería docudrama o telefilme) y es original en el tratamiento.", c: ["Puede apoyarse en entrevista, encuesta, animación…"] },
+  { k: "Entrevista", d: "Depende del destino: noticiario, reportaje, magacine…", c: ["Para noticiarios: grabar introducción y luego preguntas y respuestas con alternancia visual de ambos sujetos.", "Si va dentro de la noticia, sobra el entrevistador: respuestas en el mismo plano, corto.", "Se repite la pregunta hasta lograr el <strong>total</strong> (la frase contundente). Truco: repetirla para que mire a nuestro periodista y quede mirando a nuestra cámara."] },
+  { k: "Declaraciones", d: "Variante de la entrevista donde no se puede interrogar hasta obtener la frase idónea: el personaje da testimonio sobre un hecho.", c: ["Plano fijo, corto y frontal.", "El redactor junto a la cámara y es quien sujeta el micro (para que se vea el cubilete).", "No se suelen tomar recursos.", "Varios cortes del mismo entrevistado se separan con blancos de unos pocos frames."] },
+  { k: "Encuesta", d: "Opinión de la calle: declaraciones de gente anónima (sin rotular) con preguntas sencillas en distintos ambientes.", c: ["Respuestas cortas y espontáneas.", "Variedad en la mirada de cada plano para facilitar el montaje."] },
+  { k: "Directo a cámara", d: "El redactor se dirige al objetivo para relatar los hechos y dar testimonio de su presencia. Es cuando firma la noticia.", c: ["Plano medio ante fondo representativo.", "Fijo (no más de 15 s) o con panorámica/zoom con principio y fin."] },
+  { k: "Rueda de prensa", d: "Fuente primordial de los informativos por la frecuencia de sus convocatorias.", c: ["Una cámara, plano corto o más largo, fijo.", "Recursos del público y periodistas al comienzo, al final o cuando el redactor tenga ya su total.", "Audio con micro en pie, o por línea.", "Tomar el TC para indicar al redactor el momento del corte; si está lejos, sincronizar el código de tiempo con su reloj."] },
+  { k: "Actos culturales", d: "Cobertura de espectáculos (estrenos), conferencias, simposios… Suele haber photocall donde pasan los personajes más relevantes para hacer declaraciones o posar.", c: ["Algunos planos recurso."] },
+  { k: "Deportes", d: "Cobertura para apoyar una retransmisión (resúmenes) o para facilitar imágenes al noticiario.", c: ["Declaraciones en banquillo, campo y previos; ambiente de entrenamientos y vestuarios.", "Plano master, primeros planos para seguir al jugador y recursos (público, marcador) en los momentos de menos interés."] },
+  { k: "Toros", d: "Acontecimiento que reclama cobertura informativa por una cogida o una tarde de triunfo.", c: ["Recursos en los momentos previos y plano de la tablilla.", "Plano master de cada lidia (salida del toro, banderillas, capote, picadores, muleta, estoque, arrastre).", "Se puede interrumpir el master para grabar reacciones del público."] },
+  { k: "Directos o conexiones", d: "Dos casos: la cámara se suma a la unidad móvil como unidad de apoyo, o transmite por radiofrecuencia (sistema ENG) la señal en vivo.", c: ["Con la unidad móvil: según el realizador, o como apoyo sin control de éste.", "Por RF: micro-transmisor con doble circuito para recibir el retorno de programa; hoy, un móvil con cascos."] },
+  { k: "Mudos o colas", d: "Sucesión de imágenes montadas que apoyan la voz en off del redactor-presentador. Llevan solo el canal 2 (ambiente).", c: ["Los mudos suelen ser los momentos previos a reuniones o ruedas de prensa, en que el gabinete deja grabar unos minutos.", "Deben ser todo planos buenos por la falta de tiempo."] },
+  { k: "Fotomontajes", d: "En desuso. Captación con cámara de fotografías, libros, planos o mapas.", c: ["Grabar perpendicular al objeto, con iluminación uniforme, plano fijo y evitando reflejos (polarizador).", "Se usa para cierres, unas colas con música: una despedida."] }
+];
+
+const FORMATS = [
+  { l: "A", t: "Noticiarios: la información diaria", d: `<p>Máxima actualidad, emisión regular y cierta serialización de la producción. Piezas de 1–2 minutos agrupadas por secciones y jerarquizadas por importancia. Incluye noticiarios, sumarios, avances, boletines y flases.</p>
+    <ul class="clean"><li><strong>Noticiarios:</strong> desde flases de segundos hasta 30 min en prime time o 120 min en magacines matinales. Estructura en bloques que alternan estudio, noticias pregrabadas y conexiones. Pueden ser <em>locales</em>, <em>generalistas</em> (≈25 min) o <em>temáticos</em>.</li>
+    <li><strong>Sumarios:</strong> no son un formato sino un segmento con los titulares; suele repetirse al final como resumen. Con ritmo, locución y sintonía.</li>
+    <li><strong>Avances:</strong> sencillos, desde la propia redacción convertida en plató; rara vez llevan imágenes; también autopromoción.</li>
+    <li><strong>Boletines:</strong> breves, de los primeros años; sustituidos por el avance.</li>
+    <li><strong>Flases:</strong> noticias importantes de última hora, de carácter excepcional; pueden interrumpir la programación y no llevar imágenes.</li>
+    <li><strong>Información meteorológica:</strong> se independiza por su complejidad (grafismo, Meteosat); se pregraba con chroma o se hace en directo con pantallas táctiles.</li></ul>` },
+  { l: "B", t: "Entrevista", d: `<p>Formato de máxima rentabilidad: bajo coste y máximo rendimiento de los medios televisivos. Se articula sobre la dialéctica de los interlocutores: <strong>plano y contraplano</strong> (tiro cruzado). El escenario importa y a veces conviene exteriores. Propia de los <strong>perfiles</strong>: entrevista informal en el lugar de trabajo del personaje para naturalizarlo.</p>` },
+  { l: "C", t: "Reportaje", d: `<p>Narración informativa de antecedentes, circunstancias y consecuencias previsibles de un hecho, desde distintas perspectivas. Estructura lineal (cronológica) y doble articulación subjetivo (testimonios) / objetivo (reportero). Se acerca al documental: más preparación, rodaje prolongado, calidad de imagen y peso del montaje. De 15 a 60 minutos.</p>
+    <ul class="clean"><li><strong>Noticia-reportaje:</strong> noticia con rasgos de reportaje; es fácil colar opinión interesada.</li>
+    <li><strong>Reportaje de actualidad</strong> (10–15 min): antecedentes y consecuencias con opinión de expertos; ej. Informe Semanal. Protagonismo de totales, sonido ambiente y off del periodista.</li>
+    <li><strong>Gran reportaje</strong> (45–55 min): mayor extensión y desvinculación de la actualidad. Cabecera, pregenérico, introducción, desarrollo y conclusión.</li>
+    <li><strong>Reportaje de investigación:</strong> plazos imprevisibles; no se sabe cuándo (ni si) estará listo para emisión.</li></ul>` },
+  { l: "D", t: "Revista de actualidad", d: `<p>Varios reportajes no muy largos que amplían las noticias de la semana, presentados por un locutor-presentador (a menudo periodista de prestigio). Tres modelos: <strong>generalista</strong>, <strong>monográfico</strong> y <strong>de debate</strong>. Se hace con realización monocámara en exteriores más postproducción. Con invitados, tertulias y entrevistas acaba convirtiéndose en magacine.</p>` },
+  { l: "E", t: "Magacine de actualidad", d: `<p>Nace como ampliación de los noticiarios matinales con invitados; suma personajes populares, secciones de servicio y artísticas. Bloques independientes y heterogéneos cohesionados por el <strong>presentador estrella</strong>. Grabación continua en estudio, multicámara, con conexiones en directo y bloques pregrabados. Escenografía sencilla. Entre 30 y 180 minutos.</p>` },
+  { l: "F", t: "Géneros dialogísticos: del debate a la tertulia", d: `<p>Conversación entre dos o más personas sobre un tema sin que haya de alcanzarse un acuerdo. Uno de los tres pilares de la programación, junto a los largometrajes y los concursos.</p>
+    <ul class="clean"><li><strong>Debate:</strong> desde dos personas enfrentadas con moderador hasta grupos afines con público y llamadas.</li>
+    <li><strong>Coloquio:</strong> intervinientes colectivos; imprescindible el moderador-conductor, que organiza turnos y representa a la cadena. Suele haber motivadores (documentales, reportajes).</li>
+    <li><strong>Tertulia:</strong> intervinientes fijos; prevalece el punto de vista sobre la polémica; suelen ser personas famosas.</li></ul>` },
+  { l: "G", t: "Información parlamentaria e institucional", d: `<p>Programas cuyo contenido principal es la actividad parlamentaria e institucional, desde retransmisiones hasta revistas resumidas con reportajes y entrevistas. El desinterés de la audiencia (salvo grandes comparecencias) lo hace casi inexistente.</p>` },
+  { l: "H", t: "Informativos especiales", d: `<p>Producciones cuya emisión no sigue una regularidad, sino que se incorporan a la programación como respuesta a un hecho ocasional.</p>` },
+  { l: "I", t: "Docudrama", d: `<p>Género que sintetiza ficción e información: documental con personajes reales más relato de ficción a partir de una historia real, reconstruida con actores.</p>
+    <p>Rodaje en escenarios naturales, actores profesionales o no, mezcla de real y ficción, naturalismo interpretativo, efecto visual de reportaje, sonido directo y voz en off, y planteamiento didáctico con carácter ejemplificador. Exige intensa documentación previa al guion.</p>` },
+  { l: "J", t: "Sucesos o reality shows", d: `<p>Variaciones del documental y el reportaje (testimonial, historias de vida, docudrama…) sobre sucesos: emergencias, diagnósticos médicos, sentencias judiciales, violencia… Formato muy próximo al magacine de actualidad.</p>` }
+];
+
+const RUNDOWN = [
+  { t: "Cabecera", d: "Elementos icónico-sonoros constantes durante, al menos, una temporada. Breve, con escasos créditos (nombre del programa y logo de la emisora) y banda sonora original. Delimita el conjunto y da unidad al programa; suele estar generada con infografía." },
+  { t: "Saludo del presentador", d: "Sentado ante una mesa que lo deja visible desde la cintura, mira a cámara y saluda en directo de forma breve para pasar al sumario o a la noticia principal. Está institucionalizado el plano medio o <em>busto parlante</em> (<em>talking head</em>)." },
+  { t: "Sumario o titulares", d: "Más que un índice, es un mecanismo para provocar interés y atención (predomina la función conativa sobre la informativa). Puede ser preproducido (colas con gráficos) o en directo. A veces incluye algún total. La locución es siempre en directo." },
+  { t: "Noticia de portada", d: "La información más importante abre el informativo tras los saludos y titulares. Tratamiento más complejo y extenso: una noticia-reportaje en la que el presentador y uno o más redactores entrevistan a los protagonistas." },
+  { t: "Bloques temáticos", d: "El bloque central. Número y temática variables, con algunos elementos fijos. <strong>No siguen orden jerárquico</strong> para no dar la sensación de interés decreciente: alternan noticias de mucha fuerza con otras menores, en esquema ondulante. Ojo al significado añadido al poner dos noticias contiguas." },
+  { t: "Noticia final", d: "Responde a la espectacularidad o a la narratividad: una noticia impactante o, como en la narrativa clásica, una ligera, simpática o cultural para un final feliz. El telediario no termina con una tragedia salvo que sea inevitable." },
+  { t: "Despedida", d: "El presentador cierra el discurso unitario con una despedida y un emplazamiento a las siguientes ediciones. Saludo y despedida subrayan la concepción del noticiero como discurso cerrado y estructurado narrativamente." },
+  { t: "Cabecera de salida", d: "Comparte elementos con la de entrada; al final suelen incluirse algunos elementos de autoría del noticiario, aunque escasos comparados con una serie de ficción." }
+];
+
+const FORMULAS = [
+  { k: "Entradilla + VTR", s: true, p: ["Entradilla", "VTR"], d: "El conductor hace la entradilla y se lanza la pieza ya editada." },
+  { k: "Colas", s: true, p: ["Colas"], d: "Imágenes montadas sobre la voz del presentador." },
+  { k: "Entradilla + Total", s: true, p: ["Entradilla", "Total"], d: "El conductor introduce y solo hay las declaraciones de alguien." },
+  { k: "Entradilla + DTO", s: true, p: ["Entradilla", "DTO"], d: "El conductor hace la entradilla y da paso al periodista que continúa con el directo." },
+  { k: "DTO + Colas + Total", p: ["DTO", "Colas", "Total"], d: "Conexión en directo, imágenes montadas y testimonio." },
+  { k: "DTO + VTR", p: ["DTO", "VTR"], d: "El directo del enviado cede a la pieza grabada." },
+  { k: "Entradilla + Colas + VTR", p: ["Entradilla", "Colas", "VTR"], d: "Presentación, colas de contexto y pieza." },
+  { k: "Colas + Entradilla + VTR", p: ["Colas", "Entradilla", "VTR"], d: "Se abre con imágenes y después se introduce la pieza." },
+  { k: "Total + Entradilla + VTR", p: ["Total", "Entradilla", "VTR"], d: "Se abre con una declaración impactante antes de la pieza." },
+  { k: "Total + DTO", p: ["Total", "DTO"], d: "Una declaración seguida del directo." }
+];
+
+const TV = [
+  { k: "total", n: "Rótulo de total", d: "<strong>Totales:</strong> identifican a las personas que hablan en pantalla. Las personalidades se rotulan con la <em>función</em> que desempeñan para el sentido de la noticia." },
+  { k: "pres", n: "Rótulo del presentador", d: "<strong>Presentadores</strong> del informativo en directo. Los rótulos de <em>reporteros</em> se colocan al principio o al final de la pieza (y del cámara o montador si las imágenes son importantes) o durante su intervención si aparecen." },
+  { k: "loc", n: "Localizador / DIRECTO", d: "<strong>Localizadores:</strong> indican fecha y lugar de lo que vemos. Caso particular: el indicador de transmisión en directo, que suele incluir esa palabra." },
+  { k: "id", n: "Identificativo (mosca)", d: "<strong>Identificativos:</strong> logo de un programa concreto que aparece a lo largo del mismo; parecido a la mosca, pero solo para ese programa." },
+  { k: "scroll", n: "Barra informativa / scroll", d: "<strong>Barra informativa o scroll:</strong> soporte textual horizontal en la parte inferior, típico de las cadenas de noticias. La velocidad se ajusta al tiempo medio de lectura del televidente." },
+  { k: "pip", n: "Ventana (PiP)", d: "<strong>Ventanas (picture in picture):</strong> dos cuadros simultáneos en pantalla, presentador y corresponsal, unos segundos antes de entrar o salir de la noticia. También se conocen como <em>dúplex</em>, <em>tríplex</em> o «gafas»." }
+];
+
+const CHECK = [
+  "Prever la estructura de la noticia para saber qué planos grabar.",
+  "Encuadre: elegir qué parte de la realidad mostrar y dejar fuera lo irrelevante.",
+  "Grabar en orden lógico (cronológico o temático) para facilitar la edición.",
+  "Cantidad suficiente: 25–30 planos buenos por minuto y mínimo 3 min de material (mejor 4–8 min).",
+  "Grabar siempre planos recurso para no depender del archivo.",
+  "Cámara SIEMPRE sobre trípode (hombro solo si es inevitable: recursos en rueda de prensa o totales).",
+  "Cámara frontal y a la altura de la mirada; con niños, animales o personas bajas, a su altura (sin picados ni contrapicados).",
+  "Totales: entrevistado frontal al redactor, un poco ladeado respecto a la cámara; se ven los dos ojos.",
+  "Que se vea el logo en la esponja o cubilete del micro y no el brazo del periodista (planos cortos).",
+  "Entrevistado separado del fondo (nunca fondos lisos); en baterías de totales, variar mirada y fondo.",
+  "Todo tipo de planos: generales, cortos y detalles, para dar ritmo.",
+  "Paneos: 3–5 s fijo – movimiento – 3–5 s fijo. No abusar del zoom.",
+  "Dejar colas de 5 s después de cada plano antes de pulsar «stop».",
+  "Sonido: canal 1 para totales, entradilla y off; canal 2 para ambiente (siempre en recursos).",
+  "En entradillas y totales silenciar el canal 2 y evitar ambientes ruidosos.",
+  "Revisar la grabación en el mismo lugar para comprobar imagen y sonido."
+];
+
+const PROD = [
+  { y: "1", s: "Consejo de redacción", t: "Reunión del consejo de redacción", d: `<p>Participan redactores y reporteros, realizador o ayudante, editor (decide el contenido) y director si es distinto del editor. Se deciden los temas y se establece la <strong>escaleta</strong>.</p>
+    <p>Fuentes: noticias ya emitidas aún vigentes · temas relevantes que se cubrirán (en directo, pieza, totales o colas) · contribuciones de delegaciones · envíos por satélite y noticias de agencia.</p>
+    <p>El realizador construye la escaleta con el formato de cada noticia, el paso de cada una, las ráfagas y los intermedios.</p>` },
+  { y: "2", s: "Reparto de temas", t: "Reparto de temas", d: `<p>A cada redactor se le asignan una o varias noticias (pieza, totales o colas). Si hay imágenes que filmar, se reservan equipos <strong>ENG</strong> y personal de cámara.</p>
+    <p><strong>Producción de informativos</strong> gestiona transporte, permisos y espacios para directos (aparcamientos, zonas acotadas), necesidades especiales (practicables, grúas, cámara-car) y el enlace con el estudio (microondas, DSNG, redes de repetidores).</p>
+    <p>Las noticias de satélite se visionan en bruto con sonido ambiente junto al teletipo; las agencias envían una relación de imágenes y funcionan por suscripción. El meteorólogo recopila la información y los diseñadores crean mapas y animaciones.</p>` },
+  { y: "3", s: "Redacción y edición", t: "Redacción y edición de las noticias", d: `<p>Se añade la locución del redactor y se monta imagen y sonido para crear piezas, totales o colas sin locución. Si se usa cinta, cada noticia va en una distinta.</p>
+    <ul class="clean"><li>Al principio: unos segundos de <strong>barras</strong>, una <strong>cuenta atrás</strong> y un segundo de negro.</li>
+    <li>Antes de la locución: <strong>2 s</strong> de imagen y sonido ambiente (por la tracción de los VTR).</li>
+    <li>Al final: <strong>coleo de 2–3 s</strong> como mínimo.</li>
+    <li>Se editan <strong>sin rótulos</strong>; se impresionan en directo.</li></ul>` },
+  { y: "4", s: "Control de calidad", t: "Control de calidad y duración", d: `<p>Se refleja en el <strong>parte de emisión</strong> que cumplimenta un ayudante de realización: como mínimo duración y pie, y opcionalmente TC, CTL, coleo y printer (ver más abajo).</p>` },
+  { y: "5", s: "Momentos previos", t: "Momentos previos a la emisión", d: `<p>Se cierran los elementos: los ayudantes redactan los partes, se preparan los rótulos con la información de la secretaría de redacción y se termina de montar la mayoría de vídeos. Un <strong>ayudante de guardia</strong> acaba los partes pendientes y lleva al control los de las noticias que terminan después de empezar el informativo.</p>
+    <p>Un par de minutos antes: maquillaje de presentadores, prueba de sonido, reproducción de vídeo y conexiones en directo.</p>` },
+  { y: "6", s: "Emisión en directo", t: "Emisión en directo", d: `<p>Al menos <strong>dos minutos antes</strong>, todo el personal ocupa sus puestos. El control de continuidad da la cuenta atrás: avisos a –2 min, –1 min, –30 s, –20 s y cuenta de 10 s.</p>
+    <ul class="clean"><li>Coordinación de cámaras, sonido e iluminación en plató.</li><li>Lanzar los vídeos.</li><li>Insertar rótulos.</li><li>Mezcla de imagen (conmutación) y de sonido.</li></ul>
+    <p>El ayudante <strong>canta el parte</strong>: línea y audios («vamos a línea 2 con dos audios», «línea 3 con audio 2» en unas colas), tiempo a –20 y –10 s con pie y coleo. En colas, que no tienen pie, cuenta atrás segundo a segundo a partir de 10 s. Truco: anotar en el parte en qué momento quedan 20 y 10 s.</p>` },
+  { y: "7", s: "Fin de emisión", t: "Fin de la emisión", d: `<p>Se devuelve el control a <strong>continuidad</strong>, que da paso al siguiente bloque de programación.</p>` }
+];
+
+const ROLES = [
+  { n: "Director/a de informativos", on: false, d: "Diseña todos los informativos de una cadena y es su máximo responsable. Generalmente no aparece en pantalla." },
+  { n: "Jefe/a de redacción", on: false, d: "A veces productor/a ejecutivo/a. Responsable de la producción y realización «a pie de obra». En EE. UU. es la figura más importante." },
+  { n: "Director/a de informativo", on: true, d: "Uno por informativo, normalmente cuando el responsable (que debería ser el editor) es además presentador: él presenta y el editor decide en la emisión." },
+  { n: "Editores/as", on: false, d: "Responsables de cada informativo en concreto; cada informativo tiene uno/a." },
+  { n: "Redactores · reporteros · periodistas", on: true, d: "Cubren las noticias concretas y son responsables de ellas." },
+  { n: "Realizador/a de programa en directo", on: false, d: "Responsable de la emisión en directo." },
+  { n: "Ayudantes de producción", on: false, d: "Se encargan de que estén dispuestos los medios para cubrir las noticias (cámaras, coches…), con medios propios o presupuesto para alquilar." },
+  { n: "Ayudantes de realización", on: false, d: "Junto al realizador. En directo suele haber dos como mínimo, cantando tiempos y poniendo rótulos; en la preparación hay otros que hacen partes y controlan la escaleta." }
+];
+
+const GLOSS = [
+  ["ENG", "Electronic News Gathering: captación electrónica de noticias con equipos portátiles ligeros."],
+  ["SNG", "Satellite News Gathering: enlaces de satélite transportables para el reporterismo gráfico."],
+  ["Total", "Declaración contundente de un personaje que se incluye como corte en una pieza (10–20 s)."],
+  ["Colas", "Imágenes montadas sobre la voz del presentador, con el ambiente en el canal 2."],
+  ["Pieza", "Formato elemental del informativo diario: noticia ya editada con off, recursos, totales y gráficos."],
+  ["Entradilla", "Directo a cámara del redactor en el lugar de los hechos (máx. 15 s en plano fijo)."],
+  ["Paso de locutor", "Introducción de cada pieza; equivale a la entradilla de una noticia escrita."],
+  ["Escaleta", "Documento primario de trabajo: orden y estructura de los contenidos del informativo."],
+  ["Parte", "Ficha de cada noticia con duración, pie, coleo, TC y printer, usada en el control."],
+  ["Pie", "Últimas palabras de la locución de una noticia (con las tres últimas suele bastar)."],
+  ["Coleo", "Segundos de imagen y sonido tras el pie. Si no existe, hay «capón»."],
+  ["Capón", "Final abrupto de la locución y la imagen por falta de coleo (caponazo si es extremo)."],
+  ["Tapar / asfaltar", "Cubrir con planos recurso los espacios de la voz en off; asfaltar es hacerlo deprisa."],
+  ["Printer", "Generador de caracteres; también la anotación del momento en que entra cada rótulo."],
+  ["Chroma key", "Incrustar una imagen sobre un fondo azul o verde detrás de personas u objetos."],
+  ["Cabeza caliente", "Cámara robotizada/grúa que da plano de entrada y movimiento en ráfagas y cabeceras."],
+  ["Autocue", "Apuntador electrónico instalado en las cámaras para que los locutores lean el texto."],
+  ["Dúplex / tríplex", "Ventanas simultáneas de presentador y corresponsales en pantalla (PiP)."],
+  ["Mosca", "Logo de la cadena que permanece en pantalla; el identificativo es el del programa."],
+  ["Plano master", "Plano de registro continuo de la acción, al que se añaden insertos y recursos."]
+];
+
+const QUIZ = [
+  { q: "¿Cuánto debe durar, aproximadamente, un total o declaración?", o: ["2–5 segundos", "10–20 segundos", "30–45 segundos", "1 minuto"], a: 1, e: "Un total dura entre 10 y 20 s y debe ser conciso y claro." },
+  { q: "¿Qué lleva el canal 2 en la grabación de una noticia?", o: ["Totales, entradilla y off", "Solo música", "El sonido ambiente", "La cuenta atrás"], a: 2, e: "Canal 1: totales, entradilla y off. Canal 2: sonido ambiente." },
+  { q: "¿Qué niveles de referencia se recomiendan para canal 1 y canal 2?", o: ["−12 dB y −20 dB", "−20 dB y −12 dB", "0 dB y −6 dB", "−6 dB y −6 dB"], a: 0, e: "El canal 1 (voz) tendrá mayor nivel que el 2 (ambiente): −12 dB y −20 dB." },
+  { q: "Las colas son…", o: ["Una entrevista con preguntas y respuestas", "Imágenes montadas sobre las que el presentador lee un texto", "Un plano fijo del redactor al terminar", "Los créditos finales"], a: 1, e: "Colas: sucesión de imágenes montadas con el presentador leyendo sobre ellas." },
+  { q: "¿Cuál es la duración máxima recomendada de una entradilla en plano fijo?", o: ["5 segundos", "15 segundos", "30 segundos", "1 minuto"], a: 1, e: "No más de 15 s en plano fijo." },
+  { q: "En la estructura de un telediario, ¿qué se recomienda para los bloques temáticos?", o: ["Ordenar siempre de más a menos importante", "Alternar noticias de mucha y poca fuerza en esquema ondulante", "Poner siempre las tragedias al final", "Colocar solo noticias locales"], a: 1, e: "No hay orden jerárquico para no transmitir un interés decreciente; se alterna." },
+  { q: "¿Qué es un «capón»?", o: ["Un rótulo mal colocado", "Un tipo de entrevista", "El final abrupto de la locución e imagen por falta de coleo", "Una cámara de apoyo"], a: 2, e: "Si no hay coleo, se acaba abruptamente la locución y la imagen: capón." },
+  { q: "¿Qué color de fondo se usa en chroma key y por qué?", o: ["Rojo, por contraste", "Azul o verde, porque no están presentes en la piel", "Blanco, por la luz", "Negro, por el contraste"], a: 1, e: "El azul (y en menor medida el verde) no aparece en la piel de las personas." },
+  { q: "¿Cuántos planos buenos se recomiendan para una noticia de 1 minuto?", o: ["5–10", "25–30", "60–80", "Uno master"], a: 1, e: "25/30 planos buenos y un mínimo de 3 minutos de material (mejor 4–8)." },
+  { q: "El «parte de emisión» incluye como mínimo…", o: ["Duración y pie", "Nombre del cámara y fecha", "Presupuesto y transporte", "Solo el código de tiempo"], a: 0, e: "Como mínimo duración y pie; opcionalmente TC, CTL, coleo y printer." }
+];
+
+/* =========================================================
+   UTILIDADES
+   ========================================================= */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const store = {
+  get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* sin almacenamiento */ } }
+};
+const mmss = s => `${Math.floor(s / 60)}:${String(Math.round(s % 60)).padStart(2, "0")}`;
+
+/* ---------- Pestañas genéricas ---------- */
+function mountTabs(tabsEl, panelEl, items, render, extraClass = "tab") {
+  items.forEach((it, i) => {
+    const b = document.createElement("button");
+    b.className = extraClass; b.type = "button"; b.setAttribute("role", "tab");
+    b.innerHTML = it.btn; b.addEventListener("click", () => select(i));
+    tabsEl.appendChild(b);
+  });
+  function select(i) {
+    $$("[role=tab]", tabsEl).forEach((b, j) => b.setAttribute("aria-selected", i === j));
+    panelEl.innerHTML = render(items[i], i);
+    panelEl.style.animation = "none"; panelEl.offsetHeight; panelEl.style.animation = "";
+  }
+  select(0);
+  return select;
+}
+
+/* =========================================================
+   ÍNDICE SUPERIOR + PROGRESO + SCROLLSPY
+   ========================================================= */
+(function () {
+  const toc = $("#toc");
+  const secs = $$("main section[data-title]");
+  secs.forEach(s => {
+    const a = document.createElement("a");
+    a.href = "#" + s.id; a.textContent = s.dataset.title; a.dataset.id = s.id;
+    toc.appendChild(a);
+  });
+  const links = $$("a", toc);
+  const bar = $("#progress");
+  function onScroll() {
+    const h = document.documentElement;
+    bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100 || 0) + "%";
+    let cur = secs[0].id;
+    secs.forEach(s => { if (s.getBoundingClientRect().top < window.innerHeight * 0.35) cur = s.id; });
+    links.forEach(l => {
+      const on = l.dataset.id === cur;
+      l.classList.toggle("active", on);
+      if (on && !l.dataset.seen) { l.dataset.seen = 1; }
+    });
+    const act = $("a.active", toc);
+    if (act) { const r = act.getBoundingClientRect(), t = toc.getBoundingClientRect(); if (r.left < t.left || r.right > t.right) toc.scrollTo({ left: act.offsetLeft - 60, behavior: "smooth" }); }
+  }
+  addEventListener("scroll", onScroll, { passive: true }); onScroll();
+})();
+
+/* =========================================================
+   VISOR PDF
+   ========================================================= */
+const PDF_URL = "../assets/UT2.%20EMISI%C3%93N%20PIEZAS%20V%C3%8DDEO%20Y%20FUENTES%20EN%20PROGRAMAS%20DE%20TELEVISI%C3%93N.%20INFORMATIVOS.pdf";
+const PDF_TOPICS = [
+  ["Portada · Origen y evolución", 1], ["Vigencia y clasificación", 2], ["Medios técnicos de producción", 3],
+  ["Estilos de presentación", 4], ["Formatos: noticiarios", 8], ["Formatos: reportaje, magacine, debate…", 9],
+  ["Telediario: estructura", 13], ["Pasos de locutor y colas", 14], ["Totales, entradilla y pieza", 17],
+  ["Rótulos y grafismo", 19], ["Espacios informativos y grabación", 21], ["Registro de sonido y edición", 23],
+  ["Reportaje", 24], ["Producción: escaleta", 24], ["Control de calidad y partes", 26], ["Emisión en directo", 27], ["Organigrama", 28]
+];
+(function () {
+  const host = $("#pdfHost"), inp = $("#pdfPage"), sel = $("#pdfTopic");
+  let page = 1;
+  PDF_TOPICS.forEach(([n, p]) => sel.add(new Option(`${n} (p. ${p})`, p)));
+  // El PDF (≈800 KB) solo se carga cuando el usuario lo pide
+  function poster() {
+    host.innerHTML = `<div class="pdf-poster"><div><div class="big">📄</div><p style="margin:.8rem auto 1.2rem">Presentación de la UT2 · 30 páginas. Se carga bajo demanda para que la página abra más rápido.</p><button class="btn primary" id="pdfLoad" type="button">Cargar presentación</button></div></div>`;
+    $("#pdfLoad").onclick = show;
+  }
+  function show() {
+    page = Math.min(30, Math.max(1, page));
+    inp.value = page;
+    // Se recrea el iframe porque cambiar solo el hash no recarga el visor de forma fiable
+    host.innerHTML = "";
+    const f = document.createElement("iframe");
+    f.className = "pdf-frame"; f.title = "Presentación UT2 – página " + page;
+    f.src = `${PDF_URL}#page=${page}&view=FitH`;
+    host.appendChild(f);
+  }
+  window.openPdf = function (p, scroll) {
+    page = +p || 1; show();
+    if (scroll) $("#presentacion").scrollIntoView({ behavior: "smooth" });
+  };
+  $("#pdfPrev").onclick = () => { page--; show(); };
+  $("#pdfNext").onclick = () => { page++; show(); };
+  inp.onchange = () => { page = +inp.value || 1; show(); };
+  sel.onchange = () => { page = +sel.value; show(); };
+  $$(".pdf-link").forEach(b => b.addEventListener("click", () => openPdf(b.dataset.pdf, true)));
+  poster();
+})();
+
+/* =========================================================
+   MEJORAS: aparición al scroll, volver arriba, teclado
+   ========================================================= */
+(function () {
+  // Aparición progresiva (con alternativa si no hay IntersectionObserver)
+  const targets = $$("section .section-head, section .card, section .grid, section .tools, section .video-card, section .tabs, #formatAcc, #flips");
+  targets.forEach(t => t.classList.add("reveal"));
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
+    targets.forEach(t => io.observe(t));
+  } else targets.forEach(t => t.classList.add("in"));
+
+  // Botón volver arriba
+  const up = $("#toTop");
+  addEventListener("scroll", () => up.classList.toggle("show", scrollY > 900), { passive: true });
+  up.onclick = () => scrollTo({ top: 0, behavior: "smooth" });
+
+  // Flechas izquierda/derecha dentro de grupos de pestañas
+  document.addEventListener("keydown", e => {
+    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    const t = e.target.closest("[role=tab]"); if (!t) return;
+    const group = [...t.parentElement.querySelectorAll("[role=tab]")], i = group.indexOf(t);
+    const n = group[(i + (e.key === "ArrowRight" ? 1 : -1) + group.length) % group.length];
+    n.focus(); n.click(); e.preventDefault();
+  });
+})();
+
+/* =========================================================
+   1. LÍNEA DEL TIEMPO
+   ========================================================= */
+function mountTimeline(el, panel, items) {
+  items.forEach((it, i) => {
+    const b = document.createElement("button");
+    b.className = "tl-item"; b.type = "button"; b.setAttribute("role", "tab");
+    b.innerHTML = `<span class="tl-dot"></span><span class="tl-year">${it.y}</span><span class="tl-short">${it.s}</span>`;
+    b.addEventListener("click", () => sel(i));
+    el.appendChild(b);
+  });
+  function sel(i) {
+    $$(".tl-item", el).forEach((b, j) => { b.classList.toggle("active", i === j); b.setAttribute("aria-selected", i === j); });
+    const it = items[i];
+    panel.innerHTML = `<h4>${it.y} · ${it.t}</h4><p style="margin:0">${it.d}</p>`;
+    panel.style.animation = "none"; panel.offsetHeight; panel.style.animation = "";
+  }
+  sel(0);
+}
+mountTimeline($("#timeline"), $("#timelinePanel"), TIMELINE);
+mountTimeline($("#prodTimeline"), $("#prodPanel"), PROD.map(p => ({ y: "Paso " + p.y, s: p.s, t: p.t, d: p.d })));
+
+/* ---------- 2. Clasificación ---------- */
+mountTabs($("#classTabs"), $("#classPanel"), CLASSES.map(c => ({ btn: c.k, d: c.d })), it => it.d);
+
+/* ---------- 3. Medios y evaluación (tarjetas expandibles) ---------- */
+function mountCards(el, items) {
+  items.forEach(it => {
+    const b = document.createElement("button");
+    b.className = "mini"; b.type = "button"; b.setAttribute("aria-expanded", "false");
+    b.innerHTML = `<span class="ico">${it.i}</span><strong>${it.t}</strong><span class="more">Ver más +</span><span class="body">${it.d}</span>`;
+    b.addEventListener("click", () => b.setAttribute("aria-expanded", b.getAttribute("aria-expanded") !== "true"));
+    el.appendChild(b);
+  });
+}
+mountCards($("#mediosGrid"), MEDIOS);
+mountCards($("#evalGrid"), EVAL);
+
+/* ---------- 4. Estilos de pieza ---------- */
+(function () {
+  const chips = $("#styleChips"), panel = $("#stylePanel");
+  STYLES.forEach((s, i) => {
+    const b = document.createElement("button");
+    b.className = "chip"; b.type = "button"; b.textContent = s.k; b.setAttribute("aria-pressed", "false");
+    b.onclick = () => pick(i);
+    chips.appendChild(b);
+  });
+  function pick(i) {
+    $$(".chip", chips).forEach((b, j) => b.setAttribute("aria-pressed", i === j));
+    const s = STYLES[i];
+    panel.innerHTML = `<h4>${s.k}</h4><p>${s.d}</p><ul class="clean">${s.c.map(x => `<li>${x}</li>`).join("")}</ul>`;
+    panel.style.animation = "none"; panel.offsetHeight; panel.style.animation = "";
+  }
+  pick(0);
+})();
+
+/* ---------- 5. Acordeón de formatos ---------- */
+(function () {
+  const host = $("#formatAcc");
+  FORMATS.forEach((f, i) => {
+    const d = document.createElement("div");
+    d.className = "acc-item" + (i === 0 ? " open" : "");
+    d.innerHTML = `<button class="acc-btn" type="button" aria-expanded="${i === 0}"><span class="letter">${f.l}</span><span>${f.t}</span><span class="chev">▾</span></button><div class="acc-body">${f.d}</div>`;
+    const btn = $("button", d);
+    btn.onclick = () => { const o = d.classList.toggle("open"); btn.setAttribute("aria-expanded", o); };
+    host.appendChild(d);
+  });
+})();
+
+/* ---------- 6. Estructura del telediario ---------- */
+(function () {
+  const list = $("#rdList"), panel = $("#rdPanel");
+  let cur = 0;
+  RUNDOWN.forEach((r, i) => {
+    const b = document.createElement("button");
+    b.className = "rd-step"; b.type = "button"; b.setAttribute("role", "tab");
+    b.innerHTML = `<span class="n">${i + 1}</span><span>${r.t}</span>`;
+    b.onclick = () => go(i);
+    list.appendChild(b);
+  });
+  function go(i) {
+    cur = (i + RUNDOWN.length) % RUNDOWN.length;
+    $$(".rd-step", list).forEach((b, j) => { b.classList.toggle("active", j === cur); b.setAttribute("aria-selected", j === cur); });
+    const r = RUNDOWN[cur];
+    panel.innerHTML = `<h4>${cur + 1}. ${r.t}</h4><p style="margin:0">${r.d}</p>`;
+    panel.style.animation = "none"; panel.offsetHeight; panel.style.animation = "";
+  }
+  $("#rdPrev").onclick = () => go(cur - 1);
+  $("#rdNext").onclick = () => go(cur + 1);
+  go(0);
+})();
+
+/* ---------- Fórmulas de formato ---------- */
+(function () {
+  const chips = $("#formulaChips"), panel = $("#formulaPanel");
+  FORMULAS.forEach((f, i) => {
+    const b = document.createElement("button");
+    b.className = "chip" + (f.s ? " simple" : ""); b.type = "button"; b.textContent = f.k; b.setAttribute("aria-pressed", "false");
+    b.onclick = () => pick(i);
+    chips.appendChild(b);
+  });
+  function pick(i) {
+    $$(".chip", chips).forEach((b, j) => b.setAttribute("aria-pressed", i === j));
+    const f = FORMULAS[i];
+    panel.innerHTML = `<h4>${f.k} <span class="tag">${f.s ? "Sencillo" : "Combinado"}</span></h4>
+      <div class="formula">${f.p.map(x => `<span class="tok">${x}</span>`).join('<span class="plus">+</span>')}</div>
+      <p style="margin:0" class="muted">${f.d}</p>`;
+  }
+  pick(0);
+})();
+
+/* ---------- 7. Pantalla de grafismo ---------- */
+(function () {
+  const host = $("#tvToggles"), info = $("#tvInfo");
+  TV.forEach(t => {
+    const b = document.createElement("button");
+    b.className = "chip"; b.type = "button"; b.textContent = t.n; b.setAttribute("aria-pressed", "false");
+    b.onclick = () => {
+      const on = b.getAttribute("aria-pressed") !== "true";
+      b.setAttribute("aria-pressed", on);
+      $(`.ov[data-k="${t.k}"]`).classList.toggle("on", on);
+      info.innerHTML = on ? t.d : '<span class="muted">Activa un elemento de la derecha para ver su definición.</span>';
+    };
+    host.appendChild(b);
+  });
+})();
+
+/* ---------- 8. Checklist ---------- */
+(function () {
+  const ul = $("#checklist"), bar = $("#checkBar"), txt = $("#checkText");
+  let saved = []; try { saved = JSON.parse(store.get("ut2-check") || "[]"); } catch (e) { saved = []; }
+  CHECK.forEach((c, i) => {
+    const li = document.createElement("li");
+    li.innerHTML = `<label><input type="checkbox" ${saved.includes(i) ? "checked" : ""}><span>${c}</span></label>`;
+    $("input", li).addEventListener("change", update);
+    ul.appendChild(li);
+  });
+  function update() {
+    const boxes = $$("input", ul), done = boxes.map((b, i) => b.checked ? i : -1).filter(i => i >= 0);
+    store.set("ut2-check", JSON.stringify(done));
+    bar.style.width = (done.length / boxes.length * 100) + "%";
+    txt.textContent = `${done.length} / ${boxes.length}`;
+  }
+  $("#checkReset").onclick = () => { $$("input", ul).forEach(b => b.checked = false); update(); };
+  update();
+})();
+
+/* ---------- Calculadora de material ---------- */
+(function () {
+  const r = $("#calcDur"), lab = $("#calcDurLabel"), out = $("#calcOut");
+  function upd() {
+    const s = +r.value, min = s / 60;
+    lab.textContent = `${Math.floor(s / 60)}'${String(s % 60).padStart(2, "0")}"`;
+    const lo = Math.round(25 * min), hi = Math.round(30 * min);
+    out.innerHTML = `Planos buenos: <b>${lo}–${hi}</b><br>Material mínimo: <b>${mmss(s * 3)}</b> (3×)<br>Recomendado: <b>${mmss(s * 4)}–${mmss(s * 8)}</b> (4–8×)`;
+  }
+  r.oninput = upd; upd();
+})();
+
+/* ---------- Mezclador ---------- */
+(function () {
+  const c1 = $("#ch1"), c2 = $("#ch2"), l1 = $("#ch1Label"), l2 = $("#ch2Label"), m1 = $("#m1"), m2 = $("#m2"), st = $("#mixStatus");
+  const pct = v => (1 + v / 40) * 100;
+  function upd() {
+    const a = +c1.value, b = +c2.value;
+    l1.textContent = a + " dB"; l2.textContent = b + " dB";
+    m1.style.width = pct(a) + "%"; m2.style.width = pct(b) + "%";
+    let ok = true, msg = "";
+    if (b >= a) { ok = false; msg = "El ambiente tapa a la voz: el canal 2 debe tener un nivel menor que el canal 1."; }
+    else if (a - b < 6) { ok = false; msg = "El ambiente compite con el off. Baja el canal 2 o sube el 1."; }
+    else if (a < -18) { ok = false; msg = "La voz queda muy baja. La referencia del canal 1 es −12 dB."; }
+    else if (a > -6) { ok = false; msg = "Nivel de voz demasiado alto, riesgo de saturación."; }
+    else { msg = "Correcto: voz clara sobre un ambiente estable y más bajo."; }
+    st.className = "status " + (ok ? "ok" : "bad"); st.textContent = msg;
+  }
+  c1.oninput = c2.oninput = upd; upd();
+})();
+
+/* ---------- 10. Escaleta: flash ---------- */
+(function () {
+  const btn = $("#addFlash"), tb = $("#escaleta tbody");
+  btn.onclick = () => {
+    const tr = document.createElement("tr");
+    tr.className = "new";
+    tr.innerHTML = `<td class="n">35</td><td>Cámara 2</td><td>Banda «ÚLTIMA HORA»</td><td>Editor</td><td>Sí</td><td>Flash (sin imágenes)</td>`;
+    tb.insertBefore(tr, tb.children[3]);
+    btn.disabled = true; btn.textContent = "Ver: el 35 cabe entre el 30 y el 40 sin renumerar";
+  };
+})();
+
+/* ---------- Simulador de control ---------- */
+(function () {
+  const DUR = 30, log = $("#simLog"), time = $("#simTime"), bar = $("#simBar"), lab = $("#simLabel");
+  const go = $("#simGo"), reset = $("#simReset");
+  let t0 = null, raf = null, fired = new Set();
+  const EVENTS = [
+    [0, "Realizador", "Prevenido vídeo… dentro vídeo.", true],
+    [0, "Ayudante", "Iremos a línea 2 con dos audios.", false],
+    [10, "Ayudante", "Veinte… (quedan 20″ para el pie)", false],
+    [20, "Ayudante", "Diez… (quedan 10″ para el pie)", false],
+    [27, "Ayudante", "«Se reunirán mañana» — pie.", false],
+    [27.5, "Ayudante", "Colea 3.", false],
+    [30, "Realizador", "Dentro cámara uno con Pedro.", true]
+  ];
+  function line(sec, who, text, real) {
+    const d = document.createElement("div");
+    d.innerHTML = `<span class="tc">${mmss(sec)}</span><span class="who ${real ? "real" : ""}">${who}:</span> ${text}`;
+    log.appendChild(d);
+  }
+  function tick(now) {
+    const el = (now - t0) / 1000 * 2; // 2× para que la demo dure ~15 s
+    EVENTS.forEach((e, i) => { if (!fired.has(i) && el >= e[0]) { fired.add(i); line(Math.min(el, DUR), e[1], e[2], e[3]); } });
+    time.textContent = mmss(Math.max(0, DUR - el));
+    bar.style.width = Math.min(100, el / DUR * 100) + "%";
+    if (el < DUR + 0.2) raf = requestAnimationFrame(tick);
+    else { lab.textContent = "Pieza terminada"; go.disabled = false; }
+  }
+  function clear() { cancelAnimationFrame(raf); log.innerHTML = ""; fired = new Set(); time.textContent = mmss(DUR); bar.style.width = "0"; lab.textContent = "Pieza lista en línea 2"; go.disabled = false; }
+  go.onclick = () => { clear(); go.disabled = true; lab.textContent = "En el aire · línea 2"; t0 = performance.now(); raf = requestAnimationFrame(tick); };
+  reset.onclick = clear;
+  clear();
+})();
+
+/* ---------- 11. Roles ---------- */
+(function () {
+  const host = $("#roles"), tabs = $("#roleTabs");
+  ROLES.forEach(r => {
+    const d = document.createElement("div");
+    d.className = "mini role"; d.dataset.on = r.on ? "on" : "off";
+    d.innerHTML = `<span class="badge ${r.on ? "on" : "off"}">${r.on ? "En pantalla" : "No suele aparecer"}</span><strong style="padding-right:5.5rem">${r.n}</strong><span class="body">${r.d}</span>`;
+    host.appendChild(d);
+  });
+  $$(".tab", tabs).forEach(b => b.onclick = () => {
+    $$(".tab", tabs).forEach(x => x.setAttribute("aria-selected", x === b));
+    $$(".role", host).forEach(c => c.style.display = (b.dataset.f === "all" || c.dataset.on === b.dataset.f) ? "" : "none");
+  });
+})();
+
+/* ---------- 12. Glosario ---------- */
+(function () {
+  const host = $("#flips");
+  GLOSS.forEach(([t, d]) => {
+    const b = document.createElement("button");
+    b.className = "flip"; b.type = "button";
+    b.innerHTML = `<div class="flip-in"><div class="face front"><span>${t}<small>Pulsa para ver</small></span></div><div class="face back">${d}</div></div>`;
+    b.onclick = () => b.classList.toggle("on");
+    host.appendChild(b);
+  });
+})();
+
+/* ---------- 14. Quiz ---------- */
+(function () {
+  const host = $("#quiz");
+  let i = 0, score = 0, answered = false;
+  function render() {
+    if (i >= QUIZ.length) return end();
+    const q = QUIZ[i]; answered = false;
+    host.innerHTML = `<div class="quiz-top"><span>Pregunta ${i + 1} de ${QUIZ.length}</span><span>Aciertos: ${score}</span></div>
+      <div class="meter" style="margin:0 0 1.4rem"><i style="width:${i / QUIZ.length * 100}%;background:var(--primary-color)"></i></div>
+      <q>${q.q}</q><div class="opts">${q.o.map((o, k) => `<button class="opt" type="button" data-k="${k}">${o}</button>`).join("")}</div>
+      <div id="qx"></div>`;
+    $$(".opt", host).forEach(b => b.onclick = () => answer(+b.dataset.k));
+  }
+  function answer(k) {
+    if (answered) return; answered = true;
+    const q = QUIZ[i], ok = k === q.a; if (ok) score++;
+    $$(".opt", host).forEach((b, j) => { b.disabled = true; if (j === q.a) b.classList.add("right"); else if (j === k) b.classList.add("wrong"); });
+    $("#qx").innerHTML = `<div class="note explain ${ok ? "" : "warn"}"><strong>${ok ? "¡Correcto!" : "No exactamente."}</strong> ${q.e}</div>
+      <div class="quiz-actions"><button class="btn primary" id="qNext" type="button">${i === QUIZ.length - 1 ? "Ver resultado" : "Siguiente →"}</button></div>`;
+    $("#qNext").onclick = () => { i++; render(); };
+    $("#qNext").focus({ preventScroll: true });
+  }
+  function end() {
+    const best = Math.max(+store.get("ut2-best") || 0, score); store.set("ut2-best", best);
+    const msg = score >= 9 ? "¡Excelente! Dominas la unidad." : score >= 6 ? "Buen trabajo. Repasa los puntos fallados." : "Conviene repasar la presentación y volver a intentarlo.";
+    host.innerHTML = `<div class="result"><div class="score">${score} / ${QUIZ.length}</div><p>${msg}</p><p class="muted">Mejor resultado en este navegador: ${best} / ${QUIZ.length}</p>
+      <div style="display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap"><button class="btn primary" id="qAgain" type="button">Repetir test</button><button class="btn" id="qPdf" type="button">Repasar en la presentación</button></div></div>`;
+    $("#qAgain").onclick = () => { i = 0; score = 0; render(); };
+    $("#qPdf").onclick = () => openPdf(1, true);
+  }
+  render();
+})();
+</script>
+</body>
+</html>

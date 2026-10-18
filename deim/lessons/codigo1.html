@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Básicos de la programación en p5.js</title>
+
+  <!-- Fuente Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+/* 
+   DEIM Class Website Styles
+   Theme: Professional, Serious, Accessible
+*/
+
+:root {
+    /* Colors - Professional Blue Theme */
+    --primary-color: #3B82F6;
+    --primary-dark: #2563EB;
+    --secondary-color: #64748B;
+    --accent-color: #0EA5E9;
+
+    --bg-color: #0B1120;
+    --surface-color: #151F32;
+
+    --text-main: #F8FAFC;
+    --text-muted: #94A3B8;
+
+    --border-color: #1E293B;
+
+    /* Typography */
+    --font-heading: 'Inter', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Layout */
+    --container-width: 1200px;
+    --section-spacing: 4rem;
+
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+}
+
+/* Base */
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: .5rem;
+    color: var(--text-main);
+}
+
+.section-description {
+    text-align: center;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: auto;
+    margin-bottom: 3rem;
+}
+
+/* HERO */
+.hero-section {
+    padding: 6rem 0;
+    text-align: center;
+    background: radial-gradient(circle at center, #151F32 0%, #0B1120 100%);
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+}
+
+.highlight {
+    background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+}
+
+/* SECCIONES */
+.modules-section,
+.resources-section {
+    padding: var(--section-spacing) 0;
+}
+
+/* Tarjetas */
+.module-card {
+    background-color: var(--surface-color);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+}
+
+/* Code Windows */
+.code-window {
+    background-color: #0f172a;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+
+.code-window pre {
+    margin: 0;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.9rem;
+    color: #cbd5e1;
+}
+
+/* Iframes p5.js */
+.big-editor {
+    width: 100%;
+    height: 700px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    background-color: black;
+    margin: 1.5rem 0;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+}
+
+/* Tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+}
+
+th, td {
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    text-align: left;
+}
+
+th {
+    background-color: #1e293b;
+}
+
+/* UL */
+.module-card ul li {
+    margin-bottom: 0.5rem;
+    color: var(--text-muted);
+}
+
+/* DESACTIVAR INTERACCIÓN EN TARJETAS */
+.module-card {
+    transform: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+}
+
+/* Evitar efectos hover heredados */
+.module-card:hover {
+    transform: none !important;
+    box-shadow: none !important;
+    border-color: var(--border-color) !important;
+}
+
+
+  </style>
+
+    <!-- MISMO CSS QUE LA WEB PRINCIPAL -->
+    <link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../../assets/back.css">
+</head>
+
+<body>
+<a class="portal-back" href="../../index.html">&larr; Portal</a>
+
+    <!-- Header sencillo -->
+    <header class="site-header">
+        <div class="container header-container">
+            <a href="../index.html" class="logo">DEIM<span class="dot">.</span></a>
+        </div>
+    </header>
+    
+<!-- HERO -->
+
+
+<section class="hero-section">
+  <div class="hero-content">
+    <h1 class="hero-title">
+      Básicos de la programación en <span class="highlight">p5.js</span>
+    </h1>
+    <p class="hero-subtitle">
+      Conceptos fundamentales para aprender a programar de forma visual y creativa.
+    </p>
+  </div>
+</section>
+
+<!-- 1. PROGRAMACIÓN -->
+
+<section class="modules-section">
+  <div class="container">
+
+    <h2 class="section-title">1. ¿Qué es la programación?</h2>
+    <p class="section-description">
+      La programación es el proceso de crear un conjunto de instrucciones que le dicen a una computadora como realizar algún tipo de tarea. 
+    </p>
+
+    <div class="module-card">
+      <p><b>El código se ejecuta de arriba hacia abajo</b></p>
+      (igual que la lectura en la mayoría de lenguas occidentales).
+      <p><b>El orden sí importa.</b></p>
+
+      <ul>
+        <li>Automatizar procesos y crear aplicaciones, juegos y arte.</li>
+        <li>Los lenguajes tienen reglas sintácticas propias.</li>
+        <li>Usaremos JavaScript con p5.js (visual y creativo).</li>
+      </ul>
+
+      <h3 class="card-title">Ejemplo en p5.js</h3>
+
+      <iframe 
+        src="https://editor.p5js.org/avezray/full/JTjhOdGRB"
+        class="big-editor">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- 2. VARIABLES -->
+
+<section class="resources-section">
+  <div class="container">
+
+    <h2 class="section-title">2. Variables</h2>
+    <p class="section-description">
+      Una variable es un contenedor que almacena información que puede cambiar mientras el programa se ejecuta
+    </p>
+
+    <div class="module-card">
+      <p>Para crear una variable usamos <code>let</code> seguido del nombre.</p>
+
+      <div class="code-window">
+<pre><code>let x = 50;  // Guardamos un número en la variable x
+
+function draw() {
+  x = x + 1;  // Actualizamos el valor para mover un objeto
+}</code></pre>
+      </div>
+
+      <h3 class="card-title">Ejemplo básico</h3>
+
+      <iframe 
+        src="https://editor.p5js.org/AndresEducacion/sketches/0BEfHMC_T"
+        class="big-editor">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= -->
+<!-- 3. CONDICIONALES -->
+<!-- ======================================================= -->
+
+<section class="modules-section">
+  <div class="container">
+
+    <h2 class="section-title">3. Condicionales</h2>
+    <p class="section-description">
+      Nos permiten tomar decisiones dentro del programa.
+    </p>
+
+    <div class="module-card">
+
+      <div class="code-window">
+<pre><code>let x = 0;
+
+function draw() {
+  x = x + 1;
+
+  if (x > 200) {
+    fill(255, 0, 0);
+  } else {
+    fill(0, 0, 255);
+  }
+
+  circle(x, 200, 50);
+}</code></pre>
+      </div>
+
+      <iframe 
+        src="https://editor.p5js.org/AndresEducacion/sketches/zFd75-jJP"
+        class="big-editor">
+      </iframe>
+
+      <h3 class="card-title">if…else if</h3>
+
+      <div class="code-window">
+<pre><code>if (x &lt; 100) {
+  // primera condición
+} else if (x &lt; 200) {
+  // segunda condición
+} else {
+  // si ninguna se cumple
+}</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= -->
+<!-- 4. OPERADORES LÓGICOS -->
+<!-- ======================================================= -->
+
+<section class="resources-section">
+  <div class="container">
+    <h2 class="section-title">4. Operadores lógicos</h2>
+
+    <div class="module-card">
+
+      <table>
+        <tr><th>Operador</th><th>Significado</th><th>Ejemplo</th></tr>
+        <tr><td>&amp;&amp;</td><td>y</td><td>x &gt; 100 && x &lt; 200</td></tr>
+        <tr><td>||</td><td>o</td><td>x &gt; 200 || y &lt; 50</td></tr>
+        <tr><td>!</td><td>no</td><td>!(x &gt; 100)</td></tr>
+      </table>
+
+      <h3 class="card-title">Ejemplo</h3>
+
+      <iframe 
+        src="https://editor.p5js.org/AndresEducacion/sketches/drnGpmoU2"
+        class="big-editor">
+      </iframe>
+
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= -->
+<!-- 5. BUCLES -->
+<!-- ======================================================= -->
+
+<section class="modules-section">
+  <div class="container">
+
+    <h2 class="section-title">5. Bucles</h2>
+    <p class="section-description">
+      Un bucle permite repetir acciones muchas veces sin escribirlas manualmente.
+    </p>
+
+    <div class="module-card">
+
+      <div class="code-window">
+<pre><code>function draw() {
+  background(220);
+
+  for (let x = 0; x &lt; width; x = x + 20) {
+    line(x, 0, x, height);
+  }
+}</code></pre>
+      </div>
+
+      <iframe 
+        src="https://editor.p5js.org/AndresEducacion/sketches/R980JkhKI"
+        class="big-editor">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!-- ======================================================= -->
+<!-- 6. EJERCICIO CON CHATGPT -->
+<!-- ======================================================= -->
+
+<section class="resources-section">
+  <div class="container">
+
+    <h2 class="section-title">6. Ejercicio: crear un sketch con ChatGPT</h2>
+    <p class="section-description">
+      Vamos a crear un sketch con ChatGPT y vamos a pedirle que nos explique cada proceso.
+    </p>
+
+    <div class="module-card">
+
+      <h3 class="card-title">Objetivo del ejercicio</h3>
+      <ul>
+        <li>Diseñar un sketch en P5.js que contenga los coneptos aprendidos(variables, condicionales, operadores, bucles y funciones)</li>
+        <li>Trabajar con ChatGPT como herramienta de aprendizaje y desarrollo que permite mejorar nuestro código en varias iteraciones.</li>
+        <li>Comprender completamente el código resultante y poder explicarlo con tus propias palabras.</li>
+      </ul>
+
+      <h3 class="card-title">Instrucciones</h3>
+    
+
+      <h3 class="card-title">Requisitos mínimos</h3>
+      <ul>
+        <li>Al menos <b>3 versiones</b> diferentes del código (3 actualizaciones respecto al original).</li>
+        <li>Uso de:
+        <ul>
+          <li>Al menos una <b>variable</b> propia (creada con <code>let</code>).</li>
+          <li>Al menos un <b>condicional</b> (<code>if</code>, <code>else if</code>, <code>else</code>).</li>
+          <li>Al menos un <b>operador lógico</b> (<code>&&</code>, <code>||</code> o <code>!</code>).</li>
+          <li>Al menos un <b>bucle</b> (<code>for</code>, <code>while</code> o repetición visible).</li>
+          <li>Al menos una <b>función creada por ti</b> (por ejemplo <code>function dibujarForma()</code> ).</li>
+        </ul>
+        </li>
+      </ul>
+
+
+      <h3 class="card-title">Ejemplo de mensaje para ChatGPT</h3>
+      <div class="code-window">
+<pre><code>Dame un código sencillo en p5.js que use los conceptos: variables, condicionales, operadores,
+bucles y funciones. Comenta cada linea y explica de manera sencilla cada proceso. Una frase y sin
+emojis.
+</code></pre>
+      </div>
+
+      <p style="color: var(--text-muted);">
+        Recuerda: lo importante no es solo obtener un sketch que funcione, sino que seas capaz de entender el código y explicarlo con claridad.
+      </p>
+
+    <iframe 
+  src="../assets/chatgpt1.pdf"
+  width="100%"
+  height="600px"
+  style="border: 1px solid var(--border-color); border-radius: var(--radius-lg); margin-top: 2rem;">
+</iframe>
+
+    </div>
+  </div>
+</section>
