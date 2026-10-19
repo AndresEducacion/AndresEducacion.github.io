@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Portal educativo | FP Comunicación Audiovisual</title>
-<meta name="description" content="Material didáctico de los módulos de FP de Comunicación Audiovisual.">
+<title>Portal educativo | FP Imagen y Sonido</title>
+<meta name="description" content="Material didáctico de los módulos de FP de Imagen y Sonido. Profesor: Andrés Vidal Martín Martín.">
 <link rel="stylesheet" href="assets/portal.css">
 <script type="importmap">
 { "imports": { "three": "./assets/vendor/three.module.min.js" } }
@@ -15,72 +15,108 @@
 
 <header class="top">
   <span class="brand">PORTAL<span class="dash"> —</span> MATERIAL DIDÁCTICO</span>
-  <span class="meta">FP · COMUNICACIÓN AUDIOVISUAL</span>
+  <nav aria-label="Principal">
+    <a href="#modulos">Módulos</a>
+    <a href="#sobre-mi">Sobre mí</a>
+  </nav>
+  <span class="meta">FP · IMAGEN Y SONIDO</span>
 </header>
 
 <main>
   <section class="hero">
-    <p class="kicker">+ Profesor: Andrés Vidal Martín</p>
-    <h1 class="glitch" data-text="Módulos de Comunicación Audiovisual">Módulos de<br>Comunicación Audiovisual</h1>
+    <p class="kicker">+ Profesor: Andrés Vidal Martín Martín</p>
+    <h1 class="glitch">Módulos de<br>Imagen y Sonido</h1>
     <p class="lead">Apuntes, prácticas y recursos de cada módulo en un solo lugar.</p>
     <a class="scroll" href="#modulos">Ver módulos ↓</a>
   </section>
 
-  <section id="modulos" aria-labelledby="t-mod">
-    <h2 id="t-mod" class="sr-only">Módulos</h2>
-    <ul class="grid">
-      <li>
-        <a class="card" href="deim/index.html" data-shape="0">
-          <span class="fig">FIG 0.1</span>
-          <h3>DEIM</h3>
-          <p class="mod">Diseño de Entornos Interactivos Multimedia</p>
-          <p>Programación creativa con p5.js y Unity (C#): código, repositorios y tareas.</p>
-          <span class="go">Entrar →</span>
-        </a>
-      </li>
-      <li>
-        <a class="card" href="isde/index.html" data-shape="1">
-          <span class="fig">FIG 0.2</span>
-          <h3>ISDE</h3>
-          <p class="mod">Instalaciones de Sonorización de Eventos</p>
-          <p>Sonido en directo: equipos, ecualización y referencias.</p>
-          <span class="go">Entrar →</span>
-        </a>
-      </li>
-      <li>
-        <a class="card" href="realizacion-tv/index.html" data-shape="2">
-          <span class="fig">FIG 0.3</span>
-          <h3>PRTV</h3>
-          <p class="mod">Procesos de Realización de Televisión</p>
-          <p>Emisión de piezas de vídeo y fuentes en programas informativos.</p>
-          <span class="go">Entrar →</span>
-        </a>
-      </li>
-      <li>
-        <a class="card" href="laboratorio-mezcla/index.html" data-shape="3">
-          <span class="fig">FIG 0.4</span>
-          <h3>Laboratorio de mezcla</h3>
-          <p class="mod">Práctica de mezcla de audio</p>
-          <p>Laboratorio interactivo con pistas para practicar la mezcla.</p>
-          <span class="go">Entrar →</span>
-        </a>
-      </li>
-      <li>
-        <a class="card" href="planificacion-montaje/index.html" data-shape="4">
-          <span class="fig">FIG 0.5</span>
-          <h3>Montaje</h3>
-          <p class="mod">Planificación del montaje y postproducción</p>
-          <p>Plantilla provisional: temario, prácticas, recursos y evaluación.</p>
-          <span class="go">Entrar →</span>
-        </a>
-      </li>
-    </ul>
+  <section id="modulos" class="modules" aria-labelledby="t-mod">
+    <h2 id="t-mod" class="section-title">Módulos</h2>
+    <div class="layout">
+      <ul class="list">
+        <li>
+          <a class="row" href="deim/index.html" data-shape="0"
+             data-name="DEIM" data-mod="Diseño de Entornos Interactivos Multimedia"
+             data-desc="Programación creativa con p5.js y Unity (C#): código, repositorios y tareas.">
+            <span class="num">01</span>
+            <span class="txt"><strong>DEIM</strong><small>Diseño de Entornos Interactivos Multimedia</small></span>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li>
+          <a class="row" href="isde/index.html" data-shape="1"
+             data-name="ISDE" data-mod="Instalaciones de Sonorización de Eventos"
+             data-desc="Sonido en directo: equipos, ecualización y referencias.">
+            <span class="num">02</span>
+            <span class="txt"><strong>ISDE</strong><small>Instalaciones de Sonorización de Eventos</small></span>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li>
+          <a class="row" href="realizacion-tv/index.html" data-shape="2"
+             data-name="PRTV" data-mod="Procesos de Realización de Televisión"
+             data-desc="Emisión de piezas de vídeo y fuentes en programas informativos.">
+            <span class="num">03</span>
+            <span class="txt"><strong>PRTV</strong><small>Procesos de Realización de Televisión</small></span>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li>
+          <a class="row" href="laboratorio-mezcla/index.html" data-shape="3"
+             data-name="Laboratorio de mezcla" data-mod="Práctica de mezcla de audio"
+             data-desc="Laboratorio interactivo con pistas para practicar la mezcla.">
+            <span class="num">04</span>
+            <span class="txt"><strong>Laboratorio de mezcla</strong><small>Práctica de mezcla de audio</small></span>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li>
+          <a class="row" href="planificacion-montaje/index.html" data-shape="4"
+             data-name="Montaje" data-mod="Planificación del montaje y postproducción"
+             data-desc="Plantilla provisional: temario, prácticas, recursos y evaluación.">
+            <span class="num">05</span>
+            <span class="txt"><strong>Montaje</strong><small>Planificación del montaje y postproducción</small></span>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+      </ul>
+
+      <figure class="viewer" aria-live="polite">
+        <div class="stage" id="stage" aria-hidden="true">
+          <span class="corner tl"></span><span class="corner tr"></span>
+          <span class="corner bl"></span><span class="corner br"></span>
+          <span class="hint">ARRASTRA PARA GIRAR</span>
+        </div>
+        <figcaption>
+          <span class="cap-num" id="cap-num">FIG 0.1</span>
+          <strong id="cap-name">DEIM</strong>
+          <span id="cap-mod">Diseño de Entornos Interactivos Multimedia</span>
+          <p id="cap-desc">Programación creativa con p5.js y Unity (C#): código, repositorios y tareas.</p>
+          <a id="cap-go" class="cap-go" href="deim/index.html">Entrar al módulo →</a>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="sobre-mi" class="about" aria-labelledby="t-about">
+    <h2 id="t-about" class="section-title">Sobre mí</h2>
+    <div class="about-grid">
+      <p class="big">Soy Andrés Vidal Martín Martín, profesor de FP de Imagen y Sonido.</p>
+      <div>
+        <p>Esta web reúne el material didáctico de los módulos que imparto: programación creativa, sonido en directo, realización de televisión, mezcla de audio y montaje.</p>
+        <p class="prov">[Texto provisional: aquí puedes añadir tu trayectoria, formación y cómo trabajas en clase.]</p>
+        <ul class="contact">
+          <li><a href="mailto:avmmeducacion@gmail.com">avmmeducacion@gmail.com</a></li>
+          <li><a href="https://github.com/AndresEducacion" rel="noopener">github.com/AndresEducacion</a></li>
+        </ul>
+      </div>
+    </div>
   </section>
 </main>
 
-<footer>© <span id="y"></span> · Andrés Vidal Martín · Material educativo</footer>
+<footer>© <span id="y"></span> · Andrés Vidal Martín Martín · Material educativo</footer>
 
-<noscript><style>#bg{display:none}</style></noscript>
+<noscript><style>#bg,.stage{display:none}</style></noscript>
 <script type="module" src="assets/portal.js"></script>
 <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
