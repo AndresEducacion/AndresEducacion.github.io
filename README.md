@@ -1,4 +1,4 @@
-# Portal educativo · FP Comunicación Audiovisual
+﻿# Portal educativo · FP Comunicación Audiovisual
 
 Portal central con el material didáctico de cada módulo.
 
@@ -7,7 +7,7 @@ Portal central con el material didáctico de cada módulo.
 | `deim/` | Diseño de Entornos Interactivos Multimedia |
 | `isde/` | Instalaciones de Sonorización de Eventos |
 | `realizacion-tv/` | Procesos de Realización de Televisión |
-| `laboratorio-mezcla/` | Laboratorio de mezcla |
+| `laboratorio-de-mezcla/` | Laboratorio de mezcla |
 | `planificacion-montaje/` | Planificación del montaje y postproducción (plantilla provisional) |
 
 `index.html` es el portal (Three.js, guardado localmente en `assets/vendor/`; no hay build ni dependencias).
