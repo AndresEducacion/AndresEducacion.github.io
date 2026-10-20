@@ -50,7 +50,9 @@ h1{font-weight:500;text-transform:uppercase;font-size:clamp(2.2rem,7vw,5.4rem);l
 .row:hover,.row:focus-visible{padding-left:16px}
 
 .viewer{margin:0;position:sticky;top:24px}
-.stage{position:relative;aspect-ratio:4/3;max-height:52vh;width:100%;border:1px solid var(--line);cursor:grab;touch-action:pan-y;background:rgba(10,10,10,.35)}
+.stage{position:relative;aspect-ratio:4/3;max-height:52vh;width:100%;border:1px solid var(--line);cursor:grab;touch-action:pan-y;background:#0a0a0a}
+#stage-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+.m-hint{display:none}
 .stage.drag{cursor:grabbing}
 .corner{position:absolute;width:14px;height:14px;border:0 solid var(--g)}
 .tl{top:-1px;left:-1px;border-top-width:2px;border-left-width:2px}
@@ -82,9 +84,21 @@ footer{margin-top:48px;padding:24px var(--pad);color:var(--mut);font-size:12px;b
 /* Móvil: ventana 3D arriba, lista debajo */
 @media (max-width:860px){
   .layout,.about-grid{grid-template-columns:1fr}
-  .viewer{position:static;order:-1}
-  .stage{aspect-ratio:16/10;max-height:46vh}
-  .row .arrow{opacity:1;transform:none}
+  /* El visor se queda fijo arriba mientras se desliza la lista */
+  .viewer{position:sticky;top:0;z-index:5;order:-1;margin:0 calc(var(--pad) * -1);padding:10px var(--pad) 12px;background:var(--bg);border-bottom:1px solid var(--line)}
+  .stage{aspect-ratio:auto;height:clamp(150px,30vh,260px);max-height:none}
+  figcaption{grid-template-columns:1fr auto;align-items:end;gap:2px 12px;padding:10px 2px 0}
+  .cap-num{grid-column:1/-1}
+  figcaption strong{font-size:1.15rem;grid-column:1}
+  #cap-mod{grid-column:1;font-size:11px}
+  figcaption p{display:none}
+  .cap-go{grid-column:2;grid-row:2/4;margin:0;align-self:center;padding:10px 12px;border:1px solid var(--g);border-bottom-width:1px;color:var(--g)}
+  .m-hint{display:block;order:0;margin:14px 0 0;font-size:12px;color:var(--mut)}
+  .list{order:1}
+  .row{padding:18px 8px}
+  .row .arrow{opacity:0;transform:none}
+  .row.on .arrow{opacity:1}
+  .hint{display:none}
   .top nav{order:3;width:100%}
   .hero{min-height:52vh}
 }

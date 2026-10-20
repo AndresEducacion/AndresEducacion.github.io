@@ -108,6 +108,8 @@ if (renderer) {
 
   /* ---------- Ventana 3D grande ---------- */
   const stage = document.getElementById('stage');
+  const stageCanvas = document.getElementById('stage-canvas');
+  const stageCtx = stageCanvas.getContext('2d');
   const rows = [...document.querySelectorAll('.row')];
   const viewScene = new THREE.Scene();
   const viewCam = new THREE.PerspectiveCamera(38, 4 / 3, 0.1, 50);
@@ -136,12 +138,49 @@ if (renderer) {
     cap.go.href = rows[i].getAttribute('href');
     cap.box.classList.remove('swap'); void cap.box.offsetWidth; cap.box.classList.add('swap');
   }
+  // Móvil/táctil: el visor queda fijo arriba y el módulo activo lo marca el scroll
+  const mobileMQ = matchMedia('(max-width: 860px)');
+  const touchMQ = matchMedia('(hover: none)');
+  const stacked = () => mobileMQ.matches || touchMQ.matches;
+  const viewerEl = document.querySelector('.viewer');
+  const pick = i => { select(i, clock.getElapsedTime()); if (reduce) draw(clock.getElapsedTime()); };
+
   rows.forEach((r, i) => {
-    const on = () => { paused = true; select(i, clock.getElapsedTime()); if (reduce) draw(clock.getElapsedTime()); };
+    const on = () => { if (stacked()) return; paused = true; pick(i); };
     const off = () => { paused = false; };
-    r.addEventListener('pointerenter', on); r.addEventListener('focus', on);
+    r.addEventListener('pointerenter', on); r.addEventListener('focus', () => { paused = true; pick(i); });
     r.addEventListener('pointerleave', off); r.addEventListener('blur', off);
+    // en táctil: el primer toque selecciona, el segundo entra
+    r.addEventListener('click', e => {
+      if (!stacked() || i === current) return;
+      e.preventDefault();
+      pick(i);
+      alignRow(r);
+    });
   });
+
+  // línea de referencia justo debajo del visor fijo
+  const refY = () => {
+    const b = viewerEl.getBoundingClientRect().bottom;
+    return b + (innerHeight - b) * 0.3;
+  };
+  function alignRow(r) {
+    const b = r.getBoundingClientRect();
+    scrollBy({ top: b.top + b.height / 2 - refY(), behavior: reduce ? 'auto' : 'smooth' });
+  }
+  function spy() {
+    if (!stacked()) return;
+    const y = refY();
+    let best = current, d = Infinity;
+    rows.forEach((r, k) => {
+      const b = r.getBoundingClientRect();
+      const dist = Math.abs(b.top + b.height / 2 - y);
+      if (dist < d) { d = dist; best = k; }
+    });
+    // solo cuando la lista está a la vista; si no, deja el módulo actual
+    const first = rows[0].getBoundingClientRect(), last = rows[rows.length - 1].getBoundingClientRect();
+    if (last.bottom > viewerEl.getBoundingClientRect().bottom && first.top < innerHeight) pick(best);
+  }
 
   // Arrastrar para girar
   stage.addEventListener('pointerdown', e => { dragging = true; lastX = e.clientX; stage.classList.add('drag'); stage.setPointerCapture(e.pointerId); });
@@ -155,7 +194,7 @@ if (renderer) {
   stage.addEventListener('pointercancel', endDrag);
 
   let scrollY = 0;
-  addEventListener('scroll', () => { scrollY = window.scrollY; if (reduce) draw(clock.getElapsedTime()); }, { passive: true });
+  addEventListener('scroll', () => { scrollY = window.scrollY; spy(); if (reduce) draw(clock.getElapsedTime()); }, { passive: true });
 
   function resize() {
     renderer.setSize(innerWidth, innerHeight, false);
@@ -173,7 +212,7 @@ if (renderer) {
     renderer.render(bgScene, bgCam);
 
     // cambia de módulo solo cuando nadie lo está mirando
-    if (!reduce && !paused && !dragging && t - since > 5) select((current + 1) % objs.length, t);
+    if (!reduce && !paused && !dragging && !stacked() && t - since > 5) select((current + 1) % objs.length, t);
 
     const r = stage.getBoundingClientRect();
     if (r.bottom < 0 || r.top > innerHeight || r.width < 2) return;
@@ -181,6 +220,7 @@ if (renderer) {
     renderer.setScissorTest(true);
     renderer.setViewport(r.left, y, r.width, r.height);
     renderer.setScissor(r.left, y, r.width, r.height);
+    renderer.clear(); // el visor es opaco: no se mezcla con la malla del fondo
     viewCam.aspect = r.width / r.height;
     viewCam.updateProjectionMatrix();
 
@@ -193,8 +233,14 @@ if (renderer) {
       ? 0.35 + (reduce ? 0 : Math.sin(t * 0.5) * 0.5) + spinY * 0.3
       : (reduce ? 0.6 : t * 0.3) + spinY;
     o.update(t);
-    renderer.clearDepth();
     renderer.render(viewScene, viewCam);
+
+    // copia la región al canvas del visor (que está por encima de la lista al hacer scroll)
+    const pr = renderer.getPixelRatio();
+    const w = Math.round(r.width * pr), h = Math.round(r.height * pr);
+    if (stageCanvas.width !== w || stageCanvas.height !== h) { stageCanvas.width = w; stageCanvas.height = h; }
+    stageCtx.clearRect(0, 0, w, h);
+    stageCtx.drawImage(canvas, r.left * pr, r.top * pr, w, h, 0, 0, w, h);
   }
 
   select(0);
