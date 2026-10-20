@@ -142,22 +142,29 @@ if (renderer) {
   // Móvil/táctil: el visor queda fijo arriba y el módulo activo lo marca el scroll
   const mobileMQ = matchMedia('(max-width: 860px)');
   const touchMQ = matchMedia('(hover: none)');
-  const stacked = () => mobileMQ.matches || touchMQ.matches;
+  const touchMQ2 = matchMedia('(pointer: coarse)');
+  const stacked = () => mobileMQ.matches;                         // diseño en una columna (visor fijo + scroll)
+  const touch = () => touchMQ.matches || touchMQ2.matches;        // dispositivo táctil (aunque pida "sitio de escritorio")
   const viewerEl = document.querySelector('.viewer');
   const pick = i => { select(i, clock.getElapsedTime()); if (reduce) draw(clock.getElapsedTime()); };
 
   rows.forEach((r, i) => {
-    const on = () => { if (stacked()) return; paused = true; pick(i); };
+    const on = () => { if (stacked() || touch()) return; paused = true; pick(i); };
     const off = () => { paused = false; };
     r.addEventListener('pointerenter', on); r.addEventListener('focus', () => { paused = true; pick(i); });
     r.addEventListener('pointerleave', off); r.addEventListener('blur', off);
-    // un clic en el módulo solo muestra su tarjeta; se entra con el botón «Entrar al módulo»
+    // Táctil: un toque solo muestra la tarjeta; se entra con «Entrar al módulo».
+    // Ratón: el clic entra directamente (con la animación), igual que el botón.
     r.addEventListener('click', e => {
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return; // abrir en pestaña nueva: normal
       e.preventDefault();
       pick(i);
-      paused = true;
-      if (stacked()) alignRow(r);
+      if (touch()) {
+        paused = true;
+        if (stacked()) alignRow(r);
+        return;
+      }
+      enter(r.href);
     });
   });
   cap.go.addEventListener('click', e => {
@@ -231,7 +238,7 @@ if (renderer) {
     renderer.render(bgScene, bgCam);
 
     // cambia de módulo solo cuando nadie lo está mirando
-    if (!reduce && !paused && !dragging && !stacked() && t - since > 5) select((current + 1) % objs.length, t);
+    if (!reduce && !paused && !dragging && !stacked() && !touch() && t - since > 5) select((current + 1) % objs.length, t);
 
     const r = stage.getBoundingClientRect();
     if (r.bottom < 0 || r.top > innerHeight || r.width < 2) return;
