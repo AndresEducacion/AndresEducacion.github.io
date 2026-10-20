@@ -124,6 +124,7 @@ if (renderer) {
   const clock = new THREE.Clock();
 
   let current = -1, since = 0, paused = false, spinY = 0, dragging = false, lastX = 0;
+  let leaving = false, leaveT = 0;
   function select(i, t = 0) {
     if (i === current) return;
     current = i; since = t;
@@ -152,11 +153,29 @@ if (renderer) {
     r.addEventListener('pointerleave', off); r.addEventListener('blur', off);
     // en táctil: el primer toque selecciona, el segundo entra
     r.addEventListener('click', e => {
-      if (!stacked() || i === current) return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return; // abrir en pestaña nueva: normal
       e.preventDefault();
+      if (stacked() && i !== current) { pick(i); alignRow(r); return; }
       pick(i);
-      alignRow(r);
+      enter(r.href);
     });
+  });
+  cap.go.addEventListener('click', e => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+    e.preventDefault();
+    enter(cap.go.href);
+  });
+
+  // Transición de salida: el objeto crece y se desvanece antes de abrir el módulo
+  function enter(href) {
+    if (leaving) return;
+    if (reduce) { location.href = href; return; }
+    leaving = true; leaveT = clock.getElapsedTime();
+    document.body.classList.add('leaving');
+    setTimeout(() => { location.href = href; }, 850);
+  }
+  addEventListener('pageshow', e => { // al volver con "atrás" no se queda a medias
+    if (e.persisted) { leaving = false; document.body.classList.remove('leaving'); }
   });
 
   // línea de referencia justo debajo del visor fijo
@@ -226,12 +245,13 @@ if (renderer) {
 
     const o = objs[current];
     const k = Math.min(1, (t - since) / 0.45);          // entrada suave del objeto
-    const s = (0.55 + 0.45 * (1 - Math.pow(1 - k, 3))) * 1.15;
+    const lk = leaving ? Math.min(1, (t - leaveT) / 0.8) : 0; // progreso de la salida
+    const s = (0.55 + 0.45 * (1 - Math.pow(1 - k, 3))) * 1.15 * (1 + lk * lk * 1.6);
     o.group.scale.setScalar(s);
     o.group.rotation.x = 0.35 + (reduce ? 0 : Math.sin(t * 0.4) * 0.08);
-    o.group.rotation.y = FLAT.has(current)
+    o.group.rotation.y = (FLAT.has(current)
       ? 0.35 + (reduce ? 0 : Math.sin(t * 0.5) * 0.5) + spinY * 0.3
-      : (reduce ? 0.6 : t * 0.3) + spinY;
+      : (reduce ? 0.6 : t * 0.3) + spinY) + lk * 2.5;
     o.update(t);
     renderer.render(viewScene, viewCam);
 

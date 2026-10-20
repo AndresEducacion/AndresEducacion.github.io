@@ -70,6 +70,20 @@ figcaption p{margin:6px 0 0;color:#b9c2bc;font-size:14px;max-width:52ch}
 figcaption.swap{animation:swap .35s steps(3)}
 @keyframes swap{0%{text-shadow:3px 0 rgba(0,255,255,.7),-3px 0 rgba(255,0,170,.7);opacity:.4}100%{text-shadow:none;opacity:1}}
 
+/* Transición al entrar en un módulo */
+#veil{position:fixed;inset:0;z-index:2;background:var(--bg);opacity:0;pointer-events:none}
+body.leaving{pointer-events:none}
+body.leaving #veil{animation:veil .85s ease-in forwards}
+body.leaving .stage{animation:rgbsplit .85s ease-in forwards}
+body.leaving .row,body.leaving .hero,body.leaving .about,body.leaving .top{opacity:.25;transition:opacity .3s}
+@keyframes veil{0%,45%{opacity:0}100%{opacity:1}}
+@keyframes rgbsplit{
+  0%{filter:none}
+  60%{filter:drop-shadow(4px 0 rgba(0,255,255,.8)) drop-shadow(-4px 0 rgba(255,0,170,.8))}
+  100%{filter:drop-shadow(10px 0 rgba(0,255,255,.8)) drop-shadow(-10px 0 rgba(255,0,170,.8)) brightness(1.6)}
+}
+@media (prefers-reduced-motion:reduce){body.leaving #veil,body.leaving .stage{animation:none}}
+
 /* Sobre mí */
 .about-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(16px,3vw,48px)}
 .big{font-size:clamp(1.3rem,2.6vw,2rem);line-height:1.25;text-transform:uppercase;margin:0}
