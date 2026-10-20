@@ -151,13 +151,13 @@ if (renderer) {
     const off = () => { paused = false; };
     r.addEventListener('pointerenter', on); r.addEventListener('focus', () => { paused = true; pick(i); });
     r.addEventListener('pointerleave', off); r.addEventListener('blur', off);
-    // en táctil: el primer toque selecciona, el segundo entra
+    // un clic en el módulo solo muestra su tarjeta; se entra con el botón «Entrar al módulo»
     r.addEventListener('click', e => {
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return; // abrir en pestaña nueva: normal
       e.preventDefault();
-      if (stacked() && i !== current) { pick(i); alignRow(r); return; }
       pick(i);
-      enter(r.href);
+      paused = true;
+      if (stacked()) alignRow(r);
     });
   });
   cap.go.addEventListener('click', e => {
