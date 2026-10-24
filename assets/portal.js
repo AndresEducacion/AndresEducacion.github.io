@@ -157,7 +157,6 @@ async function initGL() {
     throw e;
   }
   bgR.setPixelRatio(Math.min(devicePixelRatio, 1.5));
-  stR.setPixelRatio(Math.min(devicePixelRatio, 2));
   stR.setClearColor(0x0a0a0a, 1);
   [bgCanvas, stageCanvas].forEach(c => c.addEventListener('webglcontextlost', e => e.preventDefault()));
 
@@ -286,6 +285,128 @@ async function initGL() {
   onSelect = i => objs.forEach((o, k) => { o.group.visible = k === i; });
   onSelect(current);
 
+  /* ---------- Postproceso propio (sin addons): bloom + transición de salida ----------
+     El visor se dibuja en un render target de coma flotante; se desenfoca a 1/2 y 1/4 de
+     resolución y un shader final lo compone: brillo de neón en reposo y, al entrar en un
+     módulo, separación RGB, cortes horizontales y destello. Si el equipo no puede renderizar
+     a texturas float, devuelve null y se usa el dibujo directo de siempre. */
+  const post = (() => {
+    const ext = stR.extensions;
+    if (!stR.capabilities.isWebGL2 || !(ext.has('EXT_color_buffer_float') || ext.has('EXT_color_buffer_half_float'))) return null;
+
+    const tri = new THREE.BufferGeometry();
+    tri.setAttribute('position', new THREE.Float32BufferAttribute([-1, -1, 0, 3, -1, 0, -1, 3, 0], 3));
+    tri.setAttribute('uv', new THREE.Float32BufferAttribute([0, 0, 2, 0, 0, 2], 2));
+    const quad = new THREE.Mesh(tri);
+    quad.frustumCulled = false;
+    const qScene = new THREE.Scene(); qScene.add(quad);
+    const qCam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+    const vertexShader = /* glsl */`varying vec2 vUv; void main() { vUv = uv; gl_Position = vec4(position.xy, 0.0, 1.0); }`;
+    const flat = { depthTest: false, depthWrite: false, vertexShader };
+
+    // Bloom por cadena de resoluciones (1/2 … 1/16). Reducir con 4 taps bilineales a ±1 texel
+    // cubre todo el bloque 4×4 de origen: no se pierden los trazos de 1 px (antes, con pocos
+    // taps separados, el brillo salía irregular y a bloques). uBase resta el color de fondo
+    // para que solo brillen las líneas.
+    const downMat = new THREE.ShaderMaterial({
+      ...flat,
+      uniforms: { tex: { value: null }, texel: { value: new THREE.Vector2() }, uBase: { value: new THREE.Color(0x0a0a0a) } },
+      fragmentShader: /* glsl */`
+        uniform sampler2D tex; uniform vec2 texel; uniform vec3 uBase; varying vec2 vUv;
+        void main() {
+          vec3 c = texture2D(tex, vUv + texel * vec2(-1.0, -1.0)).rgb + texture2D(tex, vUv + texel * vec2(1.0, -1.0)).rgb
+                 + texture2D(tex, vUv + texel * vec2(-1.0,  1.0)).rgb + texture2D(tex, vUv + texel * vec2(1.0,  1.0)).rgb;
+          gl_FragColor = vec4(max(c * 0.25 - uBase, 0.0), 1.0);
+        }`,
+    });
+    // Ampliación con filtro de tienda 3×3; se suma (blending aditivo) al nivel mayor.
+    const upMat = new THREE.ShaderMaterial({
+      ...flat,
+      blending: THREE.AdditiveBlending,
+      uniforms: { tex: { value: null }, texel: { value: new THREE.Vector2() } },
+      fragmentShader: /* glsl */`
+        uniform sampler2D tex; uniform vec2 texel; varying vec2 vUv;
+        void main() {
+          vec3 c = texture2D(tex, vUv).rgb * 4.0;
+          c += (texture2D(tex, vUv + vec2(texel.x, 0.0)).rgb + texture2D(tex, vUv - vec2(texel.x, 0.0)).rgb
+              + texture2D(tex, vUv + vec2(0.0, texel.y)).rgb + texture2D(tex, vUv - vec2(0.0, texel.y)).rgb) * 2.0;
+          c += texture2D(tex, vUv + texel).rgb + texture2D(tex, vUv - texel).rgb
+             + texture2D(tex, vUv + vec2(texel.x, -texel.y)).rgb + texture2D(tex, vUv + vec2(-texel.x, texel.y)).rgb;
+          gl_FragColor = vec4(c / 16.0, 1.0);
+        }`,
+    });
+    const compMat = new THREE.ShaderMaterial({
+      ...flat,
+      uniforms: {
+        tScene: { value: null }, tBloom: { value: null },
+        uBloom: { value: 0.35 }, uSplit: { value: 0 }, uGlitch: { value: 0 }, uTime: { value: 0 },
+      },
+      fragmentShader: /* glsl */`
+        uniform sampler2D tScene, tBloom;
+        uniform float uBloom, uSplit, uGlitch, uTime;
+        varying vec2 vUv;
+        float hash(float n) { return fract(sin(n * 91.345) * 47453.5453); }
+        void main() {
+          vec2 uv = vUv;
+          float row = floor(uv.y * 36.0);
+          float cut = step(1.0 - 0.55 * uGlitch, hash(row + floor(uTime * 20.0)));
+          uv.x += cut * (hash(row + 3.1) - 0.5) * 0.16 * uGlitch;
+          vec3 col = vec3(
+            texture2D(tScene, uv + vec2(uSplit, 0.0)).r,
+            texture2D(tScene, uv).g,
+            texture2D(tScene, uv - vec2(uSplit, 0.0)).b);
+          float core = clamp(max(col.r, max(col.g, col.b)) * 1.6, 0.0, 1.0); // el trazo conserva su nitidez: el halo solo rodea
+          col += texture2D(tBloom, uv).rgb * uBloom * (1.0 - core);
+          gl_FragColor = vec4(col, 1.0);
+          #include <colorspace_fragment>
+        }`,
+    });
+
+    const target = (samples = 0) => new THREE.WebGLRenderTarget(1, 1, { type: THREE.HalfFloatType, samples, depthBuffer: samples > 0 });
+    const sceneRT = target(4);
+    const levels = [0, 1, 2, 3].map(() => target());   // 1/2, 1/4, 1/8, 1/16
+    const size = levels.map(() => [1, 1]);
+    let W = 1, H = 1;
+    const pass = (mat, to) => { quad.material = mat; stR.setRenderTarget(to); stR.render(qScene, qCam); };
+
+    return {
+      scene: sceneRT,
+      resize(w, h) {
+        W = Math.max(2, Math.round(w)); H = Math.max(2, Math.round(h)); // píxeles de dispositivo
+        sceneRT.setSize(W, H);
+        levels.forEach((r, i) => {
+          size[i] = [Math.max(1, W >> (i + 1)), Math.max(1, H >> (i + 1))];
+          r.setSize(size[i][0], size[i][1]);
+        });
+      },
+      // lk: progreso de la salida (0 en reposo, 1 al terminar)
+      compose(lk, t) {
+        // 1) reducir: escena → 1/2 → 1/4 → 1/8 → 1/16
+        levels.forEach((r, i) => {
+          downMat.uniforms.tex.value = i ? levels[i - 1].texture : sceneRT.texture;
+          downMat.uniforms.texel.value.set(1 / (i ? size[i - 1][0] : W), 1 / (i ? size[i - 1][1] : H));
+          pass(downMat, r);
+        });
+        // 2) ampliar sumando: 1/16 → 1/8 → 1/4 → 1/2 (sin borrar el destino)
+        stR.autoClear = false;
+        for (let i = levels.length - 2; i >= 0; i--) {
+          upMat.uniforms.tex.value = levels[i + 1].texture;
+          upMat.uniforms.texel.value.set(1 / size[i + 1][0], 1 / size[i + 1][1]);
+          pass(upMat, levels[i]);
+        }
+        stR.autoClear = true;
+        const u = compMat.uniforms, e = lk * lk;
+        u.tScene.value = sceneRT.texture; u.tBloom.value = levels[0].texture;
+        u.uBloom.value = 0.35 + e * 1.4;      // destello al entrar
+        u.uSplit.value = e * 0.014;
+        u.uGlitch.value = e;
+        u.uTime.value = t;
+        pass(compMat, null);
+      },
+    };
+  })();
+  if (post) root.classList.add('post'); // el CSS deja de aplicar su propio efecto de salida
+
   function resizeBg() {
     bgR.setSize(innerWidth, innerHeight, false);
     bgCam.aspect = innerWidth / innerHeight;
@@ -295,14 +416,24 @@ async function initGL() {
   resizeBg();
 
   let stageW = 0, stageH = 0;
-  new ResizeObserver(() => {
+  // El buffer del visor se dimensiona en píxeles de dispositivo exactos (device-pixel-content-box):
+  // con escalados fraccionarios (125 %, 150 %) un tamaño redondeado obliga al navegador a
+  // reescalar el canvas y todo se ve borroso.
+  const onStageResize = entries => {
     stageW = stage.clientWidth; stageH = stage.clientHeight;
     if (stageW < 2 || stageH < 2) return;
-    stR.setSize(stageW, stageH, false);
-    viewCam.aspect = stageW / stageH;
+    let pxW = Math.round(stageW * Math.min(devicePixelRatio, 2)), pxH = Math.round(stageH * Math.min(devicePixelRatio, 2));
+    const b = entries && entries[0].devicePixelContentBoxSize && entries[0].devicePixelContentBoxSize[0];
+    if (b && devicePixelRatio <= 2) { pxW = b.inlineSize; pxH = b.blockSize; }
+    stR.setPixelRatio(1);
+    stR.setSize(pxW, pxH, false);
+    if (post) post.resize(pxW, pxH);
+    viewCam.aspect = pxW / pxH;
     viewCam.updateProjectionMatrix();
     redraw();
-  }).observe(stage);
+  };
+  try { new ResizeObserver(onStageResize).observe(stage, { box: 'device-pixel-content-box' }); }
+  catch (e) { new ResizeObserver(onStageResize).observe(stage); } // navegadores sin esa opción
 
   // Fuera de pantalla no se dibuja el visor (ni rota solo)
   new IntersectionObserver(([en]) => {
@@ -359,7 +490,13 @@ async function initGL() {
       ? 0.35 + (reduce ? 0 : Math.sin(T * 0.5) * 0.5) + spinY * 0.3
       : (reduce ? 0.6 : T * 0.3) + spinY) + lk * 2.5 + tiltX * 0.35;
     o.update(T);
-    stR.render(viewScene, viewCam);
+    if (post) {
+      stR.setRenderTarget(post.scene);
+      stR.render(viewScene, viewCam);
+      post.compose(lk, T);
+    } else {
+      stR.render(viewScene, viewCam);
+    }
   }
 
   function draw() { drawBg(); drawStage(); }

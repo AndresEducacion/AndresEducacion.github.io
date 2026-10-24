@@ -127,3 +127,6 @@ footer{margin-top:48px;padding:24px var(--pad);color:var(--mut);font-size:12px;b
 .no-gl #bg,.no-gl .stage,.no-gl .autoplay,.no-gl .m-hint{display:none}
 @media (max-width:860px),(hover:none),(pointer:coarse){.autoplay{display:none}}
 @media (prefers-reduced-motion:reduce){.autoplay{display:none}}
+
+/* Con postproceso WebGL la separación RGB de la salida la hace el shader, no un filtro CSS */
+.post body.leaving .stage{animation:none}
