@@ -1,8 +1,19 @@
 // Comportamiento común de las páginas de los módulos:
-// botón "Copiar" en los bloques de código, año del pie, visor de diapositivas y sketches de p5.js editables.
+// propiedades e índice de las lecciones, botón "Copiar", año del pie, visor de diapositivas y sketches de p5.js.
 // Las diapositivas se escriben una sola vez en slides/*.json; tools/build-decks.js genera el .pptx con el mismo contenido.
+// Todo va dentro de una función para no crear nombres globales que choquen con los scripts de cada página.
 
+(() => {
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+
+// Alto de la barra superior fija, para que el índice y las anclas queden justo debajo
+const topBar = document.querySelector('.top');
+if (topBar) {
+  const setTopH = () => document.documentElement.style.setProperty('--top-h', `${topBar.offsetHeight}px`);
+  setTopH();
+  addEventListener('resize', setTopH);
+}
+
 // Marcado mínimo dentro del texto: **negrita** y `código`
 const inline = s => esc(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/`(.+?)`/g, '<code>$1</code>');
 
@@ -21,7 +32,79 @@ function addCopy(pre) {
   });
   pre.appendChild(b);
 }
+// Etiqueta de la barra de cada bloque de código (la pinta site.css con attr(data-lang))
+const LANGS = { csharp: 'C#', javascript: 'JavaScript', js: 'JavaScript' };
+const langOf = pre => {
+  const m = (pre.querySelector('code')?.className || '').match(/language-(\w+)/);
+  return m ? LANGS[m[1]] || m[1] : 'Texto';
+};
+document.querySelectorAll('pre:not(.console)').forEach(pre => { pre.dataset.lang = langOf(pre); });
 document.querySelectorAll('pre').forEach(addCopy);
+
+// Notas: la etiqueta en negrita decide si es aviso (amarillo) o truco (morado); el resto, información (azul)
+document.querySelectorAll('.note').forEach(n => {
+  const label = n.querySelector(':scope > strong:first-child')?.textContent.trim().toLowerCase() || '';
+  if (/^(ojo|cuidado|importante|atención|aviso)/.test(label)) n.classList.add('warn');
+  else if (/^(truco|consejo|buenas prácticas|recuerda|prueba|fíjate)/.test(label)) n.classList.add('tip');
+});
+
+// "01 · Título" → número con estilo propio
+document.querySelectorAll('.section-title').forEach(h => {
+  const m = h.children.length ? null : h.textContent.match(/^\s*(\d{1,2}|[A-Z]\d?)\s*[·.]\s+([\s\S]+)$/);
+  if (m) h.innerHTML = `<span class="sn">${esc(m[1])}</span><span>${esc(m[2].trim())}</span>`;
+});
+
+// Lecciones con tres apartados o más: propiedades de la página e índice, como en Notion
+const lessonSecs = [...document.querySelectorAll('main > section.sec.doc')].filter(s => s.querySelector(':scope > .section-title'));
+if (lessonSecs.length >= 3) {
+  const main = document.querySelector('main');
+  const nav = document.createElement('nav');
+  nav.className = 'toc-side';
+  nav.setAttribute('aria-label', 'En esta página');
+  nav.innerHTML = '<details><summary>En esta página</summary><ol></ol></details>';
+  const ol = nav.querySelector('ol');
+  const links = lessonSecs.map((s, i) => {
+    if (!s.id) s.id = `apartado-${i + 1}`;
+    const h = s.querySelector('.section-title');
+    const n = h.querySelector('.sn')?.textContent || String(i + 1).padStart(2, '0');
+    const t = h.querySelector('.sn + span')?.textContent || h.textContent;
+    const li = document.createElement('li');
+    li.innerHTML = `<a href="#${esc(s.id)}"><b>${esc(n)}</b><span>${esc(t)}</span></a>`;
+    ol.appendChild(li);
+    return li.firstChild;
+  });
+  main.insertBefore(nav, lessonSecs[0]);
+  // En pantallas anchas flota a la derecha y está siempre abierto; en el resto es un desplegable
+  const det = nav.querySelector('details');
+  const wide = matchMedia('(min-width: 1500px)');
+  det.open = wide.matches;
+  wide.addEventListener('change', e => { det.open = e.matches; });
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      links.forEach(a => a.classList.toggle('on', a.hash === `#${e.target.id}`));
+    }), { rootMargin: '-30% 0px -60% 0px' });
+    lessonSecs.forEach(s => io.observe(s));
+  }
+
+  // Propiedades: tipo, apartados, tiempo de lectura, ejemplos interactivos y repaso
+  const hero = document.querySelector('.hero');
+  if (hero) {
+    const text = lessonSecs.map(s => s.innerText).join(' ');
+    const live = main.querySelectorAll('figure.p5, .embed').length;
+    const mins = Math.max(5, Math.round(text.split(/\s+/).length / 180 + live * 1.5));
+    const kind = hero.querySelector('.kicker')?.textContent.split('/').pop().trim();
+    const rows = [['◇', 'Tipo', kind ? `<span class="pill">${esc(kind)}</span>` : ''], ['#', 'Apartados', lessonSecs.length], ['◷', 'Lectura', `≈ ${mins} min`]];
+    const sketches = main.querySelectorAll('figure.p5').length;
+    if (sketches) rows.push(['▶', 'Ejemplos interactivos', sketches]);
+    if (main.querySelector('.qa')) rows.push(['?', 'Repaso', `<a href="#${esc(main.querySelector('.qa').closest('section').id)}">Preguntas al final</a>`]);
+    const dl = document.createElement('dl');
+    dl.className = 'props';
+    dl.innerHTML = rows.filter(r => r[2] !== '').map(([i, k, v]) => `<div><dt><i>${i}</i>${k}</dt><dd>${v}</dd></div>`).join('');
+    const lead = hero.querySelector('.lead');
+    hero.insertBefore(dl, lead || null);
+  }
+}
 
 // <details class="code-file" data-file="…">: carga el archivo de código la primera vez que se abre
 document.querySelectorAll('details.code-file[data-file]').forEach(det => {
@@ -30,6 +113,7 @@ document.querySelectorAll('details.code-file[data-file]').forEach(det => {
     const pre = document.createElement('pre');
     const code = document.createElement('code');
     code.className = 'language-' + (det.dataset.lang || 'csharp');
+    pre.dataset.lang = LANGS[det.dataset.lang || 'csharp'];
     code.textContent = 'Cargando…';
     pre.appendChild(code);
     det.appendChild(pre);
@@ -127,11 +211,12 @@ async function mountDeck(deck) {
 
 document.querySelectorAll('.deck[data-src]').forEach(mountDeck);
 
-// <figure class="p5" data-w="400" data-h="400" data-editor="…"><script type="text/plain">código</script></figure>
-// Muestra el código editable junto al sketch en marcha. Ctrl+Enter o «Ejecutar» lo vuelve a lanzar.
+// <figure class="p5" data-sketch="ID" data-w="400" data-h="400"><script type="text/plain">código</script></figure>
+// Con data-sketch se incrusta el editor nativo de p5.js con ese sketch de la cuenta del profesor.
+// Sin él, muestra el código editable junto al sketch en marcha. Ctrl+Enter o «Ejecutar» lo vuelve a lanzar.
 // p5.js llama a setup() desde una promesa: sus errores llegan por unhandledrejection, los de draw() por onerror.
 const P5_SRC = 'https://cdn.jsdelivr.net/npm/p5@1.11.11/lib/p5.min.js';
-const P5_HEAD = `<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;height:100%;background:#0a0a0a;color:#f2f2f2;font:13px ui-monospace,monospace;overflow:hidden}body{display:flex;align-items:center;justify-content:center}canvas{display:block;max-width:100%!important;max-height:100%!important;width:auto!important;height:auto!important}</style><script>function rep(m,l){parent.postMessage({p5err:String(m),line:l},'*')}onerror=function(m,s,l){rep(m,l)};onunhandledrejection=function(e){var r=e.reason||{},n=String(r.stack||'').match(/srcdoc:(\\d+)/);rep(r.message||r,n?+n[1]:0)}</script><script src="${P5_SRC}"></script></head><body><script>\n`;
+const P5_HEAD = `<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;height:100%;background:transparent;color:#888;font:13px ui-monospace,monospace;overflow:hidden}body{display:flex;align-items:center;justify-content:center}canvas{display:block;max-width:100%!important;max-height:100%!important;width:auto!important;height:auto!important}</style><script>function rep(m,l){parent.postMessage({p5err:String(m),line:l},'*')}onerror=function(m,s,l){rep(m,l)};onunhandledrejection=function(e){var r=e.reason||{},n=String(r.stack||'').match(/srcdoc:(\\d+)/);rep(r.message||r,n?+n[1]:0)}</script><script src="${P5_SRC}"></script></head><body><script>\n`;
 const P5_OFFSET = P5_HEAD.split('\n').length - 1;
 
 function dedent(s) {
@@ -140,8 +225,41 @@ function dedent(s) {
   return lines.map(l => l.slice(pad)).join('\n');
 }
 
+const P5_USER = 'AndresEducacion';
+
+function p5Head(text) {
+  const head = document.createElement('div');
+  head.className = 'p5-head';
+  head.innerHTML = `<b>p5.js</b><span>${text}</span>`;
+  return head;
+}
+
+function mountEditor(fig, sketch) {
+  const url = sketch.startsWith('http') ? sketch : `https://editor.p5js.org/${P5_USER}/sketches/${sketch}`;
+  const box = document.createElement('div');
+  box.className = 'p5-editor';
+  if (fig.dataset.eh) box.style.setProperty('--eh', `${fig.dataset.eh}px`);
+  const frame = document.createElement('iframe');
+  frame.src = url;
+  frame.title = 'Editor de p5.js';
+  frame.loading = 'lazy';
+  frame.allow = 'fullscreen; clipboard-write';
+  box.appendChild(frame);
+  const bar = document.createElement('div');
+  bar.className = 'p5-bar';
+  bar.innerHTML = `<span class="gap">Puedes editar el código aquí, pero no se guarda: para conservar tus cambios, ábrelo y guarda una copia en tu cuenta.</span><a href="${esc(url)}" target="_blank" rel="noopener">Abrir en el editor ↗</a>`;
+  const cap = fig.querySelector('figcaption');
+  fig.prepend(p5Head('Editor de p5.js · pulsa ▶ para ejecutar'), box, bar);
+  if (cap) fig.appendChild(cap);
+}
+
 function mountP5(fig) {
   const src = fig.querySelector('script[type="text/plain"]');
+  if (fig.dataset.sketch) {
+    src?.remove();
+    mountEditor(fig, fig.dataset.sketch);
+    return;
+  }
   if (!src) return;
   const original = dedent(src.textContent);
   src.remove();
@@ -168,13 +286,13 @@ function mountP5(fig) {
 
   const bar = document.createElement('div');
   bar.className = 'p5-bar';
-  bar.innerHTML = `<button type="button" data-run>▶ Ejecutar</button><button type="button" data-reset>Restaurar</button><span class="gap">Edita el código y pulsa Ctrl+Enter</span>${fig.dataset.editor ? `<a href="${esc(fig.dataset.editor)}" target="_blank" rel="noopener">Abrir en el editor ↗</a>` : ''}`;
+  bar.innerHTML = `<button type="button" data-run>▶ Ejecutar</button><button type="button" data-reset>Restaurar</button><span class="gap"></span>${fig.dataset.editor ? `<a href="${esc(fig.dataset.editor)}" target="_blank" rel="noopener">Abrir en el editor ↗</a>` : ''}`;
   const err = document.createElement('p');
   err.className = 'p5-err';
   err.hidden = true;
 
   const cap = fig.querySelector('figcaption');
-  fig.prepend(left, out, bar, err);
+  fig.prepend(p5Head('Vista previa · edita el código y pulsa Ctrl+Enter'), left, out, bar, err);
   if (cap) fig.appendChild(cap);
   addCopy(pre);
 
@@ -185,7 +303,7 @@ function mountP5(fig) {
     frame = document.createElement('iframe');
     frame.title = 'Resultado del sketch';
     frame.setAttribute('sandbox', 'allow-scripts');
-    frame.srcdoc = P5_HEAD + code.textContent.replace(/<\/script/gi, '<\/script') + '\n</script></body></html>';
+    frame.srcdoc = P5_HEAD + code.textContent.replace(/<\/script/gi, '<\\/script') + '\n</script></body></html>';
     stage.appendChild(frame);
   };
   const highlight = () => window.Prism?.highlightElement(code);
@@ -212,3 +330,4 @@ function mountP5(fig) {
 }
 
 document.querySelectorAll('figure.p5').forEach(mountP5);
+})();

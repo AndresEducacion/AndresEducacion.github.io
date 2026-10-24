@@ -74,7 +74,7 @@
       <li>Con <code>=</code> se le <strong>asigna</strong> un valor: <code>let x = 300;</code></li>
       <li>Para <strong>usarla</strong>, se escribe su nombre donde iría el valor: <code>circle(x, 200, size);</code></li>
     </ol>
-    <figure class="p5" data-w="400" data-h="400" data-editor="https://editor.p5js.org/AndresEducacion/sketches/0BEfHMC_T">
+    <figure class="p5" data-w="400" data-h="400" data-sketch="0BEfHMC_T">
       <script type="text/plain">
         let x = 300;    // variable de posición
         let size = 80;  // variable de tamaño
@@ -170,7 +170,7 @@
       <li><code>else if</code>: si la anterior no se cumple, prueba otra condición.</li>
       <li><code>else</code>: si no se cumple ninguna, se ejecuta esto.</li>
     </ul>
-    <figure class="p5" data-w="400" data-h="400" data-editor="https://editor.p5js.org/AndresEducacion/sketches/zFd75-jJP">
+    <figure class="p5" data-w="400" data-h="400" data-sketch="zFd75-jJP">
       <script type="text/plain">
         let x = 0;
 
@@ -212,7 +212,7 @@
         <tr><td><code>!</code></td><td>no</td><td>la condición <strong>no</strong> se cumple: <code>!mouseIsPressed</code></td></tr>
       </tbody>
     </table></div>
-    <figure class="p5" data-w="400" data-h="400" data-editor="https://editor.p5js.org/AndresEducacion/sketches/drnGpmoU2">
+    <figure class="p5" data-w="400" data-h="400" data-sketch="drnGpmoU2">
       <script type="text/plain">
         function setup() {
           createCanvas(400, 400);
@@ -245,7 +245,7 @@
           line(0, 200, width, 200);            // y mitad horizontal
         }
       </script>
-      <figcaption>Recorre los cuatro cuadrantes con el ratón y haz clic para ver el <code>!</code> en acción.</figcaption>
+      <figcaption>Recorre los cuatro cuadrantes con el ratón y fíjate en qué condición se cumple en cada uno.</figcaption>
     </figure>
   </section>
 
@@ -255,7 +255,7 @@
     <p class="note"><strong>Recuerda:</strong> <code>draw()</code> ya es un bucle que p5.js repite en cada fotograma. Unity y cualquier motor en tiempo real funcionan igual.</p>
     <h3>for: cuando sabes cuántas vueltas</h3>
     <p>Entre paréntesis lleva tres partes: <strong>desde dónde</strong> empieza el contador, <strong>hasta cuándo</strong> sigue y <strong>cuánto avanza</strong> en cada vuelta.</p>
-    <figure class="p5" data-w="400" data-h="400" data-editor="https://editor.p5js.org/AndresEducacion/sketches/R980JkhKI">
+    <figure class="p5" data-w="400" data-h="400" data-sketch="R980JkhKI">
       <script type="text/plain">
         function setup() {
           createCanvas(400, 400);
@@ -421,7 +421,7 @@ cada proceso. Una frase y sin emojis.</code></pre>
     <h3>Ejemplo resuelto en cuatro iteraciones</h3>
     <div class="deck" data-src="../slides/ia-sketch.json"></div>
     <h3>La versión final, en marcha</h3>
-    <figure class="p5" data-w="400" data-h="400" data-editor="https://editor.p5js.org/AndresEducacion/sketches/gh5PyBG-M">
+    <figure class="p5" data-w="400" data-h="400" data-sketch="gh5PyBG-M">
       <script type="text/plain">
         let total = 5;
         let xs = [];        // posición de cada pelota
@@ -459,7 +459,7 @@ cada proceso. Una frase y sin emojis.</code></pre>
           circle(px, py, size);
         }
       </script>
-      <figcaption>Versiones intermedias en el editor: <a href="https://editor.p5js.org/AndresEducacion/sketches/oJfhoz8LE" target="_blank" rel="noopener">1</a> · <a href="https://editor.p5js.org/AndresEducacion/sketches/bZOlzSen8" target="_blank" rel="noopener">2</a> · <a href="https://editor.p5js.org/AndresEducacion/sketches/gh5PyBG-M" target="_blank" rel="noopener">3</a>. Se añade <code>constrain()</code> para que una pelota rápida no se quede atrapada en el borde.</figcaption>
+      <figcaption>Versiones intermedias en el editor: <a href="https://editor.p5js.org/AndresEducacion/sketches/oJfhoz8LE" target="_blank" rel="noopener">1</a> · <a href="https://editor.p5js.org/AndresEducacion/sketches/bZOlzSen8" target="_blank" rel="noopener">2</a> · <a href="https://editor.p5js.org/AndresEducacion/sketches/gh5PyBG-M" target="_blank" rel="noopener">3</a>.</figcaption>
     </figure>
     <p class="note"><strong>Recuerda:</strong> lo importante no es solo que el sketch funcione, sino que entiendas el código y sepas explicarlo.</p>
   </section>
@@ -467,7 +467,7 @@ cada proceso. Una frase y sin emojis.</code></pre>
   <section class="sec doc" id="ejemplo-completo">
     <h2 class="section-title">10 · Un ejemplo completo</h2>
     <p>El ejemplo de la <a href="../tasks/tarea1.html">Tarea 1</a> que se valoraría con un 9 o más. Combina todo lo anterior con funciones de la referencia de p5.js: <code>noise()</code> para un movimiento orgánico, <code>map()</code> para cambiar de escala, <code>lerpColor()</code> para mezclar colores y un <code>createSlider()</code> para controlar la velocidad.</p>
-    <figure class="p5" data-w="800" data-h="300" data-editor="https://editor.p5js.org/AndresEducacion/sketches/qNR23NmQe">
+    <figure class="p5" data-w="800" data-h="300" data-sketch="qNR23NmQe">
       <script type="text/plain">
         let x = 0;                 // avanza en horizontal
         let noiseOffset = 0;       // avanza dentro del noise
