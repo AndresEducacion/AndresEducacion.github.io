@@ -24,7 +24,9 @@ let T = 0;                           // tiempo de animación (solo avanza mientr
 let current = -1, since = 0;
 let paused = false;                  // puntero o foco sobre la lista
 let userPaused = false;              // botón «Pausar rotación automática»
-let dragging = false, lastX = 0, spinY = 0;
+let dragging = false, lastX = 0, lastMoveT = 0, spinY = 0, spinV = 0; // spinV: inercia (rad/s)
+let tiltTX = 0, tiltTY = 0, tiltX = 0, tiltY = 0;                  // inclinación hacia el puntero (objetivo / suavizada)
+let dt = 0;
 let leaving = false, leaveT = 0;
 let stageVisible = true;             // lo actualiza un IntersectionObserver
 let onSelect = () => {};             // el 3D se engancha aquí
@@ -119,12 +121,22 @@ let scrolled = 0;
 addEventListener('scroll', () => { scrolled = scrollY; spy(); }, { passive: true });
 
 // Arrastrar para girar
-stage.addEventListener('pointerdown', e => { dragging = true; lastX = e.clientX; stage.classList.add('drag'); stage.setPointerCapture(e.pointerId); });
+stage.addEventListener('pointerdown', e => { dragging = true; lastX = e.clientX; spinV = 0; lastMoveT = performance.now(); stage.classList.add('drag'); stage.setPointerCapture(e.pointerId); });
 stage.addEventListener('pointermove', e => {
+  if (e.pointerType === 'mouse' && !dragging) { // el objeto se inclina hacia el puntero
+    const r = stage.getBoundingClientRect();
+    tiltTX = ((e.clientX - r.left) / r.width) * 2 - 1;
+    tiltTY = ((e.clientY - r.top) / r.height) * 2 - 1;
+  }
   if (!dragging) return;
-  spinY += (e.clientX - lastX) * 0.012; lastX = e.clientX;
+  const dx = (e.clientX - lastX) * 0.012; lastX = e.clientX;
+  const now = performance.now();
+  spinY += dx;
+  spinV = Math.max(-8, Math.min(8, dx / Math.max((now - lastMoveT) / 1000, 0.008))); // rad/s al soltar
+  lastMoveT = now;
   redraw();
 });
+stage.addEventListener('pointerleave', () => { tiltTX = tiltTY = 0; redraw(); });
 const endDrag = () => { dragging = false; stage.classList.remove('drag'); };
 stage.addEventListener('pointerup', endDrag);
 stage.addEventListener('pointercancel', endDrag);
@@ -151,7 +163,14 @@ async function initGL() {
 
   const GREEN = 0x2aff6b;
   const lineMat = (o = 1) => new THREE.LineBasicMaterial({ color: GREEN, transparent: true, opacity: o });
-  const edges = (geo, o = 0.9) => new THREE.LineSegments(new THREE.EdgesGeometry(geo, 1), lineMat(o));
+  // Relleno del color del fondo, un pelo por detrás de las aristas: tapa las líneas que
+  // quedan al otro lado del cuerpo y da sensación de volumen sin perder el estilo de alambre.
+  const fillMat = new THREE.MeshBasicMaterial({ color: 0x0a0a0a, polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1 });
+  const edges = (geo, o = 0.9, solid = false) => {
+    const l = new THREE.LineSegments(new THREE.EdgesGeometry(geo, 1), lineMat(o));
+    if (solid) l.add(new THREE.Mesh(geo, fillMat));
+    return l;
+  };
   const at = (obj, x = 0, y = 0, z = 0) => { obj.position.set(x, y, z); return obj; };
 
   /* ---------- Un objeto 3D por módulo ----------
@@ -168,7 +187,7 @@ async function initGL() {
     // 1 · ISDE: altavoz con ondas de sonido
     () => {
       const g = new THREE.Group();
-      g.add(edges(new THREE.BoxGeometry(1.8, 2.7, 1.4)));
+      g.add(edges(new THREE.BoxGeometry(1.8, 2.7, 1.4), 0.9, true));
       const ring = (r, y, o) => g.add(at(edges(new THREE.CircleGeometry(r, 40), o), 0, y, 0.71));
       ring(0.65, -0.45, 1); ring(0.32, -0.45, 0.7); ring(0.27, 0.8, 1);
       const waves = [0, 1, 2].map(() => {
@@ -183,10 +202,10 @@ async function initGL() {
     // 2 · PRTV: pantalla de televisión con indicador REC
     () => {
       const g = new THREE.Group();
-      g.add(edges(new THREE.BoxGeometry(3.2, 1.9, 0.25)));
+      g.add(edges(new THREE.BoxGeometry(3.2, 1.9, 0.25), 0.9, true));
       g.add(at(edges(new THREE.BoxGeometry(2.8, 1.5, 0.28), 0.5)));
-      g.add(at(edges(new THREE.BoxGeometry(0.25, 0.5, 0.25)), 0, -1.2));
-      g.add(at(edges(new THREE.BoxGeometry(1.3, 0.08, 0.7)), 0, -1.5));
+      g.add(at(edges(new THREE.BoxGeometry(0.25, 0.5, 0.25), 0.9, true), 0, -1.2));
+      g.add(at(edges(new THREE.BoxGeometry(1.3, 0.08, 0.7), 0.9, true), 0, -1.5));
       const rec = at(edges(new THREE.CircleGeometry(0.1, 16), 1), -1.15, 0.6, 0.15);
       g.add(rec);
       return { group: g, update: t => { rec.visible = Math.floor(t * 1.5) % 2 === 0; } };
@@ -196,10 +215,10 @@ async function initGL() {
       const g = new THREE.Group();
       const desk = new THREE.Group();
       desk.rotation.x = 0.7;
-      desk.add(edges(new THREE.BoxGeometry(3.2, 0.25, 2.2)));
+      desk.add(edges(new THREE.BoxGeometry(3.2, 0.25, 2.2), 0.9, true));
       const knobs = [-1.1, -0.37, 0.37, 1.1].map(x => {
         desk.add(at(edges(new THREE.BoxGeometry(0.05, 0.02, 1.6), 0.6), x, 0.14, 0));
-        const k = at(edges(new THREE.BoxGeometry(0.34, 0.2, 0.22)), x, 0.25, 0);
+        const k = at(edges(new THREE.BoxGeometry(0.34, 0.2, 0.22), 0.9, true), x, 0.25, 0);
         desk.add(k); return k;
       });
       g.add(desk);
@@ -214,7 +233,7 @@ async function initGL() {
         [[-1.5, 0.6], [-0.7, 0.9], [0.5, 1.1]],
       ];
       clips.forEach((row, r) => row.forEach(([x, w]) =>
-        g.add(at(edges(new THREE.BoxGeometry(w, 0.38, 0.3)), x + w / 2, 0.8 - r * 0.6, 0))));
+        g.add(at(edges(new THREE.BoxGeometry(w, 0.38, 0.3), 0.9, true), x + w / 2, 0.8 - r * 0.6, 0))));
       const head = edges(new THREE.BoxGeometry(0.04, 2.3, 0.5), 1);
       g.add(head);
       return { group: g, update: t => { head.position.x = -1.6 + ((t * 0.35) % 1) * 3.4; } };
@@ -230,12 +249,19 @@ async function initGL() {
   bgCam.position.set(0, 0, 9);
   const waveMat = new THREE.ShaderMaterial({
     transparent: true,
-    uniforms: { uTime: { value: 0 }, uColor: { value: new THREE.Color(GREEN) }, uOpacity: { value: 0.14 } },
+    uniforms: {
+      uTime: { value: 0 }, uColor: { value: new THREE.Color(GREEN) }, uOpacity: { value: 0.14 },
+      uPtr: { value: new THREE.Vector2() }, uRip: { value: 0 }, // onda circular que nace bajo el puntero
+    },
     vertexShader: /* glsl */`
       uniform float uTime;
+      uniform vec2 uPtr;
+      uniform float uRip;
       void main() {
         vec3 p = position;
         p.z = sin(p.x * 0.5 + uTime) * 0.5 + cos(p.y * 0.45 + uTime * 0.8) * 0.5;
+        float d = distance(p.xy, uPtr);
+        p.z += uRip * 0.9 * exp(-d * d * 0.08) * sin(d * 2.2 - uTime * 5.0);
         gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
       }`,
     fragmentShader: /* glsl */`
@@ -284,9 +310,35 @@ async function initGL() {
     if (stageVisible) redraw();
   }).observe(stage);
 
+  // Puntero → coordenadas locales de la malla (rayo de la cámara cortado con su plano z = 0)
+  const ray = new THREE.Raycaster(), ndc = new THREE.Vector2(), inv = new THREE.Matrix4();
+  const ro = new THREE.Vector3(), rd = new THREE.Vector3();
+  let ptrSeen = -99, ripple = 0;
+  if (!reduce) addEventListener('pointermove', e => {
+    if (e.pointerType !== 'mouse') return;
+    ndc.set((e.clientX / innerWidth) * 2 - 1, -(e.clientY / innerHeight) * 2 + 1);
+    ptrSeen = T;
+  }, { passive: true });
+
   function drawBg() {
-    waveMat.uniforms.uTime.value = reduce ? 0 : T * 0.6;
+    const u = waveMat.uniforms;
+    u.uTime.value = reduce ? 0 : T * 0.6;
     plane.position.y = reduce ? -4.5 : -4.5 + Math.min(scrolled, 800) * 0.0015;
+    let hit = false;
+    if (!reduce && T - ptrSeen < 1.5) {
+      plane.updateMatrixWorld();
+      ray.setFromCamera(ndc, bgCam);
+      inv.copy(plane.matrixWorld).invert();
+      ro.copy(ray.ray.origin).applyMatrix4(inv);
+      rd.copy(ray.ray.direction).transformDirection(inv);
+      const t = Math.abs(rd.z) > 1e-4 ? -ro.z / rd.z : -1;
+      if (t > 0) {
+        const x = ro.x + rd.x * t, y = ro.y + rd.y * t;
+        if (Math.abs(x) < 14 && Math.abs(y) < 14) { u.uPtr.value.set(x, y); hit = true; }
+      }
+    }
+    ripple += ((hit ? 1 : 0) - ripple) * (1 - Math.exp(-4 * dt));
+    u.uRip.value = ripple;
     bgR.render(bgScene, bgCam);
   }
 
@@ -297,10 +349,15 @@ async function initGL() {
     const lk = leaving ? Math.min(1, (T - leaveT) / 0.8) : 0; // progreso de la salida
     const s = (0.55 + 0.45 * (1 - Math.pow(1 - k, 3))) * 1.15 * (1 + lk * lk * 1.6);
     o.group.scale.setScalar(s);
-    o.group.rotation.x = 0.35 + (reduce ? 0 : Math.sin(T * 0.4) * 0.08);
+    if (!reduce) {
+      if (!dragging) { spinY += spinV * dt; spinV *= Math.exp(-3 * dt); } // inercia al soltar
+      tiltX += (tiltTX - tiltX) * (1 - Math.exp(-6 * dt));                // inclinación suavizada
+      tiltY += (tiltTY - tiltY) * (1 - Math.exp(-6 * dt));
+    }
+    o.group.rotation.x = 0.35 + (reduce ? 0 : Math.sin(T * 0.4) * 0.08 + tiltY * 0.25);
     o.group.rotation.y = (FLAT.has(current)
       ? 0.35 + (reduce ? 0 : Math.sin(T * 0.5) * 0.5) + spinY * 0.3
-      : (reduce ? 0.6 : T * 0.3) + spinY) + lk * 2.5;
+      : (reduce ? 0.6 : T * 0.3) + spinY) + lk * 2.5 + tiltX * 0.35;
     o.update(T);
     stR.render(viewScene, viewCam);
   }
@@ -309,7 +366,8 @@ async function initGL() {
 
   let last = performance.now();
   function frame(now) {
-    T += Math.min((now - last) / 1000, 0.1); // al volver a la pestaña no hay salto
+    dt = Math.min((now - last) / 1000, 0.1); // al volver a la pestaña no hay salto
+    T += dt;
     last = now;
     // cambia de módulo solo cuando nadie lo está mirando ni lo ha pausado
     if (!paused && !userPaused && !dragging && stageVisible && !stacked() && !touch() && T - since > 5) {
