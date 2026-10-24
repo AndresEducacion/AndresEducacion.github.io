@@ -5,10 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Portal educativo | FP Imagen y Sonido</title>
 <meta name="description" content="Material didáctico de los módulos de FP de Imagen y Sonido. Profesor: Andrés Vidal Martín Martín.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Cpath d='M16 5l9 5v12l-9 5-9-5V10z' fill='none' stroke='%232aff6b' stroke-width='2'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/portal.css">
 <script type="importmap">
 { "imports": { "three": "./assets/vendor/three.module.min.js" } }
 </script>
+<link rel="modulepreload" href="assets/vendor/three.module.min.js">
 </head>
 <body>
 <canvas id="bg" aria-hidden="true"></canvas>
@@ -37,7 +39,7 @@
       <p class="m-hint">Desliza la lista y el objeto cambia. Toca un módulo para ver su tarjeta y pulsa «Entrar al módulo».</p>
       <ul class="list">
         <li>
-          <a class="row" href="deim/index.html" data-shape="0"
+          <a class="row" href="deim/index.html"
              data-name="DEIM" data-mod="Diseño de Entornos Interactivos Multimedia"
              data-desc="Programación creativa con p5.js y Unity (C#): código, repositorios y tareas.">
             <span class="num">01</span>
@@ -46,7 +48,7 @@
           </a>
         </li>
         <li>
-          <a class="row" href="isde/index.html" data-shape="1"
+          <a class="row" href="isde/index.html"
              data-name="ISDE" data-mod="Instalaciones de Sonorización de Eventos"
              data-desc="Sonido en directo: equipos, ecualización y referencias.">
             <span class="num">02</span>
@@ -55,7 +57,7 @@
           </a>
         </li>
         <li>
-          <a class="row" href="realizacion-tv/index.html" data-shape="2"
+          <a class="row" href="realizacion-tv/index.html"
              data-name="PRTV" data-mod="Procesos de Realización de Televisión"
              data-desc="Emisión de piezas de vídeo y fuentes en programas informativos.">
             <span class="num">03</span>
@@ -64,7 +66,7 @@
           </a>
         </li>
         <li>
-          <a class="row" href="laboratorio-de-mezcla/index.html" data-shape="3"
+          <a class="row" href="laboratorio-de-mezcla/index.html"
              data-name="Laboratorio de mezcla" data-mod="Práctica de mezcla de audio"
              data-desc="Laboratorio interactivo con pistas para practicar la mezcla.">
             <span class="num">04</span>
@@ -73,7 +75,7 @@
           </a>
         </li>
         <li>
-          <a class="row" href="planificacion-montaje/index.html" data-shape="4"
+          <a class="row" href="planificacion-montaje/index.html"
              data-name="Montaje" data-mod="Planificación del montaje y postproducción"
              data-desc="Plantilla provisional: temario, prácticas, recursos y evaluación.">
             <span class="num">05</span>
@@ -83,7 +85,7 @@
         </li>
       </ul>
 
-      <figure class="viewer" aria-live="polite">
+      <figure class="viewer">
         <div class="stage" id="stage" aria-hidden="true">
           <canvas id="stage-canvas"></canvas>
           <span class="corner tl"></span><span class="corner tr"></span>
@@ -97,6 +99,7 @@
           <p id="cap-desc">Programación creativa con p5.js y Unity (C#): código, repositorios y tareas.</p>
           <a id="cap-go" class="cap-go" href="deim/index.html">Entrar al módulo →</a>
         </figcaption>
+        <button id="autoplay" class="autoplay" type="button">Pausar rotación automática</button>
       </figure>
     </div>
   </section>

@@ -1,18 +1,153 @@
-import * as THREE from 'three';
-
-const canvas = document.getElementById('bg');
+const $ = id => document.getElementById(id);
+const root = document.documentElement;
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-let renderer;
-try {
-  renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-} catch (e) {
-  canvas.style.display = 'none'; // sin WebGL el portal sigue funcionando
+const stage = $('stage');
+const bgCanvas = $('bg');
+const stageCanvas = $('stage-canvas');
+const rows = [...document.querySelectorAll('.row')];
+const viewerEl = document.querySelector('.viewer');
+const cap = {
+  box: document.querySelector('figcaption'),
+  num: $('cap-num'), name: $('cap-name'), mod: $('cap-mod'), desc: $('cap-desc'), go: $('cap-go'),
+};
+
+// Móvil/táctil: el visor queda fijo arriba y el módulo activo lo marca el scroll
+const mobileMQ = matchMedia('(max-width: 860px)');
+const touchMQ = matchMedia('(hover: none)');
+const touchMQ2 = matchMedia('(pointer: coarse)');
+const stacked = () => mobileMQ.matches;                      // diseño en una columna (visor fijo + scroll)
+const touch = () => touchMQ.matches || touchMQ2.matches;     // dispositivo táctil (aunque pida "sitio de escritorio")
+
+/* ---------- Estado compartido entre la interfaz y el 3D ---------- */
+let T = 0;                           // tiempo de animación (solo avanza mientras se dibuja)
+let current = -1, since = 0;
+let paused = false;                  // puntero o foco sobre la lista
+let userPaused = false;              // botón «Pausar rotación automática»
+let dragging = false, lastX = 0, spinY = 0;
+let leaving = false, leaveT = 0;
+let stageVisible = true;             // lo actualiza un IntersectionObserver
+let onSelect = () => {};             // el 3D se engancha aquí
+let redraw = () => {};               // dibujo bajo demanda (reduce motion)
+
+function select(i, t = T) {
+  if (i === current) return;
+  current = i; since = t;
+  onSelect(i);
+  rows.forEach((r, k) => {
+    r.classList.toggle('on', k === i);
+    if (k === i) r.setAttribute('aria-current', 'true'); else r.removeAttribute('aria-current');
+  });
+  const d = rows[i].dataset;
+  cap.num.textContent = 'FIG 0.' + (i + 1);
+  cap.name.textContent = d.name; cap.mod.textContent = d.mod; cap.desc.textContent = d.desc;
+  cap.go.href = rows[i].getAttribute('href');
+  cap.box.classList.remove('swap'); void cap.box.offsetWidth; cap.box.classList.add('swap');
+}
+const pick = i => { select(i, T); redraw(); };
+
+rows.forEach((r, i) => {
+  const on = () => { if (stacked() || touch()) return; paused = true; pick(i); };
+  const off = () => { paused = false; };
+  r.addEventListener('pointerenter', on); r.addEventListener('focus', () => { paused = true; pick(i); });
+  r.addEventListener('pointerleave', off); r.addEventListener('blur', off);
+  // Táctil: un toque solo muestra la tarjeta; se entra con «Entrar al módulo».
+  // Ratón: el clic entra directamente (con la animación), igual que el botón.
+  r.addEventListener('click', e => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return; // abrir en pestaña nueva: normal
+    e.preventDefault();
+    pick(i);
+    if (touch()) {
+      paused = true;
+      if (stacked()) alignRow(r);
+      return;
+    }
+    enter(r.href);
+  });
+});
+cap.go.addEventListener('click', e => {
+  if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+  e.preventDefault();
+  enter(cap.go.href);
+});
+
+// Rotación automática: se puede pausar (WCAG 2.2.2) y no existe con movimiento reducido
+const autoBtn = $('autoplay');
+if (autoBtn) {
+  if (reduce) autoBtn.hidden = true;
+  else autoBtn.addEventListener('click', () => {
+    userPaused = !userPaused;
+    autoBtn.textContent = userPaused ? 'Reanudar rotación automática' : 'Pausar rotación automática';
+  });
 }
 
-if (renderer) {
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-  renderer.autoClear = false;
+// Transición de salida: el objeto crece y se desvanece antes de abrir el módulo
+function enter(href) {
+  if (leaving) return;
+  if (reduce) { location.href = href; return; }
+  leaving = true; leaveT = T;
+  document.body.classList.add('leaving');
+  setTimeout(() => { location.href = href; }, 850);
+}
+addEventListener('pageshow', e => { // al volver con "atrás" no se queda a medias
+  if (e.persisted) { leaving = false; document.body.classList.remove('leaving'); }
+});
+
+// línea de referencia justo debajo del visor fijo
+const refY = () => {
+  const b = viewerEl.getBoundingClientRect().bottom;
+  return b + (innerHeight - b) * 0.3;
+};
+function alignRow(r) {
+  const b = r.getBoundingClientRect();
+  scrollBy({ top: b.top + b.height / 2 - refY(), behavior: reduce ? 'auto' : 'smooth' });
+}
+function spy() {
+  if (!stacked()) return;
+  const y = refY();
+  let best = current, d = Infinity;
+  rows.forEach((r, k) => {
+    const b = r.getBoundingClientRect();
+    const dist = Math.abs(b.top + b.height / 2 - y);
+    if (dist < d) { d = dist; best = k; }
+  });
+  // solo cuando la lista está a la vista; si no, deja el módulo actual
+  const first = rows[0].getBoundingClientRect(), last = rows[rows.length - 1].getBoundingClientRect();
+  if (last.bottom > viewerEl.getBoundingClientRect().bottom && first.top < innerHeight) pick(best);
+}
+let scrolled = 0;
+addEventListener('scroll', () => { scrolled = scrollY; spy(); }, { passive: true });
+
+// Arrastrar para girar
+stage.addEventListener('pointerdown', e => { dragging = true; lastX = e.clientX; stage.classList.add('drag'); stage.setPointerCapture(e.pointerId); });
+stage.addEventListener('pointermove', e => {
+  if (!dragging) return;
+  spinY += (e.clientX - lastX) * 0.012; lastX = e.clientX;
+  redraw();
+});
+const endDrag = () => { dragging = false; stage.classList.remove('drag'); };
+stage.addEventListener('pointerup', endDrag);
+stage.addEventListener('pointercancel', endDrag);
+
+select(0);
+
+/* ---------- Three.js (se carga aparte: si falla, el portal sigue funcionando) ---------- */
+async function initGL() {
+  const THREE = await import('three');
+
+  // Dos renderers: el fondo (pantalla completa, barato) y el visor (propio canvas, sin copiar píxeles)
+  let bgR, stR;
+  try {
+    bgR = new THREE.WebGLRenderer({ canvas: bgCanvas, antialias: true, alpha: true, powerPreference: 'low-power' });
+    stR = new THREE.WebGLRenderer({ canvas: stageCanvas, antialias: true });
+  } catch (e) {
+    if (bgR) bgR.dispose();
+    throw e;
+  }
+  bgR.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+  stR.setPixelRatio(Math.min(devicePixelRatio, 2));
+  stR.setClearColor(0x0a0a0a, 1);
+  [bgCanvas, stageCanvas].forEach(c => c.addEventListener('webglcontextlost', e => e.preventDefault()));
 
   const GREEN = 0x2aff6b;
   const lineMat = (o = 1) => new THREE.LineBasicMaterial({ color: GREEN, transparent: true, opacity: o });
@@ -87,195 +222,105 @@ if (renderer) {
   ];
   const FLAT = new Set([2, 4]); // televisión y línea de tiempo: se balancean en vez de girar
 
-  /* ---------- Fondo: solo la malla ondulada ---------- */
+  /* ---------- Fondo: malla ondulada animada en la GPU ----------
+     La altura de cada vértice se calcula en el vertex shader: la CPU ya no
+     recorre ~16.000 vértices por fotograma ni sube el buffer. */
   const bgScene = new THREE.Scene();
   const bgCam = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
   bgCam.position.set(0, 0, 9);
-  const wavePlaneGeo = new THREE.PlaneGeometry(26, 26, 52, 52);
-  const plane = new THREE.LineSegments(new THREE.WireframeGeometry(wavePlaneGeo), lineMat(0.14));
+  const waveMat = new THREE.ShaderMaterial({
+    transparent: true,
+    uniforms: { uTime: { value: 0 }, uColor: { value: new THREE.Color(GREEN) }, uOpacity: { value: 0.14 } },
+    vertexShader: /* glsl */`
+      uniform float uTime;
+      void main() {
+        vec3 p = position;
+        p.z = sin(p.x * 0.5 + uTime) * 0.5 + cos(p.y * 0.45 + uTime * 0.8) * 0.5;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
+      }`,
+    fragmentShader: /* glsl */`
+      uniform vec3 uColor;
+      uniform float uOpacity;
+      void main() {
+        gl_FragColor = vec4(uColor, uOpacity);
+        #include <colorspace_fragment>
+      }`,
+  });
+  const plane = new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.PlaneGeometry(26, 26, 52, 52)), waveMat);
   plane.rotation.x = -1.15;
   plane.position.y = -4.5;
+  plane.frustumCulled = false; // la altura real la pone el shader: la caja del bounding no vale
   bgScene.add(plane);
-  const wf = plane.geometry.attributes.position;
-  const wfBase = wf.array.slice();
-  function wave(t) {
-    const a = wf.array;
-    for (let i = 0; i < a.length; i += 3) {
-      a[i + 2] = Math.sin(wfBase[i] * 0.5 + t) * 0.5 + Math.cos(wfBase[i + 1] * 0.45 + t * 0.8) * 0.5;
-    }
-    wf.needsUpdate = true;
-  }
 
-  /* ---------- Ventana 3D grande ---------- */
-  const stage = document.getElementById('stage');
-  const stageCanvas = document.getElementById('stage-canvas');
-  const stageCtx = stageCanvas.getContext('2d');
-  const rows = [...document.querySelectorAll('.row')];
+  /* ---------- Visor 3D ---------- */
   const viewScene = new THREE.Scene();
   const viewCam = new THREE.PerspectiveCamera(38, 4 / 3, 0.1, 50);
   viewCam.position.set(0, 0, 7.2);
   const objs = builders.map(b => { const o = b(); o.group.visible = false; viewScene.add(o.group); return o; });
-  const cap = {
-    box: document.querySelector('figcaption'),
-    num: document.getElementById('cap-num'), name: document.getElementById('cap-name'),
-    mod: document.getElementById('cap-mod'), desc: document.getElementById('cap-desc'),
-    go: document.getElementById('cap-go'),
-  };
-  const clock = new THREE.Clock();
+  onSelect = i => objs.forEach((o, k) => { o.group.visible = k === i; });
+  onSelect(current);
 
-  let current = -1, since = 0, paused = false, spinY = 0, dragging = false, lastX = 0;
-  let leaving = false, leaveT = 0;
-  function select(i, t = 0) {
-    if (i === current) return;
-    current = i; since = t;
-    objs.forEach((o, k) => { o.group.visible = k === i; });
-    rows.forEach((r, k) => {
-      r.classList.toggle('on', k === i);
-      if (k === i) r.setAttribute('aria-current', 'true'); else r.removeAttribute('aria-current');
-    });
-    const d = rows[i].dataset;
-    cap.num.textContent = 'FIG 0.' + (i + 1);
-    cap.name.textContent = d.name; cap.mod.textContent = d.mod; cap.desc.textContent = d.desc;
-    cap.go.href = rows[i].getAttribute('href');
-    cap.box.classList.remove('swap'); void cap.box.offsetWidth; cap.box.classList.add('swap');
-  }
-  // Móvil/táctil: el visor queda fijo arriba y el módulo activo lo marca el scroll
-  const mobileMQ = matchMedia('(max-width: 860px)');
-  const touchMQ = matchMedia('(hover: none)');
-  const touchMQ2 = matchMedia('(pointer: coarse)');
-  const stacked = () => mobileMQ.matches;                         // diseño en una columna (visor fijo + scroll)
-  const touch = () => touchMQ.matches || touchMQ2.matches;        // dispositivo táctil (aunque pida "sitio de escritorio")
-  const viewerEl = document.querySelector('.viewer');
-  const pick = i => { select(i, clock.getElapsedTime()); if (reduce) draw(clock.getElapsedTime()); };
-
-  rows.forEach((r, i) => {
-    const on = () => { if (stacked() || touch()) return; paused = true; pick(i); };
-    const off = () => { paused = false; };
-    r.addEventListener('pointerenter', on); r.addEventListener('focus', () => { paused = true; pick(i); });
-    r.addEventListener('pointerleave', off); r.addEventListener('blur', off);
-    // Táctil: un toque solo muestra la tarjeta; se entra con «Entrar al módulo».
-    // Ratón: el clic entra directamente (con la animación), igual que el botón.
-    r.addEventListener('click', e => {
-      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return; // abrir en pestaña nueva: normal
-      e.preventDefault();
-      pick(i);
-      if (touch()) {
-        paused = true;
-        if (stacked()) alignRow(r);
-        return;
-      }
-      enter(r.href);
-    });
-  });
-  cap.go.addEventListener('click', e => {
-    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
-    e.preventDefault();
-    enter(cap.go.href);
-  });
-
-  // Transición de salida: el objeto crece y se desvanece antes de abrir el módulo
-  function enter(href) {
-    if (leaving) return;
-    if (reduce) { location.href = href; return; }
-    leaving = true; leaveT = clock.getElapsedTime();
-    document.body.classList.add('leaving');
-    setTimeout(() => { location.href = href; }, 850);
-  }
-  addEventListener('pageshow', e => { // al volver con "atrás" no se queda a medias
-    if (e.persisted) { leaving = false; document.body.classList.remove('leaving'); }
-  });
-
-  // línea de referencia justo debajo del visor fijo
-  const refY = () => {
-    const b = viewerEl.getBoundingClientRect().bottom;
-    return b + (innerHeight - b) * 0.3;
-  };
-  function alignRow(r) {
-    const b = r.getBoundingClientRect();
-    scrollBy({ top: b.top + b.height / 2 - refY(), behavior: reduce ? 'auto' : 'smooth' });
-  }
-  function spy() {
-    if (!stacked()) return;
-    const y = refY();
-    let best = current, d = Infinity;
-    rows.forEach((r, k) => {
-      const b = r.getBoundingClientRect();
-      const dist = Math.abs(b.top + b.height / 2 - y);
-      if (dist < d) { d = dist; best = k; }
-    });
-    // solo cuando la lista está a la vista; si no, deja el módulo actual
-    const first = rows[0].getBoundingClientRect(), last = rows[rows.length - 1].getBoundingClientRect();
-    if (last.bottom > viewerEl.getBoundingClientRect().bottom && first.top < innerHeight) pick(best);
-  }
-
-  // Arrastrar para girar
-  stage.addEventListener('pointerdown', e => { dragging = true; lastX = e.clientX; stage.classList.add('drag'); stage.setPointerCapture(e.pointerId); });
-  stage.addEventListener('pointermove', e => {
-    if (!dragging) return;
-    spinY += (e.clientX - lastX) * 0.012; lastX = e.clientX;
-    if (reduce) draw(clock.getElapsedTime());
-  });
-  const endDrag = () => { dragging = false; stage.classList.remove('drag'); };
-  stage.addEventListener('pointerup', endDrag);
-  stage.addEventListener('pointercancel', endDrag);
-
-  let scrollY = 0;
-  addEventListener('scroll', () => { scrollY = window.scrollY; spy(); if (reduce) draw(clock.getElapsedTime()); }, { passive: true });
-
-  function resize() {
-    renderer.setSize(innerWidth, innerHeight, false);
+  function resizeBg() {
+    bgR.setSize(innerWidth, innerHeight, false);
     bgCam.aspect = innerWidth / innerHeight;
     bgCam.updateProjectionMatrix();
-    if (reduce) draw(clock.getElapsedTime());
   }
-  addEventListener('resize', resize);
+  addEventListener('resize', () => { resizeBg(); redraw(); });
+  resizeBg();
 
-  function draw(t) {
-    renderer.setScissorTest(false);
-    renderer.setViewport(0, 0, innerWidth, innerHeight);
-    renderer.clear();
-    if (!reduce) { wave(t * 0.6); plane.position.y = -4.5 + Math.min(scrollY, 800) * 0.0015; }
-    renderer.render(bgScene, bgCam);
-
-    // cambia de módulo solo cuando nadie lo está mirando
-    if (!reduce && !paused && !dragging && !stacked() && !touch() && t - since > 5) select((current + 1) % objs.length, t);
-
-    const r = stage.getBoundingClientRect();
-    if (r.bottom < 0 || r.top > innerHeight || r.width < 2) return;
-    const y = innerHeight - r.bottom;
-    renderer.setScissorTest(true);
-    renderer.setViewport(r.left, y, r.width, r.height);
-    renderer.setScissor(r.left, y, r.width, r.height);
-    renderer.clear(); // el visor es opaco: no se mezcla con la malla del fondo
-    viewCam.aspect = r.width / r.height;
+  let stageW = 0, stageH = 0;
+  new ResizeObserver(() => {
+    stageW = stage.clientWidth; stageH = stage.clientHeight;
+    if (stageW < 2 || stageH < 2) return;
+    stR.setSize(stageW, stageH, false);
+    viewCam.aspect = stageW / stageH;
     viewCam.updateProjectionMatrix();
+    redraw();
+  }).observe(stage);
 
+  // Fuera de pantalla no se dibuja el visor (ni rota solo)
+  new IntersectionObserver(([en]) => {
+    stageVisible = en.isIntersecting;
+    if (stageVisible) redraw();
+  }).observe(stage);
+
+  function drawBg() {
+    waveMat.uniforms.uTime.value = reduce ? 0 : T * 0.6;
+    plane.position.y = reduce ? -4.5 : -4.5 + Math.min(scrolled, 800) * 0.0015;
+    bgR.render(bgScene, bgCam);
+  }
+
+  function drawStage() {
+    if (!stageVisible || stageW < 2 || stageH < 2) return;
     const o = objs[current];
-    const k = Math.min(1, (t - since) / 0.45);          // entrada suave del objeto
-    const lk = leaving ? Math.min(1, (t - leaveT) / 0.8) : 0; // progreso de la salida
+    const k = Math.min(1, (T - since) / 0.45);             // entrada suave del objeto
+    const lk = leaving ? Math.min(1, (T - leaveT) / 0.8) : 0; // progreso de la salida
     const s = (0.55 + 0.45 * (1 - Math.pow(1 - k, 3))) * 1.15 * (1 + lk * lk * 1.6);
     o.group.scale.setScalar(s);
-    o.group.rotation.x = 0.35 + (reduce ? 0 : Math.sin(t * 0.4) * 0.08);
+    o.group.rotation.x = 0.35 + (reduce ? 0 : Math.sin(T * 0.4) * 0.08);
     o.group.rotation.y = (FLAT.has(current)
-      ? 0.35 + (reduce ? 0 : Math.sin(t * 0.5) * 0.5) + spinY * 0.3
-      : (reduce ? 0.6 : t * 0.3) + spinY) + lk * 2.5;
-    o.update(t);
-    renderer.render(viewScene, viewCam);
-
-    // copia la región al canvas del visor (que está por encima de la lista al hacer scroll)
-    const pr = renderer.getPixelRatio();
-    const w = Math.round(r.width * pr), h = Math.round(r.height * pr);
-    if (stageCanvas.width !== w || stageCanvas.height !== h) { stageCanvas.width = w; stageCanvas.height = h; }
-    stageCtx.clearRect(0, 0, w, h);
-    stageCtx.drawImage(canvas, r.left * pr, r.top * pr, w, h, 0, 0, w, h);
+      ? 0.35 + (reduce ? 0 : Math.sin(T * 0.5) * 0.5) + spinY * 0.3
+      : (reduce ? 0.6 : T * 0.3) + spinY) + lk * 2.5;
+    o.update(T);
+    stR.render(viewScene, viewCam);
   }
 
-  select(0);
-  resize();
-  if (reduce) {
-    draw(0);
-  } else {
-    const frame = () => { draw(clock.getElapsedTime()); requestAnimationFrame(frame); };
-    frame();
+  function draw() { drawBg(); drawStage(); }
+
+  let last = performance.now();
+  function frame(now) {
+    T += Math.min((now - last) / 1000, 0.1); // al volver a la pestaña no hay salto
+    last = now;
+    // cambia de módulo solo cuando nadie lo está mirando ni lo ha pausado
+    if (!paused && !userPaused && !dragging && stageVisible && !stacked() && !touch() && T - since > 5) {
+      select((current + 1) % objs.length, T);
+    }
+    draw();
   }
+
+  redraw = () => { if (reduce) draw(); };
+  if (reduce) draw();
+  else bgR.setAnimationLoop(frame);
 }
+
+initGL().catch(() => root.classList.add('no-gl')); // sin WebGL o sin soporte de importmap
