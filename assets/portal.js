@@ -121,7 +121,7 @@ let scrolled = 0;
 addEventListener('scroll', () => { scrolled = scrollY; spy(); }, { passive: true });
 
 // Arrastrar para girar
-stage.addEventListener('pointerdown', e => { dragging = true; lastX = e.clientX; spinV = 0; lastMoveT = performance.now(); stage.classList.add('drag'); stage.setPointerCapture(e.pointerId); });
+stage.addEventListener('pointerdown', e => { dragging = true; lastX = e.clientX; spinV = 0; lastMoveT = performance.now(); stage.classList.add('drag'); root.classList.add('is-dragging'); stage.setPointerCapture(e.pointerId); });
 stage.addEventListener('pointermove', e => {
   if (e.pointerType === 'mouse' && !dragging) { // el objeto se inclina hacia el puntero
     const r = stage.getBoundingClientRect();
@@ -137,7 +137,8 @@ stage.addEventListener('pointermove', e => {
   redraw();
 });
 stage.addEventListener('pointerleave', () => { tiltTX = tiltTY = 0; redraw(); });
-const endDrag = () => { dragging = false; stage.classList.remove('drag'); };
+const endDrag = () => { dragging = false; stage.classList.remove('drag'); root.classList.remove('is-dragging'); };
+stage.addEventListener('mousedown', e => e.preventDefault()); // sin selección de texto ni arrastre nativo al girar
 stage.addEventListener('pointerup', endDrag);
 stage.addEventListener('pointercancel', endDrag);
 
@@ -172,73 +173,252 @@ async function initGL() {
   };
   const at = (obj, x = 0, y = 0, z = 0) => { obj.position.set(x, y, z); return obj; };
 
+  /* ---------- Helpers de geometría ---------- */
+  const V = (x, y, z) => new THREE.Vector3(x, y, z);
+  // Segmentos sueltos a partir de pares de puntos
+  const segs = (pts, o = 0.9) => new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(pts), lineMat(o));
+  // Polilínea (opcionalmente cerrada)
+  const strip = (pts, o = 0.9, closed = false) => {
+    const p = [];
+    for (let i = 0; i < pts.length - 1; i++) p.push(pts[i], pts[i + 1]);
+    if (closed) p.push(pts[pts.length - 1], pts[0]);
+    return segs(p, o);
+  };
+  // Rectángulo con esquinas redondeadas
+  const rrShape = (w, h, r) => {
+    const s = new THREE.Shape(), x = -w / 2, y = -h / 2;
+    s.moveTo(x + r, y); s.lineTo(x + w - r, y); s.quadraticCurveTo(x + w, y, x + w, y + r);
+    s.lineTo(x + w, y + h - r); s.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    s.lineTo(x + r, y + h); s.quadraticCurveTo(x, y + h, x, y + h - r);
+    s.lineTo(x, y + r); s.quadraticCurveTo(x, y, x + r, y);
+    return s;
+  };
+  const plate = (w, h, r = 0.04, o = 0.9) => edges(new THREE.ShapeGeometry(rrShape(w, h, r), 4), o);   // contorno plano
+  const slab = (w, h, d, r = 0.05, o = 0.9) => {                                                       // cuerpo con grosor
+    const geo = new THREE.ExtrudeGeometry(rrShape(w, h, r), { depth: d, bevelEnabled: false, curveSegments: 4 });
+    geo.translate(0, 0, -d / 2);
+    return edges(geo, o, true);
+  };
+  // Caja cuyo extremo trasero (z < 0) se estrecha (cajas acústicas, cuellos…)
+  const taper = (w, h, d, kx = 1, ky = 1) => {
+    const g = new THREE.BoxGeometry(w, h, d), p = g.attributes.position;
+    for (let i = 0; i < p.count; i++) if (p.getZ(i) < 0) { p.setX(i, p.getX(i) * kx); p.setY(i, p.getY(i) * ky); }
+    return g;
+  };
+  // Potenciómetro: cuerpo cilíndrico con marca indicadora (gírale en Y)
+  const knob = (r = 0.07, h = 0.06) => {
+    const k = new THREE.Group(), body = edges(new THREE.CylinderGeometry(r * 0.9, r, h, 10), 0.9, true);
+    body.position.y = h / 2;
+    k.add(body, segs([V(0, h + 0.002, 0), V(0, h + 0.002, -r * 0.9)], 1));
+    return k;
+  };
+  const flat = (geo, o = 0.9) => { const m = edges(geo, o); m.rotation.x = -Math.PI / 2; return m; };    // plano tumbado (XZ)
+
   /* ---------- Un objeto 3D por módulo ----------
      Cada constructor devuelve { group, update(t) }. */
   const builders = [
-    // 0 · DEIM: cubo (entorno/escena) con un objeto interactivo dentro
+    // 0 · DEIM (Diseño de Entornos Interactivos Multimedia): escena de editor con gizmo y cursor
     () => {
-      const g = new THREE.Group();
-      g.add(edges(new THREE.BoxGeometry(2.2, 2.2, 2.2, 2, 2, 2)));
-      const inner = edges(new THREE.OctahedronGeometry(0.8, 0), 1);
-      g.add(inner);
-      return { group: g, update: t => { inner.rotation.y = t * 1.2; inner.rotation.x = t * 0.7; } };
+      const g = new THREE.Group(), rig = at(new THREE.Group(), 0, 0.25, 0); g.add(rig);
+      const grid = [], S = 1.8;
+      for (let i = -4; i <= 4; i++) { const k = (i * S) / 4; grid.push(V(k, 0, -S), V(k, 0, S), V(-S, 0, k), V(S, 0, k)); }
+      rig.add(at(segs(grid, 0.32), 0, -1.1, 0));                                    // suelo de la escena
+      const cy = -0.55;
+      rig.add(at(edges(new THREE.BoxGeometry(1.1, 1.1, 1.1), 0.9), 0, cy, 0));      // objeto seleccionado
+      const arrow = () => {                                                         // flecha del gizmo de traslación
+        const a = new THREE.Group();
+        a.add(segs([V(0, 0, 0), V(0, 0.95, 0)], 1));
+        a.add(at(edges(new THREE.ConeGeometry(0.07, 0.22, 8), 1), 0, 1.06, 0));
+        return a;
+      };
+      const ax = arrow(), ay = arrow(), az = arrow();
+      ax.rotation.z = -Math.PI / 2; az.rotation.x = Math.PI / 2;
+      [ax, ay, az].forEach(a => { a.position.y = cy; rig.add(a); });
+      const orbit = at(flat(new THREE.CircleGeometry(1.35, 64), 0.18), 0, -0.1, 0); rig.add(orbit);
+      const orb = at(edges(new THREE.OctahedronGeometry(0.2, 0), 1, true), 0, -0.1, 0); rig.add(orb);   // entidad que orbita
+      // cursor del ratón que hace clic
+      const cur = [[0, 0], [0, -0.8], [0.19, -0.62], [0.33, -0.92], [0.46, -0.86], [0.32, -0.57], [0.58, -0.57]];
+      const cs = new THREE.Shape(); cur.forEach(([x, y], i) => (i ? cs.lineTo(x, y) : cs.moveTo(x, y))); cs.closePath();
+      const cursor = at(new THREE.Group(), 0.95, 0.75, 0.9); cursor.add(edges(new THREE.ShapeGeometry(cs), 1, true)); rig.add(cursor);
+      const click = at(edges(new THREE.CircleGeometry(0.3, 28), 0.8), 0.95, 0.75, 0.9); rig.add(click);
+      return { group: g, update: t => {
+        const a = t * 0.8;
+        orb.position.set(Math.cos(a) * 1.35, -0.1 + Math.sin(a * 2) * 0.15, Math.sin(a) * 1.35);
+        orb.rotation.set(t, t * 1.3, 0);
+        const c = t % 2.4;
+        cursor.scale.setScalar(c < 0.15 ? 0.82 : 0.95);
+        cursor.position.y = 0.75 + Math.sin(t * 1.3) * 0.04;
+        click.position.y = cursor.position.y;
+        click.visible = c < 1;
+        click.scale.setScalar(0.15 + c * 0.85); click.material.opacity = 0.8 * (1 - c);
+      } };
     },
-    // 1 · ISDE: altavoz con ondas de sonido
+
+    // 1 · ISDE (Instalaciones de Sonorización de Eventos): line array colgado de una truss
     () => {
-      const g = new THREE.Group();
-      g.add(edges(new THREE.BoxGeometry(1.8, 2.7, 1.4), 0.9, true));
-      const ring = (r, y, o) => g.add(at(edges(new THREE.CircleGeometry(r, 40), o), 0, y, 0.71));
-      ring(0.65, -0.45, 1); ring(0.32, -0.45, 0.7); ring(0.27, 0.8, 1);
+      const g = new THREE.Group(), rig = at(new THREE.Group(), 0, -0.3, 0); g.add(rig);
+      const truss = at(new THREE.Group(), 0, 1.62, 0);
+      truss.add(edges(new THREE.BoxGeometry(3.2, 0.26, 0.26), 0.9));
+      const zz = [], step = 3.2 / 12;
+      for (let i = 0; i < 12; i++) { const up = i % 2 === 0, x = -1.6 + i * step; zz.push(V(x, up ? -0.13 : 0.13, 0.131), V(x + step, up ? 0.13 : -0.13, 0.131)); }
+      truss.add(segs(zz, 0.7));
+      rig.add(truss);
+      for (let i = 0; i < 4; i++) {                                                // 4 cajas con curvatura progresiva
+        const c = at(new THREE.Group(), 0, 1.2 - i * 0.5, 0);
+        c.rotation.x = i * 0.12;
+        c.add(edges(taper(1.5, 0.5, 0.7, 0.88, 0.76), 0.9, true));
+        [-0.4, 0.4].forEach(x => {                                                  // dos woofers
+          c.add(at(edges(new THREE.CircleGeometry(0.19, 28), 1), x, 0, 0.352));
+          c.add(at(edges(new THREE.CircleGeometry(0.11, 20), 0.7), x, 0, 0.352));
+          c.add(at(edges(new THREE.CircleGeometry(0.04, 12), 0.7), x, 0, 0.352));
+        });
+        c.add(at(edges(new THREE.PlaneGeometry(0.34, 0.2), 0.8), 0, 0, 0.352));     // guía de ondas / bocina
+        c.add(segs([V(-0.17, 0.05, 0.352), V(0.17, 0.05, 0.352), V(-0.17, -0.05, 0.352), V(0.17, -0.05, 0.352)], 0.7));
+        rig.add(c);
+      }
       const waves = [0, 1, 2].map(() => {
-        const w = edges(new THREE.CircleGeometry(0.7, 40), 0.6);
-        w.position.set(0, -0.45, 0.72); g.add(w); return w;
+        const w = edges(new THREE.CircleGeometry(1, 48), 0.6);
+        w.position.set(0, 0.2, 0.5); rig.add(w); return w;
       });
       return { group: g, update: t => waves.forEach((w, i) => {
-        const k = (t * 0.5 + i / 3) % 1;
-        w.position.z = 0.72 + k * 1.6; w.scale.setScalar(1 + k * 0.8); w.material.opacity = 0.7 * (1 - k);
+        const k = (t * 0.45 + i / 3) % 1;
+        w.position.z = 0.5 + k * 2.2; w.scale.set(0.9 + k * 0.9, 1.5 + k * 0.9, 1); w.material.opacity = 0.65 * (1 - k);
       }) };
     },
-    // 2 · PRTV: pantalla de televisión con indicador REC
+
+    // 2 · PRTV (Procesos de Realización de Televisión): televisor plano con carta de ajuste y rótulo en directo
     () => {
-      const g = new THREE.Group();
-      g.add(edges(new THREE.BoxGeometry(3.2, 1.9, 0.25), 0.9, true));
-      g.add(at(edges(new THREE.BoxGeometry(2.8, 1.5, 0.28), 0.5)));
-      g.add(at(edges(new THREE.BoxGeometry(0.25, 0.5, 0.25), 0.9, true), 0, -1.2));
-      g.add(at(edges(new THREE.BoxGeometry(1.3, 0.08, 0.7), 0.9, true), 0, -1.5));
-      const rec = at(edges(new THREE.CircleGeometry(0.1, 16), 1), -1.15, 0.6, 0.15);
-      g.add(rec);
-      return { group: g, update: t => { rec.visible = Math.floor(t * 1.5) % 2 === 0; } };
+      const g = new THREE.Group(), rig = at(new THREE.Group(), 0, 0.2, 0); g.add(rig);
+      rig.add(slab(3.5, 2.0, 0.12, 0.07));                                                        // carcasa
+      rig.add(at(plate(3.3, 1.8, 0.04, 0.6), 0, 0, 0.062));                                       // panel
+      rig.add(at(edges(new THREE.BoxGeometry(1.5, 0.9, 0.16), 0.9, true), 0, 0.1, -0.14));        // joroba trasera
+      rig.add(at(edges(taper(0.34, 0.5, 0.12, 0.8, 1), 0.9, true), 0, -1.25, -0.06));            // cuello
+      rig.add(at(edges(new THREE.BoxGeometry(1.7, 0.05, 0.6), 0.9, true), 0, -1.5, -0.05));       // base
+      rig.add(at(edges(new THREE.CircleGeometry(0.03, 10), 1), 1.5, -0.95, 0.062));               // led de encendido
+      for (let i = 0; i < 7; i++) {                                                               // barras de color
+        rig.add(at(edges(new THREE.PlaneGeometry(0.4, 0.8), 0.35 + (0.65 * ((i * 3) % 7)) / 6), (i - 3) * 0.44, 0.45, 0.064));
+        rig.add(at(edges(new THREE.PlaneGeometry(0.4, 0.1), 0.35 + (0.65 * ((i * 5) % 7)) / 6), (i - 3) * 0.44, -0.02, 0.064));
+      }
+      const lt = at(new THREE.Group(), -1.5, -0.5, 0.064);                                        // rótulo (tercio inferior)
+      lt.add(at(plate(0.4, 0.2, 0.01, 1), 0.2, 0, 0));
+      lt.add(at(plate(1.5, 0.2, 0.01, 0.9), 1.2, 0, 0));
+      rig.add(lt);
+      rig.add(at(plate(0.7, 0.14, 0.01, 0.6), 1.2, -0.7, 0.064));                                 // código de tiempo
+      const rec = at(edges(new THREE.CircleGeometry(0.08, 16), 1), -1.4, 0.78, 0.07); rig.add(rec);
+      const scan = segs([V(-1.6, 0, 0.066), V(1.6, 0, 0.066)], 0.35); rig.add(scan);
+      return { group: g, update: t => {
+        rec.visible = Math.floor(t * 1.5) % 2 === 0;
+        const c = (t % 6) / 6, k = c < 0.1 ? c / 0.1 : c > 0.85 ? Math.max(0, 1 - (c - 0.85) / 0.1) : 1;
+        lt.scale.x = Math.max(0.001, k);                                                          // el rótulo entra y sale
+        scan.position.y = 0.85 - ((t * 0.35) % 1) * 1.7;
+      } };
     },
-    // 3 · Laboratorio de mezcla: mesa con faders que suben y bajan
+
+    // 3 · Laboratorio de mezcla: consola de mezclas con canales, ecualizador, faders y vúmetros
     () => {
-      const g = new THREE.Group();
-      const desk = new THREE.Group();
-      desk.rotation.x = 0.7;
-      desk.add(edges(new THREE.BoxGeometry(3.2, 0.25, 2.2), 0.9, true));
-      const knobs = [-1.1, -0.37, 0.37, 1.1].map(x => {
-        desk.add(at(edges(new THREE.BoxGeometry(0.05, 0.02, 1.6), 0.6), x, 0.14, 0));
-        const k = at(edges(new THREE.BoxGeometry(0.34, 0.2, 0.22), 0.9, true), x, 0.25, 0);
-        desk.add(k); return k;
+      const g = new THREE.Group(), rig = at(new THREE.Group(), 0, -0.25, 0); rig.scale.setScalar(0.85); g.add(rig);
+      const WC = 4.4;
+      const prof = new THREE.Shape();                                               // perfil lateral en cuña
+      prof.moveTo(-1.1, 0); prof.lineTo(1.1, 0); prof.lineTo(1.1, 0.28); prof.lineTo(-1.1, 0.55); prof.closePath();
+      const wedge = depth => {
+        const geo = new THREE.ExtrudeGeometry(prof, { depth, bevelEnabled: false });
+        geo.translate(0, 0, -depth / 2); geo.rotateY(-Math.PI / 2);
+        return geo;
+      };
+      rig.add(edges(wedge(WC), 0.9, true));
+      [-1, 1].forEach(s => rig.add(at(edges(wedge(0.12), 0.9, true), s * 2.26, 0, 0)));  // cachetes laterales
+
+      const panel = at(new THREE.Group(), 0, 0.415, 0);                              // superficie inclinada
+      panel.rotation.x = Math.atan2(0.27, 2.2);
+      rig.add(panel);
+      const stripW = 0.36, x0 = -2.0, chX = i => x0 + stripW * (i + 0.5);
+      const sep = [];
+      for (let i = 0; i <= 8; i++) sep.push(V(x0 + stripW * i, 0.003, -1.0), V(x0 + stripW * i, 0.003, 1.02));
+      panel.add(segs(sep, 0.22));
+      const faders = [];
+      for (let i = 0; i < 8; i++) {                                                  // 8 canales
+        const x = chX(i);
+        [-0.86, -0.62, -0.38].forEach((z, j) => {                                    // ganancia / agudos / graves
+          const k = knob(0.07, 0.06); k.position.set(x, 0.003, z); k.rotation.y = (i * 1.3 + j * 2.1) % 6.28; panel.add(k);
+        });
+        const kp = knob(0.05, 0.05); kp.position.set(x, 0.003, -0.14); kp.rotation.y = (i * 0.9) % 6.28; panel.add(kp);   // pan
+        [0.06, 0.24].forEach(z => panel.add(at(edges(new THREE.BoxGeometry(0.15, 0.03, 0.1), 0.9, true), x, 0.017, z))); // mute / solo
+        panel.add(at(edges(new THREE.BoxGeometry(0.035, 0.012, 0.62), 0.6), x, 0.006, 0.7));                             // carril
+        const cap = at(edges(new THREE.BoxGeometry(0.17, 0.07, 0.1), 0.9, true), x, 0.04, 0.7); panel.add(cap); faders.push(cap);
+      }
+      [1.28, 1.62].forEach(x => {                                                    // sección master
+        panel.add(at(edges(new THREE.BoxGeometry(0.045, 0.012, 0.62), 0.6), x, 0.006, 0.7));
+        panel.add(at(edges(new THREE.BoxGeometry(0.2, 0.08, 0.11), 1, true), x, 0.044, 0.62));
+        [0.05, 0.22].forEach(z => panel.add(at(edges(new THREE.BoxGeometry(0.2, 0.03, 0.1), 0.9, true), x, 0.017, z)));
       });
-      g.add(desk);
-      return { group: g, update: t => knobs.forEach((k, i) => { k.position.z = Math.sin(t * 1.1 + i * 1.7) * 0.65; }) };
+      const big = knob(0.13, 0.09); big.position.set(1.45, 0.003, -0.4); big.rotation.y = 0.8; panel.add(big);
+      panel.add(at(flat(new THREE.PlaneGeometry(0.8, 0.34), 0.9), 1.45, 0.004, -0.88));                                  // pantalla
+      panel.add(segs([V(1.1, 0.005, -0.95), V(1.6, 0.005, -0.95), V(1.1, 0.005, -0.88), V(1.5, 0.005, -0.88), V(1.1, 0.005, -0.81), V(1.4, 0.005, -0.81)], 0.6));
+
+      const bridge = at(new THREE.Group(), 0, 0.1, -1.05);                           // puente de vúmetros
+      bridge.rotation.x = -0.45;
+      bridge.add(edges(new THREE.BoxGeometry(4.3, 0.34, 0.3), 0.9, true));
+      panel.add(bridge);
+      const xs = [...Array(8).keys()].map(chX).concat([1.28, 1.62]);
+      const leds = xs.map(x => [...Array(8).keys()].map(j => {
+        const m = at(edges(new THREE.BoxGeometry(0.07, 0.02, 0.004), 1), x, -0.119 + j * 0.034, 0.152);
+        bridge.add(m); return m;
+      }));
+      return { group: g, update: t => {
+        faders.forEach((c, i) => { c.position.z = 0.7 + Math.sin(t * 0.7 + i * 1.1) * 0.22 + Math.sin(t * 1.9 + i) * 0.04; });
+        leds.forEach((col, i) => {
+          const n = Math.round((0.5 + 0.5 * Math.sin(t * (1.6 + i * 0.37) + i * 2.3) * Math.sin(t * 0.9 + i)) * 8);
+          col.forEach((m, j) => { m.material.opacity = j < n ? 1 : 0.15; });
+        });
+      } };
     },
-    // 4 · Montaje: línea de tiempo con clips y cabezal
+
+    // 4 · Montaje (Planificación del montaje y postproducción): editor de vídeo con monitores y línea de tiempo
     () => {
-      const g = new THREE.Group();
-      const clips = [
-        [[-1.4, 0.8], [-0.4, 1.0], [0.9, 0.7]],
-        [[-1.2, 1.3], [0.4, 1.2]],
-        [[-1.5, 0.6], [-0.7, 0.9], [0.5, 1.1]],
-      ];
-      clips.forEach((row, r) => row.forEach(([x, w]) =>
-        g.add(at(edges(new THREE.BoxGeometry(w, 0.38, 0.3), 0.9, true), x + w / 2, 0.8 - r * 0.6, 0))));
-      const head = edges(new THREE.BoxGeometry(0.04, 2.3, 0.5), 1);
-      g.add(head);
-      return { group: g, update: t => { head.position.x = -1.6 + ((t * 0.35) % 1) * 3.4; } };
+      const g = new THREE.Group(), rig = at(new THREE.Group(), 0, 0.05, 0); g.add(rig);
+      rig.add(slab(4.1, 2.8, 0.1, 0.09));
+      const ui = at(new THREE.Group(), 0, 0, 0.052); rig.add(ui);
+      ui.add(at(plate(1.55, 0.87, 0.03), -1.0, 0.82, 0));                            // monitor de origen
+      ui.add(at(plate(1.55, 0.87, 0.03), 0.95, 0.82, 0));                            // monitor de programa
+      ui.add(at(edges(new THREE.CircleGeometry(0.1, 16), 0.8), -0.6, 1.0, 0.002));
+      ui.add(strip([V(-1.75, 0.52, 0.002), V(-1.3, 0.88, 0.002), V(-1.05, 0.7, 0.002), V(-0.75, 0.98, 0.002), V(-0.3, 0.52, 0.002)], 0.8));
+      ui.add(strip([V(0.88, 0.95, 0.002), V(0.88, 0.69, 0.002), V(1.1, 0.82, 0.002)], 1, true));   // «play»
+
+      const tl = at(new THREE.Group(), 0, 0, 0.004); ui.add(tl);
+      const ruler = [V(-1.85, 0.2, 0), V(1.85, 0.2, 0)];
+      for (let i = 0; i <= 37; i++) { const x = -1.85 + i * 0.1; ruler.push(V(x, 0.2, 0), V(x, i % 5 === 0 ? 0.12 : 0.16, 0)); }
+      tl.add(segs(ruler, 0.6));
+      const rows = [[-0.05, 0.25], [-0.35, 0.25], [-0.72, 0.3], [-1.02, 0.3]];       // pistas V2, V1, A1, A2
+      rows.forEach(([y, h]) => { tl.add(at(plate(3.7, h, 0.01, 0.15), 0, y, 0)); tl.add(at(plate(0.16, h - 0.04, 0.01, 0.6), -1.92, y, 0)); });
+      const clip = (x, w, [y, h], o = 0.9) => at(edges(new THREE.BoxGeometry(w, h - 0.04, 0.05), o, true), x + w / 2, y, 0.03);
+      const wave = (x, w, [y, h], seed) => {                                         // forma de onda del audio
+        const p = [], n = Math.floor((w - 0.06) / 0.045);
+        for (let i = 0; i < n; i++) {
+          const a = h * 0.38 * (0.25 + 0.75 * Math.abs(Math.sin(i * 0.9 + seed) * Math.sin(i * 0.23 + seed * 2)));
+          const xx = x + 0.04 + i * 0.045; p.push(V(xx, y - a, 0.058), V(xx, y + a, 0.058));
+        }
+        return segs(p, 0.8);
+      };
+      [[-1.7, 0.7], [0.5, 1.1]].forEach(([x, w]) => tl.add(clip(x, w, rows[0])));
+      const moving = clip(-0.8, 0.7, rows[0]); tl.add(moving);                       // clip que se arrastra
+      let sel;
+      [[-1.7, 0.7], [-0.9, 1.2], [0.4, 0.8], [1.3, 0.45]].forEach(([x, w], i) => {
+        const c = clip(x, w, rows[1], i === 1 ? 1 : 0.9); tl.add(c); if (i === 1) sel = c;
+      });
+      [[-1.7, 1.5], [-0.1, 1.4], [1.4, 0.4]].forEach(([x, w], i) => { tl.add(clip(x, w, rows[2])); tl.add(wave(x, w, rows[2], i + 1)); });
+      [[-1.6, 2.4], [1.0, 0.7]].forEach(([x, w], i) => { tl.add(clip(x, w, rows[3])); tl.add(wave(x, w, rows[3], i + 5)); });
+      const head = at(new THREE.Group(), 0, 0, 0.09);                                // cabezal de reproducción
+      head.add(segs([V(0, 0.22, 0), V(0, -1.2, 0)], 1));
+      head.add(strip([V(-0.07, 0.3, 0), V(0.07, 0.3, 0), V(0, 0.2, 0)], 1, true));
+      tl.add(head);
+      return { group: g, update: t => {
+        head.position.x = -1.7 + ((t * 0.32) % 1) * 3.4;
+        moving.position.x = -0.8 + 0.35 + Math.sin(t * 0.8) * 0.18;
+        sel.material.opacity = 0.65 + 0.35 * Math.sin(t * 3);
+      } };
     },
   ];
-  const FLAT = new Set([2, 4]); // televisión y línea de tiempo: se balancean en vez de girar
+  const FLAT = new Set([2, 3, 4]); // tele, mesa de mezclas y editor: se balancean para mostrar siempre su cara frontal
 
   /* ---------- Fondo: malla ondulada animada en la GPU ----------
      La altura de cada vértice se calcula en el vertex shader: la CPU ya no
