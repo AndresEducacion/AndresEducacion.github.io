@@ -1,133 +1,64 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Sitio web de la asignatura Procesos de Realización de Televisión. Recursos, apuntes y material de clase.">
-    <title>PRTV | Procesos de Realización de Televisión</title>
-    <meta name="theme-color" content="#0B1120">
-    <meta name="color-scheme" content="dark">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="PRTV | Procesos de Realización de Televisión">
-    <meta property="og:description" content="Presentaciones interactivas, apuntes y ejercicios de realización de televisión.">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B1120'/%3E%3Ctext x='32' y='43' font-family='Arial' font-weight='700' font-size='30' text-anchor='middle' fill='%233B82F6'%3EP.%3C/text%3E%3C/svg%3E">
-    <script>document.documentElement.classList.add("js");</script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="../assets/back.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PRTV | Procesos de Realización de Televisión</title>
+<meta name="description" content="Material de PRTV: informativos, formatos de pieza, grafismo, producción y emisión en directo.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Cpath d='M16 5l9 5v12l-9 5-9-5V10z' fill='none' stroke='%23ff4d4d' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/site.css">
 </head>
+<body class="m-prtv">
+<header class="top">
+  <a class="brand" href="index.html">PRTV<span class="dash"> —</span> Realización de televisión</a>
+  <nav aria-label="Módulo">
+    <a href="#temario">Temario</a>
+    <a href="#recursos">Recursos</a>
+  </nav>
+  <a class="back" href="../index.html">← Portal</a>
+</header>
 
-<body>
-<a class="portal-back" href="../index.html">&larr; Portal</a>
-    <a class="skip" href="#main-content">Saltar al contenido</a>
+<main>
+  <section class="hero">
+    <p class="kicker">+ Módulo 03 · Televisión</p>
+    <h1>Procesos de Realización de Televisión</h1>
+    <p class="lead">Del guion a la emisión: aprende a preparar, grabar y realizar programas e informativos de televisión.</p>
+  </section>
 
-    <header class="site-header">
-        <div class="container header-container">
-            <a href="#" class="logo">PRTV<span class="dot">.</span></a>
-            <nav class="main-nav" aria-label="Navegación principal">
-                <button class="mobile-menu-toggle" aria-label="Abrir menú" aria-expanded="false">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </button>
-                <ul class="nav-list">
-                    <li><a href="#inicio" class="nav-link active">Inicio</a></li>
-                    <li><a href="#temario" class="nav-link">Temario</a></li>
-                    <li><a href="#recursos" class="nav-link">Recursos</a></li>
-                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+  <section id="temario" class="sec" aria-labelledby="t-temario">
+    <h2 id="t-temario" class="section-title">Temario</h2>
+    <ul class="list">
+      <li><a class="row" href="lessons/ut2.html">
+        <span class="num">UT2</span>
+        <span><strong>Emisión de piezas de vídeo y fuentes en informativos</strong><small>Géneros informativos, telediario, colas y totales, grafismo, grabación, escaleta y emisión en directo.</small></span>
+        <span class="tag">Interactiva</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
+    </ul>
+  </section>
 
-    <main id="main-content">
-        <section id="inicio" class="hero-section">
-            <div class="container hero-content">
-                <span class="on-air">En directo</span>
-                <h1 class="hero-title">Procesos de <br><span class="highlight">Realización de Televisión</span>
-                </h1>
-                <p class="hero-subtitle">Del guion a la emisión: aprende a preparar, grabar y realizar programas y
-                    informativos de televisión.</p>
-                <div class="hero-buttons">
-                    <a href="#temario" class="btn btn-primary">Ver Temario</a>
-                    <a href="#recursos" class="btn btn-secondary">Recursos</a>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="shape shape-1"></div>
-                <div class="shape shape-2"></div>
-            </div>
-        </section>
+  <section id="recursos" class="sec" aria-labelledby="t-recursos">
+    <h2 id="t-recursos" class="section-title">Recursos</h2>
+    <ul class="list">
+      <li><a class="row" href="lessons/ut2.html#presentacion">
+        <span class="num">R1</span>
+        <span><strong>UT2 en diapositivas</strong><small>Resumen de la unidad para clase, con descarga en PowerPoint.</small></span>
+        <span class="tag">Presentación</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
+      <li><a class="row" href="lessons/ut2.html#autoevaluacion">
+        <span class="num">R2</span>
+        <span><strong>Test de la UT2</strong><small>Diez preguntas para comprobar lo aprendido.</small></span>
+        <span class="tag">Test</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
+      <li><a class="row" href="lessons/ut2.html#referencias">
+        <span class="num">R3</span>
+        <span><strong>Vídeos y referencias de informativos</strong><small>Historia de un informativo, colas y totales, reportajes.</small></span>
+        <span class="tag">Vídeo</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
+    </ul>
+  </section>
+</main>
 
-        <section id="temario" class="modules-section">
-            <div class="container">
-                <h2 class="section-title">Temario del Curso</h2>
-                <p class="section-description">Presentaciones interactivas, apuntes y ejercicios.</p>
-
-                <div class="modules-grid">
-
-                    <!-- UT2 -->
-                    <article class="module-card">
-                        <span class="card-icon" aria-hidden="true">📺</span>
-                        <span class="card-badge">UT2</span>
-                        <h3 class="card-title">Emisión de piezas de vídeo y fuentes en informativos</h3>
-                        <p class="card-text">Géneros informativos, el telediario, piezas, colas y totales, grafismo,
-                            grabación, escaleta y emisión en directo. Incluye la presentación interactiva, los apuntes en PDF y un test.</p>
-                        <a href="lessons/ut2.html" class="card-link">Ver materiales &rarr;</a>
-                    </article>
-
-                </div>
-            </div>
-        </section>
-
-        <section id="recursos" class="resources-section">
-            <div class="container">
-                <h2 class="section-title">Recursos Útiles</h2>
-                <ul class="resources-list">
-                    <li>
-                        <a href="lessons/presentacion.html" class="resource-item">
-                            <span class="resource-icon">🎞️</span>
-                            <span class="resource-name">UT2. Presentación interactiva (60 diapositivas)</span>
-                            <span class="resource-action">Ver</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="assets/UT2.%20EMISI%C3%93N%20PIEZAS%20V%C3%8DDEO%20Y%20FUENTES%20EN%20PROGRAMAS%20DE%20TELEVISI%C3%93N.%20INFORMATIVOS.pdf" class="resource-item">
-                            <span class="resource-icon">📄</span>
-                            <span class="resource-name">UT2. Emisión de piezas de vídeo y fuentes en informativos (PDF)</span>
-                            <span class="resource-action">Descargar</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="lessons/ut2.html#referencias" class="resource-item">
-                            <span class="resource-icon">🔗</span>
-                            <span class="resource-name">Vídeos y referencias de informativos</span>
-                            <span class="resource-action">Visitar</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </section>
-    </main>
-
-    <footer id="contacto" class="site-footer">
-        <div class="container footer-content">
-            <div class="footer-info">
-                <p class="footer-logo">PRTV</p>
-                <p>avmm75@educa.madrid.org</p>
-                <p>Asignatura de Procesos de Realización de Televisión.</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Andrés Vidal Martín Martín.</p>
-        </div>
-    </footer>
-
-    <script src="script.js" defer></script>
+<footer>© <span data-year>2026</span> · Andrés Vidal Martín Martín · PRTV · <a href="mailto:avmmeducacion@gmail.com">avmmeducacion@gmail.com</a></footer>
+<script src="../assets/site.js" defer></script>
 </body>
-
 </html>

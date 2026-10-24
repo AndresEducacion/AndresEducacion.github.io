@@ -1,0 +1,262 @@
+{
+  "title": "PRTV · UT2 · Emisión de piezas de vídeo y fuentes en informativos",
+  "slides": [
+    {
+      "type": "cover",
+      "k": "PRTV · Unidad 2",
+      "title": "Emisión de piezas de vídeo y fuentes en informativos",
+      "text": "Del género informativo al control de realización: formatos, grafismo, grabación, producción y emisión del telediario"
+    },
+    {
+      "k": "01 · El género",
+      "title": "¿Qué es un informativo?",
+      "lead": "Programas que dan noticias de actualidad (política, sociedad, deporte…) con una versión lo más fiel posible de la realidad. Suelen ser la seña de identidad de la cadena.",
+      "items": [
+        "Mantienen audiencias comparables a la ficción gracias a la **opinión** (expertos que explican los hechos) y a la **mezcla de géneros** con el entretenimiento.",
+        "Se les exige **verosimilitud, veracidad y autenticidad**: por eso se apoyan en el **directo** y en el testimonio del protagonista."
+      ]
+    },
+    {
+      "k": "01 · El género",
+      "title": "Evolución",
+      "head": ["Año", "Hito"],
+      "rows": [
+        ["1948", "Primer boletín televisivo con ilustraciones: hasta entonces las noticias se leían como en la radio."],
+        ["1953", "Se generalizan las imágenes filmadas, con sonido directo o con **colas** locutadas."],
+        ["1963", "TVE fija el noticiario de 30 minutos."],
+        ["Años 70", "Magacines de actualidad, avances, sumarios y flases."],
+        ["1975–80", "**ENG**: equipos ligeros, imagen inmediata y conexión en directo con la emisora."],
+        ["1985–90", "Postproducción, infografía, satélite y cadenas privadas: el informativo se espectaculariza."]
+      ]
+    },
+    {
+      "k": "02 · Clasificación",
+      "title": "Tipos de programa informativo",
+      "groups": [
+        {
+          "h": "Por periodicidad",
+          "items": [
+            "**Diarios**: piezas de 1–2 min por secciones.",
+            "**No diarios**: más profundidad y opinión.",
+            "**Especiales**: hechos imprevistos o excepcionales."
+          ]
+        },
+        {
+          "h": "Por producción",
+          "items": [
+            "Estudio en **directo**.",
+            "Estudio en **diferido** (pregrabado).",
+            "**Exteriores**: plano secuencia, unidad móvil o monocámara."
+          ]
+        }
+      ],
+      "note": "También se clasifican por contenido (boletín, meteorología, debate…), por formato (pieza, entrevista, encuesta…) y por lugar (estudio, exterior o mixto)."
+    },
+    {
+      "k": "03 · Producción",
+      "title": "Medios técnicos",
+      "cols": 2,
+      "items": [
+        "**Estudio**: control con autocue, mezclador con muchas fuentes, 2–3 cámaras y videowall.",
+        "**ENG / SNG**: reporterismo con enlaces de satélite transportables.",
+        "**PEL**: unidades móviles ligeras, hasta tres cámaras.",
+        "**Edición**: salas con tituladores, efectos y locutorio.",
+        "**Postproducción y grafismo**: cabeceras, cortinillas, chroma y animaciones.",
+        "**Archivo**: imágenes de contexto cuando no hay material actual."
+      ]
+    },
+    {
+      "k": "04 · Grabación",
+      "title": "Antes de grabar, evalúa",
+      "items": [
+        "**Contenido**: historia y personajes condicionan escenario, hora y ambiente.",
+        "**Programa de destino**: impone un estilo.",
+        "**Duración**: para una pieza de 1'30\", al menos 3–4 minutos solo de recursos.",
+        "**Forma**: encuadre, luz, movimientos y tipo de micrófono.",
+        "**Orden del relato**: una lista de secuencias simplifica la edición."
+      ],
+      "note": "Técnica monocámara con plano máster y planos recurso, **siempre con sonido ambiente**."
+    },
+    {
+      "k": "05 · Formatos",
+      "title": "Formatos de la información",
+      "cols": 2,
+      "items": [
+        "**Noticiarios**: sumarios, avances, boletines y flases.",
+        "**Entrevista** y perfiles.",
+        "**Reportaje**: de actualidad, gran reportaje, de investigación.",
+        "**Revista de actualidad**.",
+        "**Magacine de actualidad**.",
+        "**Debate, coloquio y tertulia**.",
+        "**Información parlamentaria**.",
+        "**Informativos especiales**.",
+        "**Docudrama**.",
+        "**Sucesos** y reality."
+      ]
+    },
+    {
+      "k": "06 · Telediario",
+      "title": "Estructura del informativo diario",
+      "ordered": true,
+      "cols": 2,
+      "items": [
+        "**Cabecera**: imagen y sintonía de la temporada.",
+        "**Saludo** del presentador, en plano medio.",
+        "**Sumario**: titulares que atraen la atención.",
+        "**Noticia de portada**: la más importante.",
+        "**Bloques temáticos**, en orden ondulante, no jerárquico.",
+        "**Noticia final**: impactante o amable.",
+        "**Despedida** y emplazamiento.",
+        "**Cabecera de salida**."
+      ]
+    },
+    {
+      "k": "06 · Telediario",
+      "title": "Paso de locutor",
+      "lead": "Introduce cada pieza y debe entenderse sin imágenes: equivale a la entradilla de una noticia escrita.",
+      "items": [
+        "Responde a **qué, quién, dónde, cuándo, por qué y cómo**.",
+        "Se escribe para **leerse en voz alta**: frases cortas y lenguaje directo.",
+        "**No repite** palabras del vídeo al que da paso.",
+        "La pieza, a su vez, debe entenderse sin el paso."
+      ]
+    },
+    {
+      "k": "06 · Telediario",
+      "title": "Colas y totales",
+      "stats": [
+        { "v": "≥ 50 s", "l": "montaje mínimo de unas colas" },
+        { "v": "10–20 s", "l": "duración de un total" },
+        { "v": "2–5 s", "l": "duración de cada plano" }
+      ],
+      "items": [
+        "**Colas**: imágenes montadas sobre la voz del presentador, con ambiente en el canal 2.",
+        "**Totales**: declaraciones breves y relevantes; **las preguntas nunca aparecen** en el montaje."
+      ]
+    },
+    {
+      "k": "06 · Telediario",
+      "title": "Directo a cámara y pieza",
+      "groups": [
+        {
+          "h": "Entradilla o directo a cámara",
+          "items": [
+            "Plano medio ante un fondo que ocupe al menos el 50 %.",
+            "Fijo, **máximo 15 s**, o con un movimiento con principio y final.",
+            "Es cuando el redactor **firma** la noticia."
+          ]
+        },
+        {
+          "h": "Pieza o noticia",
+          "items": [
+            "Formato básico del informativo diario.",
+            "Off, recursos con ambiente, totales, entradilla y gráficos.",
+            "Se combina en fórmulas: entradilla + VTR, DTO + colas + total…"
+          ]
+        }
+      ]
+    },
+    {
+      "k": "07 · Grafismo",
+      "title": "Grafismo en pantalla",
+      "head": ["Elemento", "Para qué sirve"],
+      "rows": [
+        ["Rótulo de total", "Identifica a quien habla, con la función que tiene en la noticia."],
+        ["Localizador", "Lugar y fecha; incluye el indicador de DIRECTO."],
+        ["Identificativo", "Logo del programa, como la mosca de la cadena."],
+        ["Barra o scroll", "Texto horizontal en la parte inferior."],
+        ["Ventana (PiP)", "Presentador y corresponsal a la vez: dúplex, tríplex."]
+      ],
+      "note": "Las piezas se editan **sin rótulos**: se insertan en directo desde el control."
+    },
+    {
+      "k": "08 · Grabación y edición",
+      "title": "Cómo grabar una noticia",
+      "cols": 2,
+      "items": [
+        "Prevé la estructura para saber qué planos grabar.",
+        "**25–30 planos buenos** por minuto de pieza.",
+        "Cámara en **trípode**, frontal y a la altura de la mirada.",
+        "Todo tipo de planos: generales, cortos y detalles.",
+        "Paneos: fijo 3–5 s, movimiento, fijo 3–5 s.",
+        "**5 s de cola** antes de parar cada plano.",
+        "Canal 1: totales, entradilla y off. Canal 2: ambiente.",
+        "Revisa imagen y sonido antes de irte."
+      ]
+    },
+    {
+      "k": "08 · Grabación y edición",
+      "title": "Edición paso a paso",
+      "ordered": true,
+      "items": [
+        "Visionar, anotar códigos de tiempo y escribir el texto.",
+        "**2 s** de imagen y ambiente antes del sonido principal.",
+        "Grabar el **off en el canal 1** e insertar entradillas y totales.",
+        "**Tapar** el off con recursos: 2–5 s por plano.",
+        "**Ambiente en el canal 2**, por debajo del canal 1.",
+        "Último plano largo: **coleo** de 2–3 s. Si no lo hay, es un «capón»."
+      ]
+    },
+    {
+      "k": "09 · Reportaje",
+      "title": "El reportaje en el informativo",
+      "lead": "Desarrolla una historia con presentación, nudo y desenlace. En un informativo diario dura unos **3 minutos**.",
+      "items": [
+        "Hechos de actualidad **sin urgencia**, historias antiguas con novedades o efemérides.",
+        "Relato cronológico, con testigos y expertos o enfrentando a las partes.",
+        "**El primer párrafo es clave**: si la historia va de un personaje, empieza por él.",
+        "Sin opiniones subjetivas: lo que ha visto, lo que sabe y lo que le han dicho."
+      ]
+    },
+    {
+      "k": "10 · Producción",
+      "title": "Del consejo de redacción a la emisión",
+      "ordered": true,
+      "cols": 2,
+      "items": [
+        "**Consejo de redacción**: temas y escaleta.",
+        "**Reparto de temas** y equipos ENG.",
+        "**Redacción y edición** de piezas, colas y totales.",
+        "**Control de calidad**: parte de emisión.",
+        "**Momentos previos**: rótulos, maquillaje y pruebas.",
+        "**Emisión en directo**: cuenta atrás y tiempos cantados.",
+        "**Fin**: el control vuelve a continuidad."
+      ]
+    },
+    {
+      "k": "10 · Producción",
+      "title": "Escaleta y parte de emisión",
+      "groups": [
+        {
+          "h": "Escaleta",
+          "items": [
+            "Documento primario de trabajo: orden y estructura.",
+            "Unas 30 noticias numeradas de 10 en 10, con huecos para imprevistos.",
+            "Todo el equipo trabaja con la versión actualizada."
+          ]
+        },
+        {
+          "h": "Parte de emisión",
+          "items": [
+            "Duración y **pie**: las últimas palabras.",
+            "**TC** y **CTL**: códigos de tiempo.",
+            "**Coleo** y momento de cada rótulo."
+          ]
+        }
+      ]
+    },
+    {
+      "k": "11 · Equipo",
+      "title": "Organigrama de un informativo",
+      "head": ["Perfil", "Función"],
+      "rows": [
+        ["Director/a de informativos", "Responsable de todos los informativos de la cadena."],
+        ["Editor/a", "Decide el contenido de cada informativo."],
+        ["Redactores y reporteros", "Cubren cada noticia y responden de ella."],
+        ["Realizador/a", "Responsable de la emisión en directo."],
+        ["Ayudantes de realización", "Cantan tiempos, ponen rótulos y preparan partes."],
+        ["Ayudantes de producción", "Consiguen los medios para cubrir las noticias."]
+      ]
+    }
+  ]
+}

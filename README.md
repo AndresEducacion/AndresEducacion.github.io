@@ -11,7 +11,7 @@ Portal central con el material didáctico de cada módulo.
 | `planificacion-montaje/` | Planificación del montaje y postproducción (plantilla provisional) |
 
 `index.html` es el portal (Three.js, guardado localmente en `assets/vendor/`; no hay build ni dependencias).
-`assets/site.css` y `assets/site.js` son el estilo y el comportamiento comunes de los módulos ya adaptados (DEIM, ISDE): misma estética que el portal, con un color de acento por módulo (clase `m-deim`, `m-isde`… en `<body>`).
+`assets/site.css` y `assets/site.js` son el estilo y el comportamiento comunes de los módulos ya adaptados (DEIM, ISDE, PRTV): misma estética que el portal, con un color de acento por módulo (clase `m-deim`, `m-isde`… en `<body>`).
 `assets/back.css` da estilo al botón "← Portal" de los módulos que aún no se han adaptado.
 
 ## Presentaciones
