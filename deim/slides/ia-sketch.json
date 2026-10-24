@@ -1,0 +1,87 @@
+{
+  "title": "DEIM · Un sketch en cuatro iteraciones con IA",
+  "slides": [
+    {
+      "type": "cover",
+      "k": "DEIM · p5.js · Ejemplo guiado",
+      "title": "Un sketch en cuatro iteraciones con IA",
+      "text": "Cómo pedir código a ChatGPT, mejorarlo paso a paso y entender cada cambio"
+    },
+    {
+      "k": "Iteración 1 · Petición",
+      "title": "Empieza con un encargo claro",
+      "lead": "Nombra los conceptos que quieres practicar y pide que te explique cada línea:",
+      "code": "Dame un código sencillo en p5.js que use los conceptos:\nvariables, condicionales, operadores, bucles y funciones.\nComenta cada línea y explica de manera sencilla cada\nproceso. Una frase y sin emojis.",
+      "note": "Un buen encargo dice **qué** quieres, **qué conceptos** debe usar y **cómo** quieres la explicación."
+    },
+    {
+      "k": "Iteración 1 · Resultado",
+      "title": "Cinco pelotas que van y vienen",
+      "code": "let x = 50, speed = 2;            // variables\n\nfunction setup() { createCanvas(400, 400); }\n\nfunction draw() {\n  background(220);\n  x = x + speed;                   // operador\n  if (x > width - 25 || x < 25) {  // condicional + lógico\n    speed = -speed;\n  }\n  for (let i = 0; i < 5; i++) {    // bucle\n    drawBall(x, 100 + i * 50, 30);\n  }\n}\n\nfunction drawBall(px, py, size) {  // función propia\n  fill(100, 150, 255); noStroke(); ellipse(px, py, size, size);\n}"
+    },
+    {
+      "k": "Iteración 2 · Petición",
+      "title": "Pide cambios concretos",
+      "text": "«Las pelotas no llegan a tocar el borde. Quiero que parezca que **rebotan en los extremos** y que tengan **diferentes ritmos**. Explícame cómo lo haces.»",
+      "items": [
+        "**Tocar el borde:** la pelota mide 30, así que su radio es 15. El límite pasa a ser `width - 15` y `15`.",
+        "**Rebote:** al llegar al límite, la velocidad se multiplica por −1.",
+        "**Ritmos distintos:** cada pelota guarda su propia posición y velocidad en arrays."
+      ]
+    },
+    {
+      "k": "Iteración 2 · Resultado",
+      "title": "Arrays: un dato por pelota",
+      "code": "let total = 5, xs = [], speeds = [];\n\nfunction setup() {\n  createCanvas(400, 400);\n  for (let i = 0; i < total; i++) {\n    xs[i] = random(25, width - 25);  // posición inicial\n    speeds[i] = random(1, 4);        // velocidad propia\n  }\n}\n\nfunction draw() {\n  background(220);\n  for (let i = 0; i < total; i++) {\n    xs[i] = xs[i] + speeds[i];\n    if (xs[i] >= width - 15 || xs[i] <= 15) speeds[i] = -speeds[i];\n    drawBall(xs[i], 100 + i * 50, 30);\n  }\n}"
+    },
+    {
+      "k": "Iteración 3 · Petición",
+      "title": "Pregunta lo que no entiendas",
+      "text": "«No entendí bien lo del bucle `for`, ¿me lo explicas detalladamente?»",
+      "head": ["Parte", "Código", "Qué hace"],
+      "rows": [
+        ["Inicio", "`let i = 0`", "El contador empieza en la primera pelota."],
+        ["Condición", "`i < total`", "Sigue mientras queden pelotas: i vale 0, 1, 2, 3 y 4."],
+        ["Cambio", "`i++`", "Igual que `i = i + 1`: pasa a la siguiente pelota."]
+      ]
+    },
+    {
+      "k": "Iteración 3 · Explicación",
+      "title": "Una vuelta por pelota",
+      "items": [
+        "`i` indica **de qué pelota nos ocupamos**: `xs[i]` y `speeds[i]` son sus datos.",
+        "`let y = 100 + i * 50` coloca cada pelota en su propia fila: 100, 150, 200…",
+        "Dentro de la vuelta se **mueve**, se **comprueba el borde** y se **dibuja** esa pelota.",
+        "Todo ocurre en cada fotograma de `draw()`, muchas veces por segundo: por eso parece que se mueven a la vez."
+      ],
+      "note": "Sin el bucle tendríamos que repetir el mismo código cinco veces."
+    },
+    {
+      "k": "Iteración 4 · Petición",
+      "title": "Fondo negro y color al rebotar",
+      "code": "let colors = [];                       // un color por pelota\n\n// en setup(): color inicial aleatorio\ncolors[i] = color(random(255), random(255), random(255));\n\n// en draw(): al rebotar cambia la dirección y el color\nbackground(0);\nif (xs[i] >= width - 15 || xs[i] <= 15) {\n  speeds[i] = -speeds[i];\n  colors[i] = color(random(255), random(255), random(255));\n}\ndrawBall(xs[i], y, 30, colors[i]);\n\nfunction drawBall(px, py, size, col) { fill(col); noStroke(); ellipse(px, py, size, size); }"
+    },
+    {
+      "k": "Iteración 4 · Explicación",
+      "title": "Cómo funciona el color",
+      "ordered": true,
+      "items": [
+        "Un array `colors` guarda **un color por pelota**, igual que `xs` y `speeds`.",
+        "`color(r, g, b)` crea un color; `random(255)` da cada canal al azar.",
+        "En `setup()` cada pelota recibe un **color inicial**.",
+        "En el `if` del rebote se le asigna **otro color nuevo**.",
+        "`drawBall` recibe el color y lo aplica con `fill(col)`."
+      ]
+    },
+    {
+      "type": "big",
+      "k": "Lo que nos llevamos",
+      "title": "Programar con IA",
+      "items": [
+        "Itera en **pasos pequeños** y prueba cada versión en el editor.",
+        "Pide **comentarios y explicaciones**, no solo código.",
+        "Pregunta todo lo que no entiendas hasta poder **explicarlo con tus palabras**."
+      ]
+    }
+  ]
+}

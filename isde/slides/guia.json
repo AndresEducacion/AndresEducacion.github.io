@@ -1,0 +1,158 @@
+{
+  "title": "ISDE · Guía del módulo",
+  "slides": [
+    {
+      "type": "cover",
+      "k": "ISDE · Guía del módulo",
+      "title": "Instalaciones de Sonorización de Eventos",
+      "text": "Grado Medio en Vídeo Disc-Jockey y Sonido · Profesor: Andrés Vidal Martín Martín"
+    },
+    {
+      "k": "01 · Qué vamos a ver",
+      "title": "Contenidos",
+      "items": [
+        "**Instalaciones de sonorización**: equipos y elementos.",
+        "**Diseño y planificación técnica** del montaje.",
+        "**Montaje y conexión** de sistemas de sonido.",
+        "**Seguridad, normativa** y diagnóstico de averías."
+      ]
+    },
+    {
+      "k": "02 · Organización",
+      "title": "Carga lectiva",
+      "stats": [
+        { "v": "60 h", "l": "lectivas" },
+        { "v": "2", "l": "trimestres" },
+        { "v": "3 h", "l": "por semana" }
+      ],
+      "note": "Módulo optativo regulado por la **Orden 3536/2025** de la Comunidad de Madrid."
+    },
+    {
+      "k": "03 · Para qué sirve",
+      "title": "Objetivos del módulo",
+      "ordered": true,
+      "items": [
+        "Configurar instalaciones de sonido en interiores y exteriores.",
+        "Diseñar y planificar montajes: esquemas, croquis y presupuestos.",
+        "Montar y conectar equipos de sonido en directo de forma segura.",
+        "Ajustar, verificar y poner en marcha sistemas de PA y monitores.",
+        "Detectar y reparar averías con diagnóstico técnico.",
+        "Aplicar prevención de riesgos y protección ambiental.",
+        "Integrar lo aprendido en otros módulos: captación, mezcla, montaje…"
+      ]
+    },
+    {
+      "k": "04 · Qué sabrás hacer",
+      "title": "Competencias profesionales",
+      "cols": 2,
+      "items": [
+        "Analizar y elegir el equipo adecuado para cada evento.",
+        "Montar, conectar y desmontar sistemas con protocolos de calidad.",
+        "Garantizar un sonido óptimo en directo.",
+        "Resolver incidencias técnicas durante la sonorización.",
+        "Trabajar en equipo con técnicos y artistas.",
+        "Planificar con criterios técnicos, organizativos y económicos.",
+        "Desarrollar hábitos de orden, seguridad y responsabilidad."
+      ]
+    },
+    {
+      "k": "05 · Evaluación",
+      "title": "Resultados de aprendizaje",
+      "head": ["RA", "Qué demuestras", "Peso"],
+      "rows": [
+        ["RA1", "Reconoces los elementos y equipos de una instalación, en locales y al aire libre.", "10 %"],
+        ["RA2", "Configuras pequeñas instalaciones eligiendo equipos según el tipo de evento.", "15 %"],
+        ["RA3", "Replanteas instalaciones interpretando especificaciones y haciendo esquemas.", "10 %"],
+        ["RA4", "Montas canalizaciones y cableado interpretando planos y esquemas.", "15 %"]
+      ]
+    },
+    {
+      "k": "05 · Evaluación",
+      "title": "Resultados de aprendizaje",
+      "head": ["RA", "Qué demuestras", "Peso"],
+      "rows": [
+        ["RA5", "Instalas equipos de sonorización siguiendo su documentación técnica.", "20 %"],
+        ["RA6", "Reparas averías relacionando cada disfunción con su causa.", "15 %"],
+        ["RA7", "Cumples las normas de prevención de riesgos y de protección ambiental.", "15 %"]
+      ]
+    },
+    {
+      "k": "06 · Lo imprescindible",
+      "title": "Mínimos para aprobar",
+      "items": [
+        "**Identificar** los equipos básicos de sonido.",
+        "**Montar y conectar** una instalación sencilla sin errores graves.",
+        "Que el sistema **funcione**: entra señal, sale sonido, sin fallos críticos.",
+        "**Detectar y corregir** averías simples.",
+        "Aplicar una **seguridad mínima**: orden y cuidado del material."
+      ]
+    },
+    {
+      "k": "07 · Asistencia",
+      "title": "Pérdida de la evaluación continua",
+      "items": [
+        "Superar el **15 % de faltas injustificadas** del total del ciclo.",
+        "Faltar **15 días seguidos** sin justificar."
+      ]
+    },
+    {
+      "k": "08 · Cómo se evalúa",
+      "title": "Instrumentos de evaluación",
+      "head": ["Instrumento", "Condición"],
+      "rows": [
+        ["Exámenes teórico-prácticos", "Mínimo 5/10. Una nota inferior a 5 no se redondea."],
+        ["Prácticas y ejercicios", "Montajes y ejercicios de clase. Mínimo 5/10 en cada uno. Fuera de plazo = 0."],
+        ["Trabajos individuales", "Solo se califican si cumplen forma, fecha y medio de entrega."],
+        ["Trabajos en grupo", "Se evalúa el resultado y el trabajo en equipo."],
+        ["Actitud", "Puntualidad, participación, interés, respeto y responsabilidad."],
+        ["Actividades complementarias", "Asistencia obligatoria."]
+      ]
+    },
+    {
+      "k": "09 · Nota final",
+      "title": "Criterios de calificación",
+      "stats": [
+        { "v": "40 %", "l": "exámenes" },
+        { "v": "50 %", "l": "trabajos prácticos" },
+        { "v": "10 %", "l": "actitud" }
+      ],
+      "note": "Cada trabajo tiene su propio peso, que se indicará. Necesitas **al menos un 5 en cada trabajo** para hacer media."
+    },
+    {
+      "k": "10 · Si suspendes",
+      "title": "Recuperación",
+      "groups": [
+        {
+          "h": "Evaluación ordinaria",
+          "items": [
+            "Examen teórico-práctico completo.",
+            "Entrega de todas las prácticas.",
+            "Mínimo 5 en cada parte.",
+            "Si una parte no llega a 5, la nota máxima es 4."
+          ]
+        },
+        {
+          "h": "Evaluación extraordinaria (junio)",
+          "items": [
+            "Examen final con todos los contenidos.",
+            "Prácticas pendientes en una nueva fecha.",
+            "Mínimo 5/10 en teoría y en práctica.",
+            "Un 4,9 no se redondea."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "big",
+      "k": "Resumen",
+      "title": "Para aprobar necesitas",
+      "items": [
+        "Mínimo **5 en exámenes** y **5 en trabajos y prácticas**.",
+        "Entregar **todos los trabajos en fecha**.",
+        "Cumplir la **asistencia**.",
+        "Actitud adecuada: respeto, puntualidad y participación.",
+        "Superar **todos los RA**."
+      ]
+    }
+  ]
+}

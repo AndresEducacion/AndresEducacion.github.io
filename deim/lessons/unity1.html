@@ -1,505 +1,249 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Unity · Contenidos básicos</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../style.css">
-
-  <style>
-    :root {
-      --primary-color: #22C55E;
-      --accent-color: #4ADE80;
-
-      --bg-color: #0B1120;
-      --surface-color: #151F32;
-      --surface-light: #1d2942;
-
-      --text-main: #F8FAFC;
-      --text-muted: #94A3B8;
-
-      --border-color: #27354d;
-
-      --radius-md: 0.5rem;
-      --radius-lg: 0.75rem;
-
-      --container-width: 1100px;
-    }
-
-    body {
-      background: var(--bg-color);
-      color: var(--text-main);
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      line-height: 1.8;
-      font-size: 1.15rem;
-    }
-
-    .container {
-      max-width: var(--container-width);
-      margin: auto;
-      padding: 0 1.5rem;
-      position: relative;
-    }
-
-    pre {
-      background: var(--surface-light);
-      padding: 1.4rem 1.6rem;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-color);
-      overflow-x: auto;
-      font-size: 1rem;
-      font-family: "JetBrains Mono", monospace;
-      line-height: 1.6;
-      margin: 2rem 0;
-      color: #d6e3f5;
-      position: relative; /* 👈 CLAVE */
-    }
-
-    .copy-btn {
-      position: absolute;
-      top: 0.6rem;
-      left: 0.6rem;   /* 👈 IZQUIERDA */
-      background: var(--surface-color);
-      border: 1px solid var(--border-color);
-      color: var(--text-muted);
-      font-size: 0.8rem;
-      padding: 0.35rem 0.6rem;
-      border-radius: 0.4rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      z-index: 10;
-    }
-
-    .copy-btn:hover {
-      color: var(--text-main);
-      border-color: var(--primary-color);
-    }
-
-    .copy-btn.copied {
-      color: var(--primary-color);
-      border-color: var(--primary-color);
-    }
-
-
-    .hero {
-      padding: 8rem 0 7rem;
-      text-align: center;
-      background: radial-gradient(circle at center, #1a2438 0%, #0B1120 100%);
-    }
-
-    .hero h1 {
-      font-size: 3.4rem;
-      font-weight: 700;
-      margin-bottom: 1.2rem;
-    }
-
-    .hero p {
-      font-size: 1.35rem;
-      color: var(--text-muted);
-      max-width: 700px;
-      margin: auto;
-    }
-
-    section {
-      padding: 6rem 0;
-    }
-
-    h2.section-title {
-      font-size: 2.6rem;
-      text-align: center;
-      margin-bottom: 3rem;
-      font-weight: 700;
-    }
-
-    .card {
-      background: var(--surface-color);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 3rem 2.5rem;
-      margin-bottom: 4.5rem;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.25);
-    }
-
-    /* 🔹 MISMO ESTILO DE IMÁGENES QUE EN LA OTRA PÁGINA */
-    .card img {
-      width: 100%;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-color);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-      margin-top: 1.5rem;
-    }
-
-    .card h3 {
-      margin-top: 2.5rem;
-      margin-bottom: 1rem;
-      font-size: 1.55rem;
-      color: var(--primary-color);
-    }
-
-    pre {
-      background: var(--surface-light);
-      padding: 1.4rem 1.6rem;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-color);
-      overflow-x: auto;
-      font-size: 1rem;
-      font-family: "JetBrains Mono", monospace;
-      line-height: 1.6;
-      margin: 2rem 0;
-      color: #d6e3f5;
-    }
-  </style>
-
-  <!-- Prism.js CSS -->
-<link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.min.css" rel="stylesheet" />
-
-<!-- Prism.js core -->
-<script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
-
-<!-- Lenguaje C# -->
-<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-csharp.min.js"></script>
-
-
-<link rel="stylesheet" href="../../assets/back.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fundamentos de Unity | DEIM</title>
+<meta name="description" content="Primeros conceptos de Unity: interfaz, GameObjects, componentes, variables públicas y primer script en C#.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Cpath d='M16 5l9 5v12l-9 5-9-5V10z' fill='none' stroke='%232aff6b' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/site.css">
 </head>
-
-<body>
-<a class="portal-back" href="../../index.html">&larr; Portal</a>
-
-<header class="site-header">
-  <div class="container header-container">
-    <a href="../index.html" class="logo">DEIM<span class="dot">.</span></a>
-  </div>
+<body class="m-deim">
+<header class="top">
+  <a class="brand" href="../index.html">DEIM<span class="dash"> —</span> Entornos interactivos</a>
+  <nav aria-label="Módulo">
+    <a href="../index.html#temario">Temario</a>
+    <a href="../index.html#tareas">Tareas</a>
+    <a href="../index.html#recursos">Recursos</a>
+  </nav>
+  <a class="back" href="../../index.html">← Portal</a>
 </header>
 
-<!-- HERO -->
-<section class="hero">
-  <h1>Unity · Contenidos básicos</h1>
-  <p>Primeros conceptos para entender cómo funciona Unity y empezar a programar en C#.</p>
-</section>
+<main>
+  <section class="hero small">
+    <p class="kicker"><a href="../index.html">DEIM</a> / Lección 03 · Unity</p>
+    <h1>Fundamentos de Unity</h1>
+    <p class="lead">Primeros conceptos para entender cómo funciona Unity y empezar a programar en C#.</p>
+  </section>
 
-<!-- 1. UNITY -->
-<section>
-  <div class="container">
-    <div class="card">
+  <section class="sec doc" id="unity">
+    <h2 class="section-title">01 · ¿Qué es Unity?</h2>
+    <p class="def">Unity es una plataforma de desarrollo en tiempo real y un motor gráfico para crear videojuegos, aplicaciones interactivas 2D y 3D, realidad virtual y aumentada, simulaciones y más.</p>
+    <p>Es <strong>multiplataforma</strong>: un mismo proyecto puede publicarse en PC, consolas, móviles y web.</p>
+    <p>Aunque está muy enfocado a los videojuegos, es útil en muchos otros campos: arte audiovisual reactivo, instalaciones, herramientas creativas para lo visual y lo sonoro, mediación cultural en museos o accesibilidad.</p>
+    <p>Unity se programa en <strong>C#</strong>, un lenguaje moderno orientado a objetos inspirado en C, C++ y Java. Es lo que vimos en la <a href="codigo2.html">lección anterior</a>.</p>
+  </section>
 
-      <h1>¿Qué es Unity?</h1>
+  <section class="sec doc" id="interfaz">
+    <h2 class="section-title">02 · Interfaz</h2>
+    <ol>
+      <li><strong>Hierarchy</strong>: lista todos los objetos de la escena actual.</li>
+      <li><strong>Scene</strong>: la vista donde se colocan y modifican los objetos.</li>
+      <li><strong>Game</strong>: muestra cómo se verá el juego al ejecutarlo.</li>
+      <li><strong>Inspector</strong>: permite ver y modificar las propiedades y componentes del objeto seleccionado.</li>
+      <li><strong>Project</strong>: los archivos del proyecto (scripts, modelos, sonidos…).</li>
+    </ol>
+    <figure>
+      <img src="https://docs.unity3d.com/es/2018.4/uploads/Main/Editor-Breakdown.jpg" alt="Editor de Unity con sus paneles: Hierarchy, Scene, Game, Inspector y Project" loading="lazy">
+      <figcaption>Paneles del editor. Imagen: documentación de Unity.</figcaption>
+    </figure>
+  </section>
 
-      <!-- Imagen LOCAL -->
-      <img src="../assets/unity/Unity Básicos2.jpg"
-           alt="Que es unity">
+  <section class="sec doc" id="objetos">
+    <h2 class="section-title">03 · Tipos de objetos</h2>
+    <p>En Unity, todo lo que aparece en una escena es un <code>GameObject</code>. Según su función, pueden ser:</p>
+    <div class="grid">
+      <div><h4>GameObject vacío</h4><p>Sin forma ni comportamiento. Sirve de contenedor u organizador: las «carpetas» de la escena también son objetos.</p></div>
+      <div><h4>Cámara</h4><p>Muestra una parte del espacio. Lo que ve quien juega es lo que ve una cámara.</p></div>
+      <div><h4>Luz</h4><p>Ilumina la escena. Hay varios tipos: direccional (el sol), puntual, foco…</p></div>
+      <div><h4>Sprites (2D)</h4><p>Imágenes usadas en juegos 2D.</p></div>
+      <div><h4>Modelos 3D</h4><p>Objetos con volumen: personajes, escenarios…</p></div>
+      <div><h4>UI</h4><p>Botones, textos, barras de vida y menús. Viven dentro de un <code>Canvas</code>.</p></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section>
-  <div class="container">
-    <div class="card">
+  <section class="sec doc" id="componentes">
+    <h2 class="section-title">04 · Tipos de componentes</h2>
+    <p>Los componentes se añaden a un GameObject para darle forma, comportamiento o funciones. Todos se pueden controlar desde código.</p>
+    <div class="table"><table>
+      <thead><tr><th>Componente</th><th>Para qué sirve</th></tr></thead>
+      <tbody>
+        <tr><td><code>Transform</code></td><td>Posición, rotación y escala. <strong>Todos los objetos lo tienen.</strong></td></tr>
+        <tr><td><code>Renderer</code></td><td>Muestra el objeto en pantalla.</td></tr>
+        <tr><td><code>Collider</code></td><td>Detecta colisiones entre objetos.</td></tr>
+        <tr><td><code>Rigidbody</code></td><td>Aplica físicas: gravedad y fuerzas.</td></tr>
+        <tr><td>Script (C#)</td><td>Programa el comportamiento del objeto.</td></tr>
+        <tr><td><code>AudioSource</code></td><td>Reproduce sonidos.</td></tr>
+        <tr><td><code>Animator</code></td><td>Controla las animaciones.</td></tr>
+      </tbody>
+    </table></div>
+  </section>
 
-      <h1>Interfaz</h1>
+  <section class="sec doc" id="especificas">
+    <h2 class="section-title">05 · Variables y funciones específicas</h2>
+    <div class="table"><table>
+      <thead><tr><th>Tipo o función</th><th>Para qué sirve</th></tr></thead>
+      <tbody>
+        <tr><td><code>Vector2</code> · <code>Vector3</code></td><td>Posiciones o movimientos en 2D y en 3D.</td></tr>
+        <tr><td><code>GameObject</code></td><td>Referencia a un objeto del juego.</td></tr>
+        <tr><td><code>Transform</code></td><td>Posición, rotación y escala.</td></tr>
+        <tr><td><code>Quaternion</code></td><td>Rotaciones.</td></tr>
+        <tr><td><code>Color</code></td><td>Colores.</td></tr>
+        <tr><td><code>Time.deltaTime</code></td><td>Segundos que han pasado desde el fotograma anterior. Multiplicar por él hace que el movimiento vaya igual de rápido con muchos o pocos fotogramas por segundo.</td></tr>
+        <tr><td><code>Input.GetAxis()</code></td><td>Movimiento continuo con teclado o mando.</td></tr>
+        <tr><td><code>Input.GetKey()</code> · <code>GetKeyDown()</code></td><td>Detecta teclas: mantenida o pulsada una vez.</td></tr>
+      </tbody>
+    </table></div>
+<pre><code class="language-csharp">// Vector2 y Vector3: posiciones o movimientos en 2D y 3D
+Vector2 movimiento2D = new Vector2(1f, 0f);
+transform.Translate(movimiento2D * Time.deltaTime);
 
-      <!-- Imagen LOCAL -->
-      <img src="../assets/unity/Unity Básicos3.jpg"
-           alt="Interfaz básica de Unity">
-      <img src="https://docs.unity3d.com/es/2018.4/uploads/Main/Editor-Breakdown.jpg"
-           alt="Jerarquía de objetos en Unity">
-    </div>
-  </div>
-</section>
+Vector3 movimiento3D = new Vector3(0f, 0f, 1f);
+transform.position += movimiento3D * Time.deltaTime;
 
-<section>
-  <div class="container">
-    <div class="card">
-        <h1>Tipos de objetos</h1>
-        <img src="../assets/unity/Unity Básicos4.jpg"
-           alt="Interfaz básica de Unity">
-      <img src="https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@14.0/manual/images/LightAnchorAnimation.gif"
-           alt="Jerarquía de objetos en Unity">
-      <img src="https://europe1.discourse-cdn.com/unity/original/4X/6/e/8/6e8f61dc176b2cd68ee34f0bacdb0f70adf2edf7.jpeg"
-           alt="Jerarquía de objetos en Unity">
+// GameObject: referencia a un objeto del juego
+GameObject enemigo = GameObject.Find("Enemy");
 
-    </div>
-  </div>
-</section>
+// Transform: posición, rotación y escala
+transform.position = new Vector3(0f, 2f, 0f);
+transform.localScale = new Vector3(2f, 2f, 2f);
 
-<section>
-  <div class="container">
-    <div class="card">
-        <h1>Tipos de componentes</h1>
-        <img src="../assets/unity/Unity Básicos5.jpg"
-           alt="Interfaz básica de Unity">
-      <img src="https://europe1.discourse-cdn.com/unity/original/4X/1/f/7/1f7f1ad53eecf27c43ca5f57f46b1627967bea9d.png"
-           alt="Jerarquía de objetos en Unity"
-           style="max-width: 300px;">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWzP1cSAs-7Qs1YIEDTl0_RuUzZln_eUV_Nw&s"
-            alt="Jerarquía de objetos en Unity"
-            style="max-width: 300px;">
+// Quaternion: rotaciones
+transform.rotation = Quaternion.Euler(0f, 90f, 0f);
 
-    </div>
-  </div>
-</section>
+// Color
+Renderer r = GetComponent&lt;Renderer&gt;();
+r.material.color = Color.red;
 
-<section>
-  <div class="container">
-    <div class="card">
-        <h1>Variables específicas</h1>
-        <img src="../assets/unity/Unity Básicos6.jpg"
-           alt="Interfaz básica de Unity">
-        <h3>Ejemplos</h3>
-        <pre><code class="language-csharp">
-        // VECTOR2 → posiciones o movimientos en 2D
-        Vector2 movimiento2D = new Vector2(1f, 0f);
-        transform.Translate(movimiento2D * Time.deltaTime);
+// Time: 5 unidades por segundo, vaya el juego a los fotogramas que vaya
+float velocidad = 5f;
+transform.Translate(Vector3.forward * velocidad * Time.deltaTime);
 
+// Input.GetAxis(): movimiento continuo (teclado o mando)
+float horizontal = Input.GetAxis("Horizontal");
+float vertical = Input.GetAxis("Vertical");
+transform.Translate(new Vector3(horizontal, 0f, vertical) * 5f * Time.deltaTime);
 
-        // VECTOR3 → posiciones o movimientos en 3D
-        Vector3 movimiento3D = new Vector3(0f, 0f, 1f);
-        transform.position += movimiento3D * Time.deltaTime;
+// Input.GetKey() / GetKeyDown(): detección de teclas
+if (Input.GetKey(KeyCode.Space)) Debug.Log("La tecla espacio está pulsada");
+if (Input.GetKeyDown(KeyCode.Space)) Debug.Log("Se ha pulsado espacio una vez");</code></pre>
+    <p class="note"><strong>Nota:</strong> estos fragmentos van dentro de un método como <code>Start()</code> o <code>Update()</code> de un script; en la sección 07 tienes uno completo.</p>
+  </section>
 
+  <section class="sec doc" id="publicas">
+    <h2 class="section-title">06 · Variables públicas</h2>
+    <p class="def">Una variable pública se puede modificar desde el Inspector sin cambiar el código.</p>
+    <ol>
+      <li>Se declara con la palabra <code>public</code>.</li>
+      <li>Aparece automáticamente en el Inspector.</li>
+      <li>Desde el Inspector puedes cambiar números, activar o desactivar booleanos y <strong>arrastrar objetos</strong> a las variables para que el código los use.</li>
+    </ol>
+<pre><code class="language-csharp">using UnityEngine;
 
-        // GAMEOBJECT → referencia a un objeto del juego
-        GameObject enemigo;
-        enemigo = GameObject.Find("Enemy");
+public class Player : MonoBehaviour
+{
+    public int vidas = 3;               // número entero
+    public float velocidad = 5f;        // decimal
+    public bool estaVivo = true;        // interruptor
+    public GameObject enemigo;          // se arrastra desde la Hierarchy
+    public Vector3 posicionInicial;     // se escribe en el Inspector
 
+    void Start()
+    {
+        Debug.Log("Vidas iniciales: " + vidas);
+        transform.position = posicionInicial;
 
-        // TRANSFORM → posición, rotación y escala
-        Transform t = transform;
-        t.position = new Vector3(0f, 2f, 0f);
-        t.localScale = new Vector3(2f, 2f, 2f);
-
-
-        // QUATERNION → rotaciones
-        Quaternion rotacion = Quaternion.Euler(0f, 90f, 0f);
-        transform.rotation = rotacion;
-
-
-        // COLOR → colores
-        Renderer r = GetComponent<Renderer>();
-        r.material.color = Color.red;
-
-
-        // TIME → control del tiempo
-        float velocidad = 5f;
-        transform.Translate(Vector3.forward * velocidad * Time.deltaTime);
-
-
-        // INPUT.GETAXIS() → movimiento continuo (teclado o mando)
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-
-        Vector3 movimiento = new Vector3(horizontal, 0f, vertical);
-        transform.Translate(movimiento * Time.deltaTime * 5f);
-
-
-        // INPUT.GETKEY() / GETKEYDOWN() → detección de teclas
-        if (Input.GetKey(KeyCode.Space))
+        if (enemigo != null)
         {
-            Debug.Log("La tecla espacio está pulsada");
+            Debug.Log("Enemigo asignado: " + enemigo.name);
+        }
+    }
+
+    void Update()
+    {
+        // El movimiento va en Update: se ejecuta en cada fotograma
+        transform.Translate(Vector3.forward * velocidad * Time.deltaTime);
+    }
+}</code></pre>
+  </section>
+
+  <section class="sec doc" id="script">
+    <h2 class="section-title">07 · Primer script en Unity</h2>
+    <p>Todo lo visto en C# dentro de un script de Unity. <code>Start()</code> se ejecuta una vez al empezar; <code>Update()</code>, una vez por fotograma.</p>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class EjemploMono : MonoBehaviour
+{
+    // Tipos de variables
+    int numeroEntero = 10;
+    float numeroDecimal = 3.5f;
+    bool activo = true;
+    string nombre = "Unity";
+    char letra = 'U';
+    int[] listaNumeros = { 2, 4, 6, 8 };
+    string[] listaSaludos = { "heyy", "hola", "klk" };
+
+    void Start()
+    {
+        Debug.Log("Start ejecutado");
+
+        // Operadores
+        int resultado = numeroEntero * 2;
+        float division = numeroDecimal / 2f;   // para obtener decimales, divide entre un float (con f)
+        Debug.Log("Resultado multiplicación: " + resultado);
+        Debug.Log("Resultado división: " + division);
+
+        // If con operador lógico. Un bool solo en la condición equivale a comprobar que es true
+        if (activo &amp;&amp; numeroEntero > 5)
+        {
+            Debug.Log("Condición del if cumplida");
         }
 
+        // Bucle for que recorre un array
+        for (int i = 0; i &lt; listaNumeros.Length; i++)
+        {
+            Debug.Log("Número en lista: " + listaNumeros[i]);
+        }
+
+        // Llamada a una función: da igual si se declara antes o después
+        MostrarMensaje("¡Hola desde la función!");
+    }
+
+    void Update()
+    {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Se ha pulsado espacio una vez");
+            Debug.Log("Has pulsado la barra espaciadora");
         }
+    }
 
-        </code></pre>
+    // Función propia
+    void MostrarMensaje(string texto)
+    {
+        Debug.Log("Mensaje: " + texto);
+    }
+}</code></pre>
+    <p class="note"><strong>Ojo:</strong> en C# las variables siempre van dentro de una clase. Si las escribes fuera de <code>public class … { }</code>, Unity da error de compilación.</p>
+  </section>
 
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <div class="card">
-        <h1>Variables públicas</h1>
-        <img src="../assets/unity/Unity Básicos7.jpg"
-           alt="Interfaz básica de Unity">
-        <h3>Ejemplos</h3>
-        <pre><code class="language-csharp">
-        using UnityEngine;
-
-        public class Player : MonoBehaviour
-        {
-            // VARIABLE PÚBLICA BÁSICA
-            public int vidas = 3;
-
-            // VARIABLE PÚBLICA DECIMAL
-            public float velocidad = 5f;
-
-            // VARIABLE PÚBLICA BOOLEAN
-            public bool estaVivo = true;
-
-            // VARIABLE PÚBLICA DE UNITY
-            public GameObject enemigo;
-
-            // VARIABLE PÚBLICA VECTOR
-            public Vector3 posicionInicial;
-
-            void Start()
-            {
-                // Accedemos a las variables públicas
-                Debug.Log("Vidas iniciales: " + vidas);
-
-                // Usamos la velocidad para mover el objeto
-                transform.Translate(Vector3.forward * velocidad * Time.deltaTime);
-
-                // Colocamos el objeto en la posición indicada
-                transform.position = posicionInicial;
-
-                // Accedemos al GameObject asignado desde el Inspector
-                if (enemigo != null)
-                {
-                    Debug.Log("Enemigo asignado: " + enemigo.name);
-                }
-            }
-        }
-
-
-        </code></pre>
-
-    </div>
-  </div>
-</section>
-<!-- 3. PRIMER SCRIPT -->
-<section>
-  <div class="container">
-    <div class="card">
-
-      <h3>Primer script en Unity</h3>
-
-      <pre><code class="language-csharp">
-        using UnityEngine;
-
-        public class EjemploMono : MonoBehaviour
-        {
-            //TIPOS DE VARIABLES
-            int numeroEntero = 10;
-            float numeroDecimal = 3.5f;
-            bool activo = true;
-            string nombre = "Unity";
-            char letra = 'U';
-
-            int[] listaNumeros = { 2, 4, 6, 8 };
-            string[] listaSaludos = {"heyy","hola","klk"};
-
-
-            void Start()
-            {
-                Debug.Log("Start ejecutado");
-
-                // Operadores
-                int resultado = numeroEntero * 2;
-                float division = numeroDecimal / 2f; // noten que al dividir numeros decimales necesitamos que divisor y dividendo sean decimales (con la "f")
-
-
-                // Imprime en consola los resultados
-                Debug.Log("Resultado multiplicación: " + resultado);
-                Debug.Log("Resultado división: " + division);
-
-                // If con operador lógico
-                if (activo && numeroEntero > 5) // al poner una bool en una condicional, se asume que tiene que ser "true" para que se suceda la acción. En este caso lo es (pusimos true al declararla)
-                {
-                    Debug.Log("Condición del IF cumplida.");
-                }
-
-                // Bucle for
-                for (int i = 0; i < listaNumeros.Length; i++)
-                {
-                    Debug.Log("Número en lista: " + listaNumeros[i]);
-                }
-
-                // Llamada a una función
-                MostrarMensaje("¡Hola desde la función!"); // Las funciones se pueden llamar en cualquier momento del código, da igual si las definimos antes o después.
-            }
-
-            // Update: se ejecuta una vez por frame
-            void Update()
-            {
-                // Ejemplo simple dentro de Update:
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    Debug.Log("Has presionado la barra espaciadora.");
-                }
-            }
-
-            // Función personalizada
-            void MostrarMensaje(string texto)
-            {
-                Debug.Log("Mensaje: " + texto);
-            }
-        }
-
-      </code></pre>
-
-      <pre><code class="language-csharp">
-        using UnityEngine;
-
-        int vidas = 3;
-        float velocidad = 5.5f;
-        bool estaVivo = true;
-
-        // Tipos de Unity
-        Vector3 posicion;
-        GameObject jugador;
-        Transform transformJugador;
-        Rigidbody rb; 
-
-        public class Player : MonoBehaviour
-        {
-            void Start()
-            {
-                Debug.Log("Hola Unity");
-            }
-
-            void Update()
-            {
-                transform.Rotate(0f, 60f * Time.deltaTime, 0f);
-            }
-        }
-      </code></pre>
-    </div>
-  </div>
-</section>
-
-<!-- FINAL -->
-<section>
-  <div class="container">
+  <section class="sec doc" id="siguiente">
     <h2 class="section-title">Siguiente paso</h2>
-    <div class="card">
-      <ul>
-        <li>Movimiento con teclado</li>
-        <li>Colisiones</li>
-        <li>Interacción entre objetos</li>
-        <li>Prefabs</li>
-      </ul>
-    </div>
-  </div>
-</section>
-<script>
-  document.querySelectorAll("pre").forEach(pre => {
-    const button = document.createElement("button");
-    button.className = "copy-btn";
-    button.textContent = "Copiar";
+    <ul>
+      <li>Movimiento con teclado: mira el <a href="repo.html">repositorio de códigos</a>.</li>
+      <li>Colisiones.</li>
+      <li>Interacción entre objetos.</li>
+      <li>Prefabs.</li>
+    </ul>
+  </section>
 
-    button.addEventListener("click", () => {
-      const code = pre.querySelector("code").innerText;
+  <nav class="pager" aria-label="Lecciones">
+    <a href="codigo2.html">Anterior<strong>← Fundamentos en C#</strong></a>
+  </nav>
+</main>
 
-      navigator.clipboard.writeText(code).then(() => {
-        button.textContent = "Copiado ✓";
-        button.classList.add("copied");
-
-        setTimeout(() => {
-          button.textContent = "Copiar";
-          button.classList.remove("copied");
-        }, 1500);
-      });
-    });
-
-    pre.appendChild(button);
-  });
-</script>
+<footer>© <span data-year>2026</span> · Andrés Vidal Martín Martín · DEIM</footer>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-csharp.min.js" defer></script>
+<script src="../../assets/site.js" defer></script>
 </body>
 </html>

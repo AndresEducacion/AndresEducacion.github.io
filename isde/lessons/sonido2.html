@@ -1,427 +1,141 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fundamentos de Acústica</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --primary-color: #3B82F6;
-      --accent-color: #0EA5E9;
-
-      --bg-color: #0B1120;
-      --surface-color: #151F32;
-      --surface-light: #1d2942;
-
-      --text-main: #F8FAFC;
-      --text-muted: #94A3B8;
-
-      --border-color: #27354d;
-
-      --radius-md: 0.5rem;
-      --radius-lg: 0.75rem;
-
-      --container-width: 1100px;
-    }
-
-    body {
-      background: var(--bg-color);
-      color: var(--text-main);
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      line-height: 1.8;
-      font-size: 1.15rem;
-    }
-
-    .container {
-      max-width: var(--container-width);
-      margin: auto;
-      padding: 0 1.5rem;
-    }
-
-    /* HERO */
-    .hero {
-      padding: 8rem 0 7rem;
-      text-align: center;
-      background: radial-gradient(circle at center, #1a2438 0%, #0B1120 100%);
-    }
-
-    .hero h1 {
-      font-size: 3.4rem;
-      font-weight: 700;
-      margin-bottom: 1.2rem;
-    }
-
-    .hero p {
-      font-size: 1.35rem;
-      color: var(--text-muted);
-      max-width: 700px;
-      margin: auto;
-    }
-
-    section {
-      padding: 6rem 0;
-    }
-
-    h2.section-title {
-      font-size: 2.6rem;
-      text-align: center;
-      margin-bottom: 3rem;
-      font-weight: 700;
-    }
-
-    .card {
-      background: var(--surface-color);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 3rem 2.5rem;
-      margin-bottom: 4.5rem;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.25);
-      font-size: 1.15rem;
-    }
-
-    .card h3 {
-      margin-top: 2.5rem;
-      color: var(--primary-color);
-      font-size: 1.55rem;
-    }
-
-    .card img {
-      width: 100%;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-color);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-      margin-top: 1.5rem;
-    }
-
-
-    /* ---------- CARRUSEL ESCALABLE ---------- */
-
-    .carousel {
-      position: relative;
-      width: 100%;
-      height: 600px;
-      overflow: hidden;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-color);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-    }
-
-    .carousel-inner {
-      display: flex;
-      height: 100%;
-      transition: transform 0.6s ease-in-out;
-    }
-
-    .carousel-inner img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      flex-shrink: 0;
-      background: #000;
-    }
-
-    /* Botones laterales */
-    .carousel-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,0.4);
-      border: none;
-      color: white;
-      padding: 0.8rem 1rem;
-      font-size: 1.8rem;
-      cursor: pointer;
-      border-radius: 50%;
-      transition: background .25s;
-      z-index: 10;
-    }
-
-    .carousel-btn:hover {
-      background: rgba(0,0,0,0.7);
-    }
-
-    .prev { left: 10px; }
-    .next { right: 10px; }
-
-    /* Indicadores */
-    .carousel-indicators {
-      position: absolute;
-      bottom: 15px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 8px;
-    }
-
-    .indicator {
-      width: 12px;
-      height: 12px;
-      background: var(--text-muted);
-      border-radius: 50%;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .indicator.active {
-      background: var(--primary-color);
-      transform: scale(1.2);
-    }
-  </style>
-<link rel="stylesheet" href="../../assets/back.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Preamp, EQ, compresor y puerta de ruido | ISDE</title>
+<meta name="description" content="Previo, ecualización, compresión y puerta de ruido: lo básico para controlar cada canal de la mesa X32 Compact.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Cpath d='M16 5l9 5v12l-9 5-9-5V10z' fill='none' stroke='%233ec5ff' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/site.css">
 </head>
+<body class="m-isde">
+<header class="top">
+  <a class="brand" href="../index.html">ISDE<span class="dash"> —</span> Sonorización de eventos</a>
+  <nav aria-label="Módulo">
+    <a href="../index.html#temario">Temario</a>
+    <a href="../index.html#recursos">Recursos</a>
+  </nav>
+  <a class="back" href="../../index.html">← Portal</a>
+</header>
 
-<body>
-<a class="portal-back" href="../../index.html">&larr; Portal</a>
+<main>
+  <section class="hero small">
+    <p class="kicker"><a href="../index.html">ISDE</a> / Lección 02</p>
+    <h1>Preamp, EQ, compresor y puerta de ruido</h1>
+    <p class="lead">Lo básico para controlar cada canal de la mesa Behringer X32 Compact.</p>
+  </section>
 
-<!-- HERO -->
-<section class="hero">
-  <h1>Preamp, EQ, Compresor y Noise Gate</h1>
-  <p>Básicos para controlar la mesa X32 Kompact.</p>
-</section>
+  <section class="sec doc" id="preamp">
+    <h2 class="section-title">01 · Preamp</h2>
+    <p class="def">El previo toma una señal de audio muy débil y la eleva a nivel de línea, más fuerte y limpia, para que se pueda procesar, grabar o amplificar.</p>
+    <p>Es el primer «amplificador» de la cadena y es clave para conseguir un sonido claro, sin ruido ni distorsión, sobre todo con fuentes de nivel bajo: micrófonos, guitarras o tocadiscos. Además de ganancia, puede aportar control de volumen, de tono y, a veces, color.</p>
+    <h3>Un poco de historia</h3>
+    <p>Lee de Forest inventó el triodo (1907), que hizo posibles los amplificadores prácticos. Al principio se usaron en el ejército y las telecomunicaciones, pero pronto resolvieron un problema esencial de la industria musical: la señal de los micrófonos y los tocadiscos no tiene nivel suficiente para reproducirse o grabarse directamente.</p>
+    <p class="note"><strong>En la X32:</strong> el previo es el control <strong>Gain</strong> de cada canal. Ajústalo primero: si la ganancia es baja tendrás ruido; si es alta, saturación.</p>
+  </section>
 
-<!-- 1.  -->
-<section>
-  <div class="container">
-    <div class="card">
+  <section class="sec doc" id="eq">
+    <h2 class="section-title">02 · Ecualización</h2>
+    <p class="def">Ecualizar es ajustar el volumen de distintas frecuencias o rangos de frecuencia (graves, medios, agudos) de una señal.</p>
+    <p>El oído humano percibe desde unos <strong>20 Hz hasta 20.000 Hz</strong>. Ese rango se suele dividir así:</p>
+    <div class="table"><table>
+      <thead><tr><th>Banda</th><th>Rango aproximado</th></tr></thead>
+      <tbody>
+        <tr><td>Subgraves</td><td>20 – 60 Hz</td></tr>
+        <tr><td>Graves</td><td>60 – 250 Hz</td></tr>
+        <tr><td>Medios</td><td>250 – 1.500 Hz</td></tr>
+        <tr><td>Medios altos</td><td>1.500 – 6.600 Hz</td></tr>
+        <tr><td>Agudos</td><td>6.600 – 20.000 Hz</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note"><strong>Úsala con medida:</strong> la EQ no arregla errores que no le corresponden. Puede realzar o atenuar una característica de la señal, pero no eliminarla, salvo que borres todo el rango de frecuencias en el que está.</p>
+    <h3>Parámetros</h3>
+    <div class="table"><table>
+      <tbody>
+        <tr><td><strong>Frecuencia (Hz)</strong></td><td>La frecuencia o el rango sobre el que se actúa.</td></tr>
+        <tr><td><strong>Ganancia (dB)</strong></td><td>Cuánto se sube o se baja esa frecuencia.</td></tr>
+        <tr><td><strong>Q (ancho de banda)</strong></td><td>La anchura del rango afectado. Con una Q muy estrecha se puede llegar a una sola frecuencia; con una muy ancha, a casi toda la señal.</td></tr>
+      </tbody>
+    </table></div>
+    <h3>Tipos de filtro</h3>
+    <div class="table"><table>
+      <tbody>
+        <tr><td><strong>Low cut / High pass (HPF)</strong></td><td>Elimina los graves por debajo de un punto.</td></tr>
+        <tr><td><strong>High cut / Low pass (LPF)</strong></td><td>Elimina los agudos por encima de un punto.</td></tr>
+        <tr><td><strong>Peak / Bell</strong></td><td>Sube o baja una frecuencia concreta y su entorno.</td></tr>
+        <tr><td><strong>Low shelf</strong></td><td>Sube o baja todos los graves a partir de un punto.</td></tr>
+        <tr><td><strong>High shelf</strong></td><td>Sube o baja todos los agudos a partir de un punto.</td></tr>
+        <tr><td><strong>Notch</strong></td><td>Corta por completo una frecuencia muy concreta (útil contra acoples).</td></tr>
+      </tbody>
+    </table></div>
+    <figure>
+      <img src="../assets/sonido2/eq_filters.jpg" alt="Curvas de los seis tipos de filtro de ecualización: high pass, bell, low pass, low shelf, notch y high shelf" loading="lazy" width="1080" height="1080" style="max-width:540px">
+      <figcaption>Forma de cada tipo de filtro.</figcaption>
+    </figure>
+    <h3>Un poco de historia</h3>
+    <ul>
+      <li><strong>1915:</strong> George Ashley Campbell, en AT&amp;T, desarrolla el filtro eléctrico con circuitos LC (bobina y condensador), la base de los ecualizadores.</li>
+      <li><strong>1951:</strong> el Pultec EQP-1 se convierte en el primer ecualizador de programa construido para audio. Con una ganancia de compensación fija pasa a ser el EQP-1A, un clásico de los estudios.</li>
+      <li><strong>1972:</strong> George Massenburg publica en la AES el artículo «Parametric Equalization», que da a los ingenieros un control casi total de la frecuencia.</li>
+    </ul>
+  </section>
 
-    <img src="../assets/sonido2/sonido2-1.jpg" alt="">
-      <!-- CARRUSEL ESCALABLE -->
-      <div class="carousel" id="carousel1">
+  <section class="sec doc" id="compresion">
+    <h2 class="section-title">03 · Compresión</h2>
+    <p class="def">Un compresor reduce el rango dinámico de una señal: la diferencia en decibelios entre sus picos más altos y sus partes más bajas.</p>
+    <h3>Parámetros</h3>
+    <div class="table"><table>
+      <tbody>
+        <tr><td><strong>Threshold (umbral)</strong></td><td>Nivel a partir del cual empieza a actuar el compresor.</td></tr>
+        <tr><td><strong>Ratio</strong></td><td>Cuánto se comprime la señal que supera el umbral. Con 4:1, por cada 4 dB por encima del umbral solo sale 1 dB.</td></tr>
+        <tr><td><strong>Attack</strong></td><td>Tiempo que tarda el compresor en actuar después de que la señal supere el umbral.</td></tr>
+        <tr><td><strong>Release</strong></td><td>Tiempo que tarda en dejar de comprimir. Ajústalo de acuerdo con el attack: si es demasiado largo, el compresor no se recupera antes del siguiente pico.</td></tr>
+        <tr><td><strong>Make-up (ganancia de salida)</strong></td><td>Sube la señal de salida para compensar los dB perdidos al comprimir.</td></tr>
+        <tr><td><strong>Knee (codo)</strong></td><td>Si el compresor entra de golpe (hard knee) o de forma progresiva (soft knee).</td></tr>
+        <tr><td><strong>Look-ahead</strong></td><td>Analiza la señal unos milisegundos por adelantado para que la compresión sea más rápida y precisa.</td></tr>
+      </tbody>
+    </table></div>
+    <h3>Un poco de historia</h3>
+    <ul>
+      <li><strong>Años treinta:</strong> la radiodifusión necesita controlar la dinámica para evitar la sobremodulación. Fabricantes como Telefunken o Western Electric crean los primeros dispositivos para megafonía y control de volumen.</li>
+      <li><strong>Años cincuenta:</strong> nacen compresores icónicos que definen el sonido de estudios legendarios, como el RS124 de Abbey Road.</li>
+      <li><strong>De los setenta a hoy:</strong> aparecen nuevas tecnologías y, con la era digital, los plugins (VST) democratizan su uso y emulan los clásicos analógicos.</li>
+    </ul>
+  </section>
 
-        <button class="carousel-btn prev">&#10094;</button>
-        <button class="carousel-btn next">&#10095;</button>
+  <section class="sec doc" id="gate">
+    <h2 class="section-title">04 · Puerta de ruido (noise gate)</h2>
+    <p class="def">Una puerta de ruido corta el paso a toda señal que no supere un umbral fijado.</p>
+    <p>Funciona literalmente como una puerta: si la señal supera el umbral, la puerta se abre y suena; si queda por debajo, se cierra y se silencia. Así se eliminan sonidos no deseados en las pausas y la mezcla queda más limpia. Es especialmente útil en voces, guitarras y baterías (ruido ambiente, zumbidos, roces o interferencias).</p>
+    <p>Otra forma de entenderla: imagina a una persona encargada de subir el fader solo cuando la señal alcanza cierto nivel y de dejarlo abajo el resto del tiempo. Además, puedes pedirle que lo suba o lo baje más rápido o más despacio.</p>
+    <h3>Parámetros</h3>
+    <div class="table"><table>
+      <tbody>
+        <tr><td><strong>Threshold (umbral)</strong></td><td>Nivel que decide cuándo se abre y se cierra la puerta.</td></tr>
+        <tr><td><strong>Attack</strong></td><td>Lo rápido que se abre la puerta.</td></tr>
+        <tr><td><strong>Hold</strong></td><td>Cuánto tiempo se mantiene abierta después de que la señal baje del umbral, antes de empezar a cerrarse.</td></tr>
+        <tr><td><strong>Release</strong></td><td>Lo rápido que se cierra la puerta.</td></tr>
+      </tbody>
+    </table></div>
+  </section>
 
-        <div class="carousel-inner">
-          <!-- Solo cambia esta lista, puedes agregar tantas imágenes como quieras -->
-          <img src="https://th-i.thgim.com/public/children/9yus9m/article25203082.ece/alternates/FREE_1200/21istbdeforest2jpg" alt="">
-          <img src="https://www.planetaanalogico.com/wp-content/uploads/2023/03/preamp.jpg" alt="">
-          <img src="https://cdn.micandmod.com/wp-content/uploads/2022/01/preamplifier-blog-post-1-1024x769.png" alt="">
-        </div>
+  <section class="sec doc" id="x32">
+    <h2 class="section-title">05 · En la mesa</h2>
+    <p>En cada canal de la X32 Compact encontrarás estos bloques. Un orden de trabajo habitual:</p>
+    <ol>
+      <li><strong>Gain</strong> (previo) y, si hace falta, el <strong>low cut</strong> para quitar graves que no aportan.</li>
+      <li><strong>Gate</strong>, para limpiar las pausas.</li>
+      <li><strong>EQ</strong>, para dar forma al timbre.</li>
+      <li><strong>Dynamics</strong> (compresor), para controlar los picos.</li>
+    </ol>
+  </section>
 
-        <div class="carousel-indicators"></div>
-      </div>
+  <nav class="pager" aria-label="Lecciones">
+    <a href="sonido1.html">Anterior<strong>← Fundamentos de acústica</strong></a>
+  </nav>
+</main>
 
-    </div>
-  </div>
-</section>
-
-
-<!-- 2. -->
-<section>
-  <div class="container">
-    <div class="card">
-      <img src="../assets/sonido2/sonido2-2.jpg" alt="">
-      <img src="../assets/sonido2/sonido2-3.jpg" alt="">
-      <img src="../assets/sonido2/sonido2-4.jpg" alt="">
-      <img src="https://www.musicguymixing.com/wp-content/uploads/2024/04/EQ-Settings-1024x576.jpg" alt="">
-      <img src="../assets/sonido2/sonido2-5.jpg" alt="">
-      <img src="../assets/sonido2/eq_filters.jpg" alt="">
-      
-        <div class="carousel" id="carousel2">
-
-        <button class="carousel-btn prev">&#10094;</button>
-        <button class="carousel-btn next">&#10095;</button>
-
-        <div class="carousel-inner">
-          <!-- Solo cambia esta lista, puedes agregar tantas imágenes como quieras -->
-          <img src="https://m.media-amazon.com/images/I/71lEqTqZOeL._AC_SL1440_.jpg" alt="">
-          <img src="https://cdn-b.fabfilter.com/img/products/pro-q-3-intro.jpg?v=1710150538" alt="">
-          <img src="https://tecnoiglesia.com/wp-content/uploads/2022/04/Como-funcionan-los-ecualizadores.jpg" alt="">
-        </div>
-
-        <div class="carousel-indicators"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 3. -->
-<section>
-  <div class="container">
-    <div class="card">
-      <img src="../assets/sonido2/sonido2-6.jpg" alt="">
-      <img src="../assets/sonido2/sonido2-7.jpg" alt="">
-      <img src="../assets/sonido2/sonido2-8.jpg" alt="">
-      <img src="https://d29rinwu2hi5i3.cloudfront.net/article_media/157c7977-0aac-4606-bcc3-e495c6254806/pic_1.jpg" alt="">
-        
-      <div class="carousel" id="carousel3">
-
-        <button class="carousel-btn prev">&#10094;</button>
-        <button class="carousel-btn next">&#10095;</button>
-
-        <div class="carousel-inner">
-          <!-- Solo cambia esta lista, puedes agregar tantas imágenes como quieras -->
-          <img src="https://files.soniccdn.com/files/2015/02/26/jdk-r22.jpg" alt="">
-          <img src="https://www.creatupropiamusica.com/wp-content/uploads/2021/04/ataque-del-compresor-1024x421.jpg" alt="">
-          <img src="https://thumbs.static-thomann.de/thumb/padthumb600x600/pics/bdb/_38/384086/15201333_800.jpg" alt="">
-        </div>
-
-        <div class="carousel-indicators"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 4. -->
-<section>
-  <div class="container">
-    <div class="card">
-      <img src="../assets/sonido2/sonido2-9.jpg" alt="">
-      <img src="../assets/sonido2/sonido2-10.jpg" alt="">
-      <img src="https://www.fabfilter.com/img/products/pro-g-screenshot.jpg" alt="">
-        <div class="carousel" id="carousel4">
-
-        <button class="carousel-btn prev">&#10094;</button>
-        <button class="carousel-btn next">&#10095;</button>
-
-        <div class="carousel-inner">
-          <!-- Solo cambia esta lista, puedes agregar tantas imágenes como quieras -->
-          <img src="https://thumbs.static-thomann.de/thumb/padthumb600x600/pics/bdb/_22/226701/7207192_800.jpg" alt="">
-          <img src="https://www.sonible.com/wp-content/uploads/2023/09/drawmer.png" alt="">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Alesis_Micro_Gate_9006.jpg/1280px-Alesis_Micro_Gate_9006.jpg" alt="">
-        </div>
-
-        <div class="carousel-indicators"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 
-<section>
-  <div class="container">
-    <h2 class="section-title">7. Referencias Útiles</h2>
-
-    
-    <div style="display: grid; gap: 2.5rem;">
-
-
-      <div class="video-card" style="
-        background: var(--surface-light);
-        padding: 1.5rem;
-        border-radius: var(--radius-md);
-        border: 1px solid var(--border-color);
-        box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-      ">
-        <h3 style="color: var(--primary-color); margin-top: 0;">Pero, ¿qué es la transformada de Fourier? Una introducción visual.</h3>
-
-        <div style="
-          position: relative;
-          padding-bottom: 56.25%;
-          height: 0;
-          overflow: hidden;
-          border-radius: var(--radius-md);
-          border: 1px solid var(--border-color);
-        ">
-          <iframe 
-            src="https://www.youtube.com/embed/spUNpyF58BY" 
-            title="Video 1"
-            frameborder="0"
-            allowfullscreen
-            style="
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-            ">
-          </iframe>
-        </div>
-      </div>
-
-
-      <div class="video-card" style="
-        background: var(--surface-light);
-        padding: 1.5rem;
-        border-radius: var(--radius-md);
-        border: 1px solid var(--border-color);
-        box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-      ">
-        <h3 style="color: var(--primary-color); margin-top: 0;">Peter Gilliam - Musical Fourier (#SoME1)</h3>
-
-        <div style="
-          position: relative;
-          padding-bottom: 56.25%;
-          height: 0;
-          overflow: hidden;
-          border-radius: var(--radius-md);
-          border: 1px solid var(--border-color);
-        ">
-          <iframe 
-            src="https://www.youtube.com/embed/Eayo7pZ2g7A" 
-            title="Video 2"
-            frameborder="0"
-            allowfullscreen
-            style="
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-            ">
-          </iframe>
-        </div>
-      </div>
-  </div>
-</section> -->
-
-
-<!-- JS DEL CARRUSEL ESCALABLE -->
-<script>
-function initCarousel(id) {
-  const carousel = document.getElementById(id);
-  const inner = carousel.querySelector(".carousel-inner");
-  const prev = carousel.querySelector(".prev");
-  const next = carousel.querySelector(".next");
-  const indicators = carousel.querySelector(".carousel-indicators");
-  const slides = inner.children;
-
-  let index = 0;
-  const total = slides.length;
-
-  for (let i = 0; i < total; i++) {
-    const dot = document.createElement("div");
-    dot.classList.add("indicator");
-    if (i === 0) dot.classList.add("active");
-    dot.addEventListener("click", () => goTo(i));
-    indicators.appendChild(dot);
-  }
-
-  const dots = indicators.querySelectorAll(".indicator");
-
-  function update() {
-    inner.style.transform = `translateX(${-index * 100}%)`;
-    dots.forEach(d => d.classList.remove("active"));
-    dots[index].classList.add("active");
-  }
-
-  function goTo(i) {
-    index = i;
-    update();
-  }
-
-  prev.addEventListener("click", () => {
-    index = (index === 0) ? total - 1 : index - 1;
-    update();
-  });
-
-  next.addEventListener("click", () => {
-    index = (index + 1) % total;
-    update();
-  });
-}
-
-// Inicializar TODOS los carruseles que existan
-initCarousel("carousel1");
-initCarousel("carousel2");
-initCarousel("carousel3");
-initCarousel("carousel4");
-
-</script>
-
+<footer>© <span data-year>2026</span> · Andrés Vidal Martín Martín · ISDE</footer>
+<script src="../../assets/site.js" defer></script>
 </body>
 </html>

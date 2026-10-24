@@ -1,185 +1,91 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Sitio web de la asignatura Diseño de Entornos Interactivos Multimedia (DEIM). Recursos, apuntes y material de clase.">
-    <title>DEIM | Diseño de Entornos Interactivos Multimedia</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="../assets/back.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DEIM | Desarrollo de Entornos Interactivos Multidispositivo</title>
+<meta name="description" content="Material de DEIM: programación creativa con p5.js, C# y Unity. Apuntes, tareas y recursos.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Cpath d='M16 5l9 5v12l-9 5-9-5V10z' fill='none' stroke='%232aff6b' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/site.css">
 </head>
-
-<body>
-<a class="portal-back" href="../index.html">&larr; Portal</a>
-
-<header class="site-header">
-    <div class="container header-container">
-        <a href="#" class="logo">DEIM<span class="dot">.</span></a>
-
-        <nav class="main-nav" aria-label="Navegación principal">
-            <button class="mobile-menu-toggle" aria-label="Abrir menú" aria-expanded="false">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-
-            <ul class="nav-list">
-                <li><a href="#inicio" class="nav-link active">Inicio</a></li>
-                <li><a href="#temario" class="nav-link">Temario</a></li>
-                <li><a href="#tareas" class="nav-link">Tareas</a></li>
-                <li><a href="#recursos" class="nav-link">Recursos</a></li>
-            </ul>
-        </nav>
-    </div>
+<body class="m-deim">
+<header class="top">
+  <a class="brand" href="index.html">DEIM<span class="dash"> —</span> Entornos interactivos</a>
+  <nav aria-label="Módulo">
+    <a href="#temario">Temario</a>
+    <a href="#tareas">Tareas</a>
+    <a href="#recursos">Recursos</a>
+  </nav>
+  <a class="back" href="../index.html">← Portal</a>
 </header>
 
-<main id="main-content">
+<main>
+  <section class="hero">
+    <p class="kicker">+ Módulo 01 · CFGS Animaciones 3D, Juegos y Entornos Interactivos</p>
+    <h1>Desarrollo de Entornos Interactivos Multidispositivo</h1>
+    <p class="lead">Aprende a programar desde cero aplicándolo a videojuegos, arte interactivo y Unity.</p>
+  </section>
 
-    <!-- HERO -->
-    <section id="inicio" class="hero-section">
-        <div class="container hero-content">
-            <h1 class="hero-title">
-                Diseño de Entornos<br>
-                <span class="highlight">Interactivos Multimedia</span>
-            </h1>
+  <section id="temario" class="sec" aria-labelledby="t-temario">
+    <h2 id="t-temario" class="section-title">Temario</h2>
+    <ul class="list">
+      <li><a class="row" href="lessons/codigo1.html">
+        <span class="num">01</span>
+        <span><strong>Fundamentos de programación en p5.js</strong><small>Variables, condicionales, operadores, bucles y funciones con respuesta visual inmediata.</small></span>
+        <span class="tag">JavaScript</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
+      <li><a class="row" href="lessons/codigo2.html">
+        <span class="num">02</span>
+        <span><strong>Fundamentos de programación en C#</strong><small>Los mismos conceptos con el lenguaje de Unity, antes de saltar al motor.</small></span>
+        <span class="tag">C#</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
+      <li><a class="row" href="lessons/unity1.html">
+        <span class="num">03</span>
+        <span><strong>Fundamentos de Unity</strong><small>Interfaz, GameObjects, componentes y primeros scripts.</small></span>
+        <span class="tag">Unity</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
+    </ul>
+  </section>
 
-            <p class="hero-subtitle">
-                Aprende a programar desde cero aplicándolo a videojuegos, arte interactivo y Unity.
-            </p>
+  <section id="tareas" class="sec" aria-labelledby="t-tareas">
+    <h2 id="t-tareas" class="section-title">Tareas</h2>
+    <ul class="list">
+      <li><a class="row" href="tasks/tarea1.html">
+        <span class="num">T1</span>
+        <span><strong>Práctica en p5.js</strong><small>Un programa propio que use variables, operadores, condicionales, bucles y funciones.</small></span>
+        <span class="tag">p5.js</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
+      <li><a class="row" href="tasks/tarea2.html">
+        <span class="num">T2</span>
+        <span><strong>Explica una mecánica de videojuego</strong><small>Describe un proceso de tu juego favorito con el lenguaje de las funciones.</small></span>
+        <span class="tag">Funciones</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
+    </ul>
+  </section>
 
-            <div class="hero-visual">
-                <div class="shape shape-1"></div>
-                <div class="shape shape-2"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- TEMARIO -->
-    <section id="temario" class="modules-section">
-        <div class="container">
-            <h2 class="section-title">Temario del Curso</h2>
-            <p class="section-description">Guías, apuntes y ejercicios organizados por módulos.</p>
-
-            <div class="modules-grid">
-                
-                <!-- Módulo JS -->
-                <a href="lessons/codigo1.html" class="module-card"
-                   aria-label="Fundamentos de la programación en JavaScript con p5.js">
-                    <h3 class="card-title">Fundamentos de la programación en JS</h3>
-                    <p class="card-text">
-                        Fundamentos de la programación con p5.js para obtener feedback visual inmediato.
-                    </p>
-                </a>
-
-                <!-- Módulo C# -->
-                <a href="lessons/codigo2.html" class="module-card"
-                   aria-label="Fundamentos de la programación en C#">
-                    <h3 class="card-title">Fundamentos de la programación en C#</h3>
-                    <p class="card-text">
-                        Bases de la programación usando C#, ideal para comprender la lógica antes de saltar a motores como Unity.
-                    </p>
-                </a>
-                <!-- Módulo Unity 1 -->
-                <a href="lessons/unity1.html" class="module-card"
-                   aria-label="Fundamentos de Unity">
-                    <h3 class="card-title">Fundamentos de Unity</h3>
-                    <p class="card-text">
-                        Fundamentos para comprender e incorporar Unity a los procesos de nuestros proyectos multimedia.
-                    </p>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- TAREAS -->
-    <section id="tareas" class="modules-section">
-        <div class="container">
-            <h2 class="section-title">Tareas</h2>
-            <p class="section-description">
-                Ejercicios prácticos para aplicar los conceptos vistos en clase.
-            </p>
-
-            <div class="modules-grid">
-
-                <!-- Tarea 1 -->
-                <a href="tasks/tarea1.html" class="module-card"
-                   aria-label="Tarea 1 programación básica en p5.js">
-                    <h3 class="card-title">
-                        Tarea 1 · Básicos de la programación en P5.js
-                    </h3>
-                    <p class="card-text">
-                        Primer ejercicio práctico para trabajar variables, operadores, condicionales, bucles y funciones.
-                    </p>
-                </a>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- RECURSOS -->
-    <section id="recursos" class="resources-section">
-        <div class="container">
-            <h2 class="section-title">Recursos Útiles</h2>
-
-            <ul class="resources-list">
-                <li>
-                    <a href="lessons/repo.html" class="resource-item">
-                        <span class="resource-icon">🔗</span>
-                        <span class="resource-name">Repositorio de códigos (Unity)</span>
-                        <span class="resource-action">Visitar</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="assets/DEIM GUIA EDUCATIVA.pdf" class="resource-item">
-                        <span class="resource-icon">📄</span>
-                        <span class="resource-name">DEIM GUIA EDUCATIVA</span>
-                        <span class="resource-action">Abrir</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="lessons/refes.html" class="resource-item">
-                        <span class="resource-icon">🔗</span>
-                        <span class="resource-name">Referencias generales (IG y TikTok)</span>
-                        <span class="resource-action">Visitar</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </section>
-
+  <section id="recursos" class="sec" aria-labelledby="t-recursos">
+    <h2 id="t-recursos" class="section-title">Recursos</h2>
+    <ul class="list">
+      <li><a class="row" href="guia.html">
+        <span class="num">R1</span>
+        <span><strong>Guía del módulo</strong><small>Contenidos, resultados de aprendizaje, evaluación y recuperación.</small></span>
+        <span class="tag">Presentación</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
+      <li><a class="row" href="lessons/repo.html">
+        <span class="num">R2</span>
+        <span><strong>Repositorio de códigos de Unity</strong><small>Scripts de C# listos para copiar y modificar.</small></span>
+        <span class="tag">C#</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
+      <li><a class="row" href="lessons/refes.html">
+        <span class="num">R3</span>
+        <span><strong>Referencias</strong><small>Reels de creadores de arte interactivo, shaders y videojuegos.</small></span>
+        <span class="tag">Instagram</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
+    </ul>
+  </section>
 </main>
 
-<footer id="contacto" class="site-footer">
-    <div class="container footer-content">
-        <div class="footer-info">
-            <p class="footer-logo">DEIM</p>
-            <p>Clase de Diseño de Entornos Interactivos Multimedia.</p>
-        </div>
-
-        <div class="footer-links">
-            <h4>Enlaces</h4>
-            <ul>
-                <li><a href="mailto:avmmeducacion@gmail.com">Contactar Profesor</a></li>
-                <li><a href="#">Campus Virtual</a></li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="footer-bottom">
-        <p>&copy; 2025 DEIM. Andrés Vidal Martín Martín.</p>
-    </div>
-</footer>
-
-<script src="../assets/menu.js"></script>
-
+<footer>© <span data-year>2026</span> · Andrés Vidal Martín Martín · DEIM · <a href="mailto:avmmeducacion@gmail.com">avmmeducacion@gmail.com</a></footer>
+<script src="../assets/site.js" defer></script>
 </body>
 </html>

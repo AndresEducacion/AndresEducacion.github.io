@@ -217,7 +217,7 @@ async function initGL() {
   /* ---------- Un objeto 3D por módulo ----------
      Cada constructor devuelve { group, update(t) }. */
   const builders = [
-    // 0 · DEIM (Diseño de Entornos Interactivos Multimedia): escena de editor con gizmo y cursor
+    // 0 · DEIM (Desarrollo de Entornos Interactivos Multidispositivo): escena de editor con gizmo y cursor
     () => {
       const g = new THREE.Group(), rig = at(new THREE.Group(), 0, 0.25, 0); g.add(rig);
       const grid = [], S = 1.8;

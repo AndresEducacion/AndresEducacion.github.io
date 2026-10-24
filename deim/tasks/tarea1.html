@@ -1,77 +1,45 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarea 1 · Básicos de la Programación</title>
-
-    <!-- Fuente + estilos globales -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- MISMO CSS QUE LA WEB PRINCIPAL -->
-    <link rel="stylesheet" href="../style.css">
-<link rel="stylesheet" href="../../assets/back.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tarea 1 · Práctica en p5.js | DEIM</title>
+<meta name="description" content="Tarea 1 de DEIM: un programa en p5.js con variables, operadores, condicionales, bucles y funciones.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Cpath d='M16 5l9 5v12l-9 5-9-5V10z' fill='none' stroke='%232aff6b' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/site.css">
 </head>
+<body class="m-deim">
+<header class="top">
+  <a class="brand" href="../index.html">DEIM<span class="dash"> —</span> Entornos interactivos</a>
+  <nav aria-label="Módulo">
+    <a href="../index.html#temario">Temario</a>
+    <a href="../index.html#tareas">Tareas</a>
+    <a href="../index.html#recursos">Recursos</a>
+  </nav>
+  <a class="back" href="../../index.html">← Portal</a>
+</header>
 
-<body>
-<a class="portal-back" href="../../index.html">&larr; Portal</a>
+<main>
+  <section class="hero small">
+    <p class="kicker"><a href="../index.html">DEIM</a> / Tarea 1</p>
+    <h1>Práctica en p5.js</h1>
+    <p class="lead">Un programa propio que use variables, operadores, condicionales, bucles y funciones. En la presentación tienes el enunciado, lo que se pide para cada nota y un ejemplo.</p>
+  </section>
 
-    <!-- Header sencillo -->
-    <header class="site-header">
-        <div class="container header-container">
-            <a href="../index.html" class="logo">DEIM<span class="dot">.</span></a>
-        </div>
-    </header>
+  <section class="sec doc" aria-label="Enunciado">
+    <div class="deck" data-src="../slides/tarea1.json"></div>
+    <div class="actions">
+      <a class="btn" href="https://editor.p5js.org/AndresEducacion/sketches/qNR23NmQe" target="_blank" rel="noopener">Abrir el ejemplo en p5.js ↗</a>
+      <a class="btn" href="../lessons/codigo1.html">Repasar la lección de p5.js</a>
+    </div>
+  </section>
 
-    <main>
+  <nav class="pager" aria-label="Tareas">
+    <a class="next" href="tarea2.html">Siguiente<strong>Tarea 2 · Mecánica de videojuego →</strong></a>
+  </nav>
+</main>
 
-        <section class="modules-section">
-            <div class="container">
-
-                <h1 class="section-title">
-                    Tarea 1 · Básicos de la programación en p5.js
-                </h1>
-
-                <p class="section-description">
-                    Ejercicio práctico para trabajar variables, operadores, condicionales,
-                    bucles y funciones aplicados a programación creativa.
-                </p>
-
-                <!-- Contenedor del PDF -->
-                <div class="pdf-container">
-
-                    <iframe 
-                        src="../assets/tareas/Tarea1.pdf"
-                        title="Tarea 1 PDF"
-                        loading="lazy">
-                    </iframe>
-
-                </div>
-
-                <!-- Botón descarga -->
-                 <div class="pdf-actions">
-                    <a 
-                        href="../assets/tareas/Tarea1.pdf"
-                        class="btn btn-primary"
-                        download>
-                        Descargar PDF
-                    </a>
-
-                    <a 
-                        href="../assets/tareas/Tarea1.pdf"
-                        class="btn btn-secondary"
-                        target="_blank"
-                        rel="noopener">
-                        Ver en pantalla completa
-                    </a>
-                </div>
-
-            </div>
-        </section>
-
-    </main>
-
+<footer>© <span data-year>2026</span> · Andrés Vidal Martín Martín · DEIM</footer>
+<script src="../../assets/site.js" defer></script>
 </body>
 </html>

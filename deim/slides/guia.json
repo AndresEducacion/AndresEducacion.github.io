@@ -1,0 +1,241 @@
+{
+  "title": "DEIM · Guía del módulo",
+  "slides": [
+    {
+      "type": "cover",
+      "k": "DEIM · Guía del módulo",
+      "title": "Desarrollo de Entornos Interactivos Multidispositivo",
+      "text": "CFGS Animaciones 3D, Juegos y Entornos Interactivos · Profesor: Andrés Vidal Martín Martín"
+    },
+    {
+      "k": "01 · Qué vamos a ver",
+      "title": "Contenidos",
+      "items": [
+        "Diseño y desarrollo de **proyectos multimedia interactivos**.",
+        "Creación para **múltiples dispositivos**: web, móvil, apps y videojuegos.",
+        "Narrativa, estética y **experiencia de usuario** (UX).",
+        "Las fases reales de un proyecto: **idea → prototipo → test → publicación**."
+      ]
+    },
+    {
+      "k": "02 · Organización",
+      "title": "Carga lectiva",
+      "stats": [
+        { "v": "165 h", "l": "en total" },
+        { "v": "2", "l": "trimestres" },
+        { "v": "7 h", "l": "por semana" }
+      ],
+      "note": "Cada semana: dos sesiones de 2 horas y una sesión de 3 horas."
+    },
+    {
+      "k": "03 · Marco legal",
+      "title": "Normativa que regula el módulo",
+      "items": [
+        "**RD 1583/2011**: título y enseñanzas mínimas del CFGS.",
+        "**Decreto 54/2013**: plan de estudios.",
+        "**Resolución de FP 2025–2026**: organización de los grados D y E."
+      ]
+    },
+    {
+      "k": "04 · Para qué sirve",
+      "title": "Objetivos del módulo",
+      "cols": 2,
+      "items": [
+        "Seleccionar y adaptar recursos multimedia para proyectos interactivos.",
+        "Planificar proyectos multidispositivo con criterios técnicos y profesionales.",
+        "Integrar gráficos, animación, audio e interactividad de forma coherente.",
+        "Publicar prototipos con normas de calidad y accesibilidad.",
+        "Mantenerse al día en tecnología.",
+        "Desarrollar creatividad, iniciativa e innovación.",
+        "Tomar decisiones fundamentadas en proyectos reales.",
+        "Trabajar y comunicarse eficazmente en equipo.",
+        "Aplicar medidas de seguridad, ergonomía y sostenibilidad."
+      ]
+    },
+    {
+      "k": "05 · Qué sabrás hacer",
+      "title": "Competencias",
+      "groups": [
+        {
+          "h": "Profesionales",
+          "items": [
+            "Elegir modelos, texturas y recursos para cada proyecto.",
+            "Planificar arquitectura, fases y necesidades técnicas.",
+            "Integrar animación, gráficos, sonido e interacción.",
+            "Evaluar calidad, rendimiento y publicación.",
+            "Diseñar con accesibilidad universal."
+          ]
+        },
+        {
+          "h": "Personales y sociales",
+          "items": [
+            "Aprender de forma continua.",
+            "Decidir asumiendo riesgos razonados.",
+            "Potenciar la creatividad.",
+            "Liderar y comunicar en grupo.",
+            "Prevenir riesgos y actuar con sostenibilidad."
+          ]
+        }
+      ]
+    },
+    {
+      "k": "06 · Evaluación",
+      "title": "Resultados de aprendizaje",
+      "head": ["RA", "Qué demuestras", "Peso"],
+      "rows": [
+        ["RA1", "Generas aplicaciones multimedia interactivas hasta su compilación final.", "25 %"],
+        ["RA2", "Implementas proyectos multidispositivo según las especificaciones de cada dispositivo.", "25 %"],
+        ["RA3", "Desarrollas aplicaciones interactivas con elementos 3D y varios usuarios a la vez.", "20 %"],
+        ["RA4", "Comunicas el proyecto con dispositivos físicos externos como fuente de datos.", "20 %"],
+        ["RA5", "Pruebas y verificas las aplicaciones con diseño para todos y en varias plataformas.", "10 %"]
+      ]
+    },
+    {
+      "k": "RA1 · 25 %",
+      "title": "Generar la aplicación",
+      "ordered": true,
+      "cols": 2,
+      "items": [
+        "Analizar las necesidades del proyecto.",
+        "Elegir herramientas y lenguajes.",
+        "Diseñar la estructura general.",
+        "Identificar recursos y fuentes.",
+        "Integrar imágenes, sonido e interacción.",
+        "Exportar o compilar la aplicación final.",
+        "Documentar el proceso y justificar decisiones."
+      ],
+      "note": "Si el proyecto no está documentado, no exporta o no funciona, **no superas el RA1**."
+    },
+    {
+      "k": "RA2 · 25 %",
+      "title": "Varios dispositivos",
+      "ordered": true,
+      "items": [
+        "Analizar las características técnicas de cada dispositivo (PC, móvil, tablet…).",
+        "Adaptar la interfaz a distintas resoluciones y formatos.",
+        "Optimizar recursos para evitar errores de compatibilidad.",
+        "Configurar la publicación en cada plataforma.",
+        "Comprobar el funcionamiento real en cada dispositivo.",
+        "Evaluar accesibilidad y usabilidad."
+      ],
+      "note": "Necesitas al menos un proyecto documentado en una plataforma distinta de PC para **superar el RA2**."
+    },
+    {
+      "k": "RA3 · 20 %",
+      "title": "Interactividad",
+      "ordered": true,
+      "items": [
+        "Identificar las acciones del usuario.",
+        "Programar eventos: clic, teclado, movimiento…",
+        "Aplicar interactividad a elementos animados o 3D.",
+        "Probar las interacciones en tiempo real."
+      ],
+      "note": "Si no hay interactividad real o no se puede usar, **no superas el RA3**."
+    },
+    {
+      "k": "RA4 · 20 %",
+      "title": "Dispositivos externos",
+      "ordered": true,
+      "items": [
+        "Identificar los dispositivos externos: sensores, controladores…",
+        "Configurar la comunicación: entradas, salidas y protocolos.",
+        "Integrar en la aplicación los datos recibidos.",
+        "Comprobar que la comunicación es estable y sincronizada.",
+        "Documentar el proceso y las pruebas."
+      ],
+      "note": "Si el proyecto no recibe datos reales o simulados de un dispositivo, **no superas el RA4**."
+    },
+    {
+      "k": "RA5 · 10 %",
+      "title": "Pruebas y calidad",
+      "ordered": true,
+      "items": [
+        "Definir los escenarios de prueba.",
+        "Aplicar controles de calidad.",
+        "Detectar y corregir errores.",
+        "Comprobar accesibilidad y diseño inclusivo.",
+        "Documentar todo el proceso de pruebas."
+      ],
+      "note": "Sin pruebas documentadas, o con fallos críticos sin corregir, **no superas el RA5**."
+    },
+    {
+      "k": "07 · Lo imprescindible",
+      "title": "Mínimos para aprobar",
+      "text": "Tu proyecto:",
+      "items": [
+        "**Funciona.**",
+        "**Se adapta** a varios dispositivos.",
+        "Tiene **interactividad real**.",
+        "Usa un **dispositivo externo** (real o simulado).",
+        "Ha sido **probado y corregido**."
+      ]
+    },
+    {
+      "k": "08 · Asistencia",
+      "title": "Pérdida de la evaluación continua",
+      "items": [
+        "Superar el **15 % de faltas injustificadas** del total del ciclo.",
+        "Faltar **15 días seguidos** sin justificar."
+      ]
+    },
+    {
+      "k": "09 · Cómo se evalúa",
+      "title": "Instrumentos de evaluación",
+      "head": ["Instrumento", "Condición"],
+      "rows": [
+        ["Exámenes teórico-prácticos", "Mínimo 5/10. Una nota inferior a 5 no se redondea."],
+        ["Prácticas y ejercicios", "Mínimo 5/10 en cada práctica. Fuera de plazo = 0."],
+        ["Trabajos individuales", "Solo se califican si cumplen forma, fecha y medio de entrega."],
+        ["Trabajos en grupo", "Se evalúa el resultado y el trabajo en equipo."],
+        ["Actitud", "Puntualidad, participación, interés, respeto y responsabilidad."],
+        ["Actividades complementarias", "Asistencia obligatoria."]
+      ]
+    },
+    {
+      "k": "10 · Nota final",
+      "title": "Criterios de calificación",
+      "stats": [
+        { "v": "40 %", "l": "exámenes" },
+        { "v": "50 %", "l": "trabajos y prácticas" },
+        { "v": "10 %", "l": "actitud" }
+      ],
+      "note": "Los porcentajes solo se aplican si tienes **al menos un 5 en exámenes y un 5 en trabajos**, por separado."
+    },
+    {
+      "k": "11 · Si suspendes",
+      "title": "Recuperación",
+      "groups": [
+        {
+          "h": "Evaluación ordinaria",
+          "items": [
+            "Examen teórico-práctico completo.",
+            "Entrega de todas las prácticas.",
+            "Mínimo 5 en cada parte.",
+            "Si una parte no llega a 5, la nota máxima es 4."
+          ]
+        },
+        {
+          "h": "Evaluación extraordinaria (junio)",
+          "items": [
+            "Examen final con todos los contenidos.",
+            "Prácticas pendientes en una nueva fecha.",
+            "Mínimo 5/10 en teoría y en práctica.",
+            "Un 4,9 no se redondea."
+          ]
+        }
+      ]
+    },
+    {
+      "type": "big",
+      "k": "Resumen",
+      "title": "Para aprobar necesitas",
+      "items": [
+        "Mínimo **5 en exámenes** y **5 en trabajos y prácticas**.",
+        "Entregar **todos los trabajos en fecha**.",
+        "Cumplir la **asistencia**.",
+        "Actitud adecuada: respeto, puntualidad y participación.",
+        "Superar **todos los RA**."
+      ]
+    }
+  ]
+}

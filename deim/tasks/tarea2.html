@@ -1,113 +1,102 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarea 2 · Explicar una mecánica de un videojuego con el lenguaje aprendido</title>
-
-    <!-- Fuente + estilos globales -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- MISMO CSS QUE LA WEB PRINCIPAL -->
-    <link rel="stylesheet" href="../style.css">
-<link rel="stylesheet" href="../../assets/back.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tarea 2 · Explica una mecánica de videojuego | DEIM</title>
+<meta name="description" content="Tarea 2 de DEIM: explicar un proceso de un videojuego con el lenguaje de las funciones.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Cpath d='M16 5l9 5v12l-9 5-9-5V10z' fill='none' stroke='%232aff6b' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/site.css">
 </head>
+<body class="m-deim">
+<header class="top">
+  <a class="brand" href="../index.html">DEIM<span class="dash"> —</span> Entornos interactivos</a>
+  <nav aria-label="Módulo">
+    <a href="../index.html#temario">Temario</a>
+    <a href="../index.html#tareas">Tareas</a>
+    <a href="../index.html#recursos">Recursos</a>
+  </nav>
+  <a class="back" href="../../index.html">← Portal</a>
+</header>
 
-<body>
-<a class="portal-back" href="../../index.html">&larr; Portal</a>
+<main>
+  <section class="hero small">
+    <p class="kicker"><a href="../index.html">DEIM</a> / Tarea 2</p>
+    <h1>Explica una mecánica de videojuego</h1>
+    <p class="lead">Piensa en tu videojuego favorito y explica uno de sus procesos con el lenguaje de las funciones.</p>
+  </section>
 
-    <!-- Header sencillo -->
-    <header class="site-header">
-        <div class="container header-container">
-            <a href="../index.html" class="logo">DEIM<span class="dot">.</span></a>
-        </div>
-    </header>
+  <section class="sec doc" id="enunciado">
+    <h2 class="section-title">Qué tienes que hacer</h2>
+    <ol>
+      <li><strong>Define la lista de instrucciones</strong> que componen el proceso que has escogido. Esa será tu receta.</li>
+      <li><strong>Define qué variables intervienen.</strong> Esos serán tus ingredientes.</li>
+      <li><strong>Plantea una idea de código</strong> en la que declares las funciones que necesitan las acciones de tu proceso. Es como crear tus propios utensilios para cocinar los ingredientes a tu gusto y conseguir el objetivo de la receta.</li>
+    </ol>
+    <p class="note"><strong>No hace falta que funcione:</strong> es pseudocódigo. Lo importante es que la lógica sea clara y que uses bien variables, condicionales y funciones. Repasa la <a href="../lessons/codigo2.html#funciones">lección de funciones</a>.</p>
+  </section>
 
-    <main>
+  <section class="sec doc" id="ejemplo">
+    <h2 class="section-title">Ejemplo resuelto · Portal 2</h2>
+    <div class="grid">
+      <div><h4>Videojuego</h4><p>Portal 2</p></div>
+      <div><h4>Caso escogido</h4><p>El sistema de portales</p></div>
+    </div>
+    <h3>1 · Desglose del proceso</h3>
+    <ol>
+      <li>Se abre un portal azul.</li>
+      <li>Se abre un portal naranja.</li>
+      <li>Los portales solo se pueden poner en superficies blancas.</li>
+      <li>Todo lo que entra por el portal azul sale por el naranja, y al revés.</li>
+      <li>Todo lo que entra conserva su inercia (su velocidad).</li>
+    </ol>
+    <h3>2 · Variables</h3>
+    <p><code>portalAzul</code>, <code>portalNaranja</code>, <code>objeto</code>, <code>velocidadObjeto</code>, <code>superficieBlanca</code>.</p>
+    <h3>3 · Planteamiento de código</h3>
+<pre><code class="language-csharp">// Función que se encarga de abrir portales
+void AbrirPortal(bool superficieBlanca)
+{
+    if (superficieBlanca)                 // solo en superficies blancas
+    {
+        // haz un portal en esa pared del color actual
+        if (portalAzulAbierto)
+        {
+            // cambia al portal naranja
+        }
+        else
+        {
+            // cambia al portal azul
+        }
+    }
+}
 
-        <section class="modules-section">
-            <div class="container">
+// Función que se encarga del funcionamiento de los portales
+void Portal(Vector3 posicionObjeto, Vector3 velocidadObjeto)
+{
+    if (/* el objeto cruza el portal azul */)
+    {
+        // desaparece ese objeto y aparece uno idéntico en la posición del portal naranja
+        // su velocidad de salida es igual a velocidadObjeto, para que mantenga la inercia
+    }
+    else if (/* el objeto cruza el portal naranja */)
+    {
+        // desaparece ese objeto y aparece uno idéntico en la posición del portal azul
+        // su velocidad de salida es igual a velocidadObjeto, para que mantenga la inercia
+    }
+}</code></pre>
+    <p class="note"><strong>Fíjate:</strong> para comprobar un booleano basta con <code>if (superficieBlanca)</code>. Si escribes <code>if (superficieBlanca = true)</code>, con un solo <code>=</code>, estás asignando, no comparando.</p>
+    <h3>Cómo funcionan de verdad los portales de Portal 2</h3>
+    <div class="embed"><iframe src="https://www.youtube-nocookie.com/embed/_SmPR5mvH7w" title="Explicación del funcionamiento de los portales en Portal 2" loading="lazy" allowfullscreen></iframe></div>
+  </section>
 
-                <h1 class="section-title">
-                    Tarea 2 · Explicar una mecánica de un videojuego con el lenguaje aprendido
-                </h1>
+  <nav class="pager" aria-label="Tareas">
+    <a href="tarea1.html">Anterior<strong>← Tarea 1 · Práctica en p5.js</strong></a>
+  </nav>
+</main>
 
-                <p class="section-description">
-                    Ejercicio práctico para trabajar variables, operadores, condicionales,
-                    bucles y funciones aplicados a un contexto conocido.
-                </p>
-
-                <!-- Contenedor del PDF -->
-                <div class="pdf-container">
-
-                    <iframe 
-                        src="../assets/tareas/Tarea1.pdf"
-                        title="Tarea 1 PDF"
-                        loading="lazy">
-                    </iframe>
-
-                </div>
-
-                <!-- Botón descarga -->
-                 <div class="pdf-actions">
-                    <a 
-                        href="../assets/tareas/Tarea2.pdf"
-                        class="btn btn-primary"
-                        download>
-                        Descargar PDF
-                    </a>
-
-                    <a 
-                        href="../assets/tareas/Tarea1.pdf"
-                        class="btn btn-secondary"
-                        target="_blank"
-                        rel="noopener">
-                        Ver en pantalla completa
-                    </a>
-                </div>
-
-                <div style="
-                margin-top: 2.5rem;
-                background: var(--surface-light);
-                padding: 1.5rem;
-                border-radius: var(--radius-md);
-                border: 1px solid var(--border-color);
-                box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-                ">
-
-                <h3 style="color: var(--primary-color); margin-top: 0;">
-                    Explicación del funcionamiento de los portales en Portal 2
-                </h3>
-
-                <div style="
-                    position: relative;
-                    padding-bottom: 56.25%; 
-                    height: 0;
-                    overflow: hidden;
-                    border-radius: var(--radius-md);
-                    border: 1px solid var(--border-color);
-                ">
-                    <iframe 
-                    src="https://www.youtube.com/embed/_SmPR5mvH7w" 
-                    title="Video explicativo"
-                    frameborder="0"
-                    allowfullscreen
-                    style="
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                    ">
-                    </iframe>
-                </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
+<footer>© <span data-year>2026</span> · Andrés Vidal Martín Martín · DEIM</footer>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-csharp.min.js" defer></script>
+<script src="../../assets/site.js" defer></script>
 </body>
 </html>

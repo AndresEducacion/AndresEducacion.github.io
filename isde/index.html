@@ -1,120 +1,64 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Sitio web de la asignatura Instalaciones de Sonorización de Eventos (ISDE). Recursos, apuntes y material de clase.">
-    <title>ISDE | Instalaciones de Sonorización de Eventos</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="../assets/back.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ISDE | Instalaciones de Sonorización de Eventos</title>
+<meta name="description" content="Material de ISDE: acústica, equipos de sonido en directo, mesa de mezclas y procesado de señal.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Cpath d='M16 5l9 5v12l-9 5-9-5V10z' fill='none' stroke='%233ec5ff' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/site.css">
 </head>
+<body class="m-isde">
+<header class="top">
+  <a class="brand" href="index.html">ISDE<span class="dash"> —</span> Sonorización de eventos</a>
+  <nav aria-label="Módulo">
+    <a href="#temario">Temario</a>
+    <a href="#recursos">Recursos</a>
+  </nav>
+  <a class="back" href="../index.html">← Portal</a>
+</header>
 
-<body>
-<a class="portal-back" href="../index.html">&larr; Portal</a>
+<main>
+  <section class="hero">
+    <p class="kicker">+ Módulo 02 · Grado Medio en Vídeo Disc-Jockey y Sonido</p>
+    <h1>Instalaciones de Sonorización de Eventos</h1>
+    <p class="lead">Aprende a planificar, montar y operar sistemas de sonido para eventos en directo.</p>
+  </section>
 
-    <header class="site-header">
-        <div class="container header-container">
-            <a href="#" class="logo">ISDE<span class="dot">.</span></a>
-            <nav class="main-nav" aria-label="Navegación principal">
-                <button class="mobile-menu-toggle" aria-label="Abrir menú" aria-expanded="false">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </button>
-                <ul class="nav-list">
-                    <li><a href="#inicio" class="nav-link active">Inicio</a></li>
-                    <li><a href="#temario" class="nav-link">Temario</a></li>
-                    <li><a href="#recursos" class="nav-link">Recursos</a></li>
-                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+  <section id="temario" class="sec" aria-labelledby="t-temario">
+    <h2 id="t-temario" class="section-title">Temario</h2>
+    <ul class="list">
+      <li><a class="row" href="lessons/sonido1.html">
+        <span class="num">01</span>
+        <span><strong>Fundamentos de acústica</strong><small>Elementos de sonorización, propiedades del sonido, decibelios, reverberación y ambiente.</small></span>
+        <span class="tag">Acústica</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
+      <li><a class="row" href="lessons/sonido2.html">
+        <span class="num">02</span>
+        <span><strong>Preamp, EQ, compresor y puerta de ruido</strong><small>Lo básico para controlar cada canal de la mesa Behringer X32 Compact.</small></span>
+        <span class="tag">Mesa</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
+    </ul>
+  </section>
 
-    <main id="main-content">
-        <section id="inicio" class="hero-section">
-            <div class="container hero-content">
-                <h1 class="hero-title">Instalaciones de <br><span class="highlight">Sonorización de Eventos</span>
-                </h1>
-                <p class="hero-subtitle">Aprende a planificar, montar y operar con sistemas de sonido para eventos en vivo.</p>
-                <div class="hero-buttons">
-                    <a href="#temario" class="btn btn-primary">Ver Temario</a>
-                    <a href="#recursos" class="btn btn-secondary">Recursos</a>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="shape shape-1"></div>
-                <div class="shape shape-2"></div>
-            </div>
-        </section>
+  <section id="recursos" class="sec" aria-labelledby="t-recursos">
+    <h2 id="t-recursos" class="section-title">Recursos</h2>
+    <ul class="list">
+      <li><a class="row" href="guia.html">
+        <span class="num">R1</span>
+        <span><strong>Guía del módulo</strong><small>Contenidos, resultados de aprendizaje, evaluación y recuperación.</small></span>
+        <span class="tag">Presentación</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
+      <li><a class="row" href="lessons/referencias.html">
+        <span class="num">R2</span>
+        <span><strong>Referencias</strong><small>Reels de artistas y técnicos de sonido en directo.</small></span>
+        <span class="tag">Instagram</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
+    </ul>
+  </section>
+</main>
 
-        <section id="temario" class="modules-section">
-            <div class="container">
-                <h2 class="section-title">Temario del Curso</h2>
-                <p class="section-description">Guías, apuntes y ejercicios.</p>
-
-                <div class="modules-grid">
-
-                    <!-- Módulo 0 -->
-                    <article class="module-card">
-                        <h3 class="card-title">Fundamentos del sonido y la acústica</h3>
-                        <p class="card-text">Principios esenciales del sonido, propagación, frecuencia, fase y conceptos clave para comprender la sonorización profesional.</p>
-                        <a href="lessons/sonido1.html" class="card-link">Ver materiales &rarr;</a>
-                    </article>
-
-                    <!-- Módulo 1 -->
-                    <article class="module-card">
-                        <h3 class="card-title">Preamp, EQ, Compresor y Noise Gate</h3>
-                        <p class="card-text">Básicos para controlar la mesa X32 Kompact</p>
-                        <a href="lessons/sonido2.html" class="card-link">Ver materiales &rarr;</a>
-                    </article>
-
-                </div>
-            </div>
-        </section>
-
-        <section id="recursos" class="resources-section">
-            <div class="container">
-                <h2 class="section-title">Recursos Útiles</h2>
-                <ul class="resources-list">
-                    <li>
-                        <a href="assets/ISDE GUIA EDUCATIVA.pdf" class="resource-item">
-                            <span class="resource-icon">📄</span>
-                            <span class="resource-name">Guía educativa ISDE</span>
-                            <span class="resource-action">Descargar</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="lessons/referencias.html" class="resource-item">
-                            <span class="resource-icon">🔗</span>
-                            <span class="resource-name">Enlaces y referencias de sonido profesional</span>
-                            <span class="resource-action">Visitar</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </section>
-    </main>
-
-    <footer id="contacto" class="site-footer">
-        <div class="container footer-content">
-            <div class="footer-info">
-                <p class="footer-logo">ISDE</p>
-                <p>avmm75@educa.madrid.org</p>
-                <p>Asignatura de Instalaciones de Sonorización de Eventos.</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Andrés Vidal Martín Martín.</p>
-        </div>
-    </footer>
-
-    <script src="../assets/menu.js"></script>
+<footer>© <span data-year>2026</span> · Andrés Vidal Martín Martín · ISDE · <a href="mailto:avmmeducacion@gmail.com">avmmeducacion@gmail.com</a></footer>
+<script src="../assets/site.js" defer></script>
 </body>
-
 </html>

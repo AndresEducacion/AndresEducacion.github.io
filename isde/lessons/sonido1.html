@@ -1,415 +1,154 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fundamentos de Acústica</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --primary-color: #3B82F6;
-      --accent-color: #0EA5E9;
-
-      --bg-color: #0B1120;
-      --surface-color: #151F32;
-      --surface-light: #1d2942;
-
-      --text-main: #F8FAFC;
-      --text-muted: #94A3B8;
-
-      --border-color: #27354d;
-
-      --radius-md: 0.5rem;
-      --radius-lg: 0.75rem;
-
-      --container-width: 1100px;
-    }
-
-    body {
-      background: var(--bg-color);
-      color: var(--text-main);
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      line-height: 1.8;
-      font-size: 1.15rem;
-    }
-
-    .container {
-      max-width: var(--container-width);
-      margin: auto;
-      padding: 0 1.5rem;
-    }
-
-    /* HERO */
-    .hero {
-      padding: 8rem 0 7rem;
-      text-align: center;
-      background: radial-gradient(circle at center, #1a2438 0%, #0B1120 100%);
-    }
-
-    .hero h1 {
-      font-size: 3.4rem;
-      font-weight: 700;
-      margin-bottom: 1.2rem;
-    }
-
-    .hero p {
-      font-size: 1.35rem;
-      color: var(--text-muted);
-      max-width: 700px;
-      margin: auto;
-    }
-
-    section {
-      padding: 6rem 0;
-    }
-
-    h2.section-title {
-      font-size: 2.6rem;
-      text-align: center;
-      margin-bottom: 3rem;
-      font-weight: 700;
-    }
-
-    .card {
-      background: var(--surface-color);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 3rem 2.5rem;
-      margin-bottom: 4.5rem;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.25);
-      font-size: 1.15rem;
-    }
-
-    .card h3 {
-      margin-top: 2.5rem;
-      color: var(--primary-color);
-      font-size: 1.55rem;
-    }
-
-    .card img {
-      width: 100%;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-color);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-      margin-top: 1.5rem;
-    }
-
-
-    /* ---------- CARRUSEL ESCALABLE ---------- */
-
-    .carousel {
-      position: relative;
-      width: 100%;
-      height: 600px;
-      overflow: hidden;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-color);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-    }
-
-    .carousel-inner {
-      display: flex;
-      height: 100%;
-      transition: transform 0.6s ease-in-out;
-    }
-
-    .carousel-inner img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      flex-shrink: 0;
-      background: #000;
-    }
-
-    /* Botones laterales */
-    .carousel-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,0.4);
-      border: none;
-      color: white;
-      padding: 0.8rem 1rem;
-      font-size: 1.8rem;
-      cursor: pointer;
-      border-radius: 50%;
-      transition: background .25s;
-      z-index: 10;
-    }
-
-    .carousel-btn:hover {
-      background: rgba(0,0,0,0.7);
-    }
-
-    .prev { left: 10px; }
-    .next { right: 10px; }
-
-    /* Indicadores */
-    .carousel-indicators {
-      position: absolute;
-      bottom: 15px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 8px;
-    }
-
-    .indicator {
-      width: 12px;
-      height: 12px;
-      background: var(--text-muted);
-      border-radius: 50%;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .indicator.active {
-      background: var(--primary-color);
-      transform: scale(1.2);
-    }
-  </style>
-<link rel="stylesheet" href="../../assets/back.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fundamentos de acústica | ISDE</title>
+<meta name="description" content="Elementos de sonorización, fundamentos físicos del sonido, decibelios, reverberación y efecto de la temperatura y la humedad.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Cpath d='M16 5l9 5v12l-9 5-9-5V10z' fill='none' stroke='%233ec5ff' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/site.css">
 </head>
+<body class="m-isde">
+<header class="top">
+  <a class="brand" href="../index.html">ISDE<span class="dash"> —</span> Sonorización de eventos</a>
+  <nav aria-label="Módulo">
+    <a href="../index.html#temario">Temario</a>
+    <a href="../index.html#recursos">Recursos</a>
+  </nav>
+  <a class="back" href="../../index.html">← Portal</a>
+</header>
 
-<body>
-<a class="portal-back" href="../../index.html">&larr; Portal</a>
+<main>
+  <section class="hero small">
+    <p class="kicker"><a href="../index.html">ISDE</a> / Lección 01</p>
+    <h1>Fundamentos de acústica</h1>
+    <p class="lead">Elementos de un sistema de sonido, fundamentos físicos del sonido y conceptos esenciales para sonorizar un evento.</p>
+  </section>
 
-<!-- HERO -->
-<section class="hero">
-  <h1>Fundamentos de Acústica</h1>
-  <p>Elementos de sonorización, fundamentos físicos del sonido y conceptos esenciales.</p>
-</section>
-
-<!-- 1. ELEMENTOS DE SONORIZACIÓN -->
-<section>
-  <div class="container">
-    <h2 class="section-title">1. Identificación de elementos de sonorización</h2>
-
-    <div class="card">
-
-    <img src="../assets/sonido/sonido1.png" alt="">
-      <!-- CARRUSEL ESCALABLE -->
-      <div class="carousel" id="carousel1">
-
-        <button class="carousel-btn prev">&#10094;</button>
-        <button class="carousel-btn next">&#10095;</button>
-
-        <div class="carousel-inner">
-          <!-- Solo cambia esta lista, puedes agregar tantas imágenes como quieras -->
-          <img src="../assets/minimos/1.jpg" alt="">
-          <img src="../assets/minimos/2.jpg" alt="">
-          <img src="../assets/minimos/3.jpg" alt="">
-        </div>
-
-        <div class="carousel-indicators"></div>
-      </div>
-
+  <section class="sec doc" id="elementos">
+    <h2 class="section-title">01 · Elementos de sonorización</h2>
+    <p class="def">Un sistema de sonorización está formado por dispositivos que permiten captar, procesar, amplificar y reproducir el sonido.</p>
+    <div class="table"><table>
+      <thead><tr><th>Elemento</th><th>Qué hace</th></tr></thead>
+      <tbody>
+        <tr><td>Previos (preamplificadores)</td><td>Elevan la señal de entrada hasta un nivel suficiente para que el resto del sistema pueda trabajar con ella.</td></tr>
+        <tr><td>Procesadores de señal</td><td>Modifican la señal: ecualizadores, compresores, limitadores, puertas de ruido y efectos (reverb, delay…).</td></tr>
+        <tr><td>Micrófonos</td><td>Convierten el sonido en electricidad mediante la vibración de una membrana. Pueden ser dinámicos, de condensador o de cinta, y tener distintos patrones polares.</td></tr>
+        <tr><td>Altavoces</td><td>Convierten la señal eléctrica en sonido: PA, monitores, subgraves, line arrays…</td></tr>
+        <tr><td>Amplificadores</td><td>Aumentan la potencia de la señal para mover los altavoces.</td></tr>
+        <tr><td>Cableado</td><td>Conductores aislados y protegidos por una funda. Hay cables balanceados y no balanceados, y conectores analógicos y digitales: XLR, TRS (jack), RCA, Speakon…</td></tr>
+      </tbody>
+    </table></div>
+    <figure>
+      <img src="../assets/minimos/3.jpg" alt="Esquema de un montaje en directo: batería, guitarras y teclado entran por cajas de inyección y micrófonos a la mesa, que envía a la etapa de potencia, a los altavoces PA y a los monitores" loading="lazy" width="667" height="450">
+      <figcaption>Ejemplo de montaje en directo: de los instrumentos a la mesa y de la mesa a PA y monitores.</figcaption>
+    </figure>
+    <div class="grid">
+      <figure>
+        <img src="../assets/minimos/1.jpg" alt="Tipos de cables y conectores de audio: S/PDIF, XLR, Speakon, TS, TRS, RCA, MIDI, USB, FireWire y ADAT" loading="lazy" width="736" height="1351">
+        <figcaption>Tipos de conectores de audio. Imagen: Producer Hive.</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/minimos/2.jpg" alt="Conexiones de una interfaz de audio: micrófono y guitarra a las entradas, monitores y auriculares a las salidas, ordenador por USB" loading="lazy" width="480" height="480">
+        <figcaption>Conexiones de una interfaz de audio.</figcaption>
+      </figure>
     </div>
-  </div>
-</section>
+  </section>
 
-
-<!-- 2. FUNDAMENTOS FÍSICOS -->
-<section>
-  <div class="container">
-    <h2 class="section-title">2. Fundamentos físicos del sonido</h2>
-    <div class="card">
-      <img src="../assets/sonido/sonido2.png" alt="">
-        <div class="carousel" id="carousel2">
-
-        <button class="carousel-btn prev">&#10094;</button>
-        <button class="carousel-btn next">&#10095;</button>
-
-        <div class="carousel-inner">
-          <!-- Solo cambia esta lista, puedes agregar tantas imágenes como quieras -->
-          <img src="../assets/minimos/5.png" alt="">
-          <img src="../assets/minimos/8.webp" alt="">
-          <img src="../assets/minimos/12.webp" alt="">
-        </div>
-
-        <div class="carousel-indicators"></div>
-      </div>
+  <section class="sec doc" id="fisica">
+    <h2 class="section-title">02 · Fundamentos físicos del sonido</h2>
+    <div class="table"><table>
+      <thead><tr><th>Concepto</th><th>Qué es</th></tr></thead>
+      <tbody>
+        <tr><td>Frecuencia</td><td>Número de ciclos por segundo de una onda. Se mide en hercios (Hz) y la percibimos como tono: grave o agudo.</td></tr>
+        <tr><td>Longitud de onda</td><td>Distancia entre dos puntos equivalentes de la onda. A mayor frecuencia, menor longitud de onda.</td></tr>
+        <tr><td>Fase</td><td>Momento del ciclo en el que se encuentra una onda. Dos ondas en fase se suman; en contrafase se cancelan, total o parcialmente.</td></tr>
+        <tr><td>Velocidad del sonido</td><td>Unos 343 m/s en el aire a 20 °C. Varía con la temperatura y con el medio.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="grid">
+      <figure>
+        <img src="../assets/minimos/5.png" alt="Onda sinusoidal con su amplitud y su longitud de onda, del inicio al final de un ciclo" loading="lazy" width="750" height="350">
+        <figcaption>Amplitud y longitud de onda. Imagen: BYJU'S.</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/minimos/8.webp" alt="Dos ondas sinusoidales desplazadas en el tiempo, con la diferencia de fase marcada" loading="lazy" width="500" height="293">
+        <figcaption>Diferencia de fase entre dos ondas.</figcaption>
+      </figure>
     </div>
-  </div>
-</section>
+    <figure>
+      <img src="../assets/minimos/12.webp" alt="A la izquierda, tres ondas simples en el tiempo; a la derecha, la transformada de Fourier las muestra como tres picos de frecuencia" loading="lazy" width="1238" height="475">
+      <figcaption>Un sonido complejo es la suma de ondas simples. La transformada de Fourier pasa del tiempo a la frecuencia.</figcaption>
+    </figure>
+  </section>
 
-<!-- 3. DECIBELIOS Y SPL -->
-<section>
-  <div class="container">
-    <h2 class="section-title">3. Decibelios y niveles de presión sonora (SPL)</h2>
-
-    <div class="card">
-     <img src="../assets/sonido/sonido3.png" alt="">
-    
+  <section class="sec doc" id="decibelios">
+    <h2 class="section-title">03 · Decibelios y nivel de presión sonora</h2>
+    <h3>Decibelio (dB)</h3>
+    <p>Unidad logarítmica que expresa la relación entre dos magnitudes. No mide una cantidad absoluta, sino <strong>una comparación entre dos niveles</strong> de energía o de presión.</p>
+    <h3>Nivel de presión sonora (SPL)</h3>
+    <p>Indica cuánta presión acústica genera un sonido respecto a un valor de referencia (el umbral de audición). Se expresa en dB SPL.</p>
+    <h3>LUFS (Loudness Units Full Scale)</h3>
+    <p>Miden la <strong>sonoridad percibida</strong>: lo fuerte que nos parece un sonido. Nuestro oído no reacciona igual a todas las frecuencias: percibimos menos los graves muy bajos y somos más sensibles a los medios.</p>
+    <div class="grid">
+      <div><h4>Spotify</h4><p>Normaliza en torno a −14 LUFS.</p></div>
+      <div><h4>Televisión europea</h4><p>La norma EBU R128 fija −23 LUFS.</p></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- 4. REFLEXIÓN, ABSORCIÓN, REVERBERACIÓN -->
-<section>
-  <div class="container">
-    <h2 class="section-title">4. Reflexión, absorción, reverberación y resonancia</h2>
+  <section class="sec doc" id="recinto">
+    <h2 class="section-title">04 · Reflexión, absorción, reverberación y resonancia</h2>
+    <div class="table"><table>
+      <tbody>
+        <tr><td><strong>Reflexión</strong></td><td>El sonido rebota en una superficie.</td></tr>
+        <tr><td><strong>Absorción</strong></td><td>Un material disipa parte de la energía sonora y reduce la reflexión.</td></tr>
+        <tr><td><strong>Reverberación</strong></td><td>El sonido persiste después de que la fuente haya parado, por las múltiples reflexiones en el recinto.</td></tr>
+        <tr><td><strong>Resonancia</strong></td><td>Se amplifican ciertas frecuencias cuando coinciden con la frecuencia natural de un espacio o de un objeto.</td></tr>
+      </tbody>
+    </table></div>
+    <figure>
+      <img src="../assets/minimos/11.png" alt="Planta de una sala en la que una onda sale de la fuente y rebota varias veces en las paredes" loading="lazy" width="741" height="553">
+      <figcaption>Reflexiones del sonido en un recinto.</figcaption>
+    </figure>
+  </section>
 
-    <div class="card">
-      <img src="../assets/sonido/sonido4.png" alt="">
-    <img src="../assets/minimos/11.png" alt="">
-  </div>
-</section>
+  <section class="sec doc" id="rt60">
+    <h2 class="section-title">05 · Tiempo de reverberación (RT60)</h2>
+    <p class="def">RT60 es el tiempo que tarda el nivel de un sonido en bajar 60 dB después de que la fuente deje de emitir.</p>
+    <p>El valor adecuado depende del uso del espacio: aulas, teatros, estudios… Si es demasiado alto, el sonido pierde claridad; si es muy bajo, el espacio suena «muerto» o apagado.</p>
+    <figure>
+      <img src="../assets/minimos/10.jpg" alt="Arriba, la presión de un sonido que se apaga poco a poco; abajo, su nivel en dB bajando en línea recta hasta el ruido de fondo, marcando el tiempo de reverberación" loading="lazy" width="605" height="592">
+      <figcaption>Medida del tiempo de reverberación: caída del nivel desde que la fuente se apaga.</figcaption>
+    </figure>
+  </section>
 
-<!-- 5. RT60 -->
-<section>
-  <div class="container">
-    <h2 class="section-title">5. Tiempo de reverberación (RT60)</h2>
+  <section class="sec doc" id="ambiente">
+    <h2 class="section-title">06 · Temperatura y humedad</h2>
+    <ul>
+      <li><strong>Temperatura:</strong> con más temperatura, el sonido viaja más rápido; con menos, más despacio.</li>
+      <li><strong>Humedad:</strong> el aire húmedo absorbe menos y deja que las frecuencias agudas lleguen más lejos.</li>
+      <li><strong>En exteriores</strong> son factores clave: cambian cómo se dispersa el sonido y el volumen que percibe el público.</li>
+    </ul>
+    <figure>
+      <img src="../assets/minimos/9.webp" alt="Dos diagramas de propagación: con aire caliente abajo el sonido se curva hacia arriba; con aire frío abajo se curva hacia el suelo" loading="lazy" width="771" height="277">
+      <figcaption>La diferencia de temperatura entre capas de aire curva el sonido hacia arriba o hacia el suelo.</figcaption>
+    </figure>
+  </section>
 
-    <div class="card">
-      <img src="../assets/sonido/sonido5.png" alt="">
-      <img src="../assets/minimos/10.jpg" alt="">
-    </div>
-  </div>
-</section>
+  <section class="sec doc" id="referencias">
+    <h2 class="section-title">07 · Referencias</h2>
+    <h3>Pero, ¿qué es la transformada de Fourier? Una introducción visual</h3>
+    <div class="embed"><iframe src="https://www.youtube-nocookie.com/embed/spUNpyF58BY" title="Pero, ¿qué es la transformada de Fourier? Una introducción visual" loading="lazy" allowfullscreen></iframe></div>
+    <h3>Peter Gilliam · Musical Fourier (#SoME1)</h3>
+    <div class="embed"><iframe src="https://www.youtube-nocookie.com/embed/Eayo7pZ2g7A" title="Peter Gilliam - Musical Fourier" loading="lazy" allowfullscreen></iframe></div>
+  </section>
 
-<!-- 6. TEMPERATURA Y HUMEDAD -->
-<section>
-  <div class="container">
-    <h2 class="section-title">6. Influencia de la temperatura y humedad</h2>
+  <nav class="pager" aria-label="Lecciones">
+    <a class="next" href="sonido2.html">Siguiente<strong>Preamp, EQ, compresor y puerta →</strong></a>
+  </nav>
+</main>
 
-    <div class="card">
-      <img src="../assets/sonido/sonido6.png" alt="">
-      <img src="../assets/minimos/9.webp" alt="">
-    </div>
-  </div>
-</section>
-<!-- 7. Refes -->
-<section>
-  <div class="container">
-    <h2 class="section-title">7. Referencias Útiles</h2>
-
-    <!-- CONTENEDOR DE VIDEOS -->
-    <div style="display: grid; gap: 2.5rem;">
-
-      <!-- VIDEO 1! -->
-      <div class="video-card" style="
-        background: var(--surface-light);
-        padding: 1.5rem;
-        border-radius: var(--radius-md);
-        border: 1px solid var(--border-color);
-        box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-      ">
-        <h3 style="color: var(--primary-color); margin-top: 0;">Pero, ¿qué es la transformada de Fourier? Una introducción visual.</h3>
-
-        <div style="
-          position: relative;
-          padding-bottom: 56.25%;
-          height: 0;
-          overflow: hidden;
-          border-radius: var(--radius-md);
-          border: 1px solid var(--border-color);
-        ">
-          <iframe 
-            src="https://www.youtube.com/embed/spUNpyF58BY" 
-            title="Video 1"
-            frameborder="0"
-            allowfullscreen
-            style="
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-            ">
-          </iframe>
-        </div>
-      </div>
-
-      <!-- VIDEO 2 -->
-      <div class="video-card" style="
-        background: var(--surface-light);
-        padding: 1.5rem;
-        border-radius: var(--radius-md);
-        border: 1px solid var(--border-color);
-        box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-      ">
-        <h3 style="color: var(--primary-color); margin-top: 0;">Peter Gilliam - Musical Fourier (#SoME1)</h3>
-
-        <div style="
-          position: relative;
-          padding-bottom: 56.25%;
-          height: 0;
-          overflow: hidden;
-          border-radius: var(--radius-md);
-          border: 1px solid var(--border-color);
-        ">
-          <iframe 
-            src="https://www.youtube.com/embed/Eayo7pZ2g7A" 
-            title="Video 2"
-            frameborder="0"
-            allowfullscreen
-            style="
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-            ">
-          </iframe>
-        </div>
-      </div>
-  </div>
-</section>
-
-
-<!-- JS DEL CARRUSEL ESCALABLE -->
-<script>
-function initCarousel(id) {
-  const carousel = document.getElementById(id);
-  const inner = carousel.querySelector(".carousel-inner");
-  const prev = carousel.querySelector(".prev");
-  const next = carousel.querySelector(".next");
-  const indicators = carousel.querySelector(".carousel-indicators");
-  const slides = inner.children;
-
-  let index = 0;
-  const total = slides.length;
-
-  for (let i = 0; i < total; i++) {
-    const dot = document.createElement("div");
-    dot.classList.add("indicator");
-    if (i === 0) dot.classList.add("active");
-    dot.addEventListener("click", () => goTo(i));
-    indicators.appendChild(dot);
-  }
-
-  const dots = indicators.querySelectorAll(".indicator");
-
-  function update() {
-    inner.style.transform = `translateX(${-index * 100}%)`;
-    dots.forEach(d => d.classList.remove("active"));
-    dots[index].classList.add("active");
-  }
-
-  function goTo(i) {
-    index = i;
-    update();
-  }
-
-  prev.addEventListener("click", () => {
-    index = (index === 0) ? total - 1 : index - 1;
-    update();
-  });
-
-  next.addEventListener("click", () => {
-    index = (index + 1) % total;
-    update();
-  });
-}
-
-// Inicializar TODOS los carruseles que existan
-initCarousel("carousel1");
-initCarousel("carousel2");
-</script>
-
+<footer>© <span data-year>2026</span> · Andrés Vidal Martín Martín · ISDE</footer>
+<script src="../../assets/site.js" defer></script>
 </body>
 </html>

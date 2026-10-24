@@ -1,0 +1,1 @@
+{"name":"portal-tools","private":true,"description":"Genera los .pptx a partir de las diapositivas JSON de cada modulo","dependencies":{"pptxgenjs":"^3.12.0"}}

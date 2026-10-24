@@ -1,388 +1,179 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Básicos de la programación en p5.js</title>
-
-  <!-- Fuente Inter -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <style>
-/* 
-   DEIM Class Website Styles
-   Theme: Professional, Serious, Accessible
-*/
-
-:root {
-    /* Colors - Professional Blue Theme */
-    --primary-color: #3B82F6;
-    --primary-dark: #2563EB;
-    --secondary-color: #64748B;
-    --accent-color: #0EA5E9;
-
-    --bg-color: #0B1120;
-    --surface-color: #151F32;
-
-    --text-main: #F8FAFC;
-    --text-muted: #94A3B8;
-
-    --border-color: #1E293B;
-
-    /* Typography */
-    --font-heading: 'Inter', sans-serif;
-    --font-body: 'Inter', sans-serif;
-
-    /* Layout */
-    --container-width: 1200px;
-    --section-spacing: 4rem;
-
-    --radius-md: 0.375rem;
-    --radius-lg: 0.5rem;
-}
-
-/* Base */
-body {
-    font-family: var(--font-body);
-    background-color: var(--bg-color);
-    color: var(--text-main);
-    margin: 0;
-    line-height: 1.6;
-}
-
-.container {
-    max-width: var(--container-width);
-    margin: 0 auto;
-    padding: 0 1.5rem;
-}
-
-.section-title {
-    text-align: center;
-    font-size: 2.25rem;
-    font-weight: 700;
-    margin-bottom: .5rem;
-    color: var(--text-main);
-}
-
-.section-description {
-    text-align: center;
-    color: var(--text-muted);
-    max-width: 600px;
-    margin: auto;
-    margin-bottom: 3rem;
-}
-
-/* HERO */
-.hero-section {
-    padding: 6rem 0;
-    text-align: center;
-    background: radial-gradient(circle at center, #151F32 0%, #0B1120 100%);
-}
-
-.hero-title {
-    font-size: 3.5rem;
-    font-weight: 700;
-}
-
-.highlight {
-    background: linear-gradient(to right, var(--primary-color), var(--accent-color));
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-.hero-subtitle {
-    font-size: 1.25rem;
-    color: var(--text-muted);
-}
-
-/* SECCIONES */
-.modules-section,
-.resources-section {
-    padding: var(--section-spacing) 0;
-}
-
-/* Tarjetas */
-.module-card {
-    background-color: var(--surface-color);
-    padding: 2rem;
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--border-color);
-    margin-bottom: 2rem;
-}
-
-/* Code Windows */
-.code-window {
-    background-color: #0f172a;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
-    padding: 1rem;
-    overflow-x: auto;
-    margin: 1.5rem 0;
-}
-
-.code-window pre {
-    margin: 0;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 0.9rem;
-    color: #cbd5e1;
-}
-
-/* Iframes p5.js */
-.big-editor {
-    width: 100%;
-    height: 700px;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
-    background-color: black;
-    margin: 1.5rem 0;
-    box-shadow: 0 10px 15px rgba(0,0,0,0.3);
-}
-
-/* Tablas */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1rem 0;
-    background-color: var(--surface-color);
-    border: 1px solid var(--border-color);
-}
-
-th, td {
-    padding: 0.75rem;
-    border: 1px solid var(--border-color);
-    text-align: left;
-}
-
-th {
-    background-color: #1e293b;
-}
-
-/* UL */
-.module-card ul li {
-    margin-bottom: 0.5rem;
-    color: var(--text-muted);
-}
-
-/* DESACTIVAR INTERACCIÓN EN TARJETAS */
-.module-card {
-    transform: none !important;
-    transition: none !important;
-    box-shadow: none !important;
-}
-
-/* Evitar efectos hover heredados */
-.module-card:hover {
-    transform: none !important;
-    box-shadow: none !important;
-    border-color: var(--border-color) !important;
-}
-
-
-  </style>
-
-    <!-- MISMO CSS QUE LA WEB PRINCIPAL -->
-    <link rel="stylesheet" href="../style.css">
-<link rel="stylesheet" href="../../assets/back.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fundamentos de programación en p5.js | DEIM</title>
+<meta name="description" content="Variables, condicionales, operadores, bucles y funciones con p5.js.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Cpath d='M16 5l9 5v12l-9 5-9-5V10z' fill='none' stroke='%232aff6b' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/site.css">
 </head>
+<body class="m-deim">
+<header class="top">
+  <a class="brand" href="../index.html">DEIM<span class="dash"> —</span> Entornos interactivos</a>
+  <nav aria-label="Módulo">
+    <a href="../index.html#temario">Temario</a>
+    <a href="../index.html#tareas">Tareas</a>
+    <a href="../index.html#recursos">Recursos</a>
+  </nav>
+  <a class="back" href="../../index.html">← Portal</a>
+</header>
 
-<body>
-<a class="portal-back" href="../../index.html">&larr; Portal</a>
+<main>
+  <section class="hero small">
+    <p class="kicker"><a href="../index.html">DEIM</a> / Lección 01 · JavaScript</p>
+    <h1>Fundamentos de programación en p5.js</h1>
+    <p class="lead">Conceptos fundamentales para aprender a programar de forma visual y creativa.</p>
+  </section>
 
-    <!-- Header sencillo -->
-    <header class="site-header">
-        <div class="container header-container">
-            <a href="../index.html" class="logo">DEIM<span class="dot">.</span></a>
-        </div>
-    </header>
-    
-<!-- HERO -->
+  <section class="sec doc" id="programacion">
+    <h2 class="section-title">01 · ¿Qué es la programación?</h2>
+    <p class="def">Programar es crear un conjunto de instrucciones que le dicen a un ordenador cómo realizar una tarea.</p>
+    <p>Esas instrucciones se escriben en un lenguaje que el ordenador puede entender. Unos traductores, los <strong>intérpretes</strong>, leen el texto y ejecutan las acciones que marca.</p>
+    <p>Aprender a programar es como aprender inglés, música o braille: damos sentido a unos signos para crear un sistema que funciona.</p>
+    <ul>
+      <li><strong>El código se ejecuta de arriba abajo</strong>, como leemos en la mayoría de lenguas occidentales. El orden importa.</li>
+      <li>Cada lenguaje tiene sus propias reglas de escritura (sintaxis).</li>
+      <li>Usaremos JavaScript con <strong>p5.js</strong>, una librería pensada para crear de forma visual.</li>
+    </ul>
+    <h3>Ejemplo en p5.js</h3>
+    <div class="embed sketch"><iframe src="https://editor.p5js.org/avezray/full/JTjhOdGRB" title="Sketch de ejemplo en p5.js" loading="lazy"></iframe></div>
+  </section>
 
-
-<section class="hero-section">
-  <div class="hero-content">
-    <h1 class="hero-title">
-      Básicos de la programación en <span class="highlight">p5.js</span>
-    </h1>
-    <p class="hero-subtitle">
-      Conceptos fundamentales para aprender a programar de forma visual y creativa.
-    </p>
-  </div>
-</section>
-
-<!-- 1. PROGRAMACIÓN -->
-
-<section class="modules-section">
-  <div class="container">
-
-    <h2 class="section-title">1. ¿Qué es la programación?</h2>
-    <p class="section-description">
-      La programación es el proceso de crear un conjunto de instrucciones que le dicen a una computadora como realizar algún tipo de tarea. 
-    </p>
-
-    <div class="module-card">
-      <p><b>El código se ejecuta de arriba hacia abajo</b></p>
-      (igual que la lectura en la mayoría de lenguas occidentales).
-      <p><b>El orden sí importa.</b></p>
-
-      <ul>
-        <li>Automatizar procesos y crear aplicaciones, juegos y arte.</li>
-        <li>Los lenguajes tienen reglas sintácticas propias.</li>
-        <li>Usaremos JavaScript con p5.js (visual y creativo).</li>
-      </ul>
-
-      <h3 class="card-title">Ejemplo en p5.js</h3>
-
-      <iframe 
-        src="https://editor.p5js.org/avezray/full/JTjhOdGRB"
-        class="big-editor">
-      </iframe>
-    </div>
-  </div>
-</section>
-
-<!-- 2. VARIABLES -->
-
-<section class="resources-section">
-  <div class="container">
-
-    <h2 class="section-title">2. Variables</h2>
-    <p class="section-description">
-      Una variable es un contenedor que almacena información que puede cambiar mientras el programa se ejecuta
-    </p>
-
-    <div class="module-card">
-      <p>Para crear una variable usamos <code>let</code> seguido del nombre.</p>
-
-      <div class="code-window">
-<pre><code>let x = 50;  // Guardamos un número en la variable x
+  <section class="sec doc" id="variables">
+    <h2 class="section-title">02 · Variables</h2>
+    <p class="def">Una variable es un contenedor que guarda información que puede cambiar mientras el programa se ejecuta.</p>
+    <p>Piensa en tus variables como la <strong>paleta de elementos</strong> con la que después vas a jugar: los colores con los que pintarás o los objetos de un inventario.</p>
+    <p>En JavaScript se crean con <code>let</code> seguido del nombre. Para usarlas basta con escribir su nombre donde iría el valor.</p>
+<pre><code class="language-javascript">let x = 50;          // guardamos un número en la variable x
 
 function draw() {
-  x = x + 1;  // Actualizamos el valor para mover un objeto
+  circle(x, 200, 50); // en vez de un número escribimos x
+  x = x + 1;          // cambiamos su valor: el círculo se mueve
 }</code></pre>
-      </div>
+    <h3>Ejemplo básico</h3>
+    <div class="embed sketch"><iframe src="https://editor.p5js.org/AndresEducacion/sketches/0BEfHMC_T" title="Sketch: variables" loading="lazy"></iframe></div>
+  </section>
 
-      <h3 class="card-title">Ejemplo básico</h3>
-
-      <iframe 
-        src="https://editor.p5js.org/AndresEducacion/sketches/0BEfHMC_T"
-        class="big-editor">
-      </iframe>
-    </div>
-  </div>
-</section>
-
-<!-- ======================================================= -->
-<!-- 3. CONDICIONALES -->
-<!-- ======================================================= -->
-
-<section class="modules-section">
-  <div class="container">
-
-    <h2 class="section-title">3. Condicionales</h2>
-    <p class="section-description">
-      Nos permiten tomar decisiones dentro del programa.
-    </p>
-
-    <div class="module-card">
-
-      <div class="code-window">
-<pre><code>let x = 0;
+  <section class="sec doc" id="condicionales">
+    <h2 class="section-title">03 · Condicionales</h2>
+    <p class="def">Los condicionales permiten tomar decisiones: si se cumple una condición, se ejecuta un bloque de código.</p>
+<pre><code class="language-javascript">let x = 0;
 
 function draw() {
   x = x + 1;
 
   if (x > 200) {
-    fill(255, 0, 0);
+    fill(255, 0, 0);  // a partir de 200: rojo
   } else {
-    fill(0, 0, 255);
+    fill(0, 0, 255);  // antes: azul
   }
 
   circle(x, 200, 50);
 }</code></pre>
-      </div>
-
-      <iframe 
-        src="https://editor.p5js.org/AndresEducacion/sketches/zFd75-jJP"
-        class="big-editor">
-      </iframe>
-
-      <h3 class="card-title">if…else if</h3>
-
-      <div class="code-window">
-<pre><code>if (x &lt; 100) {
+    <div class="embed sketch"><iframe src="https://editor.p5js.org/AndresEducacion/sketches/zFd75-jJP" title="Sketch: condicionales" loading="lazy"></iframe></div>
+    <h3>if · else if · else</h3>
+<pre><code class="language-javascript">if (x &lt; 100) {
   // primera condición
 } else if (x &lt; 200) {
-  // segunda condición
+  // si la primera no se cumple, se prueba esta
 } else {
-  // si ninguna se cumple
+  // si no se cumple ninguna
 }</code></pre>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- ======================================================= -->
-<!-- 4. OPERADORES LÓGICOS -->
-<!-- ======================================================= -->
+  <section class="sec doc" id="operadores">
+    <h2 class="section-title">04 · Operadores</h2>
+    <p>Los operadores permiten hacer operaciones con números y con texto, y comparar valores.</p>
+    <div class="table"><table>
+      <thead><tr><th>Tipo</th><th>Operadores</th></tr></thead>
+      <tbody>
+        <tr><td>Aritméticos</td><td><code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>%</code> (resto) <code>**</code> (potencia)</td></tr>
+        <tr><td>De comparación</td><td><code>===</code> igual · <code>!==</code> distinto · <code>&gt;</code> <code>&lt;</code> <code>&gt;=</code> <code>&lt;=</code></td></tr>
+      </tbody>
+    </table></div>
+    <h3>Operadores lógicos</h3>
+    <p>Sirven para combinar varias condiciones dentro del mismo paréntesis.</p>
+    <div class="table"><table>
+      <thead><tr><th>Operador</th><th>Significado</th><th>Ejemplo</th></tr></thead>
+      <tbody>
+        <tr><td><code>&amp;&amp;</code></td><td>y</td><td><code>x &gt; 100 &amp;&amp; x &lt; 200</code></td></tr>
+        <tr><td><code>||</code></td><td>o</td><td><code>x &gt; 200 || y &lt; 50</code></td></tr>
+        <tr><td><code>!</code></td><td>no</td><td><code>!(x &gt; 100)</code></td></tr>
+      </tbody>
+    </table></div>
+    <div class="embed sketch"><iframe src="https://editor.p5js.org/AndresEducacion/sketches/drnGpmoU2" title="Sketch: operadores lógicos" loading="lazy"></iframe></div>
+  </section>
 
-<section class="resources-section">
-  <div class="container">
-    <h2 class="section-title">4. Operadores lógicos</h2>
-
-    <div class="module-card">
-
-      <table>
-        <tr><th>Operador</th><th>Significado</th><th>Ejemplo</th></tr>
-        <tr><td>&amp;&amp;</td><td>y</td><td>x &gt; 100 && x &lt; 200</td></tr>
-        <tr><td>||</td><td>o</td><td>x &gt; 200 || y &lt; 50</td></tr>
-        <tr><td>!</td><td>no</td><td>!(x &gt; 100)</td></tr>
-      </table>
-
-      <h3 class="card-title">Ejemplo</h3>
-
-      <iframe 
-        src="https://editor.p5js.org/AndresEducacion/sketches/drnGpmoU2"
-        class="big-editor">
-      </iframe>
-
-    </div>
-  </div>
-</section>
-
-<!-- ======================================================= -->
-<!-- 5. BUCLES -->
-<!-- ======================================================= -->
-
-<section class="modules-section">
-  <div class="container">
-
-    <h2 class="section-title">5. Bucles</h2>
-    <p class="section-description">
-      Un bucle permite repetir acciones muchas veces sin escribirlas manualmente.
-    </p>
-
-    <div class="module-card">
-
-      <div class="code-window">
-<pre><code>function draw() {
+  <section class="sec doc" id="bucles">
+    <h2 class="section-title">05 · Bucles</h2>
+    <p class="def">Un bucle repite un fragmento de código mientras se cumple una condición, sin tener que escribirlo muchas veces.</p>
+    <p class="note"><strong>Ojo:</strong> <code>draw()</code> ya es un bucle: p5.js lo ejecuta una vez por fotograma. Unity y cualquier motor que dibuje en tiempo real funcionan igual.</p>
+<pre><code class="language-javascript">function draw() {
   background(220);
 
+  // empieza en 0; sigue mientras x sea menor que el ancho; suma 20 en cada vuelta
   for (let x = 0; x &lt; width; x = x + 20) {
     line(x, 0, x, height);
   }
 }</code></pre>
-      </div>
+    <div class="embed sketch"><iframe src="https://editor.p5js.org/AndresEducacion/sketches/R980JkhKI" title="Sketch: bucles" loading="lazy"></iframe></div>
+  </section>
 
-      <iframe 
-        src="https://editor.p5js.org/AndresEducacion/sketches/R980JkhKI"
-        class="big-editor">
-      </iframe>
-    </div>
-  </div>
-</section>
+  <section class="sec doc" id="funciones">
+    <h2 class="section-title">06 · Funciones</h2>
+    <p class="def">Una función agrupa instrucciones con un nombre para poder invocarlas en cualquier momento.</p>
+    <p>Si las variables son los ingredientes, las funciones son las recetas. Los paréntesis pueden ir vacíos o recibir los datos (parámetros) que la función necesita para trabajar.</p>
+<pre><code class="language-javascript">function setup() {
+  createCanvas(400, 400);
+}
 
+function draw() {
+  background(220);
+  dibujarPelota(100, 200, 30);   // invocamos la función tres veces
+  dibujarPelota(200, 200, 50);   // con datos distintos
+  dibujarPelota(300, 200, 80);
+}
 
+// Declaramos nuestra propia función: recibe posición y tamaño
+function dibujarPelota(px, py, tam) {
+  fill(100, 150, 255);
+  noStroke();
+  circle(px, py, tam);
+}</code></pre>
+    <p class="note"><strong>Importante:</strong> igual que con las variables, no puede haber dos funciones con el mismo nombre.</p>
+  </section>
 
+  <section class="sec doc" id="ejercicio-ia">
+    <h2 class="section-title">07 · Ejercicio: un sketch con ChatGPT</h2>
+    <p>Vamos a crear un sketch con ChatGPT y a pedirle que nos explique cada proceso.</p>
+    <h3>Objetivos</h3>
+    <ul>
+      <li>Diseñar un sketch en p5.js con los conceptos aprendidos: variables, condicionales, operadores, bucles y funciones.</li>
+      <li>Usar ChatGPT como herramienta para mejorar el código en varias iteraciones.</li>
+      <li>Entender el código resultante y poder explicarlo con tus palabras.</li>
+    </ul>
+    <h3>Requisitos mínimos</h3>
+    <ul>
+      <li>Al menos <strong>3 versiones</strong> del código (3 mejoras sobre el original).</li>
+      <li>Al menos una <strong>variable</strong> propia, un <strong>condicional</strong>, un <strong>operador lógico</strong> (<code>&amp;&amp;</code>, <code>||</code> o <code>!</code>), un <strong>bucle</strong> y una <strong>función creada por ti</strong>.</li>
+    </ul>
+    <h3>Ejemplo de mensaje</h3>
+<pre><code>Dame un código sencillo en p5.js que use los conceptos: variables, condicionales,
+operadores, bucles y funciones. Comenta cada línea y explica de manera sencilla
+cada proceso. Una frase y sin emojis.</code></pre>
+    <h3>Ejemplo resuelto en cuatro iteraciones</h3>
+    <div class="deck" data-src="../slides/ia-sketch.json"></div>
+    <p class="note"><strong>Recuerda:</strong> lo importante no es solo que el sketch funcione, sino que entiendas el código y sepas explicarlo.</p>
+  </section>
+
+  <nav class="pager" aria-label="Lecciones">
+    <a class="next" href="codigo2.html">Siguiente<strong>Fundamentos en C# →</strong></a>
+  </nav>
+</main>
+
+<footer>© <span data-year>2026</span> · Andrés Vidal Martín Martín · DEIM</footer>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js" defer></script>
+<script src="../../assets/site.js" defer></script>
 </body>
 </html>

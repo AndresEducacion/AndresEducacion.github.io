@@ -1,0 +1,100 @@
+{
+  "title": "DEIM · Tarea 1 · Práctica en p5.js",
+  "slides": [
+    {
+      "type": "cover",
+      "k": "DEIM · Tarea 1",
+      "title": "Práctica en p5.js",
+      "text": "Básicos de la programación: variables, operadores, condicionales, bucles y funciones"
+    },
+    {
+      "k": "Introducción",
+      "title": "¿Por qué p5.js?",
+      "lead": "p5.js es una librería de JavaScript pensada para crear gráficos, animaciones e interacciones visuales.",
+      "items": [
+        "Hace **visible el pensamiento computacional**: lo que escribes se convierte en algo que ves.",
+        "Su respuesta visual inmediata convierte los conceptos abstractos en **comportamientos visibles**.",
+        "Es la herramienta ideal para practicar los fundamentos antes de pasar a Unity y C#."
+      ]
+    },
+    {
+      "k": "Objetivos",
+      "title": "Qué tienes que demostrar",
+      "ordered": true,
+      "items": [
+        "Que dominas **variables, operadores, condicionales, bucles** (`while` y `for`) **y funciones**.",
+        "Que sabes desarrollar un **programa funcional** que resuelva un problema sencillo.",
+        "Que tu código es **claro, ordenado y está comentado**, explicando la lógica que sigues."
+      ],
+      "note": "Hay libertad en la finalidad del programa: se valora más el uso de las herramientas que el objetivo final."
+    },
+    {
+      "k": "Entrega",
+      "title": "Qué entregas",
+      "lead": "Un **.pdf** con estos apartados:",
+      "ordered": true,
+      "items": [
+        "Objetivos del código.",
+        "Estructura principal.",
+        "Uso de cada concepto básico.",
+        "Elementos avanzados (opcional).",
+        "Enlace al sketch."
+      ],
+      "note": "Para compartir el sketch: guárdalo (Ctrl+S) y usa **File → Share → Share Sketch and Allow Editing**. El enlace debe abrirse con un clic desde el PDF."
+    },
+    {
+      "k": "Para aprobar · 5",
+      "title": "Objetivos mínimos",
+      "groups": [
+        {
+          "h": "A · Conceptos básicos",
+          "items": [
+            "**Variables** con nombres descriptivos.",
+            "**Operadores** aritméticos o lógicos.",
+            "Al menos un **condicional** (`if`, `else if`, `else`).",
+            "Un bucle `while` y un bucle `for`.",
+            "Al menos una **función propia**."
+          ]
+        },
+        {
+          "h": "B · Funcionamiento",
+          "items": [
+            "Se ejecuta **sin errores**.",
+            "Muestra resultados **coherentes** con su lógica.",
+            "Está **organizado y comentado**."
+          ]
+        }
+      ]
+    },
+    {
+      "k": "Para un 9 o más",
+      "title": "Una mejora no vista en clase",
+      "lead": "Cumple todo lo anterior y añade al menos un elemento avanzado:",
+      "cols": 2,
+      "items": [
+        "Una **librería extra**: p5.sound, p5.collide2D, carga de JSON o imágenes…",
+        "**Funciones** que separen lógica y dibujo.",
+        "**Estructuras de datos**: arrays de objetos, listas dinámicas…",
+        "**Interacción avanzada**: menús, pantallas de inicio y fin, máquina de estados.",
+        "**Persistencia**: localStorage, archivos externos…",
+        "Código especialmente **claro, creativo** y que gestiona comportamientos inesperados."
+      ]
+    },
+    {
+      "k": "Para un 10",
+      "title": "Claridad y exposición",
+      "items": [
+        "El proyecto es **especialmente claro y estructurado**, con un buen uso del elemento avanzado.",
+        "Lo **expones oralmente**: de 3 a 5 minutos más preguntas."
+      ],
+      "note": "Puedes usar inteligencia artificial siempre que **demuestres que entiendes todo el código**."
+    },
+    {
+      "k": "Referencia",
+      "title": "Ejemplo valorado con un 9 o más",
+      "lead": "Abre el sketch y fíjate en cómo está organizado y comentado:",
+      "code": "https://editor.p5js.org/AndresEducacion/sketches/qNR23NmQe",
+      "note": "Cuida también el diseño del PDF: parte de una plantilla y elige un estilo que te represente. Nada de documentos en blanco y sin formato."
+    }
+  ]
+}

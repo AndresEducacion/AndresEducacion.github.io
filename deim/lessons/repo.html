@@ -1,171 +1,55 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Repositorio de Códigos · Unity · DEIM</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="../style.css">
-
-    <!-- Prism -->
-    <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.css" rel="stylesheet">
-<link rel="stylesheet" href="../../assets/back.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Repositorio de códigos de Unity | DEIM</title>
+<meta name="description" content="Scripts de C# para Unity listos para copiar y modificar.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Cpath d='M16 5l9 5v12l-9 5-9-5V10z' fill='none' stroke='%232aff6b' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../assets/site.css">
 </head>
-
-<body>
-<a class="portal-back" href="../../index.html">&larr; Portal</a>
-
-<header class="site-header">
-    <div class="container header-container">
-        <a href="../index.html" class="logo">DEIM<span class="dot">.</span></a>
-    </div>
+<body class="m-deim">
+<header class="top">
+  <a class="brand" href="../index.html">DEIM<span class="dash"> —</span> Entornos interactivos</a>
+  <nav aria-label="Módulo">
+    <a href="../index.html#temario">Temario</a>
+    <a href="../index.html#tareas">Tareas</a>
+    <a href="../index.html#recursos">Recursos</a>
+  </nav>
+  <a class="back" href="../../index.html">← Portal</a>
 </header>
 
-<main class="container" style="padding:4rem 0;">
+<main>
+  <section class="hero small">
+    <p class="kicker"><a href="../index.html">DEIM</a> / Recursos</p>
+    <h1>Repositorio de códigos de Unity</h1>
+    <p class="lead">Scripts de C# listos para usar y modificar. Despliega cada uno para ver el código completo y copiarlo.</p>
+  </section>
 
-    <h1 class="section-title">Repositorio de Códigos Unity</h1>
-    <p class="section-description">
-        Ejemplos de scripts en C# listos para usar y modificar en Unity.
-    </p>
+  <section class="sec doc" aria-labelledby="t-pasos">
+    <h2 id="t-pasos" class="section-title">Primeros pasos</h2>
+    <details class="code-file" data-file="codes/hello.cs">
+      <summary><strong>Hello World</strong><small>O la importancia de <code>Debug.Log</code>.</small></summary>
+      <p><code>Debug.Log</code> imprime un valor en la consola. Sirve para saber qué está pasando: es muy útil para localizar errores y comprobar cómo funcionan de verdad tus procesos. Te sorprenderá cuántas veces las cosas no funcionan como piensas. Cuando pase: calma, paciencia, debuggea y lee con atención.</p>
+    </details>
+    <details class="code-file" data-file="codes/variables.cs">
+      <summary><strong>Variables públicas</strong><small>Tipos de variables expuestos en el Inspector.</small></summary>
+      <p>Las variables públicas (y las privadas con <code>[SerializeField]</code>) se pueden modificar desde el Inspector sin tocar el código: números, texto, vectores, colores, referencias, enumerados, arrays y listas.</p>
+    </details>
+  </section>
 
-    <!-- ================= PRIMEROS PASOS ================= -->
-    <h2 class="repo-category-title">Primeros pasos</h2>
-    <div class="modules-grid">
-
-        <article class="module-card" onclick="openCode('hello')">
-            <h3 class="card-title">Hello World</h3>
-            <p class="card-text">o la importancia del Debug</p>
-            <pre class="code-preview"><code>
-    Debug.Log("Hola mundo");
-            </code></pre>
-        </article>
-
-        <article class="module-card" onclick="openCode('variables')">
-            <h3 class="card-title">Variables públicas</h3>
-            <p class="card-text">Exponer valores en el Inspector.</p>
-            <pre class="code-preview"><code>
-    public int lives = 3;
-    public float speed = 5f;
-    public bool isAlive = true;
-            </code></pre>
-        </article>
-
-    </div>
-
-    <!-- ================= MOVIMIENTO ================= -->
-    <h2 class="repo-category-title">Movimiento</h2>
-    <div class="modules-grid">
-
-        <article class="module-card" onclick="openCode('movement')">
-            <h3 class="card-title">Movimiento con Input</h3>
-            <p class="card-text">Movimiento básico. Interacción con transform.</p>
-            <pre class="code-preview"><code>
-float x = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(
-            xInput * moveSpeed,
-            rb.velocity.y
-        );
-            </code></pre>
-        </article>
-
-
-
+  <section class="sec doc" aria-labelledby="t-mov">
+    <h2 id="t-mov" class="section-title">Movimiento</h2>
+    <details class="code-file" data-file="codes/MoveController.cs">
+      <summary><strong>Movimiento con input</strong><small>Mover un objeto 2D con el teclado usando físicas.</small></summary>
+      <p>Primer código de movimiento: lee el teclado en <code>Update()</code> y cambia la velocidad del <code>Rigidbody2D</code> en <code>FixedUpdate()</code>.</p>
+    </details>
+  </section>
 </main>
 
-<!-- ================= OVERLAY ================= -->
-<div id="codeOverlay" class="code-overlay">
-    <div class="code-modal">
-        <button class="close-modal" onclick="closeCode()">×</button>
-
-        <h2 id="overlay-title"></h2>
-        <p id="overlay-description"></p>
-        <p id="overlay-explanation" class="card-explanation"></p>
-
-        <div class="code-window">
-            <pre><code id="overlay-code" class="language-csharp"></code></pre>
-        </div>
-
-        <div class="code-actions">
-            <button id="copyBtn" class="copy-btn" onclick="copyCode()">
-                Copiar código
-            </button>
-        </div>
-    </div>
-</div>
-
-<footer class="site-footer">
-    <div class="container footer-bottom">
-        <p>&copy; 2025 DEIM</p>
-    </div>
-</footer>
-
-<!-- Prism -->
-<script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-csharp.min.js"></script>
-
-<script>
-const repo = {
-    hello: {
-        title: "Hello World",
-        explanation: "Debug.log imprime un valor en la consola. Esto sirve para saber que esta pasando. Es muy útil para localizar errores o conocer el funcionamiento real de nuestros procesos. Te sorprenderá la cantidad de veces que las cosas no están funcionando como tu te piensas. Cuando esto pase: calma y paciencia, debuggea y lee con atención.",
-        file: "codes/hello.cs"
-    },
-    variables: {
-        title: "Variables públicas",
-        description: "Variables visibles desde el Inspector.",
-        explanation: "Permite modificar valores desde el Inspector sin tocar el código.",
-        file: "codes/variables.cs"
-    },
-    movement: {
-        title: "Movimiento con Input",
-        explanation: "Primer código de movimiento usando variables públicas y funciones",
-        file: "codes/MoveController.cs"
-    },
-};
-
-function openCode(key) {
-    const data = repo[key];
-
-    document.getElementById("overlay-title").textContent = data.title;
-    document.getElementById("overlay-description").textContent = data.description;
-    document.getElementById("overlay-explanation").textContent = data.explanation;
-    document.getElementById("overlay-code").textContent = "Cargando código...";
-    document.getElementById("codeOverlay").classList.add("active");
-
-    fetch(data.file)
-        .then(res => {
-            if (!res.ok) throw new Error();
-            return res.text();
-        })
-        .then(code => {
-            document.getElementById("overlay-code").textContent = code;
-            Prism.highlightAll();
-        })
-        .catch(() => {
-            document.getElementById("overlay-code").textContent =
-                "Error al cargar el archivo.";
-        });
-}
-
-function closeCode() {
-    document.getElementById("codeOverlay").classList.remove("active");
-}
-
-function copyCode() {
-    const code = document.getElementById("overlay-code").innerText;
-    navigator.clipboard.writeText(code);
-
-    const btn = document.getElementById("copyBtn");
-    btn.textContent = "Copiado ✓";
-    btn.classList.add("copied");
-
-    setTimeout(() => {
-        btn.textContent = "Copiar código";
-        btn.classList.remove("copied");
-    }, 1500);
-}
-</script>
-
+<footer>© <span data-year>2026</span> · Andrés Vidal Martín Martín · DEIM</footer>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-csharp.min.js" defer></script>
+<script src="../../assets/site.js" defer></script>
 </body>
 </html>
