@@ -286,31 +286,78 @@ async function initGL() {
       }) };
     },
 
-    // 2 · PRTV (Procesos de Realización de Televisión): televisor plano con carta de ajuste y rótulo en directo
+    // 2 · PRTV (Procesos de Realización de Televisión): cámara de hombro de broadcast sobre trípode de fluidos
     () => {
-      const g = new THREE.Group(), rig = at(new THREE.Group(), 0, 0.2, 0); g.add(rig);
-      rig.add(slab(3.5, 2.0, 0.12, 0.07));                                                        // carcasa
-      rig.add(at(plate(3.3, 1.8, 0.04, 0.6), 0, 0, 0.062));                                       // panel
-      rig.add(at(edges(new THREE.BoxGeometry(1.5, 0.9, 0.16), 0.9, true), 0, 0.1, -0.14));        // joroba trasera
-      rig.add(at(edges(taper(0.34, 0.5, 0.12, 0.8, 1), 0.9, true), 0, -1.25, -0.06));            // cuello
-      rig.add(at(edges(new THREE.BoxGeometry(1.7, 0.05, 0.6), 0.9, true), 0, -1.5, -0.05));       // base
-      rig.add(at(edges(new THREE.CircleGeometry(0.03, 10), 1), 1.5, -0.95, 0.062));               // led de encendido
-      for (let i = 0; i < 7; i++) {                                                               // barras de color
-        rig.add(at(edges(new THREE.PlaneGeometry(0.4, 0.8), 0.35 + (0.65 * ((i * 3) % 7)) / 6), (i - 3) * 0.44, 0.45, 0.064));
-        rig.add(at(edges(new THREE.PlaneGeometry(0.4, 0.1), 0.35 + (0.65 * ((i * 5) % 7)) / 6), (i - 3) * 0.44, -0.02, 0.064));
+      const g = new THREE.Group(), rig = at(new THREE.Group(), 0, 0.05, 0); rig.scale.setScalar(0.82); g.add(rig);
+      rig.rotation.y = 0.75; // vista de tres cuartos: óptica, visor y barra de panorámica se leen mejor que de frente
+      const FLOOR = -1.55, APEX = V(0, 0.15, 0);
+      rig.add(at(flat(new THREE.CircleGeometry(1.7, 64), 0.18), 0, FLOOR, 0));                      // marca en el plató
+      // varilla cilíndrica entre dos puntos
+      const rod = (a, b, r, o = 0.9) => {
+        const m = edges(new THREE.CylinderGeometry(r, r, a.distanceTo(b), 8), o, true);
+        m.position.copy(a).add(b).multiplyScalar(0.5);
+        m.quaternion.setFromUnitVectors(V(0, 1, 0), b.clone().sub(a).normalize());
+        return m;
+      };
+
+      /* Trípode: tres patas telescópicas con abrazadera, pies de goma y riostra intermedia */
+      const mids = [];
+      for (let i = 0; i < 3; i++) {
+        const a = (i * Math.PI * 2) / 3 + 0.5;
+        const foot = V(Math.cos(a) * 1.05, FLOOR, Math.sin(a) * 1.05);
+        const mid = APEX.clone().lerp(foot, 0.5); mids.push(mid);
+        rig.add(rod(APEX, mid, 0.045));                                                             // tramo superior
+        rig.add(rod(mid, foot, 0.03));                                                              // tramo inferior
+        rig.add(at(edges(new THREE.BoxGeometry(0.1, 0.14, 0.1), 0.9, true), mid.x, mid.y, mid.z));  // abrazadera
+        rig.add(at(edges(new THREE.BoxGeometry(0.14, 0.05, 0.14), 0.9, true), foot.x, FLOOR + 0.025, foot.z));
       }
-      const lt = at(new THREE.Group(), -1.5, -0.5, 0.064);                                        // rótulo (tercio inferior)
-      lt.add(at(plate(0.4, 0.2, 0.01, 1), 0.2, 0, 0));
-      lt.add(at(plate(1.5, 0.2, 0.01, 0.9), 1.2, 0, 0));
-      rig.add(lt);
-      rig.add(at(plate(0.7, 0.14, 0.01, 0.6), 1.2, -0.7, 0.064));                                 // código de tiempo
-      const rec = at(edges(new THREE.CircleGeometry(0.08, 16), 1), -1.4, 0.78, 0.07); rig.add(rec);
-      const scan = segs([V(-1.6, 0, 0.066), V(1.6, 0, 0.066)], 0.35); rig.add(scan);
+      mids.forEach((m, i) => rig.add(rod(m, mids[(i + 1) % 3], 0.012, 0.6)));                       // riostra
+
+      /* Cabezal de fluidos, con barra de panorámica: pan + tilt */
+      const head = at(new THREE.Group(), 0, 0.15, 0); rig.add(head);
+      head.add(at(edges(new THREE.CylinderGeometry(0.15, 0.17, 0.1, 14), 0.9, true), 0, 0, 0));    // base del cabezal
+      head.add(at(edges(new THREE.CylinderGeometry(0.1, 0.12, 0.2, 12), 0.9, true), 0, 0.14, 0));   // cuerpo
+      head.add(at(edges(new THREE.CylinderGeometry(0.035, 0.035, 0.05, 8), 1, true), 0.1, 0.14, 0.04)); // marca roja
+      head.add(at(edges(new THREE.BoxGeometry(0.5, 0.04, 1.0), 0.9, true), 0, 0.26, 0.05));         // placa deslizante
+      head.add(rod(V(0.08, 0.1, -0.1), V(0.4, -0.2, -1.55), 0.02));                                 // barra de panorámica
+      head.add(rod(V(0.29, -0.06, -1.0), V(0.4, -0.2, -1.55), 0.045));                              // empuñadura
+
+      /* Cámara de hombro */
+      const cam = at(new THREE.Group(), 0, 0.28, 0); head.add(cam);
+      cam.add(at(edges(taper(0.62, 0.64, 1.1, 0.92, 0.95), 0.9, true), 0, 0.33, 0));                // cuerpo
+      cam.add(at(edges(new THREE.BoxGeometry(0.66, 0.8, 0.42), 0.9, true), 0, 0.4, -0.72));         // bloque trasero (batería / CCU)
+      cam.add(at(edges(new THREE.BoxGeometry(0.5, 0.1, 0.8), 0.9, true), 0, -0.04, -0.3));          // hombrera
+      [-0.5, 0.0].forEach(z => cam.add(at(edges(new THREE.BoxGeometry(0.06, 0.14, 0.06), 0.9, true), 0, 0.71, z))); // asa
+      cam.add(at(edges(new THREE.BoxGeometry(0.08, 0.06, 0.62), 0.9, true), 0, 0.81, -0.25));
+      [0.26, 0.42].forEach(y => cam.add(strip([V(0.332, y, -0.9), V(0.332, y, -0.55)], 0.5)));     // rejilla de ventilación
+      const vf = at(new THREE.Group(), 0, 0.93, 0.3); cam.add(vf);                                  // visor sobre soporte
+      cam.add(at(edges(new THREE.BoxGeometry(0.06, 0.14, 0.2), 0.9, true), 0, 0.71, 0.3));
+      vf.add(edges(new THREE.BoxGeometry(0.2, 0.3, 0.34), 0.9, true));
+      const eye = at(edges(new THREE.CylinderGeometry(0.09, 0.07, 0.12, 14), 0.9, true), 0, 0, -0.23); eye.rotation.x = Math.PI / 2; vf.add(eye);  // ocular
+      const tally = at(edges(new THREE.CircleGeometry(0.04, 12), 1), 0, 0.06, 0.172); vf.add(tally);                                               // tally
+      const mb = (r1, r2, len, y, z, o = 0.9) => {                                                  // cilindro con el eje en Z
+        const m = edges(new THREE.CylinderGeometry(r1, r2, len, 20), o, true);
+        m.rotation.x = Math.PI / 2; m.position.set(0, y, z); return m;
+      };
+      // micro shotgun con paravientos de espuma
+      cam.add(mb(0.075, 0.075, 0.8, 0.9, 0.95));
+      cam.add(mb(0.05, 0.05, 0.25, 0.9, 0.42));
+      [0.55, 1.1].forEach(z => cam.add(at(edges(new THREE.BoxGeometry(0.12, 0.1, 0.1), 0.9, true), 0, 0.82, z)));
+      // óptica de zoom con servo-empuñadura y parasol
+      cam.add(mb(0.22, 0.22, 0.14, 0.34, 0.62));                                                    // montura
+      cam.add(mb(0.2, 0.2, 0.6, 0.34, 0.98));                                                       // cuerpo de la óptica
+      const zoom = mb(0.225, 0.225, 0.16, 0.34, 0.9); cam.add(zoom);                                // anillo de zoom
+      cam.add(mb(0.25, 0.2, 0.2, 0.34, 1.38));
+      cam.add(at(edges(new THREE.BoxGeometry(0.14, 0.2, 0.4), 0.9, true), 0.24, 0.26, 0.9));        // servo-empuñadura
+      const hoodGeo = new THREE.CylinderGeometry(0.5, 0.26, 0.32, 4); hoodGeo.rotateY(Math.PI / 4);
+      const hood = edges(hoodGeo, 0.9, true); hood.rotation.x = Math.PI / 2; hood.position.set(0, 0.34, 1.62); cam.add(hood);
+      cam.add(at(edges(new THREE.CircleGeometry(0.2, 24), 0.8), 0, 0.34, 1.49));                    // lente frontal
+      cam.add(at(edges(new THREE.CircleGeometry(0.12, 20), 0.6), 0, 0.34, 1.49));
       return { group: g, update: t => {
-        rec.visible = Math.floor(t * 1.5) % 2 === 0;
-        const c = (t % 6) / 6, k = c < 0.1 ? c / 0.1 : c > 0.85 ? Math.max(0, 1 - (c - 0.85) / 0.1) : 1;
-        lt.scale.x = Math.max(0.001, k);                                                          // el rótulo entra y sale
-        scan.position.y = 0.85 - ((t * 0.35) % 1) * 1.7;
+        head.rotation.y = Math.sin(t * 0.5) * 0.3;
+        head.rotation.x = Math.sin(t * 0.37) * 0.03;
+        zoom.position.z = 0.9 + Math.sin(t * 1.1) * 0.07;
+        tally.visible = Math.floor(t * 1.2) % 2 === 0;
       } };
     },
 
