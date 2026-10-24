@@ -226,14 +226,171 @@ public class EjemploMono : MonoBehaviour
     <p class="note"><strong>Ojo:</strong> en C# las variables siempre van dentro de una clase. Si las escribes fuera de <code>public class … { }</code>, Unity da error de compilación.</p>
   </section>
 
-  <section class="sec doc" id="siguiente">
-    <h2 class="section-title">Siguiente paso</h2>
+  <section class="sec doc" id="ciclo">
+    <h2 class="section-title">08 · Cuándo se ejecuta cada función</h2>
+    <p>Unity llama por su cuenta a ciertas funciones de tus scripts en momentos concretos. Lo importante es saber cuál usar para cada cosa.</p>
+    <div class="table"><table>
+      <thead><tr><th>Función</th><th>Cuándo se ejecuta</th><th>Para qué</th></tr></thead>
+      <tbody>
+        <tr><td><code>Start()</code></td><td>Una vez, antes del primer fotograma.</td><td>Preparar valores y buscar referencias.</td></tr>
+        <tr><td><code>Update()</code></td><td>Una vez por fotograma (más o menos veces según el ordenador).</td><td>Leer el teclado y el ratón, mover cosas sin físicas.</td></tr>
+        <tr><td><code>FixedUpdate()</code></td><td>A intervalos fijos: 50 veces por segundo por defecto.</td><td>Todo lo que toque un <code>Rigidbody</code>: fuerzas y velocidades.</td></tr>
+        <tr><td><code>OnCollisionEnter()</code></td><td>Al chocar con otro collider.</td><td>Golpes, daño, rebotes.</td></tr>
+        <tr><td><code>OnTriggerEnter()</code></td><td>Al entrar en un collider marcado como trigger.</td><td>Recoger objetos, zonas, metas.</td></tr>
+      </tbody>
+    </table></div>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class Saltador : MonoBehaviour
+{
+    public float fuerzaSalto = 6f;
+    Rigidbody rb;
+    bool quiereSaltar;
+
+    void Start()
+    {
+        rb = GetComponent&lt;Rigidbody&gt;();      // una vez: guardamos la referencia
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))  // el teclado se lee en Update
+        {
+            quiereSaltar = true;
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (quiereSaltar)                     // las físicas se aplican en FixedUpdate
+        {
+            rb.AddForce(Vector3.up * fuerzaSalto, ForceMode.Impulse);
+            quiereSaltar = false;
+        }
+    }
+}</code></pre>
+    <p class="note"><strong>Por qué así:</strong> si lees la tecla en <code>FixedUpdate</code> puedes perder pulsaciones, y si aplicas la fuerza en <code>Update</code> el salto cambia según los fotogramas por segundo de cada ordenador.</p>
+  </section>
+
+  <section class="sec doc" id="getcomponent">
+    <h2 class="section-title">09 · Hablar con otros componentes</h2>
+    <p>Desde un script puedes controlar cualquier otro componente del mismo GameObject con <code>GetComponent&lt;Tipo&gt;()</code>. Guárdalo en una variable en <code>Start()</code> para no buscarlo en cada fotograma.</p>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class Bombilla : MonoBehaviour
+{
+    Renderer rend;
+    AudioSource sonido;
+
+    void Start()
+    {
+        rend = GetComponent&lt;Renderer&gt;();
+        sonido = GetComponent&lt;AudioSource&gt;();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            rend.material.color = Random.ColorHSV();   // cambia de color
+            sonido.Play();                             // y suena
+        }
+    }
+}</code></pre>
+  </section>
+
+  <section class="sec doc" id="colisiones">
+    <h2 class="section-title">10 · Colisiones y triggers</h2>
+    <div class="grid">
+      <div><h4>Collider</h4><p>Da forma física al objeto para detectar contactos: caja, esfera, cápsula… No hace que se mueva.</p></div>
+      <div><h4>Rigidbody</h4><p>Hace que el objeto obedezca a las físicas: gravedad, fuerzas, choques. Al menos uno de los dos objetos que chocan debe tenerlo.</p></div>
+      <div><h4>Is Trigger</h4><p>Si marcas un collider como trigger, deja de ser sólido: los objetos lo atraviesan y Unity te avisa al entrar.</p></div>
+    </div>
+    <h3>Detectar un choque</h3>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class Jugador : MonoBehaviour
+{
+    public int vidas = 3;
+
+    void OnCollisionEnter(Collision choque)
+    {
+        if (choque.gameObject.CompareTag("Enemigo"))   // ¿contra qué he chocado?
+        {
+            vidas--;
+            Debug.Log("¡Au! Vidas: " + vidas);
+        }
+    }
+}</code></pre>
+<pre class="console"><code>¡Au! Vidas: 2</code></pre>
+    <h3>Recoger un objeto con un trigger</h3>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class Moneda : MonoBehaviour
+{
+    public int valor = 10;
+
+    void OnTriggerEnter(Collider otro)
+    {
+        if (otro.CompareTag("Player"))       // solo la recoge el jugador
+        {
+            Debug.Log("+" + valor + " puntos");
+            Destroy(gameObject);             // la moneda desaparece
+        }
+    }
+}</code></pre>
+    <p class="note"><strong>En 2D</strong> todo lleva el sufijo <code>2D</code>: <code>Rigidbody2D</code>, <code>BoxCollider2D</code>, <code>OnCollisionEnter2D(Collision2D c)</code> y <code>OnTriggerEnter2D(Collider2D c)</code>. Las etiquetas (<em>tags</em>) se asignan en el Inspector, arriba del todo.</p>
+  </section>
+
+  <section class="sec doc" id="prefabs">
+    <h2 class="section-title">11 · Prefabs e Instantiate</h2>
+    <p class="def">Un prefab es un GameObject guardado como plantilla para crear copias durante el juego: balas, enemigos, monedas…</p>
+    <ol>
+      <li>Monta el objeto en la escena con todos sus componentes.</li>
+      <li>Arrástralo de la Hierarchy a la ventana Project: se vuelve azul, ya es un prefab.</li>
+      <li>Arrastra el prefab a una variable pública del script que lo va a crear.</li>
+    </ol>
+<pre><code class="language-csharp">using UnityEngine;
+
+public class Disparador : MonoBehaviour
+{
+    public GameObject balaPrefab;     // se arrastra desde Project
+    public float velocidad = 12f;
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))   // clic izquierdo
+        {
+            GameObject bala = Instantiate(balaPrefab, transform.position, transform.rotation);
+            bala.GetComponent&lt;Rigidbody&gt;().velocity = transform.forward * velocidad;
+            Destroy(bala, 3f);             // la borra a los 3 segundos
+        }
+    }
+}</code></pre>
+    <p class="note"><strong>Versión de Unity:</strong> en Unity 6 la velocidad del Rigidbody se llama <code>linearVelocity</code>. <code>velocity</code> sigue funcionando (con un aviso) y es la que existe en versiones anteriores, por eso la usamos en los ejemplos.</p>
+    <p>Tienes más scripts listos para usar (salto, cámara que sigue, recolectables, generador de enemigos…) en el <a href="repo.html">repositorio de códigos</a>, y la guía del proyecto en la <a href="../tasks/tarea3.html">Tarea 3</a>.</p>
+  </section>
+
+  <section class="sec doc" id="referencias">
+    <h2 class="section-title">12 · Referencias</h2>
     <ul>
-      <li>Movimiento con teclado: mira el <a href="repo.html">repositorio de códigos</a>.</li>
-      <li>Colisiones.</li>
-      <li>Interacción entre objetos.</li>
-      <li>Prefabs.</li>
+      <li><a href="https://learn.unity.com/pathway/unity-essentials" target="_blank" rel="noopener">Unity Essentials</a>: el curso oficial y gratuito para empezar.</li>
+      <li><a href="https://docs.unity3d.com/Manual/index.html" target="_blank" rel="noopener">Manual de Unity</a>: cómo funciona cada parte del editor.</li>
+      <li><a href="https://docs.unity3d.com/ScriptReference/" target="_blank" rel="noopener">Scripting API</a>: todas las clases y funciones de C# en Unity, con ejemplos.</li>
+      <li><a href="https://docs.unity3d.com/Manual/execution-order.html" target="_blank" rel="noopener">Orden de ejecución</a>: el esquema completo de cuándo se llama a cada función.</li>
     </ul>
+  </section>
+
+  <section class="sec doc" id="repaso">
+    <h2 class="section-title">13 · Comprueba lo que sabes</h2>
+    <p>Intenta responder con tus palabras antes de desplegar cada respuesta.</p>
+    <details class="qa"><summary>¿Qué es Unity y qué lenguaje usa?</summary><div><p>Un motor de desarrollo en tiempo real para crear videojuegos y aplicaciones interactivas 2D, 3D, VR y AR en varias plataformas. Se programa en C#.</p></div></details>
+    <details class="qa"><summary>Nombra dos tipos de objetos y un uso de cada uno.</summary><div><p>Por ejemplo: una <strong>cámara</strong>, que muestra lo que ve quien juega, y un <strong>GameObject vacío</strong>, para agrupar los objetos de un nivel.</p></div></details>
+    <details class="qa"><summary>¿Qué diferencia hay entre un Collider y un Rigidbody?</summary><div><p>El Collider da forma física para detectar contactos; el Rigidbody hace que el objeto obedezca a las físicas (gravedad y fuerzas). Para que haya colisión, al menos uno de los dos objetos necesita Rigidbody.</p></div></details>
+    <details class="qa"><summary>¿Qué es Time.deltaTime y por qué se multiplica por él?</summary><div><p>Los segundos que han pasado desde el fotograma anterior. Multiplicando por él, el movimiento va a la misma velocidad con muchos o pocos fotogramas por segundo.</p></div></details>
+    <details class="qa"><summary>¿Qué devuelve Input.GetAxis("Horizontal")?</summary><div><p>Un número entre −1 y 1 según se pulse izquierda (A, ←), nada o derecha (D, →), con una pequeña suavización.</p></div></details>
+    <details class="qa"><summary>¿Qué es un Vector3?</summary><div><p>Un grupo de tres números (x, y, z) que representa una posición, una dirección o una velocidad en 3D.</p></div></details>
+    <details class="qa"><summary>¿Qué función usarías para detectar que el jugador recoge una moneda?</summary><div><p><code>OnTriggerEnter</code> (u <code>OnTriggerEnter2D</code> en 2D), con el collider de la moneda marcado como trigger y comprobando la etiqueta con <code>CompareTag("Player")</code>.</p></div></details>
   </section>
 
   <nav class="pager" aria-label="Lecciones">

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fundamentos de programación en p5.js | DEIM</title>
-<meta name="description" content="Variables, condicionales, operadores, bucles y funciones con p5.js.">
+<meta name="description" content="Variables, operadores, condicionales, bucles, funciones y eventos con p5.js, con ejemplos que se pueden editar y ejecutar en la página.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Cpath d='M16 5l9 5v12l-9 5-9-5V10z' fill='none' stroke='%232aff6b' stroke-width='2'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="../../assets/site.css">
 </head>
@@ -23,129 +23,385 @@
   <section class="hero small">
     <p class="kicker"><a href="../index.html">DEIM</a> / Lección 01 · JavaScript</p>
     <h1>Fundamentos de programación en p5.js</h1>
-    <p class="lead">Conceptos fundamentales para aprender a programar de forma visual y creativa.</p>
+    <p class="lead">Los conceptos básicos de cualquier lenguaje, con respuesta visual inmediata. Todos los ejemplos se ejecutan aquí mismo: cambia un número, pulsa <strong>Ctrl+Enter</strong> y mira qué pasa.</p>
   </section>
 
   <section class="sec doc" id="programacion">
     <h2 class="section-title">01 · ¿Qué es la programación?</h2>
     <p class="def">Programar es crear un conjunto de instrucciones que le dicen a un ordenador cómo realizar una tarea.</p>
-    <p>Esas instrucciones se escriben en un lenguaje que el ordenador puede entender. Unos traductores, los <strong>intérpretes</strong>, leen el texto y ejecutan las acciones que marca.</p>
-    <p>Aprender a programar es como aprender inglés, música o braille: damos sentido a unos signos para crear un sistema que funciona.</p>
+    <p>Esas instrucciones se escriben en un lenguaje que el ordenador puede entender. Unos traductores, los <strong>intérpretes</strong> o compiladores, leen el texto y ejecutan las acciones que marca. Aprender a programar es como aprender inglés, música o braille: damos sentido a unos signos para crear un sistema que funciona.</p>
     <ul>
-      <li><strong>El código se ejecuta de arriba abajo</strong>, como leemos en la mayoría de lenguas occidentales. El orden importa.</li>
-      <li>Cada lenguaje tiene sus propias reglas de escritura (sintaxis).</li>
-      <li>Usaremos JavaScript con <strong>p5.js</strong>, una librería pensada para crear de forma visual.</li>
+      <li><strong>El código se ejecuta de arriba abajo</strong>, línea a línea. El orden importa.</li>
+      <li>Cada lenguaje tiene sus reglas de escritura (<strong>sintaxis</strong>): en JavaScript cada instrucción acaba en <code>;</code> y los bloques van entre llaves <code>{ }</code>.</li>
+      <li>Los comentarios empiezan por <code>//</code>: el ordenador los ignora y sirven para explicar el código.</li>
     </ul>
-    <h3>Ejemplo en p5.js</h3>
-    <div class="embed sketch"><iframe src="https://editor.p5js.org/avezray/full/JTjhOdGRB" title="Sketch de ejemplo en p5.js" loading="lazy"></iframe></div>
+    <h3>La estructura de un sketch</h3>
+    <div class="grid">
+      <div><h4>setup()</h4><p>Se ejecuta <strong>una sola vez</strong> al empezar. Aquí se crea el lienzo y se preparan los valores iniciales.</p></div>
+      <div><h4>draw()</h4><p>Se repite <strong>unas 60 veces por segundo</strong>, en bucle. Cada repetición es un fotograma: aquí va lo que se mueve o cambia.</p></div>
+    </div>
+    <h3>Las coordenadas</h3>
+    <p>El lienzo es una cuadrícula de píxeles. El punto <code>(0, 0)</code> está <strong>arriba a la izquierda</strong>: <code>x</code> crece hacia la derecha e <code>y</code> crece <strong>hacia abajo</strong>. Pasa el ratón por el lienzo para ver sus coordenadas.</p>
+    <figure class="p5" data-w="400" data-h="400">
+      <script type="text/plain">
+        function setup() {
+          createCanvas(400, 400);   // ancho y alto en píxeles
+        }
+
+        function draw() {
+          background(30);
+          fill(255);
+          noStroke();
+
+          circle(0, 0, 60);         // el origen (0, 0): arriba a la izquierda
+          rect(200, 100, 120, 60);  // rect(x, y, ancho, alto)
+          circle(100, 300, 80);     // circle(x, y, diámetro)
+
+          fill(42, 255, 107);
+          text('x: ' + mouseX + '   y: ' + mouseY, 12, 388);
+        }
+      </script>
+      <figcaption>Prueba a mover el rectángulo cambiando sus dos primeros números.</figcaption>
+    </figure>
   </section>
 
   <section class="sec doc" id="variables">
     <h2 class="section-title">02 · Variables</h2>
     <p class="def">Una variable es un contenedor que guarda información que puede cambiar mientras el programa se ejecuta.</p>
-    <p>Piensa en tus variables como la <strong>paleta de elementos</strong> con la que después vas a jugar: los colores con los que pintarás o los objetos de un inventario.</p>
-    <p>En JavaScript se crean con <code>let</code> seguido del nombre. Para usarlas basta con escribir su nombre donde iría el valor.</p>
-<pre><code class="language-javascript">let x = 50;          // guardamos un número en la variable x
+    <p>Piensa en tus variables como la <strong>paleta de elementos</strong> con la que después vas a jugar, como las piezas de un juego de construcción o los objetos de un inventario.</p>
+    <ol>
+      <li>Se <strong>declara</strong> con <code>let</code> y un nombre: <code>let x</code>.</li>
+      <li>Con <code>=</code> se le <strong>asigna</strong> un valor: <code>let x = 300;</code></li>
+      <li>Para <strong>usarla</strong>, se escribe su nombre donde iría el valor: <code>circle(x, 200, size);</code></li>
+    </ol>
+    <figure class="p5" data-w="400" data-h="400" data-editor="https://editor.p5js.org/AndresEducacion/sketches/0BEfHMC_T">
+      <script type="text/plain">
+        let x = 300;    // variable de posición
+        let size = 80;  // variable de tamaño
 
-function draw() {
-  circle(x, 200, 50); // en vez de un número escribimos x
-  x = x + 1;          // cambiamos su valor: el círculo se mueve
-}</code></pre>
-    <h3>Ejemplo básico</h3>
-    <div class="embed sketch"><iframe src="https://editor.p5js.org/AndresEducacion/sketches/0BEfHMC_T" title="Sketch: variables" loading="lazy"></iframe></div>
-  </section>
+        function setup() {
+          createCanvas(400, 400);
+        }
 
-  <section class="sec doc" id="condicionales">
-    <h2 class="section-title">03 · Condicionales</h2>
-    <p class="def">Los condicionales permiten tomar decisiones: si se cumple una condición, se ejecuta un bloque de código.</p>
-<pre><code class="language-javascript">let x = 0;
+        function draw() {
+          background(200);
+          circle(x, 200, size);
+        }
+      </script>
+      <figcaption>Cambia los valores de <code>x</code> y <code>size</code>: el círculo cambia sin tocar la línea que lo dibuja.</figcaption>
+    </figure>
+    <h3>Variables que ya trae p5.js</h3>
+    <div class="table"><table>
+      <thead><tr><th>Variable</th><th>Qué guarda</th></tr></thead>
+      <tbody>
+        <tr><td><code>width</code> · <code>height</code></td><td>Ancho y alto del lienzo.</td></tr>
+        <tr><td><code>mouseX</code> · <code>mouseY</code></td><td>Posición del ratón.</td></tr>
+        <tr><td><code>mouseIsPressed</code></td><td><code>true</code> mientras se mantiene pulsado el ratón.</td></tr>
+        <tr><td><code>frameCount</code></td><td>Fotogramas dibujados desde que empezó el sketch.</td></tr>
+        <tr><td><code>key</code></td><td>La última tecla pulsada.</td></tr>
+      </tbody>
+    </table></div>
+    <figure class="p5" data-w="400" data-h="400">
+      <script type="text/plain">
+        let size = 40;
 
-function draw() {
-  x = x + 1;
+        function setup() {
+          createCanvas(400, 400);
+        }
 
-  if (x > 200) {
-    fill(255, 0, 0);  // a partir de 200: rojo
-  } else {
-    fill(0, 0, 255);  // antes: azul
-  }
-
-  circle(x, 200, 50);
-}</code></pre>
-    <div class="embed sketch"><iframe src="https://editor.p5js.org/AndresEducacion/sketches/zFd75-jJP" title="Sketch: condicionales" loading="lazy"></iframe></div>
-    <h3>if · else if · else</h3>
-<pre><code class="language-javascript">if (x &lt; 100) {
-  // primera condición
-} else if (x &lt; 200) {
-  // si la primera no se cumple, se prueba esta
-} else {
-  // si no se cumple ninguna
-}</code></pre>
+        function draw() {
+          background(220, 30);              // fondo semitransparente: deja estela
+          size = 20 + (frameCount % 60);    // crece y vuelve a empezar cada segundo
+          circle(mouseX, mouseY, size);     // sigue al ratón
+        }
+      </script>
+      <figcaption>Mueve el ratón por el lienzo. Prueba a quitar el <code>, 30</code> de <code>background</code>.</figcaption>
+    </figure>
+    <h3>Tipos de datos</h3>
+    <div class="table"><table>
+      <thead><tr><th>Tipo</th><th>Ejemplo</th><th>Para qué</th></tr></thead>
+      <tbody>
+        <tr><td>Número</td><td><code>let vidas = 3;</code> · <code>let velocidad = 2.5;</code></td><td>Posiciones, tamaños, contadores. JavaScript no distingue enteros y decimales.</td></tr>
+        <tr><td>Texto (string)</td><td><code>let nombre = "Ada";</code></td><td>Siempre entre comillas.</td></tr>
+        <tr><td>Booleano</td><td><code>let vivo = true;</code></td><td>Solo <code>true</code> o <code>false</code>: interruptores.</td></tr>
+        <tr><td>Array</td><td><code>let frutas = ["manzana", "uva"];</code></td><td>Una lista ordenada. <code>frutas[0]</code> es el primer elemento.</td></tr>
+      </tbody>
+    </table></div>
   </section>
 
   <section class="sec doc" id="operadores">
-    <h2 class="section-title">04 · Operadores</h2>
-    <p>Los operadores permiten hacer operaciones con números y con texto, y comparar valores.</p>
+    <h2 class="section-title">03 · Operadores</h2>
+    <p>Los operadores hacen operaciones con números y con texto, y comparan valores.</p>
     <div class="table"><table>
       <thead><tr><th>Tipo</th><th>Operadores</th></tr></thead>
       <tbody>
-        <tr><td>Aritméticos</td><td><code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>%</code> (resto) <code>**</code> (potencia)</td></tr>
-        <tr><td>De comparación</td><td><code>===</code> igual · <code>!==</code> distinto · <code>&gt;</code> <code>&lt;</code> <code>&gt;=</code> <code>&lt;=</code></td></tr>
+        <tr><td>Aritméticos</td><td><code>+</code> <code>-</code> <code>*</code> <code>/</code> · <code>%</code> resto de la división · <code>**</code> potencia</td></tr>
+        <tr><td>Asignación abreviada</td><td><code>x += 2</code> es <code>x = x + 2</code> · <code>x++</code> es <code>x = x + 1</code></td></tr>
+        <tr><td>Comparación</td><td><code>===</code> igual · <code>!==</code> distinto · <code>&gt;</code> <code>&lt;</code> <code>&gt;=</code> <code>&lt;=</code></td></tr>
       </tbody>
     </table></div>
-    <h3>Operadores lógicos</h3>
+    <p class="note"><strong>Ojo:</strong> <code>=</code> asigna un valor y <code>===</code> compara. <code>if (x = 5)</code> no pregunta si x vale 5: le da el valor 5.</p>
+    <figure class="p5" data-w="400" data-h="400">
+      <script type="text/plain">
+        let x = 0;
+        let speed = 3;
+
+        function setup() {
+          createCanvas(400, 400);
+        }
+
+        function draw() {
+          background(220);
+          x += speed;                 // igual que x = x + speed
+          let pos = x % width;        // el resto: al llegar a 400 vuelve a 0
+          let r = 20 + pos * 0.2;     // el tamaño depende de la posición
+          circle(pos, height / 2, r);
+        }
+      </script>
+      <figcaption>Cambia <code>speed</code> o el <code>0.2</code> y fíjate en cómo cambia el movimiento.</figcaption>
+    </figure>
+  </section>
+
+  <section class="sec doc" id="condicionales">
+    <h2 class="section-title">04 · Condicionales</h2>
+    <p class="def">Los condicionales toman decisiones: si se cumple una condición, se ejecuta un bloque de código.</p>
+    <ul>
+      <li><code>if</code>: comprueba una condición y, si se cumple, ejecuta lo que hay entre llaves.</li>
+      <li><code>else if</code>: si la anterior no se cumple, prueba otra condición.</li>
+      <li><code>else</code>: si no se cumple ninguna, se ejecuta esto.</li>
+    </ul>
+    <figure class="p5" data-w="400" data-h="400" data-editor="https://editor.p5js.org/AndresEducacion/sketches/zFd75-jJP">
+      <script type="text/plain">
+        let x = 0;
+
+        function setup() {
+          createCanvas(400, 400);
+        }
+
+        function draw() {
+          background(220);
+          x = x + 2;
+
+          if (x > width) {          // al salir por la derecha…
+            x = 0;                  // …vuelve a empezar
+          }
+
+          if (x < 130) {
+            fill(0, 120, 255);      // primer tercio: azul
+          } else if (x < 270) {
+            fill(255, 200, 0);      // segundo tercio: amarillo
+          } else {
+            fill(255, 60, 60);      // el resto: rojo
+          }
+
+          circle(x, 200, 50);
+        }
+      </script>
+      <figcaption>Ordena las condiciones de la más concreta a la más general: el ordenador se queda con la primera que se cumple.</figcaption>
+    </figure>
+  </section>
+
+  <section class="sec doc" id="logicos">
+    <h2 class="section-title">05 · Operadores lógicos</h2>
     <p>Sirven para combinar varias condiciones dentro del mismo paréntesis.</p>
     <div class="table"><table>
-      <thead><tr><th>Operador</th><th>Significado</th><th>Ejemplo</th></tr></thead>
+      <thead><tr><th>Operador</th><th>Significado</th><th>Se cumple si…</th></tr></thead>
       <tbody>
-        <tr><td><code>&amp;&amp;</code></td><td>y</td><td><code>x &gt; 100 &amp;&amp; x &lt; 200</code></td></tr>
-        <tr><td><code>||</code></td><td>o</td><td><code>x &gt; 200 || y &lt; 50</code></td></tr>
-        <tr><td><code>!</code></td><td>no</td><td><code>!(x &gt; 100)</code></td></tr>
+        <tr><td><code>&amp;&amp;</code></td><td>y</td><td>se cumplen <strong>las dos</strong>: <code>x &gt; 100 &amp;&amp; x &lt; 200</code></td></tr>
+        <tr><td><code>||</code></td><td>o</td><td>se cumple <strong>al menos una</strong>: <code>x &gt; 200 || y &lt; 50</code></td></tr>
+        <tr><td><code>!</code></td><td>no</td><td>la condición <strong>no</strong> se cumple: <code>!mouseIsPressed</code></td></tr>
       </tbody>
     </table></div>
-    <div class="embed sketch"><iframe src="https://editor.p5js.org/AndresEducacion/sketches/drnGpmoU2" title="Sketch: operadores lógicos" loading="lazy"></iframe></div>
+    <figure class="p5" data-w="400" data-h="400" data-editor="https://editor.p5js.org/AndresEducacion/sketches/drnGpmoU2">
+      <script type="text/plain">
+        function setup() {
+          createCanvas(400, 400);
+        }
+
+        function draw() {
+          background(220);
+          let derecha = mouseX > width / 2;    // ¿el ratón está a la derecha?
+          let arriba = mouseY < height / 2;    // ¿el ratón está arriba?
+
+          if (derecha && arriba) {
+            fill(0, 200, 0);                   // las dos: verde
+          } else if (derecha || arriba) {
+            fill(0, 0, 255);                   // solo una: azul
+          } else {
+            fill(255, 0, 0);                   // ninguna: rojo
+          }
+
+          if (!mouseIsPressed) {               // si NO se pulsa el ratón…
+            noStroke();
+          } else {
+            stroke(0);
+            strokeWeight(6);
+          }
+          circle(mouseX, mouseY, 60);
+
+          stroke(100);
+          strokeWeight(1);
+          line(200, 0, 200, height);           // guías: mitad vertical
+          line(0, 200, width, 200);            // y mitad horizontal
+        }
+      </script>
+      <figcaption>Recorre los cuatro cuadrantes con el ratón y haz clic para ver el <code>!</code> en acción.</figcaption>
+    </figure>
   </section>
 
   <section class="sec doc" id="bucles">
-    <h2 class="section-title">05 · Bucles</h2>
+    <h2 class="section-title">06 · Bucles</h2>
     <p class="def">Un bucle repite un fragmento de código mientras se cumple una condición, sin tener que escribirlo muchas veces.</p>
-    <p class="note"><strong>Ojo:</strong> <code>draw()</code> ya es un bucle: p5.js lo ejecuta una vez por fotograma. Unity y cualquier motor que dibuje en tiempo real funcionan igual.</p>
-<pre><code class="language-javascript">function draw() {
-  background(220);
+    <p class="note"><strong>Recuerda:</strong> <code>draw()</code> ya es un bucle que p5.js repite en cada fotograma. Unity y cualquier motor en tiempo real funcionan igual.</p>
+    <h3>for: cuando sabes cuántas vueltas</h3>
+    <p>Entre paréntesis lleva tres partes: <strong>desde dónde</strong> empieza el contador, <strong>hasta cuándo</strong> sigue y <strong>cuánto avanza</strong> en cada vuelta.</p>
+    <figure class="p5" data-w="400" data-h="400" data-editor="https://editor.p5js.org/AndresEducacion/sketches/R980JkhKI">
+      <script type="text/plain">
+        function setup() {
+          createCanvas(400, 400);
+        }
 
-  // empieza en 0; sigue mientras x sea menor que el ancho; suma 20 en cada vuelta
-  for (let x = 0; x &lt; width; x = x + 20) {
-    line(x, 0, x, height);
-  }
-}</code></pre>
-    <div class="embed sketch"><iframe src="https://editor.p5js.org/AndresEducacion/sketches/R980JkhKI" title="Sketch: bucles" loading="lazy"></iframe></div>
+        function draw() {
+          background(220);
+          // for (desde dónde; hasta cuándo; cuánto avanza) { haz esto }
+          for (let x = 0; x < width; x += 20) {
+            line(x, 0, x, height);
+          }
+        }
+      </script>
+      <figcaption>Cambia el <code>20</code> por otro número. ¿Te atreves a dibujar también líneas horizontales?</figcaption>
+    </figure>
+    <h3>while: mientras se cumpla una condición</h3>
+    <figure class="p5" data-w="400" data-h="400">
+      <script type="text/plain">
+        function setup() {
+          createCanvas(400, 400);
+          noLoop();                  // draw() se ejecuta una sola vez
+        }
+
+        function draw() {
+          background(20);
+          noFill();
+          stroke(42, 255, 107);
+          let d = 380;
+          while (d > 0) {            // mientras el diámetro sea mayor que 0…
+            circle(200, 200, d);
+            d -= 30;                 // …lo reducimos
+          }
+        }
+      </script>
+      <figcaption>Si borras <code>d -= 30</code>, la condición nunca deja de cumplirse: es un <strong>bucle infinito</strong> y la página se bloquea.</figcaption>
+    </figure>
+    <h3>Bucles anidados: una cuadrícula</h3>
+    <p>Un bucle dentro de otro recorre filas y columnas. Con <code>dist()</code> cada punto reacciona a la distancia del ratón.</p>
+    <figure class="p5" data-w="400" data-h="400">
+      <script type="text/plain">
+        function setup() {
+          createCanvas(400, 400);
+          noStroke();
+        }
+
+        function draw() {
+          background(20);
+          for (let x = 20; x < width; x += 40) {        // columnas
+            for (let y = 20; y < height; y += 40) {     // filas
+              let d = dist(mouseX, mouseY, x, y);       // distancia al ratón
+              fill(255, 255 - d, 120);
+              circle(x, y, max(4, 34 - d / 10));
+            }
+          }
+        }
+      </script>
+      <figcaption>Cambia los dos <code>40</code> para hacer la cuadrícula más densa.</figcaption>
+    </figure>
   </section>
 
   <section class="sec doc" id="funciones">
-    <h2 class="section-title">06 · Funciones</h2>
+    <h2 class="section-title">07 · Funciones</h2>
     <p class="def">Una función agrupa instrucciones con un nombre para poder invocarlas en cualquier momento.</p>
-    <p>Si las variables son los ingredientes, las funciones son las recetas. Los paréntesis pueden ir vacíos o recibir los datos (parámetros) que la función necesita para trabajar.</p>
-<pre><code class="language-javascript">function setup() {
-  createCanvas(400, 400);
-}
+    <p>Si las variables son los ingredientes, las funciones son las recetas. Entre paréntesis reciben los datos que necesitan (<strong>parámetros</strong>) y, con <code>return</code>, pueden devolver un resultado a quien las llamó.</p>
+    <figure class="p5" data-w="400" data-h="400">
+      <script type="text/plain">
+        function setup() {
+          createCanvas(400, 400);
+          noStroke();
+        }
 
-function draw() {
-  background(220);
-  dibujarPelota(100, 200, 30);   // invocamos la función tres veces
-  dibujarPelota(200, 200, 50);   // con datos distintos
-  dibujarPelota(300, 200, 80);
-}
+        function draw() {
+          background(240);
+          let c = colorSegunLado(mouseX);     // la función nos devuelve un color
+          dibujarFlor(mouseX, mouseY, 30, c);
+          dibujarFlor(100, 100, 18, color(255, 150, 0));
+          dibujarFlor(310, 300, 24, color(160, 90, 255));
+        }
 
-// Declaramos nuestra propia función: recibe posición y tamaño
-function dibujarPelota(px, py, tam) {
-  fill(100, 150, 255);
-  noStroke();
-  circle(px, py, tam);
-}</code></pre>
-    <p class="note"><strong>Importante:</strong> igual que con las variables, no puede haber dos funciones con el mismo nombre.</p>
+        // Dibuja una flor: recibe posición, tamaño y color
+        function dibujarFlor(x, y, tam, col) {
+          fill(col);
+          for (let i = 0; i < 6; i++) {
+            let a = i * TWO_PI / 6;
+            circle(x + cos(a) * tam, y + sin(a) * tam, tam);
+          }
+          fill(255, 220, 0);
+          circle(x, y, tam);
+        }
+
+        // Devuelve un color según la mitad en la que esté x
+        function colorSegunLado(x) {
+          if (x < width / 2) {
+            return color(255, 80, 120);       // return devuelve el valor y sale
+          }
+          return color(80, 160, 255);
+        }
+      </script>
+      <figcaption>Añade otra flor en <code>draw()</code> con una sola línea: para eso sirven las funciones.</figcaption>
+    </figure>
+    <p class="note"><strong>Buenas prácticas:</strong> una función debe hacer una sola cosa, y su nombre debe decir cuál. Igual que con las variables, no puede haber dos funciones con el mismo nombre.</p>
+  </section>
+
+  <section class="sec doc" id="eventos">
+    <h2 class="section-title">08 · Interacción: eventos y arrays</h2>
+    <p>Algunas funciones las llama p5.js por ti cuando pasa algo: <code>mousePressed()</code> en cada clic y <code>keyPressed()</code> al pulsar una tecla. Con un <strong>array</strong> puedes guardar tantos elementos como quieras.</p>
+    <figure class="p5" data-w="400" data-h="400">
+      <script type="text/plain">
+        let pelotas = [];                       // array vacío
+
+        function setup() {
+          createCanvas(400, 400);
+        }
+
+        function draw() {
+          background(20);
+          fill(255);
+          text('Clic: añadir · C: borrar · ' + pelotas.length + ' pelotas', 10, 20);
+          fill(42, 255, 107);
+          for (let p of pelotas) {              // recorre el array
+            p.v += 0.4;                         // gravedad
+            p.y += p.v;                         // cae
+            if (p.y > height - 10) {            // rebota en el suelo
+              p.y = height - 10;
+              p.v *= -0.8;
+            }
+            circle(p.x, p.y, 20);
+          }
+        }
+
+        function mousePressed() {               // se ejecuta en cada clic
+          pelotas.push({ x: mouseX, y: mouseY, v: 0 });
+        }
+
+        function keyPressed() {                 // se ejecuta al pulsar una tecla
+          if (key === 'c' || key === 'C') {
+            pelotas = [];
+          }
+        }
+      </script>
+      <figcaption>Haz clic varias veces en el lienzo. Para que funcione el teclado, el lienzo tiene que tener el foco: haz clic en él antes.</figcaption>
+    </figure>
   </section>
 
   <section class="sec doc" id="ejercicio-ia">
-    <h2 class="section-title">07 · Ejercicio: un sketch con ChatGPT</h2>
+    <h2 class="section-title">09 · Ejercicio: un sketch con ChatGPT</h2>
     <p>Vamos a crear un sketch con ChatGPT y a pedirle que nos explique cada proceso.</p>
     <h3>Objetivos</h3>
     <ul>
@@ -164,7 +420,117 @@ operadores, bucles y funciones. Comenta cada línea y explica de manera sencilla
 cada proceso. Una frase y sin emojis.</code></pre>
     <h3>Ejemplo resuelto en cuatro iteraciones</h3>
     <div class="deck" data-src="../slides/ia-sketch.json"></div>
+    <h3>La versión final, en marcha</h3>
+    <figure class="p5" data-w="400" data-h="400" data-editor="https://editor.p5js.org/AndresEducacion/sketches/gh5PyBG-M">
+      <script type="text/plain">
+        let total = 5;
+        let xs = [];        // posición de cada pelota
+        let speeds = [];    // velocidad de cada pelota
+        let colors = [];    // color de cada pelota
+
+        function setup() {
+          createCanvas(400, 400);
+          for (let i = 0; i < total; i++) {
+            xs[i] = random(25, width - 25);
+            speeds[i] = random(1, 4);
+            colors[i] = color(random(255), random(255), random(255));
+          }
+        }
+
+        function draw() {
+          background(0);
+          for (let i = 0; i < total; i++) {
+            let y = 100 + i * 50;
+            xs[i] = xs[i] + speeds[i];
+
+            if (xs[i] >= width - 15 || xs[i] <= 15) {
+              speeds[i] = -speeds[i];                                    // rebota
+              xs[i] = constrain(xs[i], 15, width - 15);                  // no se queda fuera
+              colors[i] = color(random(255), random(255), random(255));  // y cambia de color
+            }
+
+            drawBall(xs[i], y, 30, colors[i]);
+          }
+        }
+
+        function drawBall(px, py, size, col) {
+          fill(col);
+          noStroke();
+          circle(px, py, size);
+        }
+      </script>
+      <figcaption>Versiones intermedias en el editor: <a href="https://editor.p5js.org/AndresEducacion/sketches/oJfhoz8LE" target="_blank" rel="noopener">1</a> · <a href="https://editor.p5js.org/AndresEducacion/sketches/bZOlzSen8" target="_blank" rel="noopener">2</a> · <a href="https://editor.p5js.org/AndresEducacion/sketches/gh5PyBG-M" target="_blank" rel="noopener">3</a>. Se añade <code>constrain()</code> para que una pelota rápida no se quede atrapada en el borde.</figcaption>
+    </figure>
     <p class="note"><strong>Recuerda:</strong> lo importante no es solo que el sketch funcione, sino que entiendas el código y sepas explicarlo.</p>
+  </section>
+
+  <section class="sec doc" id="ejemplo-completo">
+    <h2 class="section-title">10 · Un ejemplo completo</h2>
+    <p>El ejemplo de la <a href="../tasks/tarea1.html">Tarea 1</a> que se valoraría con un 9 o más. Combina todo lo anterior con funciones de la referencia de p5.js: <code>noise()</code> para un movimiento orgánico, <code>map()</code> para cambiar de escala, <code>lerpColor()</code> para mezclar colores y un <code>createSlider()</code> para controlar la velocidad.</p>
+    <figure class="p5" data-w="800" data-h="300" data-editor="https://editor.p5js.org/AndresEducacion/sketches/qNR23NmQe">
+      <script type="text/plain">
+        let x = 0;                 // avanza en horizontal
+        let noiseOffset = 0;       // avanza dentro del noise
+        let speedSlider;           // fader de velocidad
+        let currentColor;          // color actual
+        let targetColor;           // color hacia el que se hace la transición
+        let t = 0;                 // progreso de la transición (0 a 1)
+
+        function setup() {
+          createCanvas(800, 300);
+          background(0);
+          noFill();
+          speedSlider = createSlider(1, 40, 3);        // (mínimo, máximo, valor inicial)
+          speedSlider.position(20, 20);
+          currentColor = color(255, 150, 0);           // naranja
+          targetColor = randomColorCloseTo(currentColor);
+        }
+
+        function draw() {
+          let speed = speedSlider.value();
+          for (let i = 0; i < speed; i++) {
+            let y = map(noise(noiseOffset), 0, 1, 0, height);  // noise (0-1) a toda la altura
+            stroke(lerpColor(currentColor, targetColor, t));   // mezcla de los dos colores
+            point(x, y);
+
+            noiseOffset += 0.01;
+            x += 1;
+            t += 0.0005;
+
+            if (t >= 1) {                                      // terminó la transición
+              t = 0;
+              currentColor = targetColor;
+              targetColor = randomColorCloseTo(currentColor);
+            }
+            if (x > width) {                                   // llegó al borde derecho
+              x = 0;
+              noiseOffset += 0.1;
+            }
+          }
+        }
+
+        // Devuelve un color parecido al que recibe
+        function randomColorCloseTo(base) {
+          let r = constrain(red(base) + random(-20, 20), 0, 255);
+          let g = constrain(green(base) + random(-20, 20), 0, 255);
+          let b = constrain(blue(base) + random(-20, 20), 0, 255);
+          return color(r, g, b);   // return lo devuelve a: targetColor = randomColorCloseTo(…)
+        }
+      </script>
+      <figcaption>Mueve el fader para cambiar la velocidad. Busca cada función en la <a href="https://p5js.org/es/reference/" target="_blank" rel="noopener">referencia de p5.js</a>.</figcaption>
+    </figure>
+  </section>
+
+  <section class="sec doc" id="repaso">
+    <h2 class="section-title">11 · Comprueba lo que sabes</h2>
+    <p>Intenta responder con tus palabras antes de desplegar cada respuesta.</p>
+    <details class="qa"><summary>¿Qué es programar y qué hace un intérprete?</summary><div><p>Programar es escribir instrucciones para que un ordenador realice una tarea. El intérprete lee ese texto y ejecuta las acciones que indica, línea a línea.</p></div></details>
+    <details class="qa"><summary>¿Qué diferencia hay entre setup() y draw()?</summary><div><p><code>setup()</code> se ejecuta una vez al empezar; <code>draw()</code> se repite en cada fotograma, unas 60 veces por segundo.</p></div></details>
+    <details class="qa"><summary>¿Qué pasos tiene una variable? Pon un ejemplo de dos tipos que no sean números.</summary><div><p>Se declara (nombre), se le asigna un valor con <code>=</code> y se usa escribiendo su nombre. Ejemplos: un texto <code>let nombre = "Ada";</code> para un marcador, y un booleano <code>let pausa = false;</code> para parar el juego.</p></div></details>
+    <details class="qa"><summary>¿Qué diferencia hay entre = y ===?</summary><div><p><code>=</code> asigna un valor a una variable; <code>===</code> compara dos valores y devuelve <code>true</code> o <code>false</code>.</p></div></details>
+    <details class="qa"><summary>¿Cuáles son las tres partes posibles de un condicional?</summary><div><p><code>if</code> (si se cumple), <code>else if</code> (si no, comprueba otra) y <code>else</code> (si no se cumple ninguna).</p></div></details>
+    <details class="qa"><summary>¿En qué se diferencian for y while?</summary><div><p><code>for</code> se usa cuando sabes cuántas vueltas habrá: lleva inicio, condición y paso en la misma línea. <code>while</code> se repite mientras se cumpla una condición, y eres tú quien debe hacer que deje de cumplirse.</p></div></details>
+    <details class="qa"><summary>¿Qué partes tiene una función y para qué sirve return?</summary><div><p>Nombre, paréntesis con los parámetros que recibe y un bloque entre llaves con las instrucciones. <code>return</code> devuelve un resultado al punto desde el que se llamó a la función.</p></div></details>
   </section>
 
   <nav class="pager" aria-label="Lecciones">

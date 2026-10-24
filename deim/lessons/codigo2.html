@@ -61,14 +61,12 @@ string saludo = "Heyyy!";                           // texto entre comillas
 bool puertaAbierta = false;                         // interruptor: la puerta está cerrada
 string[] frutas = { "manzana", "uva", "melón" };    // array de textos
 int[] puntuaciones = { 100, 200, 350, 900 };        // array de enteros
-Debug.Log(frutas[0]);                               // los arrays empiezan en 0: "manzana"</code></pre>
+Debug.Log(frutas[0]);                               // los arrays empiezan en 0
+Debug.Log(puntuaciones.Length);                     // cuántos elementos tiene</code></pre>
+<pre class="console"><code>manzana
+4</code></pre>
     <p class="note"><strong>Unity:</strong> la sintaxis con corchetes (<code>string[] frutas = ["melón", "pera"];</code>) es de C# 12 y Unity todavía no la admite. Usa llaves <code>{ }</code>.</p>
-    <h3>Trucos y consejos</h3>
-    <ol>
-      <li>Las variables más generales se suelen declarar al principio.</li>
-      <li>Las variables que solo usa una acción se declaran junto a la función que se encarga de ella.</li>
-      <li>Los nombres son cruciales para organizar el código: que digan lo más claro posible qué guardan, sin tildes ni espacios. En C# se escriben en <code>camelCase</code>: <code>vidaMaxima</code>, <code>puertaAbierta</code>.</li>
-    </ol>
+    <p>Los nombres son cruciales para organizar el código: tienen que decir lo más claro posible qué guardan, sin tildes ni espacios. En C# se escriben en <code>camelCase</code>: <code>vidaMaxima</code>, <code>puertaAbierta</code>. Tienes más consejos en la <a href="#consejos">sección 07</a>.</p>
   </section>
 
   <section class="sec doc" id="operadores">
@@ -81,6 +79,12 @@ int multiplicacion = a * b;
 int division = a / b;       // entre enteros, se pierden los decimales: 7 / 2 = 3
 int resto = a % b;          // el resto de la división: 7 % 2 = 1
 float potencia = Mathf.Pow(a, 2);  // C# no tiene operador de potencia: se usa Mathf.Pow</code></pre>
+    <h3>Con texto</h3>
+    <p>El <code>+</code> también une textos (concatena). Es lo que más usarás con <code>Debug.Log</code> para ver qué valen tus variables.</p>
+<pre><code class="language-csharp">string nombre = "Ada";
+int vidas = 3;
+Debug.Log("Jugadora: " + nombre + " · vidas: " + vidas);</code></pre>
+<pre class="console"><code>Jugadora: Ada · vidas: 3</code></pre>
     <h3>De comparación</h3>
 <pre><code class="language-csharp">// con a = 10 y b = 5
 bool esMayor = a > b;       // true
@@ -113,7 +117,13 @@ if (impact >= defense && !shieldActive) {
       <li><code>else if</code>: va después de un <code>if</code>. Si la condición anterior no se cumple, comprueba otra.</li>
       <li><code>else</code>: va al final. Se ejecuta si no se ha cumplido ninguna de las condiciones anteriores.</li>
     </ol>
-<pre><code class="language-csharp">if (impact > defense) {
+<pre><code class="language-csharp">int impact = 30;
+int defense = 50;
+int lives = 100;
+bool alive = true;
+bool frozenState = false;
+
+if (impact > defense) {
     alive = false;                        // me he muerto
 }
 else if (impact < defense) {
@@ -121,7 +131,11 @@ else if (impact < defense) {
 }
 else {
     frozenState = true;                   // el único caso que queda: impacto igual a defensa
-}</code></pre>
+}
+
+Debug.Log("Vidas: " + lives + " · vivo: " + alive + " · congelado: " + frozenState);</code></pre>
+<pre class="console"><code>Vidas: 80 · vivo: True · congelado: False</code></pre>
+    <p class="note"><strong>Prueba mentalmente:</strong> ¿qué saldría con <code>impact = 60</code>? ¿Y con <code>impact = 50</code>?</p>
   </section>
 
   <section class="sec doc" id="bucles">
@@ -135,6 +149,11 @@ while (num < 10) {
     num++;            // le suma uno
 }
 // Se repite 10 veces (de 0 a 9). Cuando num llega a 10, la condición deja de cumplirse y el bucle termina.</code></pre>
+<pre class="console"><code>0
+1
+2
+…
+9</code></pre>
     <h3>for</h3>
     <p>Es el mismo bucle escrito de forma abreviada. Entre paréntesis lleva tres partes separadas por punto y coma:</p>
     <ol>
@@ -145,8 +164,30 @@ while (num < 10) {
 <pre><code class="language-csharp">for (int num = 0; num < 10; num++) {
     Debug.Log(num);
 }
-// Hace exactamente lo mismo que el while anterior. Se usa sobre todo en acciones secuenciales,
-// como recorrer un array: for (int i = 0; i < frutas.Length; i++) { ... }</code></pre>
+// Hace exactamente lo mismo que el while anterior, con el contador en una sola línea.</code></pre>
+    <h3>Recorrer un array</h3>
+    <p>El uso más habitual de <code>for</code> es recorrer una lista con un índice. Si no necesitas el índice, <code>foreach</code> lo hace más corto: «para cada elemento de la lista».</p>
+<pre><code class="language-csharp">string[] inventario = { "espada", "escudo", "poción" };
+
+for (int i = 0; i &lt; inventario.Length; i++) {
+    Debug.Log(i + ": " + inventario[i]);       // con el número de posición
+}
+
+foreach (string objeto in inventario) {
+    Debug.Log("Tienes: " + objeto);           // sin índice
+}</code></pre>
+<pre class="console"><code>0: espada
+1: escudo
+2: poción
+Tienes: espada
+Tienes: escudo
+Tienes: poción</code></pre>
+    <div class="grid">
+      <div><h4>for</h4><p>Cuando sabes cuántas vueltas habrá o necesitas el número de vuelta.</p></div>
+      <div><h4>while</h4><p>Cuando es una condición la que decide: «mientras el enemigo esté vivo».</p></div>
+      <div><h4>foreach</h4><p>Para recorrer todos los elementos de una lista, uno a uno.</p></div>
+    </div>
+    <p class="note"><strong>Cuidado con los bucles infinitos:</strong> si la condición nunca deja de cumplirse, Unity se queda colgado y tendrás que cerrarlo. Comprueba siempre que algo dentro del bucle acerca el final.</p>
   </section>
 
   <section class="sec doc" id="funciones">
@@ -167,7 +208,36 @@ SaludoPersonalizado("Heyyy");   // la invocamos: imprime "Heyyy"
 
 // Al crear la función indico qué dato recibirá al invocarla: un saludo (string).
 // Su acción es imprimir ese saludo.</code></pre>
+<pre class="console"><code>Heyyy</code></pre>
     <p class="note"><strong>Importante:</strong> igual que con las variables, no puede haber dos funciones con el mismo nombre (salvo que reciban parámetros distintos).</p>
+    <h3>Funciones que devuelven un resultado</h3>
+    <p>Si en lugar de <code>void</code> pones un tipo, la función debe <strong>devolver</strong> un valor de ese tipo con <code>return</code>. Ese valor vuelve al punto desde el que se llamó.</p>
+<pre><code class="language-csharp">int CalcularDanio(int ataque, int defensa) {
+    int danio = ataque - defensa;   // variable local: solo existe dentro de esta función
+    if (danio &lt; 0) {
+        danio = 0;                  // el daño nunca puede ser negativo
+    }
+    return danio;                   // devuelve el resultado
+}
+
+int golpe = CalcularDanio(120, 40);
+Debug.Log("Daño: " + golpe);
+Debug.Log("Daño: " + CalcularDanio(20, 50));</code></pre>
+<pre class="console"><code>Daño: 80
+Daño: 0</code></pre>
+    <h3>Variables globales y locales</h3>
+    <p>Una variable declarada <strong>fuera de las funciones</strong> (en la clase) la pueden usar todas. Una declarada <strong>dentro de una función</strong> solo existe ahí y desaparece al terminar.</p>
+<pre><code class="language-csharp">public class Jugador : MonoBehaviour
+{
+    int vidas = 3;               // global (de la clase): la ven todas las funciones
+
+    void RecibirGolpe()
+    {
+        int danio = 1;           // local: solo existe dentro de RecibirGolpe
+        vidas -= danio;
+        Debug.Log("Te quedan " + vidas + " vidas");
+    }
+}</code></pre>
     <h3>Nuestras propias herramientas</h3>
     <p>Las funciones nos permiten crear nuestras propias herramientas: son una oportunidad para construir cualquier proceso que se nos ocurra. Son más exigentes que un programa con interfaz visual, pero nos dan mucha más libertad.</p>
     <p>Piensa en ellas como las <strong>máquinas de un proceso industrial</strong>:</p>
@@ -179,13 +249,59 @@ SaludoPersonalizado("Heyyy");   // la invocamos: imprime "Heyyy"
     <p>Para practicar, la <a href="../tasks/tarea2.html">Tarea 2</a> te pide explicar una mecánica de tu videojuego favorito con funciones.</p>
   </section>
 
+  <section class="sec doc" id="consejos">
+    <h2 class="section-title">07 · Trucos y consejos</h2>
+    <div class="grid">
+      <div>
+        <h4>Variables</h4>
+        <p>Declara las <strong>globales</strong> al principio, fuera de las funciones, y no abuses de ellas. Las <strong>locales</strong> van dentro de la función que las usa. Nombres claros: <code>cubeVelocity</code>, <code>maxCubeVelocity</code>.</p>
+      </div>
+      <div>
+        <h4>Condicionales</h4>
+        <p>Ordena de la condición más concreta a la más general. Agrupa condiciones relacionadas con operadores lógicos.</p>
+      </div>
+      <div>
+        <h4>Operadores</h4>
+        <p>Usa la asignación abreviada: <code>x += 2</code> en vez de <code>x = x + 2</code>, y <code>x++</code> en vez de <code>x = x + 1</code>.</p>
+      </div>
+      <div>
+        <h4>Bucles</h4>
+        <p><code>for</code> si sabes cuántas vueltas habrá; <code>while</code> si manda una condición. Evita los bucles infinitos y pon dentro solo lo imprescindible.</p>
+      </div>
+      <div>
+        <h4>Funciones</h4>
+        <p>Una función, una tarea. Si pasa de 50–70 líneas, divídela. Mejor pasar datos por parámetros y devolverlos con <code>return</code> que modificar variables globales.</p>
+      </div>
+    </div>
+<pre><code class="language-csharp">// Con booleanos no hace falta comparar con true
+if (isReady == true) { … }    // funciona, pero sobra
+if (isReady) { … }            // mejor
+
+// Agrupa condiciones relacionadas
+if (age >= 18 &amp;&amp; hasID) {
+    Debug.Log("Puedes pasar");
+}</code></pre>
+  </section>
+
   <section class="sec doc" id="referencias">
-    <h2 class="section-title">07 · Referencias</h2>
+    <h2 class="section-title">08 · Referencias</h2>
     <h3>How Two Programmers Built The Most Complex Automation Game</h3>
     <div class="embed"><iframe src="https://www.youtube-nocookie.com/embed/l7HA2HneXU4?start=1225" title="How Two Programmers Built The Most Complex Automation Game" loading="lazy" allowfullscreen></iframe></div>
     <h3>Best Code Architectures For Indie Games</h3>
     <div class="embed"><iframe src="https://www.youtube-nocookie.com/embed/8WqYQ1OwxJ4" title="Best Code Architectures For Indie Games" loading="lazy" allowfullscreen></iframe></div>
     <div class="actions"><a class="btn" href="https://learn.microsoft.com/es-es/dotnet/csharp/language-reference/" target="_blank" rel="noopener">Referencia de C# ↗</a></div>
+  </section>
+
+  <section class="sec doc" id="repaso">
+    <h2 class="section-title">09 · Comprueba lo que sabes</h2>
+    <p>Intenta responder con tus palabras antes de desplegar cada respuesta.</p>
+    <details class="qa"><summary>¿Qué diferencia hay entre declarar una variable en JavaScript y en C#?</summary><div><p>En C# hay que indicar el tipo antes del nombre (<code>int vidas = 3;</code>); en JavaScript basta con <code>let</code>.</p></div></details>
+    <details class="qa"><summary>¿Por qué los decimales llevan una f en C#?</summary><div><p>Porque sin ella C# entiende que el número es un <code>double</code>. La <code>f</code> lo marca como <code>float</code>, el tipo decimal que usa Unity.</p></div></details>
+    <details class="qa"><summary>¿Cuánto vale 7 / 2 entre enteros? ¿Y 7 % 2?</summary><div><p><code>7 / 2</code> vale 3, porque entre enteros se pierden los decimales. <code>7 % 2</code> vale 1: es el resto.</p></div></details>
+    <details class="qa"><summary>Escribe un condicional con sus tres partes.</summary><div><p><code>if (vida &gt; 50) { … } else if (vida &gt; 0) { … } else { … }</code>: si se cumple la primera, si no la segunda, y si no ninguna.</p></div></details>
+    <details class="qa"><summary>¿Cuándo usarías for, while o foreach?</summary><div><p><code>for</code> si sabes cuántas vueltas habrá, <code>while</code> si manda una condición y <code>foreach</code> para recorrer todos los elementos de una lista.</p></div></details>
+    <details class="qa"><summary>¿Qué significa void? ¿Qué pasa si pones int en su lugar?</summary><div><p><code>void</code> indica que la función no devuelve nada. Con <code>int</code>, la función está obligada a devolver un número entero con <code>return</code>.</p></div></details>
+    <details class="qa"><summary>¿Qué diferencia hay entre una variable global y una local?</summary><div><p>La global se declara en la clase y la ven todas las funciones. La local se declara dentro de una función y solo existe mientras esa función se ejecuta.</p></div></details>
   </section>
 
   <nav class="pager" aria-label="Lecciones">

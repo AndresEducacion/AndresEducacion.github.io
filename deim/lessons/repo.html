@@ -23,7 +23,17 @@
   <section class="hero small">
     <p class="kicker"><a href="../index.html">DEIM</a> / Recursos</p>
     <h1>Repositorio de códigos de Unity</h1>
-    <p class="lead">Scripts de C# listos para usar y modificar. Despliega cada uno para ver el código completo y copiarlo.</p>
+    <p class="lead">Scripts de C# listos para usar y modificar. Despliega cada uno para ver el código completo, copiarlo o descargarlo.</p>
+  </section>
+
+  <section class="sec doc" aria-labelledby="t-uso">
+    <h2 id="t-uso" class="section-title">Cómo usarlos</h2>
+    <ol>
+      <li>En la ventana Project: botón derecho → <strong>Create → MonoBehaviour Script</strong> (en versiones anteriores, <em>C# Script</em>).</li>
+      <li>Ponle <strong>exactamente el mismo nombre</strong> que la clase del código (por ejemplo, <code>Jump2D</code>). Si no coinciden, Unity no lo podrá añadir.</li>
+      <li>Pega el código, guarda y arrastra el script al GameObject en el Inspector.</li>
+      <li>Rellena las variables públicas en el Inspector y dale al Play.</li>
+    </ol>
   </section>
 
   <section class="sec doc" aria-labelledby="t-pasos">
@@ -36,6 +46,10 @@
       <summary><strong>Variables públicas</strong><small>Tipos de variables expuestos en el Inspector.</small></summary>
       <p>Las variables públicas (y las privadas con <code>[SerializeField]</code>) se pueden modificar desde el Inspector sin tocar el código: números, texto, vectores, colores, referencias, enumerados, arrays y listas.</p>
     </details>
+    <details class="code-file" data-file="codes/Rotator.cs">
+      <summary><strong>Rotación continua</strong><small>Girar un objeto a velocidad constante con <code>Time.deltaTime</code>.</small></summary>
+      <p>El ejemplo más corto para entender <code>Update()</code> y <code>Time.deltaTime</code>. Ideal para monedas o elementos decorativos.</p>
+    </details>
   </section>
 
   <section class="sec doc" aria-labelledby="t-mov">
@@ -43,6 +57,26 @@
     <details class="code-file" data-file="codes/MoveController.cs">
       <summary><strong>Movimiento con input</strong><small>Mover un objeto 2D con el teclado usando físicas.</small></summary>
       <p>Primer código de movimiento: lee el teclado en <code>Update()</code> y cambia la velocidad del <code>Rigidbody2D</code> en <code>FixedUpdate()</code>.</p>
+    </details>
+    <details class="code-file" data-file="codes/Jump2D.cs">
+      <summary><strong>Salto 2D</strong><small>Saltar solo cuando se está tocando el suelo.</small></summary>
+      <p>Se combina con el anterior en el mismo personaje. Usa <code>OnCollisionEnter2D</code> y la etiqueta <code>Suelo</code> para saber si puede saltar.</p>
+    </details>
+    <details class="code-file" data-file="codes/CameraFollow.cs">
+      <summary><strong>Cámara que sigue al jugador</strong><small>Seguimiento suave con <code>Vector3.SmoothDamp</code>.</small></summary>
+      <p>Va en la cámara. Usa <code>LateUpdate()</code> para moverse después de que el jugador ya se haya movido en ese fotograma.</p>
+    </details>
+  </section>
+
+  <section class="sec doc" aria-labelledby="t-int">
+    <h2 id="t-int" class="section-title">Interacción</h2>
+    <details class="code-file" data-file="codes/Collectible2D.cs">
+      <summary><strong>Objeto recolectable</strong><small>Sumar puntos y desaparecer al tocarlo.</small></summary>
+      <p>Usa un collider marcado como trigger y <code>OnTriggerEnter2D</code>. La variable <code>static</code> hace que todas las monedas compartan un mismo marcador.</p>
+    </details>
+    <details class="code-file" data-file="codes/Spawner.cs">
+      <summary><strong>Generador de objetos</strong><small>Crear copias de un prefab cada cierto tiempo.</small></summary>
+      <p>Un temporizador con <code>Time.deltaTime</code> e <code>Instantiate</code> para crear enemigos, obstáculos o lluvia en posiciones aleatorias.</p>
     </details>
   </section>
 </main>

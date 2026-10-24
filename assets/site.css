@@ -90,6 +90,40 @@ pre code{color:#d7dfd9;font-size:inherit}
 .token.function,.token.class-name{color:#9fd8ff}
 .token.operator,.token.punctuation{color:#9aa69f}
 
+/* Salida de consola (C#, Unity) */
+pre.console{background:#000;color:var(--soft)}
+pre.console::before{content:"Consola";display:block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin-bottom:6px}
+pre.console code{color:var(--soft)}
+pre + pre.console{margin-top:-24px;border-top-style:dashed}
+
+/* Sketches de p5.js editables (assets/site.js) */
+.p5{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);border:1px solid var(--line);margin:20px 0 28px;background:var(--panel)}
+.p5-code{min-width:0}
+.p5-code pre{margin:0;border:0;height:100%;max-height:460px;overflow:auto;background:none}
+.p5-code code{display:block;min-height:100%;outline:none;white-space:pre}
+.p5-code pre:focus-within{box-shadow:inset 0 0 0 1px var(--acc)}
+.p5-out{border-left:1px solid var(--line);background:#0a0a0a;display:flex;align-items:center;justify-content:center;min-height:220px}
+.p5-stage{position:relative;width:100%;aspect-ratio:var(--ar,1);max-height:460px}
+.p5-stage iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.p5-bar{grid-column:1/-1;display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px;border-top:1px solid var(--line);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
+.p5-bar button,.p5-bar a{font:inherit;color:var(--mut);background:none;border:1px solid var(--line);padding:6px 10px;cursor:pointer;text-decoration:none}
+.p5-bar button:hover,.p5-bar a:hover{color:var(--acc);border-color:var(--acc)}
+.p5-bar [data-run]{color:var(--acc);border-color:var(--acc)}
+.p5-bar .gap{flex:1;text-transform:none;letter-spacing:.02em}
+.p5-err{grid-column:1/-1;margin:0;padding:8px 12px;border-top:1px solid var(--line);color:#ff6b6b;font-size:13px;max-width:none}
+.p5 figcaption{grid-column:1/-1;margin:0;padding:10px 12px;border-top:1px solid var(--line)}
+
+/* Preguntas de repaso */
+.qa{border-bottom:1px solid var(--line);max-width:72ch}
+.qa:first-of-type{border-top:1px solid var(--line)}
+.qa summary{cursor:pointer;list-style:none;padding:14px 32px 14px 8px;position:relative;color:var(--fg)}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::after{content:"+";position:absolute;right:8px;top:12px;color:var(--acc);font-size:18px}
+.qa[open] summary::after{content:"−"}
+.qa summary:hover{background:linear-gradient(90deg,var(--tint),transparent)}
+.qa>div{padding:0 8px 14px;color:var(--soft)}
+.qa>div p{margin:0 0 8px}
+
 /* Archivos de código desplegables */
 .code-file{border-bottom:1px solid var(--line)}
 .code-file:first-of-type{border-top:1px solid var(--line)}
@@ -180,6 +214,12 @@ footer{margin-top:56px;padding:24px var(--pad);color:var(--mut);font-size:12px;b
   .pager .next{grid-column:1}
   .top nav{order:3;width:100%}
   pre{font-size:13px;padding:14px}
+  .p5-bar .gap{display:none}
+}
+@media (max-width:900px){
+  .p5{grid-template-columns:1fr}
+  .p5-out{border-left:0;border-top:1px solid var(--line)}
+  .p5-code pre{max-height:340px}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
