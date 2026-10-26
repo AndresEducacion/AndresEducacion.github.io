@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cabina de realización | PRTV</title>
+<meta name="description" content="Escaleta, parte de emisión e intercom de un fragmento real de telediario: las órdenes del realizador, del ayudante y de continuidad en su momento exacto.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2024%2024'%3E%3Crect%20x%3D'-1'%20y%3D'-1'%20width%3D'26'%20height%3D'26'%20rx%3D'5'%20fill%3D'%23191919'%2F%3E%3Cg%20fill%3D'none'%20stroke%3D'%23ff5c5c'%20stroke-width%3D'1.6'%20stroke-linecap%3D'round'%20stroke-linejoin%3D'round'%3E%3Crect%20x%3D'4'%20y%3D'6'%20width%3D'10.5'%20height%3D'6.5'%20rx%3D'1'%2F%3E%3Cpath%20d%3D'M14.5%207.5h5v3.5h-5M19.5%206.6v5.3'%2F%3E%3Crect%20x%3D'5.5'%20y%3D'2.5'%20width%3D'5'%20height%3D'3.5'%20rx%3D'.6'%2F%3E%3Ccircle%20cx%3D'12.6'%20cy%3D'4.25'%20r%3D'.9'%20fill%3D'%23ff5c5c'%20stroke%3D'none'%2F%3E%3Cpath%20d%3D'M9%2012.5v2M9%2014.5l-4.5%207M9%2014.5l4.5%207M9%2014.5v7M6%2013.6l-4%201.6'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="../../assets/site.css">
+<!-- Rótulos de la escaleta y del intercom, con aire de mesa de control -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&display=swap">
+<style>
+/* Cabina de realización sobre la base común (assets/site.css): transporte con línea de tiempo,
+   y debajo la escaleta a la izquierda y el parte de emisión y el intercom a la derecha. */
+.cab{
+  --air:#ff4747; --nxt:#35d07f; --cue:#ffb02e; --well:#101114;
+  --c-cab:#9aa8bc; --c-sum:#ffd166; --c-est:#62a0ff; --c-dir:#e86bb0; --c-col:#ff9f43; --c-pie:#3fcab9; --c-cont:#b48cff;
+  --disp:'Barlow Condensed','Arial Narrow',Arial,sans-serif;
+  max-width:1360px;margin:0 auto;padding:8px var(--pad) 24px;display:flex;flex-direction:column;gap:12px;font-size:15px;line-height:1.45}
+.cab h2,.cab p{margin:0}
+.cab button,.cab select,.cab input{font:inherit;color:inherit}
+.cab [hidden]{display:none!important}
+.box{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:12px;min-width:0}
+.box h2{font:600 14px var(--disp);letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.cb{display:inline-flex;align-items:center;justify-content:center;background:var(--panel2);border:1px solid var(--line2);border-radius:var(--r-sm);padding:8px 14px;cursor:pointer;font-size:14px;color:var(--fg)}
+.cb:hover{border-color:var(--mut)}
+.cb.main{background:var(--fg);border-color:var(--fg);color:#111;font-weight:600;min-width:116px}
+.cb[aria-pressed="true"]{border-color:var(--acc);color:var(--acc)}
+.cab select{background:var(--panel2);border:1px solid var(--line2);border-radius:var(--r-sm);padding:6px 8px}
+
+/* Transporte y línea de tiempo */
+.deck{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center}
+.tc{font:500 clamp(26px,3.4vw,36px)/1 var(--mono);font-variant-numeric:tabular-nums;background:var(--well);border:1px solid var(--line);border-radius:var(--r-sm);padding:8px 14px;color:var(--fg)}
+.btns{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.btns label{display:flex;gap:6px;align-items:center;color:var(--mut);font-size:14px}
+.hint{color:var(--mut);font-size:12.5px;flex-basis:100%}
+.hint kbd{font:500 11px var(--mono);border:1px solid var(--line2);border-radius:3px;padding:0 5px;color:var(--soft)}
+.tl-wrap{display:flex;flex-direction:column;gap:6px;margin-top:12px}
+.tl{position:relative;height:46px;background:var(--well);border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden;cursor:pointer;touch-action:none}
+.seg-i{position:absolute;top:0;bottom:0;background:color-mix(in srgb,var(--k) 72%,#0b0e13);border-right:2px solid var(--well);color:#07090d;font:600 14px/46px var(--disp);text-align:center;overflow:hidden;white-space:nowrap}
+.seg-i.past{background:color-mix(in srgb,var(--k) 36%,#0b0e13)}
+.seg-i.pre{background:repeating-linear-gradient(135deg,#1c1c22 0 6px,#15151a 6px 12px);color:var(--mut);font-size:12px}
+.head{position:absolute;top:0;bottom:0;width:2px;background:#fff;box-shadow:0 0 0 1px #000;pointer-events:none}
+.ruler{position:relative;height:16px;font:500 11px var(--mono);color:var(--mut)}
+.ruler span{position:absolute;top:0;transform:translateX(-50%)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;color:var(--mut);font-size:12.5px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.now-l{font-size:14px;color:var(--mut)}
+.now-l b{color:var(--fg);font-weight:600}
+.now-l .cd{font-family:var(--mono);color:var(--fg)}
+.now-l .cd.w10{color:var(--air)}
+.loc{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:baseline;background:#050608;border:1px solid var(--line);border-radius:var(--r-sm);padding:8px 12px;min-height:44px}
+.loc span{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--mut);white-space:nowrap}
+.loc p{color:#fff;font-size:16px}
+.loc p.quiet{color:var(--mut);font-style:italic;font-size:14px}
+.loc mark{background:var(--cue);color:#111;border-radius:2px;padding:0 3px}
+
+/* Escaleta, parte e intercom */
+.lower{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+@media (min-width:1180px){.lower{grid-template-columns:minmax(0,1fr) 400px;align-items:start}}
+.stack{display:flex;flex-direction:column;gap:12px;min-width:0}
+.tbl-wrap{overflow:auto;max-height:70vh;border:1px solid var(--line);border-radius:var(--r-sm)}
+.cab thead th{position:sticky;top:0;z-index:1}
+.cab table{border-collapse:collapse;width:100%;min-width:920px;font-size:13.5px}
+.cab th,.cab td{border:0;border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.cab th{font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mut);background:var(--panel2);white-space:nowrap}
+.cab td{color:var(--soft)}
+tbody tr{cursor:pointer}
+tbody tr:hover{background:var(--hover)}
+tr.past td{color:var(--mut)}
+tr.air{background:color-mix(in srgb,var(--air) 13%,var(--panel))}
+tr.nxt{background:color-mix(in srgb,var(--nxt) 9%,var(--panel))}
+tr.sel td:first-child{box-shadow:inset 3px 0 0 var(--fg)}
+.n{font:500 13px var(--mono)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.fm{display:inline-block;font:600 13px var(--disp);letter-spacing:.08em;text-transform:uppercase;padding:1px 8px;border-radius:3px;color:#07090d;background:var(--k)}
+.sub{display:block;color:var(--mut);font-size:12px;margin-top:2px}
+.tg{display:inline-block;font:600 10.5px var(--mono);padding:1px 5px;border-radius:3px;letter-spacing:.04em}
+.tg.air{background:var(--air);color:#fff}.tg.nxt{background:var(--nxt);color:#04140a}
+.inf{color:var(--cue);font:500 11px var(--mono)}
+td input[type=text],td select{width:100%;min-width:90px;padding:4px 6px;font-size:13px;background:var(--well);border:1px solid var(--line2);border-radius:var(--r-sm)}
+.tb-h{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center;margin-bottom:8px}
+.tb-h h2{margin:0}
+.parte{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0}
+.parte div{background:var(--panel2);border-radius:var(--r-sm);padding:6px 8px;min-width:0}
+.parte dt{font:500 10.5px var(--mono);letter-spacing:.1em;color:var(--mut);text-transform:uppercase}
+.parte dd{margin:2px 0 0;font:500 14px var(--mono);font-variant-numeric:tabular-nums;overflow-wrap:anywhere;color:var(--fg)}
+.parte .w{grid-column:1/-1}
+.parte .w dd{font:400 14px/1.45 var(--sans);color:var(--soft)}
+.parte input{width:100%;margin-top:3px;background:var(--well);border:1px solid var(--line2);border-radius:var(--r-sm);padding:4px 6px;font-size:13.5px}
+.st{display:inline-block;font:600 11px var(--mono);padding:0 6px;border-radius:3px;margin-left:6px;border:1px solid}
+.st.ok{color:var(--nxt)}.st.mid{color:var(--cue)}.st.bad{color:var(--air)}
+.log{height:320px;overflow-y:auto;background:var(--well);border:1px solid var(--line);border-radius:var(--r-sm);padding:6px 8px;font:12.5px/1.55 var(--mono)}
+.log p{display:flex;gap:8px}
+.log .t{color:var(--mut);flex:none;min-width:38px}
+.log .w{flex:none;width:38px;font-weight:600}
+.w.r{color:var(--cue)}.w.a{color:var(--c-est)}.w.c{color:var(--c-cont)}.w.s{color:var(--mut)}
+.log .x{min-width:0;overflow-wrap:anywhere;color:#d9dee6}
+.log p.last .x{color:#fff;font-weight:600}
+.log .empty{color:var(--mut)}
+/* En pantalla ancha cada columna ocupa la altura de la ventana: la escaleta se desplaza dentro de su bloque
+   y el parte y el intercom se quedan siempre a la vista */
+@media (min-width:1180px){
+  .lower{--h:calc(100vh - var(--top-h,46px) - 24px)}
+  .lower>.box,.stack{position:sticky;top:calc(var(--top-h,46px) + 12px);height:var(--h)}
+  .lower>.box{display:flex;flex-direction:column}
+  .tbl-wrap{flex:1;min-height:0;max-height:none}
+  .stack>.box{overflow:auto}
+  .stack>.box:first-child{flex:0 1 auto;max-height:55%}
+  .stack>.box:last-child{flex:1 1 0;min-height:200px;display:flex;flex-direction:column}
+  .log{flex:1;height:auto;min-height:0}
+}
+.roles{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:8px;font-size:12.5px;color:var(--mut)}
+.roles b{font:600 11px var(--mono)}
+</style>
+</head>
+<body class="m-prtv">
+<header class="top">
+  <a class="brand" href="../index.html">PRTV<span class="dash"> —</span> Realización de televisión</a>
+  <nav aria-label="Módulo">
+    <a href="../index.html#temario">Temario</a>
+    <a href="../index.html#recursos">Recursos</a>
+  </nav>
+  <a class="back" href="../../index.html">← Portal</a>
+</header>
+
+<section class="hero small">
+  <p class="kicker"><a href="../index.html">PRTV</a> / Simulador</p>
+  <h1>Cabina de realización</h1>
+  <p class="lead">Informativo del 12 de octubre, de la cuenta de antena a 11:48. Los tiempos y la locución salen de los subtítulos del programa. Reprodúcelo y sigue en el intercom las órdenes de continuidad, del realizador y del ayudante de realización.</p>
+</section>
+
+<main>
+<div class="cab">
+
+  <section class="box">
+    <div class="deck">
+      <div class="tc" id="tc">00:00:00:00</div>
+      <div class="btns">
+        <button class="cb main" id="bPlay">Reproducir</button>
+        <button class="cb" id="bBack">−5 s</button>
+        <button class="cb" id="bFwd">+5 s</button>
+        <button class="cb" id="bReset">Reiniciar</button>
+        <label>Velocidad <select id="sSpeed"><option value="1">1×</option><option value="2">2×</option><option value="4">4×</option></select></label>
+      </div>
+      <p class="hint"><kbd>Espacio</kbd> reproducir o pausar · <kbd>←</kbd> <kbd>→</kbd> ±5 s · clic o arrastre en la línea de tiempo, o clic en una fila de la escaleta, para saltar a una pieza.</p>
+    </div>
+    <div class="tl-wrap">
+      <div class="tl" id="tl" tabindex="0" role="slider" aria-label="Posición en el fragmento"></div>
+      <div class="ruler" id="ruler"></div>
+      <div class="legend" id="legend"></div>
+      <p class="now-l" id="nowL"></p>
+      <div class="loc" aria-live="off"><span id="locWho">Se oye</span><p id="locX"></p></div>
+    </div>
+  </section>
+
+  <section class="lower">
+    <div class="box">
+      <div class="tb-h">
+        <h2>Escaleta</h2>
+        <div class="btns">
+          <button class="cb" id="bEdit" aria-pressed="false">Editar escaleta</button>
+          <button class="cb" id="bRestore">Restaurar datos</button>
+        </div>
+      </div>
+      <div class="tbl-wrap"><table id="tbl"></table></div>
+      <p class="sub" style="margin-top:8px">Los tiempos salen de los subtítulos. Lo marcado como «propuesto» (fuente, audio, rótulos o tipo de pieza) es una lectura didáctica para contrastar con el vídeo.</p>
+    </div>
+    <div class="stack">
+      <div class="box">
+        <h2>Parte de emisión <span id="parteN" class="n"></span></h2>
+        <div id="parte"></div>
+      </div>
+      <div class="box">
+        <h2>Intercom</h2>
+        <div class="log" id="log" aria-live="off"></div>
+        <div class="roles"><span><b class="w c">CONT</b> continuidad</span><span><b class="w r">REAL</b> realizador</span><span><b class="w a">AYTE</b> ayudante de realización</span></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</main>
+
+<footer>© <span data-year>2026</span> · Andrés Vidal Martín Martín · PRTV · <a href="mailto:avmmeducacion@gmail.com">avmmeducacion@gmail.com</a></footer>
+<script src="../../assets/site.js" defer></script>
+<script>
+(() => {
+'use strict';
+// El fragmento empieza 30 s antes de antena para oír la cuenta de continuidad
+const FPS = 25, T0 = -30, TOTAL = 708, SPAN = TOTAL - T0;
+
+const SRC = [
+  { id: 'C1', name: 'CAM 1' }, { id: 'C2', name: 'CAM 2' }, { id: 'C3', name: 'CAM 3' },
+  { id: 'VT1', name: 'VT 1' }, { id: 'VT2', name: 'VT 2' },
+  { id: 'EXT1', name: 'EXT 1' }, { id: 'EXT2', name: 'EXT 2' }, { id: 'GFX', name: 'GFX' }
+];
+const FMT = {
+  CABECERA: { l: 'Cabecera', k: '--c-cab' }, SUMARIO: { l: 'Sumario', k: '--c-sum' }, ESTUDIO: { l: 'Estudio', k: '--c-est' },
+  DIRECTO: { l: 'Directo', k: '--c-dir' }, COLAS: { l: 'Colas', k: '--c-col' }, PIEZA: { l: 'Pieza', k: '--c-pie' }
+};
+// Las colas no tienen pie: el ayudante cuenta segundo a segundo. Solo llevan pie si acaban con un paso a directo (la 160).
+const INF = 'Clasificación, fuente y audio propuestos a partir de los subtítulos. Contrástalo con el vídeo.';
+const BASE = [
+  { n: 10, s: 0, e: 11, fmt: 'CABECERA', line: 'GFX', content: 'Cabecera y ráfaga de entrada', origin: 'Grafismo', paso: false, gfx: '', audio: 'Sintonía de cabecera', pie: '', coleo: null, inf: true, note: 'Los 11 primeros segundos no llevan locución en los subtítulos: se interpretan como cabecera.', elems: [] },
+  { n: 20, s: 11, e: 58, fmt: 'SUMARIO', line: 'VT2', content: 'Titulares: desfile y visita a Ceuta, abucheos a Sánchez y tensión en la Puerta del Sol', origin: 'Presentador en directo sobre colas', paso: false, gfx: 'SUMARIO|Desfile · Ceuta · Puerta del Sol', rotAt: 1, rotDur: 8, audio: 'Micro del presentador + audio 2 (ambiente) y sintonía', pie: '', coleo: 3.4, inf: true, note: 'El sumario se monta con colas y lo locuta el presentador en directo.', elems: [] },
+  { n: 30, s: 58, e: 81.8, fmt: 'ESTUDIO', line: 'C1', content: 'Saludo y paso a directo con Alejandro Riego', origin: 'Presentador', paso: false, gfx: '', audio: 'Micro del presentador (M1)', pie: 'Alejandro Riego', coleo: null, pip: true, pipSrc: 'EXT1', inf: true, note: 'Dúplex en los últimos 4 s antes de entrar en la conexión.', elems: [] },
+  { n: 40, s: 81.8, e: 115.8, fmt: 'DIRECTO', line: 'EXT1', content: 'Corrillos en la recepción real: Sánchez y Feijóo ante las elecciones', origin: 'Alejandro Riego (Palacio Real)', paso: true, gfx: 'ALEJANDRO RIEGO|Palacio Real · EN DIRECTO', rotAt: 2, rotDur: 8, audio: 'Línea de la conexión (voz del reportero)', pie: 'es el del PP', coleo: null, inf: false, note: '', elems: [] },
+  { n: 50, s: 115.8, e: 158.3, fmt: 'COLAS', line: 'VT1', content: 'Desfile: salto de la bandera, familia real, anécdota del toisón y cifras de militares', origin: 'Presentador sobre colas', paso: false, gfx: 'DESFILE 12 DE OCTUBRE|Madrid', rotAt: 1, rotDur: 6, audio: 'Micro del presentador + audio 2 (ambiente)', pie: '', coleo: 0.6, inf: true, note: INF, elems: [] },
+  { n: 60, s: 158.3, e: 171, fmt: 'COLAS', line: 'VT2', content: 'Esquerra y Podemos harán campaña juntos', origin: 'Presentador sobre colas', paso: false, gfx: 'ESQUERRA Y PODEMOS|Campaña conjunta', rotAt: 1, rotDur: 6, audio: 'Micro del presentador + audio 2 (ambiente)', pie: '', coleo: 1.5, inf: true, note: INF, elems: [] },
+  { n: 70, s: 171, e: 186.9, fmt: 'COLAS', line: 'VT1', content: 'Zelenski denuncia ataques a pesar de la tregua energética anunciada por Trump', origin: 'Presentador sobre colas', paso: false, gfx: 'UCRANIA|Tregua energética', rotAt: 1, rotDur: 6, audio: 'Micro del presentador + audio 2 (ambiente)', pie: '', coleo: 1.6, inf: true, note: INF, elems: [] },
+  { n: 80, s: 186.9, e: 202.5, fmt: 'COLAS', line: 'VT2', content: 'El papa será ingresado en el Gemelli para operarse de un nódulo pulmonar', origin: 'Presentador sobre colas', paso: false, gfx: 'VATICANO|Ingreso del papa', rotAt: 1, rotDur: 6, audio: 'Micro del presentador + audio 2 (ambiente)', pie: '', coleo: 0.4, inf: true, note: INF, elems: [] },
+  { n: 90, s: 202.5, e: 220.2, fmt: 'COLAS', line: 'VT1', content: 'Regreso a casa tras el primer puente y buen tiempo', origin: 'Presentador sobre colas', paso: false, gfx: 'PUENTE|Regreso a casa', rotAt: 1, rotDur: 6, audio: 'Micro del presentador + audio 2 (ambiente)', pie: '', coleo: 0.9, inf: true, note: INF, elems: [] },
+  { n: 100, s: 220.2, e: 262.7, fmt: 'COLAS', line: 'VT2', content: 'Zaragoza: ofrenda de flores del Pilar con récord de participación', origin: 'Presentador sobre colas', paso: false, gfx: 'ZARAGOZA|Ofrenda a la Virgen del Pilar', rotAt: 1, rotDur: 7, audio: 'Micro del presentador + audio 2 (ambiente)', pie: '', coleo: 5.3, inf: true, note: 'Hay pausas largas de locución: las imágenes se sostienen con sonido ambiente.', elems: [] },
+  { n: 110, s: 262.7, e: 296.8, fmt: 'ESTUDIO', line: 'C1', content: 'El presentador abre el bloque del 12 de octubre y da paso a la conexión', origin: 'Presentador', paso: false, gfx: '', audio: 'Micro del presentador (M1)', pie: 'en el Palacio Real', coleo: null, pip: true, pipSrc: 'EXT1', inf: true, note: 'Dúplex en los últimos 4 s antes de entrar en la conexión.', elems: [] },
+  { n: 120, s: 296.8, e: 354, fmt: 'DIRECTO', line: 'EXT1', content: 'Corrillos: lo que dicen Sánchez y Feijóo sobre campaña, Vox y movilización', origin: 'Alejandro Riego (Palacio Real)', paso: true, gfx: 'ALEJANDRO RIEGO|Palacio Real · EN DIRECTO', rotAt: 3, rotDur: 8, audio: 'Línea de la conexión (voz del reportero)', pie: 'ni cordón umbilical', coleo: null, inf: false, note: '', elems: [] },
+  { n: 130, s: 354, e: 428.5, fmt: 'PIEZA', line: 'VT1', content: 'Recepción en el Palacio Real: saludos, protagonistas y ausencias', origin: 'Redactor de la pieza', paso: false, gfx: 'PALACIO REAL|Recepción del 12 de octubre', rotAt: 2, rotDur: 6, audio: 'Dos audios: A1 off y totales, A2 ambiente', pie: 'este día en Ceuta', coleo: 2.4, inf: true, note: INF, elems: [] },
+  { n: 140, s: 428.5, e: 452.5, fmt: 'COLAS', line: 'VT2', content: 'Balance del desfile: militares, vehículos y desfile aéreo completo', origin: 'Presentador sobre colas', paso: false, gfx: '', audio: 'Micro del presentador + audio 2 (ambiente)', pie: '', coleo: 1.4, inf: true, note: INF, elems: [] },
+  { n: 150, s: 452.5, e: 589.5, fmt: 'PIEZA', line: 'VT1', content: 'Desfile militar completo: novedades, anécdota del toisón, desfile aéreo y público', origin: 'Redactor de la pieza', paso: false, gfx: 'MADRID|Desfile del 12 de octubre', rotAt: 2, rotDur: 6, audio: 'Dos audios: A1 off y totales, A2 ambiente', pie: 'desde primera hora', coleo: 1.6, inf: true, note: 'Incluye una posible entradilla del reportero y una batería de tres totales anónimos, que no se rotulan.', elems: [{ label: 'Entradilla del reportero (propuesta)', s: 453.8, e: 483 }, { label: 'Batería de 3 totales anónimos, sin rótulo', s: 573.7, e: 587.9 }] },
+  { n: 160, s: 589.5, e: 613, fmt: 'COLAS', line: 'VT2', content: 'Tras el desfile, concentración en la Puerta del Sol y despliegue policial', origin: 'Presentador sobre colas', paso: false, gfx: 'PUERTA DEL SOL|Concentración y cordón policial', rotAt: 2, rotDur: 7, audio: 'Micro del presentador + audio 2 (ambiente)', pie: 'Elisa Cardenal', coleo: 1.6, inf: true, note: 'Las colas terminan con el paso a la reportera: ese nombre hace de pie.', elems: [] },
+  { n: 170, s: 613, e: 708, fmt: 'DIRECTO', line: 'EXT2', content: 'Cordón policial, ambiente y falta de datos oficiales en la Puerta del Sol', origin: 'Elisa Cardenal (Puerta del Sol)', paso: true, gfx: 'ELISA CARDENAL|Puerta del Sol · EN DIRECTO', rotAt: 2, rotDur: 8, audio: 'Línea de la conexión (voz de la reportera)', pie: 'no estaba previsto', coleo: null, inf: false, note: '', elems: [] }
+];
+
+// Subtítulos del programa (0:00–11:48) con sus tiempos originales. Se ha corregido la codificación y alguna errata,
+// y se han quitado los cuatro subtítulos que el archivo repite por error entre 4:48 y 4:51.
+const CUES = [
+  ['0:11.173', '0:14.275', 'Los reyes han presidido el desfile de la Fiesta Nacional,'],
+  ['0:14.336', '0:15.041', 'marcada este año'],
+  ['0:15.041', '0:16.928', 'por su visita histórica de mañana martes a Ceuta,'],
+  ['0:16.928', '0:18.495', 'tras la entrada masiva de inmigrantes en julio.'],
+  ['0:20.378', '0:24.378', 'Y también por el adelanto de las elecciones generales.'],
+  ['0:27.059', '0:30.824', 'Pedro Sánchez ha sido recibido con abucheos'],
+  ['0:30.861', '0:32.868', 'y también insultos a su llegada al desfile.'],
+  ['0:36.677', '0:39.765', 'Al acabar el desfile, un numeroso grupo de personas'],
+  ['0:39.767', '0:42.743', 'con banderas de España y la cruz de Borgoña'],
+  ['0:43.564', '0:45.307', 'se han dirigido hasta la Puerta del Sol y han increpado'],
+  ['0:46.854', '0:49.125', 'a los acampados por la vivienda.'],
+  ['0:49.142', '0:52.106', 'Se están viviendo momentos tensos en medio de un fuerte despliegue'],
+  ['0:52.107', '0:54.603', 'policial que, a esta hora, les intenta mantener separados.'],
+  ['0:58.656', '0:59.497', 'Hola, buenas tardes.'],
+  ['0:59.499', '1:02.089', 'De este clima preelectoral de enorme polarización,'],
+  ['1:03.148', '1:05.291', 'de la campaña del 29N'],
+  ['1:05.438', '1:08.586', 'y de la visita de los reyes a Ceuta y Melilla'],
+  ['1:09.313', '1:12.381', 'se estará hablando mucho en los habituales corrillos'],
+  ['1:12.421', '1:16.035', 'en la recepción que ofrecen los reyes en el Palacio Real,'],
+  ['1:16.055', '1:21.769', 'Alejandro Riego.'],
+  ['1:21.769', '1:24.010', '—Saludos.'],
+  ['1:24.010', '1:24.555', '—Saludos.'],
+  ['1:24.858', '1:28.313', 'Las elecciones del 29 ocupan estos corrillos.'],
+  ['1:29.858', '1:33.123', 'Sánchez nos ha dicho que son optimistas,'],
+  ['1:34.178', '1:35.809', 'que perciben una movilización del electorado de la izquierda,'],
+  ['1:36.498', '1:39.539', 'como lo veían desde el año 19,'],
+  ['1:42.218', '1:45.899', 'y la fuga de votos del PP a VOX porque les copian el discurso.'],
+  ['1:51.659', '1:52.875', 'Feijóo dice que pelearán hasta el último momento de cierre'],
+  ['1:53.458', '1:55.441', 'de colegios. Y que el momento del cambio es el del PP.'],
+  ['1:56.177', '1:57.074', 'Éxito y precisión en el salto de la bandera'],
+  ['1:57.577', '1:57.769', 'a cargo de la patrulla Papea.'],
+  ['1:58.709', '2:00.292', 'No perdía detalle desde la tribuna la familia real.'],
+  ['2:00.293', '2:01.892', 'El rey, vestido con el uniforme de gala del Ejército del Aire;'],
+  ['2:03.714', '2:05.899', 'la princesa, con el de Tierra.'],
+  ['2:06.000', '2:09.589', 'Leonor ha protagonizado una de las anécdotas.'],
+  ['2:09.633', '2:11.338', 'Se le ha caído el toisón de oro al suelo.'],
+  ['2:11.878', '2:13.282', 'Lo ha guardado en el bolsillo'],
+  ['2:13.303', '2:16.857', 'y minutos después don Felipe le ayudaba a colocárselo de nuevo.'],
+  ['2:20.150', '2:23.458', 'Más de 4300 militares han desfilado hoy por Madrid'],
+  ['2:23.538', '2:25.042', 'este 12 de octubre.'],
+  ['2:25.082', '2:27.709', 'Un desfile al completo, porque este año sí'],
+  ['2:27.714', '2:30.199', 'el tiempo ha permitido que se viera al completo'],
+  ['2:30.601', '2:31.564', 'el desfile aéreo.'],
+  ['2:32.065', '2:34.957', 'La ausencia más reseñable, los regulares de Ceuta,'],
+  ['2:34.977', '2:37.697', 'que este año se han quedado en sus bases.'],
+  ['2:38.886', '2:39.237', 'Ya es oficial…'],
+  ['2:40.055', '2:42.300', 'Esquerra y Podemos harán campaña juntos.'],
+  ['2:42.300', '2:43.549', 'Podemos no se presentará en Cataluña'],
+  ['2:44.406', '2:46.696', 'y contribuirá a la candidatura de Esquerra.'],
+  ['2:46.723', '2:49.476', 'Y Rufián participará en actos electorales junto a Irene Montero.'],
+  ['2:51.983', '2:55.463', 'Zelenski acusa a Rusia de violar el alto el fuego energético'],
+  ['2:55.483', '2:56.366', 'que anunció Trump'],
+  ['2:56.666', '2:58.362', 'por los últimos ataques a dos centrales eléctricas.'],
+  ['2:58.586', '3:00.762', 'Moscú, que no confirma esa tregua de Trump,'],
+  ['3:01.548', '3:03.018', 'dice que sí detendrá los ataques'],
+  ['3:03.627', '3:05.259', 'durante el día que Ucrania celebre elecciones.'],
+  ['3:07.890', '3:10.636', 'El papa será ingresado mañana en el hospital Gemelli de Roma.'],
+  ['3:11.338', '3:15.087', 'Allí será intervenido, aún no se sabe qué día exactamente,'],
+  ['3:15.168', '3:16.295', 'de un nódulo pulmonar.'],
+  ['3:16.496', '3:20.105', 'Él mismo anunció que ese nódulo se encuentra en fase inicial'],
+  ['3:20.125', '3:22.075', 'y está muy localizado.'],
+  ['3:22.897', '3:26.305', 'Y a esta hora muchos emprenden el regreso a casa'],
+  ['3:26.325', '3:28.877', 'tras disfrutar del primer puente tras el verano.'],
+  ['3:28.897', '3:32.305', 'El tiempo ha acompañado en casi toda España.'],
+  ['3:32.747', '3:35.403', 'Sol y temperaturas muy agradables'],
+  ['3:35.404', '3:39.348', 'que algunos han aprovechado para ir a la playa.'],
+  ['3:41.138', '3:43.744', 'Y hoy Zaragoza vive el día grande de sus fiestas del Pilar,'],
+  ['3:44.305', '3:49.105', 'con la ofrenda a la Virgen.'],
+  ['3:49.618', '3:52.434', 'Un día espectacular en Zaragoza,'],
+  ['3:52.435', '3:55.827', 'con la ofrenda de flores que va a batir récord:'],
+  ['4:05.768', '4:07.048', 'cerca de 100 000 personas inscritas y 7 millones de flores'],
+  ['4:07.609', '4:09.016', 'que confeccionan el manto de la Virgen.'],
+  ['4:09.609', '4:12.681', 'Este año manda el clavel rojo,'],
+  ['4:13.969', '4:17.392', 'la bandera de Venezuela, que es el país invitado.'],
+  ['4:23.728', '4:28.528', 'La noticia ha llegado poco después del desfile del 12 de octubre,'],
+  ['4:32.649', '4:32.872', 'al que asistía la presidenta del Supremo.'],
+  ['4:33.168', '4:33.552', 'No es un 12 de octubre más este día de la Fiesta Nacional:'],
+  ['4:33.889', '4:34.240', 'este año se celebra con las Cortes disueltas,'],
+  ['4:34.569', '4:35.144', 'en plena precampaña'],
+  ['4:35.177', '4:38.185', 'y en la víspera de la histórica visita a Ceuta de los reyes.'],
+  ['4:39.188', '4:42.862', 'De todo esto se habla a esta hora en los corrillos, Alejandro Riego,'],
+  ['4:43.382', '4:46.005', 'que se producen cada año en la recepción de los Reyes'],
+  ['4:46.007', '4:48.887', 'en el Palacio Real. Este año, el día de la Fiesta Nacional'],
+  ['4:51.774', '4:56.575', 'en el Palacio Real.'],
+  ['5:00.696', '5:01.752', 'Se han reunido aquí todos los representantes del Estado'],
+  ['5:02.257', '5:03.470', 'y de los estamentos políticos,'],
+  ['5:04.016', '5:07.536', 'así que las elecciones copan todas las conversaciones.'],
+  ['5:09.856', '5:13.087', 'Hemos hablado con Sánchez, dice que es'],
+  ['5:14.136', '5:14.808', 'muy optimista para las elecciones,'],
+  ['5:15.215', '5:18.799', 'dice que ve una movilización del electorado progresista'],
+  ['5:20.737', '5:22.687', 'y dice que hay una fuga brutal de votos del PP a VOX'],
+  ['5:23.416', '5:26.486', 'porque dice que le copian las ideas.'],
+  ['5:28.815', '5:31.119', 'Feijóo nos ha dicho que va a pelear hasta el último momento,'],
+  ['5:31.976', '5:34.376', 'hasta el cierre de los colegios,'],
+  ['5:35.255', '5:38.295', 'y que el voto del cambio es el del PP,'],
+  ['5:40.014', '5:43.823', 'y su relación con VOX dice que es de respeto, es el tercer partido,'],
+  ['5:47.495', '5:50.001', 'pero dice que ni sumisión ni cordón umbilical.'],
+  ['5:55.175', '5:55.687', 'De año en año hay escenas que no cambian:'],
+  ['5:56.096', '5:57.599', 'el saludo protocolario del presidente del Gobierno'],
+  ['5:58.070', '5:59.351', 'con Ayuso y Almeida, en el que hablar del tiempo'],
+  ['6:05.470', '6:08.093', 'siempre ayuda.'],
+  ['6:08.094', '6:12.894', 'También se han repetido los abucheos e insultos contra Sánchez.'],
+  ['6:13.956', '6:16.556', 'Y las tradicionales conversaciones que marcan la espera.'],
+  ['6:16.777', '6:19.744', 'En un ambiente, en esta ocasión, de precampaña electoral.'],
+  ['6:20.305', '6:21.672', 'Los ministros por un lado;'],
+  ['6:21.912', '6:24.299', 'en la tribuna, el líder de la oposición con su portavoz,'],
+  ['6:24.821', '6:27.769', 'sin cruzar palabra con la socialista Montse Mínguez.'],
+  ['6:27.770', '6:29.832', 'Cada 12 de octubre tiene su protagonista.'],
+  ['6:30.193', '6:35.438', 'De fondo, gritos a favor de Ceuta,'],
+  ['6:35.819', '6:38.045', 'con Juan Jesús Vivas recibiendo el afecto'],
+  ['6:38.366', '6:41.298', 'de otros líderes territoriales y acaparando la atención'],
+  ['6:41.338', '6:43.931', 'incluso de don Felipe.'],
+  ['6:44.446', '6:45.714', 'Horas antes de la visita de los Reyes'],
+  ['6:46.155', '6:47.561', 'a la ciudad autónoma.'],
+  ['6:48.140', '6:50.205', 'Es la primera vez que Sánchez y Vivas coinciden'],
+  ['6:50.325', '6:51.769', 'desde finales de julio.'],
+  ['6:51.819', '6:54.260', 'A pocos metros, la presidenta del Supremo'],
+  ['6:54.280', '6:57.353', 'y el presidente del Constitucional, con la ley de Amnistía'],
+  ['6:57.373', '6:59.278', 'y la de nietos planeando.'],
+  ['6:59.719', '7:02.406', 'No están todos los ministros ni presidentes autonómicos.'],
+  ['7:02.407', '7:06.085', 'Tampoco ha ido, de nuevo, Abascal, que ha celebrado este día en Ceuta.'],
+  ['7:09.694', '7:12.962', 'Los reyes han presidido el tradicional desfile militar'],
+  ['7:13.163', '7:14.155', 'del 12 de octubre.'],
+  ['7:14.216', '7:16.336', 'Este año han recorrido las calles del centro de Madrid'],
+  ['7:16.416', '7:18.381', 'más de 4400 militares.'],
+  ['7:18.842', '7:21.328', 'También cientos de vehículos, entre ellos, por primera vez,'],
+  ['7:21.473', '7:24.280', 'los «Dragón 8x8».'],
+  ['7:24.331', '7:25.611', 'Además, a diferencia de años anteriores,'],
+  ['7:26.486', '7:31.102', 'en esta ocasión sí se ha podido realizar el desfile aéreo completo.'],
+  ['7:33.848', '7:35.959', 'Otro año más, el desfile de las Fuerzas Armadas'],
+  ['7:36.728', '7:37.079', 'el 12 de octubre'],
+  ['7:37.407', '7:38.303', 'se ha convertido en un día en el que la ciudadanía'],
+  ['7:39.789', '7:42.593', 'puede entrar en contacto directo con las Fuerzas Armadas.'],
+  ['7:42.594', '7:44.994', 'Además, este año el tiempo ha acompañado'],
+  ['7:46.195', '7:49.243', 'y se ha podido disfrutar del desfile aéreo al completo.'],
+  ['7:49.244', '7:50.843', 'También hemos podido ver algunas de las últimas novedades'],
+  ['7:50.844', '7:51.837', 'de las Fuerzas Armadas.'],
+  ['7:51.838', '7:56.638', 'En concreto, ha desfilado por primera vez un 12 de octubre'],
+  ['7:58.703', '8:00.485', 'el nuevo vehículo blindado de las Fuerzas Armadas:'],
+  ['8:00.525', '8:02.571', 'el «Dragón 8x8».'],
+  ['8:04.551', '8:06.457', 'Llegada en el tradicional Rolls-Royce:'],
+  ['8:06.517', '8:09.766', 'el Rey, con el uniforme de capitán general del Ejército del Aire;'],
+  ['8:09.839', '8:12.200', 'la princesa, con el de gala del Ejército de Tierra.'],
+  ['8:12.220', '8:14.125', 'Y los dos con el toisón de oro,'],
+  ['8:14.245', '8:15.569', 'protagonista de la primera anécdota,'],
+  ['8:15.950', '8:17.294', 'cuando a Leonor se le ha caído la insignia,'],
+  ['8:18.300', '8:20.426', 'que después su padre le ha colocado.'],
+  ['8:20.466', '8:25.266', 'Suena el himno nacional y las salvas de cañones.'],
+  ['8:29.412', '8:29.827', 'Y después de que el Rey pase revista,'],
+  ['8:30.210', '8:31.843', 'la patrulla acrobática de paracaidismo trae la bandera.'],
+  ['8:35.652', '8:38.244', 'Tras su izado,'],
+  ['8:38.245', '8:40.294', 'llega el momento más emotivo de cada 12 de octubre:'],
+  ['8:40.294', '8:44.934', 'el homenaje a los caídos por España.'],
+  ['8:48.207', '8:50.727', 'Dos F-18 han inaugurado el desfile aéreo.'],
+  ['8:50.746', '8:52.109', 'Este año, con buen tiempo,'],
+  ['8:52.129', '8:54.773', 'han podido participar todas las aeronaves:'],
+  ['8:54.774', '8:55.446', '82 en total.'],
+  ['8:56.221', '8:57.667', 'Entre ellas, los Eurofighter,'],
+  ['8:57.687', '9:01.399', 'que por primera vez han dibujado la bandera nacional:'],
+  ['9:02.035', '9:03.380', 'amarillo, rojo.'],
+  ['9:03.958', '9:04.372', 'Y en el desfile terrestre, ellos han sido la gran novedad:'],
+  ['9:05.057', '9:05.920', 'los «Dragón 8x8».'],
+  ['9:06.441', '9:09.769', 'Blindados de 35 toneladas, el vehículo más moderno'],
+  ['9:09.794', '9:11.071', 'de las Fuerzas Armadas.'],
+  ['9:11.225', '9:14.185', '180 vehículos han participado en esta parte del desfile,'],
+  ['9:14.446', '9:16.295', 'que una vez más se ha cerrado a pie.'],
+  ['9:16.616', '9:18.962', 'Miles de efectivos, entre ellos los de la Legión,'],
+  ['9:19.002', '9:21.769', 'con la cabra Babieca y su tradicional paso ligero,'],
+  ['9:23.178', '9:26.379', 'que contrasta con el pausado de los regulares de Melilla.'],
+  ['9:26.380', '9:28.717', 'Este año han sido representantes de las ciudades autónomas,'],
+  ['9:28.877', '9:31.002', 'porque los de Ceuta no han participado.'],
+  ['9:31.003', '9:33.114', 'A todos los han visto una vez más miles de personas.'],
+  ['9:33.720', '9:37.527', '«Nos hemos despertado pronto y estamos muy ilusionados».'],
+  ['9:38.720', '9:42.240', '«Venimos por ver a las Fuerzas Armadas».'],
+  ['9:43.027', '9:45.072', '«Todo lo que tenga que ver con aviones me llama la atención».'],
+  ['9:45.473', '9:47.920', 'Que han llenado las calles de Madrid desde primera hora.'],
+  ['9:51.273', '9:53.449', 'Tras acabar el desfile, un numeroso grupo de personas,'],
+  ['9:53.764', '9:55.967', 'con banderas de España y con algunas de ideología ultra,'],
+  ['9:56.047', '9:58.550', 'se han dirigido a la Puerta del Sol y han increpado a los acampados.'],
+  ['9:58.733', '10:01.326', 'Allí se han vivido momentos de tensión,'],
+  ['10:03.242', '10:06.561', 'en medio de un importante despliegue policial'],
+  ['10:06.581', '10:11.381', 'que intenta mantener separados a los dos grupos. Elisa Cardenal.'],
+  ['10:16.843', '10:19.851', '—No han tardado mucho en hacerlo.'],
+  ['10:19.955', '10:24.232', 'Y eso que ha sido una convocatoria esporádica.'],
+  ['10:25.118', '10:26.361', 'Han venido desde el paseo del Prado,'],
+  ['10:27.524', '10:30.922', 'por Alcalá y la carrera de San Jerónimo,'],
+  ['10:30.982', '10:34.500', 'hasta el objetivo, que era Sol, para increpar a la acampada.'],
+  ['10:38.827', '10:42.377', 'Han llegado poco a poco y llegaba también la policía;'],
+  ['10:43.403', '10:45.899', 'nos decían que no tenía constancia de la concentración.'],
+  ['10:47.118', '10:50.157', 'Ya no queda esa masa,'],
+  ['10:50.158', '10:54.180', 'pero sí permanece un fuerte cordón de seguridad'],
+  ['10:56.867', '11:00.226', 'que ha mantenido los furgones como barrera'],
+  ['11:01.564', '11:04.482', 'para evitar que ambos lados se juntaran y hubiera incidentes.'],
+  ['11:05.002', '11:09.729', 'Físicamente no se han tocado, pero se han cruzado insultos.'],
+  ['11:11.632', '11:15.101', 'Más pacíficos en la parte de la acampada de Sol;'],
+  ['11:20.626', '11:25.784', 'es gente muy joven, los que llegaban desde el paseo del Prado,'],
+  ['11:26.586', '11:29.754', 'y no ha ocurrido nada.'],
+  ['11:30.601', '11:34.153', 'La policía ha mantenido en todo momento este cordón,'],
+  ['11:35.131', '11:39.769', 'con todo este espacio libre para que no hubiera incidentes.'],
+  ['11:39.814', '11:43.884', 'Hemos preguntado a la policía por número de afluencia y datos:'],
+  ['11:44.526', '11:47.918', 'no lo tienen disponible porque no estaba previsto.']
+].map(([a, b, x]) => ({ s: tsec(a), e: tsec(b), x }));
+function tsec(v) { const [m, s] = v.split(':'); return +m * 60 + parseFloat(s); }
+
+/* ---------- Datos editables (se guardan en este navegador) ---------- */
+const EDIT = ['fmt', 'line', 'content', 'origin', 'paso', 'gfx', 'audio', 'pie', 'coleo'];
+const KEY = 'prtv-cabina-v2';
+const clone = o => JSON.parse(JSON.stringify(o));
+function loadItems() {
+  const it = clone(BASE);
+  try {
+    const ed = JSON.parse(localStorage.getItem(KEY) || 'null');
+    if (ed) it.forEach(x => { const d = ed[x.n]; if (d) EDIT.forEach(f => { if (f in d) x[f] = d[f]; }); });
+  } catch (e) {}
+  return it;
+}
+let items = loadItems();
+function saveItems() {
+  try {
+    const ed = {};
+    items.forEach((x, i) => {
+      const d = {};
+      EDIT.forEach(f => { if (JSON.stringify(x[f]) !== JSON.stringify(BASE[i][f])) d[f] = x[f]; });
+      if (Object.keys(d).length) ed[x.n] = d;
+    });
+    localStorage.setItem(KEY, JSON.stringify(ed));
+  } catch (e) {}
+}
+
+/* ---------- Utilidades ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+const srcOf = id => SRC.find(s => s.id === id) || SRC[0];
+const pad = n => String(n).padStart(2, '0');
+const sign = sec => sec < 0 ? '−' : '';
+function tc(sec) { const f = Math.round(Math.abs(sec) * FPS), s = Math.floor(f / FPS); return sign(sec) + pad(Math.floor(s / 3600)) + ':' + pad(Math.floor(s / 60) % 60) + ':' + pad(s % 60) + ':' + pad(f % FPS); }
+function ms(sec) { const a = Math.abs(sec); return sign(sec) + Math.floor(a / 60) + ':' + pad(Math.floor(a % 60)); }
+function msd(sec) { sec = Math.max(0, sec); return pad(Math.floor(sec / 60)) + ':' + pad(Math.floor(sec % 60)) + '.' + Math.floor((sec * 10) % 10); }
+const dur = it => it.e - it.s;
+const isTape = it => it.fmt === 'PIEZA' || it.fmt === 'COLAS' || it.fmt === 'SUMARIO';
+// Entrada al aire en el instante t; −1 durante la cuenta de antena
+function idxAt(t) { if (t < 0) return -1; for (let i = items.length - 1; i >= 0; i--) if (t >= items[i].s) return i; return 0; }
+function rotOf(it) { if (!it.gfx) return null; const p = String(it.gfx).split('|'); return { l1: p[0] || '', l2: p[1] || '', at: it.rotAt == null ? 2 : it.rotAt, dur: it.rotDur == null ? 7 : it.rotDur }; }
+function coleoState(c) { if (c == null || isNaN(c)) return null; if (c < 1) return { c: 'bad', t: 'Capón' }; if (c < 2) return { c: 'mid', t: 'Coleo corto' }; return { c: 'ok', t: 'Coleo correcto' }; }
+function speaker(it) {
+  switch (it.fmt) {
+    case 'ESTUDIO': return 'Presentador';
+    case 'SUMARIO': case 'COLAS': return 'Presentador en off';
+    case 'PIEZA': return 'Off del redactor';
+    case 'DIRECTO': return (it.origin || 'Reportero').split('(')[0].trim();
+  }
+  return 'Se oye';
+}
+
+/* ---------- Intercom ----------
+   Continuidad da la cuenta de antena (−30, −20 y de 10 a 1).
+   El ayudante canta el parte de lo que va a entrar («vamos a línea 2 con dos audios», «línea 1 con audio 2» en colas),
+   da el tiempo a −20 y −10 con pie y coleo, avisa cuando llega el pie, cuenta segundo a segundo los últimos 10 s
+   de lo que no tiene pie (cabecera y colas) y pone los rótulos.
+   El realizador previene y da paso a cada fuente («prevenido vídeo… dentro vídeo»), abre o cierra el micro del
+   presentador cuando cambia y pide el dúplex antes de un directo con paso. */
+const lineNum = it => { const m = /^VT(\d)$/.exec(it.line); return m ? 'línea ' + m[1] : srcOf(it.line).name; };
+const camName = it => { const m = /^C(\d)$/.exec(it.line); return m ? 'cámara ' + m[1] : srcOf(it.line).name; };
+const micOn = it => !!it && (it.fmt === 'ESTUDIO' || it.fmt === 'SUMARIO' || it.fmt === 'COLAS');
+function cantaParte(it) {
+  switch (it.fmt) {
+    case 'CABECERA': return 'Vamos a cabecera con sintonía';
+    case 'PIEZA': return `Vamos a ${lineNum(it)} con dos audios`;
+    case 'COLAS': return `Vamos a ${lineNum(it)} con audio 2. Colas, sin pie`;
+    case 'SUMARIO': return `Vamos a ${lineNum(it)} con audio 2. Sumario en colas, sin pie`;
+    case 'DIRECTO': return `Vamos a la conexión de ${srcOf(it.line).name} con ${it.origin || 'el directo'}`;
+    case 'ESTUDIO': return `Vamos a ${camName(it)} con el presentador`;
+  }
+  return 'Vamos a ' + srcOf(it.line).name;
+}
+function prevenido(it) {
+  switch (it.fmt) {
+    case 'CABECERA': return 'Prevenida cabecera';
+    case 'ESTUDIO': return `Prevenida ${camName(it)}`;
+    case 'DIRECTO': return `Prevenida conexión ${srcOf(it.line).name}`;
+  }
+  return isTape(it) ? `Prevenido vídeo, ${lineNum(it)}` : 'Prevenido ' + srcOf(it.line).name;
+}
+function dentro(it, prev) {
+  let t;
+  switch (it.fmt) {
+    case 'CABECERA': t = 'Dentro cabecera y sintonía'; break;
+    case 'ESTUDIO': t = `Dentro ${camName(it)} con el presentador`; break;
+    case 'DIRECTO': t = 'Dentro conexión'; break;
+    default: t = 'Dentro vídeo';
+  }
+  if (micOn(it) && !micOn(prev)) t += '. Abre micro del presentador';
+  if (!micOn(it) && micOn(prev)) t += '. Cierra micro del presentador';
+  return t;
+}
+// Momento en que se oye el pie: final del último subtítulo de la entrada que lo contiene
+function pieTime(it) {
+  if (!it.pie) return null;
+  const p = it.pie.toLowerCase();
+  for (let i = CUES.length - 1; i >= 0; i--) {
+    const c = CUES[i];
+    if (c.s < it.e && c.s >= it.s - 0.5 && c.x.toLowerCase().includes(p)) return Math.min(c.e, it.e);
+  }
+  return null;
+}
+const NUM = ['', 'uno', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve', 'diez'];
+const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+let events = [];
+function buildEvents() {
+  const ev = []; let k = 0;
+  const add = (t, who, text, grp) => ev.push({ t, who, text, grp: grp || null, k: k++ });
+  const count = (end, from, who, grp) => { for (let s = from; s >= 1; s--) add(end - s, who, cap(NUM[s]), grp); };
+  // Cuenta de antena
+  add(-30, 'C', 'Treinta segundos para antena');
+  add(-20, 'C', 'Veinte segundos');
+  count(0, 10, 'C', 'antena');
+  items.forEach((it, i) => {
+    const prev = items[i - 1], d = dur(it);
+    // Antes de entrar: el ayudante canta el parte y el realizador previene (el dúplex ya lo previene)
+    if (i === 0) { add(-18, 'A', cantaParte(it)); add(-15, 'R', 'Atentos, entramos en antena. ' + prevenido(it)); }
+    else {
+      add(Math.max(prev.s + 0.5, it.s - 13), 'A', cantaParte(it));
+      // Si la anterior acaba en cuenta atrás, se previene justo antes del «diez» para no cortar la cuenta
+      if (!prev.pip) add(Math.max(prev.s + 0.75, it.s - (prev.pie ? 6 : 11)), 'R', prevenido(it));
+    }
+    add(it.s, 'R', dentro(it, prev));
+    const r = rotOf(it);
+    if (r) { add(it.s + r.at, 'A', `Dentro rótulo: «${r.l1}»`); add(it.s + r.at + r.dur, 'A', 'Fuera rótulo'); }
+    if (it.pip) {
+      const nx = items[i + 1];
+      add(it.e - 8, 'R', `Prevenidos dúplex y conexión ${srcOf(nx ? nx.line : it.pipSrc || 'EXT1').name}`);
+      add(it.e - 4, 'R', 'Dentro dúplex');
+    }
+    // Tiempos de la entrada al aire
+    if (it.pie) {
+      const lab = it.fmt === 'DIRECTO' ? 'Pie previsto' : 'Pie';
+      const col = it.fmt === 'PIEZA' && it.coleo != null ? (+it.coleo < 1 ? ', sin coleo' : `, colea ${Math.round(+it.coleo)}`) : '';
+      if (d >= 25) { add(it.e - 20, 'A', `Veinte. ${lab}: «${it.pie}»${col}`); add(it.e - 10, 'A', 'Diez'); }
+      else if (d >= 12) add(it.e - 10, 'A', `Diez. ${lab}: «${it.pie}»${col}`);
+      const pt = pieTime(it) ?? it.e - Math.max(0.5, +it.coleo || 0);
+      add(pt, 'A', `«${it.pie}», pie`);
+      if (it.fmt === 'PIEZA' && it.coleo != null) add(Math.min(pt + 0.4, it.e - 0.1), 'A', +it.coleo < 1 ? '¡Sin coleo, capón!' : `Colea ${Math.round(+it.coleo)}`);
+    } else {
+      if (d >= 25) add(it.e - 20, 'A', 'Veinte');
+      count(it.e, Math.min(10, Math.floor(d - 1)), 'A', 'c' + it.n);
+    }
+  });
+  add(TOTAL, 'S', 'Fin del fragmento');
+  ev.sort((a, b) => a.t - b.t || a.k - b.k);
+  events = ev;
+}
+buildEvents();
+
+/* ---------- Estado ---------- */
+const S = { t: T0, playing: false, speed: 1, cur: -1, sel: 0, edit: false, last: 0, evShown: -1, locKey: '' };
+
+/* ---------- Construcción ---------- */
+const pos = t => (t - T0) / SPAN * 100;
+function buildLegend() {
+  $('#legend').innerHTML = Object.keys(FMT).map(k => `<span><i style="background:var(${FMT[k].k})"></i>${FMT[k].l}</span>`).join('');
+  let r = '';
+  for (let m = 0; m <= Math.floor(TOTAL / 60); m++) r += `<span style="left:${pos(m * 60)}%">${m}:00</span>`;
+  $('#ruler').innerHTML = r;
+  $('#tl').setAttribute('aria-valuemin', T0); $('#tl').setAttribute('aria-valuemax', TOTAL);
+}
+function buildTimeline() {
+  let h = `<div class="seg-i pre" style="left:0;width:${pos(0)}%" title="Cuenta de antena">Antena</div>`;
+  items.forEach((it, i) => {
+    const w = dur(it) / SPAN * 100;
+    h += `<div class="seg-i" data-i="${i}" style="left:${pos(it.s)}%;width:${w}%;--k:var(${FMT[it.fmt].k})" title="${it.n} · ${FMT[it.fmt].l} · ${esc(it.content)}">${w > 2.8 ? it.n : ''}</div>`;
+  });
+  $('#tl').innerHTML = h + '<div class="head" id="head"></div>';
+}
+function inputRow(it, i) {
+  const fo = Object.keys(FMT).map(k => `<option value="${k}"${it.fmt === k ? ' selected' : ''}>${FMT[k].l}</option>`).join('');
+  const so = SRC.map(s => `<option value="${s.id}"${it.line === s.id ? ' selected' : ''}>${s.name}</option>`).join('');
+  return `<tr data-i="${i}"><td></td><td class="n">${it.n}</td><td><select data-f="fmt" aria-label="Formato">${fo}</select></td>` +
+    `<td><input type="text" data-f="content" value="${esc(it.content)}" aria-label="Contenido"></td>` +
+    `<td><input type="text" data-f="origin" value="${esc(it.origin)}" aria-label="Origen"></td>` +
+    `<td><select data-f="line" aria-label="Línea">${so}</select></td>` +
+    `<td><input type="checkbox" data-f="paso"${it.paso ? ' checked' : ''} aria-label="Paso del presentador"></td>` +
+    `<td><input type="text" data-f="gfx" value="${esc(it.gfx)}" aria-label="Rótulo (línea 1|línea 2)"></td>` +
+    `<td class="mono">${ms(it.s)}</td><td class="mono">${ms(dur(it))}</td><td class="mono">${ms(it.e)}</td></tr>`;
+}
+function buildTable() {
+  let h = '<thead><tr><th></th><th>Nº</th><th>Formato</th><th>Contenido</th><th>Origen</th><th>Línea</th><th>Paso</th><th>Gráficos y rótulos</th><th>TC in</th><th>Dur.</th><th>Acum.</th></tr></thead><tbody>';
+  items.forEach((it, i) => {
+    if (S.edit) { h += inputRow(it, i); return; }
+    const r = rotOf(it);
+    h += `<tr data-i="${i}"><td></td><td class="n">${it.n}</td>` +
+      `<td><span class="fm" style="--k:var(${FMT[it.fmt].k})">${FMT[it.fmt].l}</span></td>` +
+      `<td>${esc(it.content)}${it.inf ? '<span class="sub"><span class="inf">propuesto</span></span>' : ''}</td>` +
+      `<td>${esc(it.origin)}</td><td class="mono">${srcOf(it.line).name}</td><td>${it.paso ? 'Sí' : '—'}</td>` +
+      `<td>${r ? esc(r.l1) + '<span class="sub">' + esc(r.l2) + '</span>' : '—'}</td>` +
+      `<td class="mono">${ms(it.s)}</td><td class="mono">${ms(dur(it))}</td><td class="mono">${ms(it.e)}</td></tr>`;
+  });
+  $('#tbl').innerHTML = h + '</tbody>';
+  renderRows();
+}
+
+/* ---------- Estado de la escaleta y parte ---------- */
+function renderRows() {
+  const nx = S.cur + 1 < items.length ? S.cur + 1 : -1;
+  document.querySelectorAll('#tbl tbody tr').forEach((r, i) => {
+    r.classList.toggle('air', i === S.cur); r.classList.toggle('nxt', i === nx);
+    r.classList.toggle('past', i < S.cur); r.classList.toggle('sel', i === S.sel);
+    r.cells[0].innerHTML = i === S.cur ? '<span class="tg air">AIRE</span>' : (i === nx ? '<span class="tg nxt">SIG.</span>' : '');
+  });
+  document.querySelectorAll('.seg-i[data-i]').forEach(seg => seg.classList.toggle('past', +seg.dataset.i < S.cur));
+}
+function renderParte() {
+  const it = items[S.sel]; if (!it) return;
+  $('#parteN').textContent = '· ' + it.n;
+  const tape = isTape(it), cs = tape ? coleoState(+it.coleo) : null, r = rotOf(it), E = S.edit;
+  const inp = (id, v, label) => `<input type="text" id="${id}" value="${esc(v == null ? '' : v)}" aria-label="${label}">`;
+  let h = '<dl class="parte">' +
+    `<div><dt>TC in</dt><dd>${tc(it.s)}</dd></div><div><dt>TC out</dt><dd>${tc(it.e)}</dd></div><div><dt>Duración</dt><dd>${tc(dur(it))}</dd></div>` +
+    `<div class="w"><dt>Línea y audio</dt>${E ? inp('eAudio', it.audio, 'Audio') : `<dd>${srcOf(it.line).name} · ${esc(it.audio)}</dd>`}</div>` +
+    `<div class="w"><dt>Pie (últimas palabras)</dt>${E ? inp('ePie', it.pie, 'Pie') : `<dd>${it.pie ? '«' + esc(it.pie) + '»' : (tape || it.fmt === 'CABECERA' ? 'Sin pie: cuenta atrás por segundos' : '—')}</dd>`}</div>`;
+  if (tape) h += `<div class="w"><dt>Coleo (s)</dt>${E ? inp('eCol', it.coleo, 'Coleo en segundos') : `<dd>${it.coleo == null ? '—' : String(it.coleo).replace('.', ',') + ' s'}${cs ? `<span class="st ${cs.c}">${cs.t}</span>` : ''}</dd>`}</div>`;
+  h += `<div class="w"><dt>Printer (rótulos, CTL desde el inicio de la pieza)</dt><dd>${r ? `${tc(r.at)} «${esc(r.l1)}» hasta ${tc(r.at + r.dur)}` : 'Sin rótulos'}</dd></div>`;
+  if (it.elems && it.elems.length) h += `<div class="w"><dt>Elementos dentro de la pieza</dt><dd>${it.elems.map(x => `${esc(x.label)} (${ms(x.s)}–${ms(x.e)})`).join('<br>')}</dd></div>`;
+  if (it.note) h += `<div class="w"><dt>Nota</dt><dd>${esc(it.note)}</dd></div>`;
+  $('#parte').innerHTML = h + '</dl>';
+  if (tape && it.coleo != null && !E) $('#parte').insertAdjacentHTML('beforeend', '<p class="sub" style="margin-top:8px">El coleo se calcula entre la última palabra de los subtítulos y el corte a la siguiente entrada.</p>');
+  const ep = $('#ePie'), ea = $('#eAudio'), ec = $('#eCol');
+  if (ep) ep.addEventListener('change', () => { it.pie = ep.value; afterEdit(); });
+  if (ea) ea.addEventListener('change', () => { it.audio = ea.value; afterEdit(); });
+  if (ec) ec.addEventListener('change', () => { const v = parseFloat(String(ec.value).replace(',', '.')); it.coleo = isNaN(v) ? null : v; afterEdit(); });
+}
+function afterEdit() { saveItems(); buildEvents(); S.evShown = -1; buildTimeline(); buildTable(); renderParte(); renderLog(); }
+
+/* ---------- Locución ---------- */
+function cueIdx(t) {
+  let lo = 0, hi = CUES.length - 1, r = -1;
+  while (lo <= hi) { const m = (lo + hi) >> 1; if (CUES[m].s <= t) { r = m; lo = m + 1; } else hi = m - 1; }
+  if (r < 0) return -1;
+  // Cada subtítulo sigue a la vista hasta que empieza el siguiente, como mucho 2,5 s más de lo que marca el archivo
+  const c = CUES[r], nx = CUES[r + 1];
+  return t <= Math.max(c.e, Math.min(nx ? nx.s : Infinity, c.e + 2.5)) ? r : -1;
+}
+function renderLoc() {
+  const ci = cueIdx(S.t), it = S.cur >= 0 ? items[S.cur] : null;
+  const key = ci + '|' + S.cur + '|' + (it ? it.pie : '');
+  if (key === S.locKey) return;
+  S.locKey = key;
+  const x = $('#locX'), who = $('#locWho');
+  if (!it) { who.textContent = 'Se oye'; x.className = 'quiet'; x.textContent = 'Continuidad, antes de antena'; return; }
+  if (ci < 0) {
+    who.textContent = it.fmt === 'CABECERA' ? 'Sintonía' : 'Se oye';
+    x.className = 'quiet';
+    x.textContent = it.fmt === 'CABECERA' ? '♪ Sintonía de cabecera' : (isTape(it) ? 'Sonido ambiente, sin locución' : '…');
+    return;
+  }
+  let txt = esc(CUES[ci].x);
+  if (it.pie) txt = txt.replace(new RegExp('(' + esc(it.pie).replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'i'), '<mark>$1</mark>');
+  who.textContent = speaker(it);
+  x.className = '';
+  x.innerHTML = txt;
+}
+
+/* ---------- Intercom ---------- */
+const WHO = { R: ['r', 'REAL'], A: ['a', 'AYTE'], C: ['c', 'CONT'], S: ['s', '—'] };
+function evCount(t) { let n = 0; while (n < events.length && events[n].t <= t) n++; return n; }
+// Las cuentas segundo a segundo se agrupan en una sola línea: «Diez… nueve… ocho…»
+function logLines(n) {
+  const out = [];
+  for (let i = 0; i < n; i++) {
+    const e = events[i], last = out[out.length - 1];
+    if (e.grp && last && last.grp === e.grp) last.text += '… ' + e.text.toLowerCase();
+    else out.push({ t: e.t, who: e.who, text: e.text, grp: e.grp });
+  }
+  return out;
+}
+function renderLog() {
+  const n = evCount(S.t), log = $('#log');
+  if (n === S.evShown) return;
+  const lines = logLines(n).slice(-80);
+  log.innerHTML = lines.length ? lines.map((e, i) => {
+    const [c, w] = WHO[e.who];
+    return `<p${i === lines.length - 1 ? ' class="last"' : ''}><span class="t">${ms(e.t)}</span><span class="w ${c}">${w}</span><span class="x">${esc(e.text)}</span></p>`;
+  }).join('') : '<p class="empty">Pulsa Reproducir para oír a continuidad, al realizador y al ayudante.</p>';
+  S.evShown = n; log.scrollTop = log.scrollHeight;
+}
+
+/* ---------- Transporte ---------- */
+// Mantiene a la vista, dentro del bloque de la escaleta, la fila que está al aire (sin mover la página)
+function followRow() {
+  const tr = document.querySelectorAll('#tbl tbody tr')[S.cur], wrap = $('.tbl-wrap');
+  if (!tr || !wrap) return;
+  const w = wrap.getBoundingClientRect(), r = tr.getBoundingClientRect(), head = wrap.querySelector('thead').offsetHeight;
+  if (r.top < w.top + head || r.bottom > w.bottom) wrap.scrollTop += r.top - w.top - head - wrap.clientHeight * 0.25;
+}
+function setCur(i) {
+  if (i === S.cur) return;
+  S.cur = i; if (i >= 0) S.sel = i;
+  renderRows(); renderParte(); followRow();
+}
+function setPlayLabel() { $('#bPlay').textContent = S.playing ? 'Pausa' : (S.t >= TOTAL - 0.01 ? 'Repetir' : (S.t > T0 ? 'Seguir' : 'Reproducir')); }
+function play() {
+  if (S.t >= TOTAL - 0.01) seek(T0);
+  S.playing = !S.playing; setPlayLabel();
+}
+function seek(t) {
+  S.t = Math.max(T0, Math.min(TOTAL - 0.01, t));
+  S.evShown = -1; setCur(idxAt(S.t)); update(); setPlayLabel();
+}
+function update() {
+  setCur(idxAt(S.t));
+  $('#tc').textContent = tc(S.t);
+  const hd = $('#head'); if (hd) hd.style.left = `calc(${pos(S.t)}% - 1px)`;
+  $('#tl').setAttribute('aria-valuenow', Math.round(S.t));
+  const it = S.cur >= 0 ? items[S.cur] : null, nx = items[S.cur + 1];
+  let h;
+  if (!it) h = `Cuenta de antena: faltan <span class="cd${-S.t <= 10 ? ' w10' : ''}">${msd(-S.t)}</span>. Entra <b>${items[0].n} · ${FMT[items[0].fmt].l}</b>.`;
+  else {
+    const rem = it.e - S.t;
+    h = `En emisión: <b>${it.n} · ${FMT[it.fmt].l}</b> por ${srcOf(it.line).name}, quedan <span class="cd${rem <= 10 ? ' w10' : ''}">${msd(rem)}</span>.` +
+      (nx ? ` Siguiente: ${nx.n} · ${FMT[nx.fmt].l} por ${srcOf(nx.line).name}.` : ' Fin del fragmento.');
+  }
+  $('#nowL').innerHTML = h;
+  renderLoc(); renderLog();
+}
+function tick(ts) {
+  if (!S.last) S.last = ts;
+  const dt = Math.min(0.1, (ts - S.last) / 1000); S.last = ts;
+  if (S.playing) {
+    S.t += dt * S.speed;
+    if (S.t >= TOTAL) { S.t = TOTAL; S.playing = false; setPlayLabel(); }
+    update();
+  }
+  requestAnimationFrame(tick);
+}
+
+/* ---------- Eventos ---------- */
+$('#bPlay').addEventListener('click', play);
+$('#bBack').addEventListener('click', () => seek(S.t - 5));
+$('#bFwd').addEventListener('click', () => seek(S.t + 5));
+$('#bReset').addEventListener('click', () => { S.playing = false; seek(T0); });
+$('#sSpeed').addEventListener('change', e => { S.speed = +e.target.value; });
+$('#bEdit').addEventListener('click', () => {
+  S.edit = !S.edit;
+  $('#bEdit').setAttribute('aria-pressed', String(S.edit));
+  $('#bEdit').textContent = S.edit ? 'Terminar edición' : 'Editar escaleta';
+  buildTable(); renderParte();
+});
+$('#bRestore').addEventListener('click', () => {
+  try { localStorage.removeItem(KEY); } catch (e) {}
+  items = clone(BASE); afterEdit();
+});
+$('#tbl').addEventListener('change', e => {
+  const f = e.target.dataset.f; if (!f) return;
+  const it = items[+e.target.closest('tr').dataset.i];
+  it[f] = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+  saveItems(); buildEvents(); S.evShown = -1;
+  if (f === 'fmt') buildTimeline();
+  renderParte(); renderLog();
+});
+$('#tbl').addEventListener('click', e => {
+  if (e.target.closest('input,select')) return;
+  const tr = e.target.closest('tbody tr'); if (!tr) return;
+  const i = +tr.dataset.i;
+  if (S.edit) { S.sel = i; renderRows(); renderParte(); }
+  else seek(items[i].s + 0.01);
+});
+let dragging = false;
+const tlSeek = e => { const r = $('#tl').getBoundingClientRect(); seek(T0 + (e.clientX - r.left) / r.width * SPAN); };
+$('#tl').addEventListener('pointerdown', e => { dragging = true; try { e.currentTarget.setPointerCapture(e.pointerId); } catch (x) {} tlSeek(e); });
+$('#tl').addEventListener('pointermove', e => { if (dragging) tlSeek(e); });
+$('#tl').addEventListener('pointerup', () => { dragging = false; });
+$('#tl').addEventListener('pointercancel', () => { dragging = false; });
+document.addEventListener('keydown', e => {
+  const tag = e.target && e.target.tagName;
+  if (tag === 'INPUT' || tag === 'SELECT' || tag === 'TEXTAREA') return;
+  if (e.code === 'Space' && tag !== 'BUTTON') { e.preventDefault(); play(); }
+  else if (e.key === 'ArrowLeft') { e.preventDefault(); seek(S.t - 5); }
+  else if (e.key === 'ArrowRight') { e.preventDefault(); seek(S.t + 5); }
+});
+
+/* ---------- Arranque ---------- */
+buildLegend(); buildTimeline(); buildTable();
+S.sel = 0; renderParte(); update(); setPlayLabel();
+requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>
