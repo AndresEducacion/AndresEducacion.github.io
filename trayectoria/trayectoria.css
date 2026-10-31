@@ -21,7 +21,6 @@ body{background-color:var(--bg);background-image:linear-gradient(rgba(42,255,107
 .play{background:none;border:1px solid var(--g);color:var(--g);font:inherit;letter-spacing:.14em;text-transform:uppercase;padding:8px 12px;cursor:pointer;min-width:132px;text-align:left}
 .play:hover{background:var(--g);color:#050806}
 .tc{color:var(--fg);font-size:15px;letter-spacing:.12em;font-variant-numeric:tabular-nums}
-.seq-hint{margin-left:auto}
 .seq-scroll{overflow-x:auto;scrollbar-color:var(--line) transparent}
 .seq-inner{--label:132px;position:relative;padding-bottom:6px}
 
@@ -89,7 +88,6 @@ body{background-color:var(--bg);background-image:linear-gradient(rgba(42,255,107
 
 @media (max-width:860px){
   .inspector{grid-template-columns:1fr}
-  .seq-hint{display:none}
   .seq-inner{--label:96px;min-width:720px}
   /* Los filtros, en una sola fila que se desliza de lado */
   .filter{display:block}

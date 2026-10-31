@@ -271,12 +271,12 @@ function setFilter(k) {
   document.querySelectorAll('.chip[data-area]').forEach(b => b.setAttribute('aria-pressed', b.dataset.area === filter));
 }
 
-/* ---------- Arranque: el cabezal en hoy y abierto lo primero que sigue en curso ---------- */
-setHead(NOW);
-select(CLIPS.find(c => c.to === 'hoy'));
+/* ---------- Arranque: el cabezal al principio y abierto lo primero que empieza ---------- */
+setHead(0);
+select(CLIPS.reduce((a, b) => (b.s < a.s ? b : a)));
 lockHeights();
 document.fonts?.ready.then(lockHeights);
 let lastW = innerWidth;
 addEventListener('resize', () => { if (innerWidth !== lastW) { lastW = innerWidth; lockHeights(); } });
-scroller.scrollLeft = scroller.scrollWidth;
+scroller.scrollLeft = 0;
 $('y').textContent = today.getFullYear();
