@@ -157,15 +157,16 @@ function fillList(m) {
 }
 
 // Alto fijo para que lo que hay debajo no se mueva al cambiar de fecha o de clip:
-// la ficha reserva el de la más larga y la lista cabe en ese mismo alto (o en tres filas en móvil);
+// la ficha reserva el de la más larga y la lista cabe en ese mismo alto (o en dos filas en móvil);
 // si una fecha tiene más clips, la lista se desplaza por dentro
 function lockHeights() {
   atList.style.height = detail.style.minHeight = '';
   detail.setAttribute('aria-live', 'off');
-  let hList = 0, hDetail = 0;
-  for (let m = 0; m < TOTAL; m++) { if (fillList(m).length <= 3) hList = Math.max(hList, atList.offsetHeight); }
-  for (const c of CLIPS) { fillDetail(c); hDetail = Math.max(hDetail, detail.offsetHeight); }
   const sideBySide = getComputedStyle(atList.parentElement.parentElement).gridTemplateColumns.split(' ').length > 1;
+  const rows = sideBySide ? 3 : 2;
+  let hList = 0, hDetail = 0;
+  for (let m = 0; m < TOTAL; m++) { if (fillList(m).length <= rows) hList = Math.max(hList, atList.offsetHeight); }
+  for (const c of CLIPS) { fillDetail(c); hDetail = Math.max(hDetail, detail.offsetHeight); }
   if (sideBySide) hList = Math.max(hList, hDetail - atList.offsetTop + atList.parentElement.offsetTop);
   atList.style.height = `${hList}px`;
   detail.style.minHeight = `${hDetail}px`;

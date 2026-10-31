@@ -25,7 +25,9 @@ body{background-color:var(--bg);background-image:linear-gradient(rgba(42,255,107
 .seq-scroll{overflow-x:auto;scrollbar-color:var(--line) transparent}
 .seq-inner{--label:132px;position:relative;padding-bottom:6px}
 
-.ruler{position:relative;height:34px;margin-left:var(--label);border-bottom:1px solid var(--line);cursor:ew-resize;touch-action:none;-webkit-user-select:none;user-select:none}
+.ruler-row{display:flex;border-bottom:1px solid var(--line)}
+.ruler-corner::before{display:none}
+.ruler{position:relative;flex:1;height:34px;cursor:ew-resize;touch-action:none;-webkit-user-select:none;user-select:none}
 .ruler span{position:absolute;top:0;bottom:0;border-left:1px solid var(--line);padding:9px 0 0 6px;font-size:11px;letter-spacing:.14em;color:var(--mut);pointer-events:none}
 
 .track{display:flex;border-bottom:1px solid var(--line)}
@@ -88,7 +90,15 @@ body{background-color:var(--bg);background-image:linear-gradient(rgba(42,255,107
 @media (max-width:860px){
   .inspector{grid-template-columns:1fr}
   .seq-hint{display:none}
-  .seq-inner{--label:104px;min-width:820px}
+  .seq-inner{--label:96px;min-width:720px}
+  /* Los filtros, en una sola fila que se desliza de lado */
+  .filter{display:block}
+  .filter-label{display:block;margin-bottom:8px}
+  .chips{flex-wrap:nowrap;overflow-x:auto;margin:0 calc(var(--pad) * -1);padding:0 var(--pad) 4px;scrollbar-width:none}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{flex:0 0 auto}
+  .block{padding-top:28px}
+  .block + .block{padding-top:40px}
   .track-name{font-size:10px;letter-spacing:.06em;padding:8px;gap:6px}
   .track-name::before{flex-basis:6px;height:6px}
   .top nav{order:3;width:100%}

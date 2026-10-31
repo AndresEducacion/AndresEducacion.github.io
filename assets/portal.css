@@ -103,20 +103,24 @@ footer{margin-top:48px;padding:24px var(--pad);color:var(--mut);font-size:12px;b
   .layout,.about-grid{grid-template-columns:1fr}
   /* El visor se queda fijo arriba mientras se desliza la lista */
   .viewer{position:sticky;top:0;z-index:5;order:-1;margin:0 calc(var(--pad) * -1);padding:10px var(--pad) 12px;background:var(--bg);border-bottom:1px solid var(--line)}
-  .stage{aspect-ratio:auto;height:clamp(150px,30vh,260px);max-height:none}
+  .stage{aspect-ratio:auto;height:clamp(130px,24vh,210px);max-height:none}
   figcaption{grid-template-columns:1fr auto;align-items:end;gap:2px 12px;padding:10px 2px 0}
   .cap-num{grid-column:1/-1}
   figcaption strong{font-size:1.15rem;grid-column:1}
-  #cap-mod{grid-column:1;font-size:11px}
+  #cap-mod{display:none}
   figcaption p{display:none}
-  .cap-go{grid-column:2;grid-row:2/4;margin:0;align-self:center;padding:10px 12px;border:1px solid var(--g);border-bottom-width:1px;color:var(--g)}
+  .cap-go{grid-column:2;grid-row:2;margin:0;align-self:center;padding:10px 12px;border:1px solid var(--g);border-bottom-width:1px;color:var(--g)}
   .m-hint{display:block;order:0;margin:14px 0 0;font-size:12px;color:var(--mut)}
   .list{order:1}
   .row{padding:18px 8px}
   .row .arrow{opacity:0;transform:none}
   .row.on .arrow{opacity:1}
   .hint{display:none}
+  /* Cabecera en dos líneas: nombre y menú */
+  .top{padding:16px var(--pad) 8px;gap:10px 16px}
   .top nav{order:3;width:100%}
+  .meta{display:none}
+  .hero{padding-top:28px}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
