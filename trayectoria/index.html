@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trayectoria | Andrés Vidal Martín Martín</title>
+<meta name="description" content="Trayectoria y aptitudes de Andrés Vidal Martín Martín, docente y artista audiovisual.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Cpath d='M16 5l9 5v12l-9 5-9-5V10z' fill='none' stroke='%232aff6b' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/portal.css">
+<link rel="stylesheet" href="trayectoria.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">ANDRÉS VIDAL MARTÍN MARTÍN</a>
+  <nav aria-label="Principal">
+    <a href="../index.html#modulos">Módulos</a>
+    <a href="../index.html#sobre-mi">Sobre mí</a>
+    <a href="./" aria-current="page">Trayectoria</a>
+  </nav>
+  <span class="meta">FP · IMAGEN Y SONIDO</span>
+</header>
+
+<main>
+  <section class="hero">
+    <p class="kicker">+ Trayectoria</p>
+    <h1 class="glitch">Mi línea<br>de tiempo</h1>
+    <p class="lead">Mi formación y mi trabajo montados como una secuencia de edición. Arrastra el cabezal para moverte por los años o pulsa un clip para ver qué hice allí.</p>
+  </section>
+
+  <section class="block" aria-labelledby="t-seq">
+    <h2 id="t-seq" class="section-title">Secuencia · 2018 — hoy</h2>
+
+    <div class="filter">
+      <span class="filter-label">Ilumina por aptitud</span>
+      <div class="chips" id="chips"></div>
+    </div>
+
+    <div class="seq" id="seq">
+      <div class="seq-bar">
+        <button class="play" id="play" type="button">▶ Reproducir</button>
+        <span class="tc" id="tc">—</span>
+        <span class="seq-hint">Arrastra el cabezal · ← → un mes · Mayús + ← → un año</span>
+      </div>
+      <div class="seq-scroll" id="seq-scroll">
+        <div class="seq-inner" id="seq-inner">
+          <div class="ruler" id="ruler"></div>
+          <div id="tracks"></div>
+          <div class="ph-layer">
+            <span class="now" id="now"></span>
+            <div class="playhead" id="ph">
+              <span class="ph-handle" id="ph-handle" role="slider" tabindex="0" aria-label="Cabezal de la línea de tiempo"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="inspector">
+      <div>
+        <h3 class="panel-title">En el cabezal · <span id="at-date"></span></h3>
+        <ul class="at-list" id="at-list"></ul>
+      </div>
+      <article class="detail" id="detail" aria-live="polite"></article>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="t-tools">
+    <h2 id="t-tools" class="section-title">Herramientas</h2>
+    <div class="racks">
+      <div class="rack"><h3>Creación y producción audiovisual</h3><ul><li>Premiere</li><li>After Effects</li><li>Photoshop</li><li>Resolume Arena</li><li>InDesign</li><li>Adobe XD</li></ul></div>
+      <div class="rack"><h3>Entornos interactivos y 3D</h3><ul><li>Unity (VR / Oculus)</li><li>TouchDesigner</li><li>Blender</li></ul></div>
+      <div class="rack"><h3>Producción y diseño sonoro</h3><ul><li>Ableton Live</li><li>FL Studio</li><li>Pro Tools</li><li>Audition</li><li>VSTs</li></ul></div>
+      <div class="rack"><h3>Live coding y programación creativa</h3><ul><li>p5.js</li><li>Max/MSP</li><li>Strudel</li><li>Sonic Pi</li><li>Hydra</li></ul></div>
+      <div class="rack"><h3>Electrónica y prototipado físico</h3><ul><li>Arduino</li><li>ESP32</li><li>Raspberry Pi</li><li>MicroPython</li></ul></div>
+      <div class="rack"><h3>Instrumentos</h3><ul><li>Piano</li><li>Guitarra</li><li>Percusión</li><li>Armonía</li></ul></div>
+    </div>
+  </section>
+</main>
+
+<footer>© <span id="y"></span> · Andrés Vidal Martín Martín · Trayectoria</footer>
+
+<script type="module" src="trayectoria.js"></script>
+</body>
+</html>
