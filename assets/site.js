@@ -14,6 +14,21 @@ if (topBar) {
   addEventListener('resize', setTopH);
 }
 
+// Favicon del módulo: el mismo icono (--icon) y acento (--acc) que la marca y la cabecera, sobre fondo oscuro
+{
+  const st = getComputedStyle(document.body);
+  const m = st.getPropertyValue('--icon').match(/data:image\/svg\+xml,(.*)["']\)\s*$/);
+  if (m) {
+    const acc = st.getPropertyValue('--acc').trim();
+    const svg = decodeURIComponent(m[1])
+      .replace(/'black'/g, `'${acc}'`)
+      .replace(/(<svg[^>]*>)/, "$1<rect x='-1' y='-1' width='26' height='26' rx='5' fill='#191919'/>");
+    let link = document.querySelector('link[rel~="icon"]');
+    if (!link) { link = document.createElement('link'); link.rel = 'icon'; document.head.appendChild(link); }
+    link.href = 'data:image/svg+xml,' + encodeURIComponent(svg);
+  }
+}
+
 // Marcado mínimo dentro del texto: **negrita** y `código`
 const inline = s => esc(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/`(.+?)`/g, '<code>$1</code>');
 

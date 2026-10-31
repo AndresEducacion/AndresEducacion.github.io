@@ -11,8 +11,17 @@ Portal central con el material didáctico de cada módulo.
 | `planificacion-montaje/` | Planificación del montaje y postproducción (plantilla provisional) |
 
 `index.html` es el portal (Three.js, guardado localmente en `assets/vendor/`; no hay build ni dependencias).
-`assets/site.css` y `assets/site.js` son el estilo y el comportamiento comunes de los módulos ya adaptados (DEIM, ISDE, PRTV): misma estética que el portal, con un color de acento por módulo (clase `m-deim`, `m-isde`… en `<body>`).
-`assets/back.css` da estilo al botón "← Portal" de los módulos que aún no se han adaptado.
+`assets/site.css` y `assets/site.js` son el estilo y el comportamiento comunes de las cinco secciones: interfaz de Notion en modo oscuro con la estética del portal. Cada sección se identifica con una clase en `<body>`:
+
+| Clase | Sección | Color | Icono |
+|---|---|---|---|
+| `m-deim` | DEIM | `#2aff6b` | escena de editor: cubo y cursor |
+| `m-isde` | ISDE | `#3ec5ff` | line array colgado de una truss |
+| `m-prtv` | PRTV | `#ff5c5c` | cámara de hombro sobre trípode |
+| `m-lab` | Laboratorio de mezcla | `#ffb020` | potenciómetros y faders |
+| `m-mont` | Planificación del montaje | `#9b7bff` | monitores y línea de tiempo |
+
+La clase fija el acento (`--acc`) y el icono (`--icon`, una máscara SVG lineal). El icono lo usan la marca de la barra superior y el icono de la cabecera, y `site.js` genera con él el favicon de la página. Cada página lleva además un favicon estático igual, por si no se ejecuta JavaScript.
 
 ## Presentaciones
 
