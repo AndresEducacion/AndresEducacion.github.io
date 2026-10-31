@@ -271,9 +271,9 @@ function setFilter(k) {
   document.querySelectorAll('.chip[data-area]').forEach(b => b.setAttribute('aria-pressed', b.dataset.area === filter));
 }
 
-/* ---------- Arranque: el cabezal al principio y abierto lo primero que empieza ---------- */
+/* ---------- Arranque: el cabezal al principio y abierta la ficha de docente de FP ---------- */
 setHead(0);
-select(CLIPS.reduce((a, b) => (b.s < a.s ? b : a)));
+select(CLIPS.find(c => c.title === 'Docente de FP de Imagen y Sonido'));
 lockHeights();
 document.fonts?.ready.then(lockHeights);
 let lastW = innerWidth;
