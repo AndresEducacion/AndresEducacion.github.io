@@ -9,6 +9,7 @@ const MESES = ['ene.', 'feb.', 'mar.', 'abr.', 'may.', 'jun.', 'jul.', 'ago.', '
 const idx = s => s === 'hoy' ? NOW : (+s.slice(0, 4) - Y0) * 12 + (+s.slice(5, 7) - 1);
 const monthLabel = i => `${MESES[((i % 12) + 12) % 12]} ${Y0 + Math.floor(i / 12)}`;
 const when = s => s === 'hoy' ? 'actualidad' : monthLabel(idx(s));
+const span = c => c.years ? `${c.from.slice(0, 4)} – ${c.to.slice(0, 4)}` : `${when(c.from)} – ${when(c.to)}`;
 function duration(n) {
   const y = Math.floor(n / 12), m = n % 12, out = [];
   if (y) out.push(`${y} ${y > 1 ? 'años' : 'año'}`);
@@ -43,22 +44,26 @@ const CLIPS = [
 
   { track: 'docencia', title: 'Profesor de Música', short: 'Profesor de Música · Belerofonte', org: 'Asociación Belerofonte', from: '2018-09', to: '2019-09', place: 'Salamanca',
     text: 'Clases de música en las extraescolares del CEIP Santa Catalina.', tags: ['edu', 'musica'] },
-  { track: 'docencia', title: 'Ponente en charlas educativas', short: 'Ponente · IES Diputación', org: 'IES Diputación Provincial (Proyecto Empresa)', from: '2022-09', to: '2024-09', place: 'Salamanca',
-    text: 'Charlas sobre el vídeo, el pódcast y YouTube como recursos educativos.', tags: ['edu', 'voz', 'av'] },
+  { track: 'docencia', title: 'Ponente en charlas educativas', short: 'Charlas puntuales · IES Diputación', org: 'IES Diputación Provincial (Proyecto Empresa)', from: '2022-09', to: '2024-09', place: 'Salamanca',
+    puntual: true, note: 'charlas puntuales',
+    text: 'Un par de charlas concretas, no continuadas, sobre el vídeo, el pódcast y YouTube como recursos educativos.', tags: ['edu', 'voz', 'av'] },
   { track: 'docencia', title: 'Profesor de piano, guitarra, percusión y producción musical', short: 'Profesor de música · KOAJ', org: 'Academia KOAJ', from: '2024-09', to: '2025-05', place: 'Valencia',
     text: 'Clases de piano, guitarra, percusión y producción musical, además de tareas de gestión y mantenimiento de la academia.', tags: ['edu', 'musica', 'prod'] },
-  // Inicio aproximado: después de terminar los dos másteres
-  { track: 'docencia', title: 'Docente de FP de Imagen y Sonido', short: 'Docente de FP · Imagen y Sonido', org: 'Formación Profesional', from: '2024-10', to: 'hoy',
+  // Empieza después de la Academia KOAJ
+  { track: 'docencia', title: 'Docente de FP de Imagen y Sonido', short: 'Docente de FP · Imagen y Sonido', org: 'Formación Profesional', from: '2025-09', to: 'hoy',
     text: 'Programación creativa, sonido en directo y realización de televisión. Todo el material de clase está en esta web.', tags: ['edu', 'tec', 'av'],
     link: { href: '../index.html#modulos', text: 'Ver los módulos' } },
 
-  { track: 'audiovisual', title: 'Grabación y edición de clases', short: 'Grabación y edición · Univ. de la Experiencia', org: 'Universidad Pontificia de Salamanca', from: '2019-09', to: '2022-09', place: 'Salamanca',
-    text: 'Grabación y edición de las clases de la Universidad de la Experiencia, maquetación de folletos y mantenimiento de la newsletter.', tags: ['av'] },
+  { track: 'audiovisual', title: 'Prácticas: grabación y edición de clases', short: 'Prácticas UPSA · Universidad de la Experiencia', org: 'Universidad Pontificia de Salamanca · Universidad de la Experiencia', from: '2019-09', to: '2022-09', place: 'Salamanca',
+    text: 'Prácticas en la Universidad de la Experiencia: grabación y edición de las clases, maquetación de folletos y mantenimiento de la newsletter.', tags: ['av'] },
   // Inicio aproximado: después de terminar los dos másteres
   { track: 'audiovisual', title: 'MissingTexture_Lab', short: 'MissingTexture_Lab', org: 'Proyecto de divulgación', from: '2024-10', to: 'hoy',
     text: 'Mi proyecto de divulgación sobre arte, tecnología y educación.', tags: ['arte', 'tec', 'voz'],
     link: { href: 'https://www.instagram.com/missingtexture_lab/', text: 'Ver en Instagram' } },
 
+  // LinkedIn solo da los años
+  { track: 'ocio', title: 'Monitor scout (voluntariado)', short: 'Voluntariado · Grupo Scout Álamo', org: 'Grupo Scout Álamo', from: '2018-01', to: '2022-12', years: true, note: 'voluntariado',
+    text: 'Voluntario como monitor de ocio y tiempo libre con infancia.', tags: ['ocio', 'edu'] },
   { track: 'ocio', title: 'Monitor de tiempo libre', short: 'Monitor · Ayto. de Cabrerizos', org: 'Ayuntamiento de Cabrerizos', from: '2019-09', to: '2020-09', place: 'Salamanca',
     text: 'Actividades de tiempo libre y educación al aire libre con niños y niñas.', tags: ['ocio', 'edu'] },
   { track: 'ocio', title: 'Monitor de ocio y tiempo libre', short: 'Monitor · Santiago Uno', org: 'Casa Escuela Santiago Uno', from: '2023-06', to: '2023-07', place: 'Salamanca',
@@ -101,12 +106,12 @@ for (const t of TRACKS) {
     const vs = Math.max(0, c.s);
     const b = document.createElement('button');
     b.type = 'button';
-    b.className = 'clip' + (c.s < 0 ? ' cut' : '');
+    b.className = 'clip' + (c.s < 0 ? ' cut' : '') + (c.puntual ? ' puntual' : '');
     b.style.left = pct(vs);
     b.style.width = pct(c.e + 1 - vs);
     b.textContent = (c.s < 0 ? `← ${c.from.slice(0, 4)} · ` : '') + c.short;
-    b.title = `${c.title} · ${when(c.from)} – ${when(c.to)}`;
-    b.setAttribute('aria-label', `${c.title}, ${c.org}, ${when(c.from)} a ${when(c.to)}`);
+    b.title = `${c.title} · ${span(c)}${c.note ? ` (${c.note})` : ''}`;
+    b.setAttribute('aria-label', `${c.title}, ${c.org}, ${span(c)}${c.note ? `, ${c.note}` : ''}`);
     b.addEventListener('click', () => select(c));
     c.el = b;
     lanesEl.children[lane].append(b);
@@ -125,7 +130,7 @@ function select(c, focusSeq = false) {
     <span class="d-track">${c.t.name}</span>
     <h3>${c.title}</h3>
     <p class="d-org">${c.org}</p>
-    <p class="d-when">${when(c.from)} – ${when(c.to)} · ${duration(n)}${c.place ? ` · ${c.place}` : ''}</p>
+    <p class="d-when">${span(c)} · ${c.note || duration(n)}${c.place ? ` · ${c.place}` : ''}</p>
     <p class="d-text">${c.text}</p>
     <div class="d-tags">${c.tags.map(k => `<button type="button" class="chip" data-area="${k}" aria-pressed="${k === filter}">${AREAS[k]}</button>`).join('')}</div>
     ${c.link ? `<a class="d-link" href="${c.link.href}"${c.link.href.startsWith('http') ? ' rel="noopener"' : ''}>${c.link.text} →</a>` : ''}`;
@@ -158,7 +163,7 @@ function setHead(v) {
     b.type = 'button';
     b.clip = c;
     paint(b, c.t);
-    b.innerHTML = `<span>${c.title}<small>${c.org}</small></span>`;
+    b.innerHTML = `<span>${c.title}<small>${c.org}${c.note ? ` · ${c.note}` : ''}</small></span>`;
     b.setAttribute('aria-current', c === current);
     b.addEventListener('click', () => select(c, true));
     li.append(b);

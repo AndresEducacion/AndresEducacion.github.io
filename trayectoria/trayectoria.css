@@ -38,6 +38,7 @@ body{background-color:var(--bg);background-image:linear-gradient(rgba(42,255,107
 .clip:hover,.clip.live{box-shadow:inset 0 0 0 1px var(--c)}
 .clip.sel{background:var(--c);color:#050806;box-shadow:none}
 .clip.cut{border-left-style:dashed}
+.clip.puntual{border-left-style:dotted;background:repeating-linear-gradient(90deg,var(--cb) 0 10px,transparent 10px 22px)}
 .seq.filtering .clip:not(.hit){opacity:.15}
 .seq.filtering .clip.hit{box-shadow:inset 0 0 0 1px var(--c),0 0 14px var(--cb)}
 
