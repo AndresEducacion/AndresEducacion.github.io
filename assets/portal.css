@@ -52,8 +52,6 @@ h1{font-weight:500;text-transform:uppercase;font-size:clamp(2.2rem,7vw,5.4rem);l
 .stage{position:relative;aspect-ratio:4/3;max-height:52vh;width:100%;border:1px solid var(--line);cursor:grab;touch-action:pan-y;background:#0a0a0a}
 #stage-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
 .m-hint{display:none}
-.autoplay{margin:14px 4px 0;padding:0;background:none;border:0;border-bottom:1px solid var(--line);color:var(--mut);font:inherit;font-size:11px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
-.autoplay:hover{color:var(--g);border-bottom-color:var(--g)}
 .stage.drag{cursor:grabbing}
 .stage{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 .is-dragging,.is-dragging *{-webkit-user-select:none!important;user-select:none!important;cursor:grabbing!important}
@@ -127,9 +125,7 @@ footer{margin-top:48px;padding:24px var(--pad);color:var(--mut);font-size:12px;b
 }
 
 /* Sin WebGL (o sin módulo three): se oculta lo que depende del 3D */
-.no-gl #bg,.no-gl .stage,.no-gl .autoplay,.no-gl .m-hint{display:none}
-@media (max-width:860px),(hover:none),(pointer:coarse){.autoplay{display:none}}
-@media (prefers-reduced-motion:reduce){.autoplay{display:none}}
+.no-gl #bg,.no-gl .stage,.no-gl .m-hint{display:none}
 
 /* Con postproceso WebGL la separación RGB de la salida la hace el shader, no un filtro CSS */
 .post body.leaving .stage{animation:none}

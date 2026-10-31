@@ -22,8 +22,6 @@ const touch = () => touchMQ.matches || touchMQ2.matches;     // dispositivo tác
 /* ---------- Estado compartido entre la interfaz y el 3D ---------- */
 let T = 0;                           // tiempo de animación (solo avanza mientras se dibuja)
 let current = -1, since = 0;
-let paused = false;                  // puntero o foco sobre la lista
-let userPaused = false;              // botón «Pausar rotación automática»
 let dragging = false, lastX = 0, lastMoveT = 0, spinY = 0, spinV = 0; // spinV: inercia (rad/s)
 let tiltTX = 0, tiltTY = 0, tiltX = 0, tiltY = 0;                  // inclinación hacia el puntero (objetivo / suavizada)
 let dt = 0;
@@ -49,10 +47,8 @@ function select(i, t = T) {
 const pick = i => { select(i, T); redraw(); };
 
 rows.forEach((r, i) => {
-  const on = () => { if (stacked() || touch()) return; paused = true; pick(i); };
-  const off = () => { paused = false; };
-  r.addEventListener('pointerenter', on); r.addEventListener('focus', () => { paused = true; pick(i); });
-  r.addEventListener('pointerleave', off); r.addEventListener('blur', off);
+  r.addEventListener('pointerenter', () => { if (stacked() || touch()) return; pick(i); });
+  r.addEventListener('focus', () => pick(i));
   // Táctil: un toque solo muestra la tarjeta; se entra con «Entrar al módulo».
   // Ratón: el clic entra directamente (con la animación), igual que el botón.
   r.addEventListener('click', e => {
@@ -60,7 +56,6 @@ rows.forEach((r, i) => {
     e.preventDefault();
     pick(i);
     if (touch()) {
-      paused = true;
       if (stacked()) alignRow(r);
       return;
     }
@@ -72,16 +67,6 @@ cap.go.addEventListener('click', e => {
   e.preventDefault();
   enter(cap.go.href);
 });
-
-// Rotación automática: se puede pausar (WCAG 2.2.2) y no existe con movimiento reducido
-const autoBtn = $('autoplay');
-if (autoBtn) {
-  if (reduce) autoBtn.hidden = true;
-  else autoBtn.addEventListener('click', () => {
-    userPaused = !userPaused;
-    autoBtn.textContent = userPaused ? 'Reanudar rotación automática' : 'Pausar rotación automática';
-  });
-}
 
 // Transición de salida: el objeto crece y se desvanece antes de abrir el módulo
 function enter(href) {
@@ -733,10 +718,6 @@ async function initGL() {
     dt = Math.min((now - last) / 1000, 0.1); // al volver a la pestaña no hay salto
     T += dt;
     last = now;
-    // cambia de módulo solo cuando nadie lo está mirando ni lo ha pausado
-    if (!paused && !userPaused && !dragging && stageVisible && !stacked() && !touch() && T - since > 5) {
-      select((current + 1) % objs.length, T);
-    }
     draw();
   }
 

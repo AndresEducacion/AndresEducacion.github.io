@@ -26,7 +26,7 @@ const TRACKS = [
 ];
 const AREAS = {
   edu: 'Educación', inclusiva: 'Educación especial', musica: 'Música', prod: 'Producción musical',
-  av: 'Vídeo y sonido', tec: 'Programación, VR y 3D', arte: 'Artes visuales', voz: 'Hablar en público', ocio: 'Ocio y tiempo libre',
+  av: 'Vídeo y sonido', tec: 'Programación, VR y 3D', arte: 'Artes visuales', ocio: 'Ocio y tiempo libre',
 };
 const CLIPS = [
   { track: 'formacion', title: 'Grado Profesional de Piano (hasta 5.º)', short: 'Piano · Conservatorio', org: 'Conservatorio Profesional de Salamanca', from: '2008-09', to: '2019-09', place: 'Salamanca',
@@ -44,9 +44,6 @@ const CLIPS = [
 
   { track: 'docencia', title: 'Profesor de Música', short: 'Profesor de Música · Belerofonte', org: 'Asociación Belerofonte', from: '2018-09', to: '2019-09', place: 'Salamanca',
     text: 'Clases de música en las extraescolares del CEIP Santa Catalina.', tags: ['edu', 'musica'] },
-  { track: 'docencia', title: 'Ponente en charlas educativas', short: 'Charlas puntuales · IES Diputación', org: 'IES Diputación Provincial (Proyecto Empresa)', from: '2022-09', to: '2024-09', place: 'Salamanca',
-    puntual: true, note: 'charlas puntuales',
-    text: 'Un par de charlas concretas, no continuadas, sobre el vídeo, el pódcast y YouTube como recursos educativos.', tags: ['edu', 'voz', 'av'] },
   { track: 'docencia', title: 'Profesor de piano, guitarra, percusión y producción musical', short: 'Profesor de música · KOAJ', org: 'Academia KOAJ', from: '2024-09', to: '2025-05', place: 'Valencia',
     text: 'Clases de piano, guitarra, percusión y producción musical, además de tareas de gestión y mantenimiento de la academia.', tags: ['edu', 'musica', 'prod'] },
   // Empieza después de la Academia KOAJ
@@ -58,7 +55,7 @@ const CLIPS = [
     text: 'Prácticas en la Universidad de la Experiencia: grabación y edición de las clases, maquetación de folletos y mantenimiento de la newsletter.', tags: ['av'] },
   // Inicio aproximado: después de terminar los dos másteres
   { track: 'audiovisual', title: 'MissingTexture_Lab', short: 'MissingTexture_Lab', org: 'Proyecto de divulgación', from: '2024-10', to: 'hoy',
-    text: 'Mi proyecto de divulgación sobre arte, tecnología y educación.', tags: ['arte', 'tec', 'voz'],
+    text: 'Mi proyecto de divulgación sobre arte, tecnología y educación.', tags: ['arte', 'tec'],
     link: { href: 'https://www.instagram.com/missingtexture_lab/', text: 'Ver en Instagram' } },
 
   // LinkedIn solo da los años
@@ -106,7 +103,7 @@ for (const t of TRACKS) {
     const vs = Math.max(0, c.s);
     const b = document.createElement('button');
     b.type = 'button';
-    b.className = 'clip' + (c.s < 0 ? ' cut' : '') + (c.puntual ? ' puntual' : '');
+    b.className = 'clip' + (c.s < 0 ? ' cut' : '');
     b.style.left = pct(vs);
     b.style.width = pct(c.e + 1 - vs);
     b.textContent = (c.s < 0 ? `← ${c.from.slice(0, 4)} · ` : '') + c.short;
@@ -124,6 +121,12 @@ let current = null;
 function select(c, focusSeq = false) {
   current = c;
   CLIPS.forEach(k => k.el.classList.toggle('sel', k === c));
+  fillDetail(c);
+  if (!reduce) { detail.classList.remove('swap'); void detail.offsetWidth; detail.classList.add('swap'); }
+  atList.querySelectorAll('button').forEach(b => b.setAttribute('aria-current', b.clip === c));
+  if (focusSeq) c.el.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: reduce ? 'auto' : 'smooth' });
+}
+function fillDetail(c) {
   paint(detail, c.t);
   const n = c.e - c.s + 1;
   detail.innerHTML = `
@@ -135,9 +138,40 @@ function select(c, focusSeq = false) {
     <div class="d-tags">${c.tags.map(k => `<button type="button" class="chip" data-area="${k}" aria-pressed="${k === filter}">${AREAS[k]}</button>`).join('')}</div>
     ${c.link ? `<a class="d-link" href="${c.link.href}"${c.link.href.startsWith('http') ? ' rel="noopener"' : ''}>${c.link.text} →</a>` : ''}`;
   detail.querySelectorAll('[data-area]').forEach(b => b.addEventListener('click', () => setFilter(b.dataset.area)));
-  if (!reduce) { detail.classList.remove('swap'); void detail.offsetWidth; detail.classList.add('swap'); }
-  atList.querySelectorAll('button').forEach(b => b.setAttribute('aria-current', b.clip === c));
-  if (focusSeq) c.el.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: reduce ? 'auto' : 'smooth' });
+}
+function fillList(m) {
+  const live = CLIPS.filter(c => c.s <= m && m <= c.e);
+  atList.replaceChildren(...(live.length ? live.map(c => {
+    const li = document.createElement('li');
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.clip = c;
+    paint(b, c.t);
+    b.innerHTML = `<span>${c.title}<small>${c.org}${c.note ? ` · ${c.note}` : ''}</small></span>`;
+    b.setAttribute('aria-current', c === current);
+    b.addEventListener('click', () => select(c, true));
+    li.append(b);
+    return li;
+  }) : [Object.assign(document.createElement('li'), { className: 'empty', textContent: 'Nada en esta fecha.' })]));
+  return live;
+}
+
+// Alto fijo para que lo que hay debajo no se mueva al cambiar de fecha o de clip:
+// la ficha reserva el de la más larga y la lista cabe en ese mismo alto (o en tres filas en móvil);
+// si una fecha tiene más clips, la lista se desplaza por dentro
+function lockHeights() {
+  atList.style.height = detail.style.minHeight = '';
+  detail.setAttribute('aria-live', 'off');
+  let hList = 0, hDetail = 0;
+  for (let m = 0; m < TOTAL; m++) { if (fillList(m).length <= 3) hList = Math.max(hList, atList.offsetHeight); }
+  for (const c of CLIPS) { fillDetail(c); hDetail = Math.max(hDetail, detail.offsetHeight); }
+  const sideBySide = getComputedStyle(atList.parentElement.parentElement).gridTemplateColumns.split(' ').length > 1;
+  if (sideBySide) hList = Math.max(hList, hDetail - atList.offsetTop + atList.parentElement.offsetTop);
+  atList.style.height = `${hList}px`;
+  detail.style.minHeight = `${hDetail}px`;
+  fillList(Math.round(head));
+  fillDetail(current);
+  detail.setAttribute('aria-live', 'polite');
 }
 
 /* ---------- Cabezal ---------- */
@@ -155,20 +189,8 @@ function setHead(v) {
   handle.setAttribute('aria-valuemax', TOTAL - 1);
   handle.setAttribute('aria-valuenow', m);
   handle.setAttribute('aria-valuetext', label);
-  const live = CLIPS.filter(c => c.s <= m && m <= c.e);
+  const live = fillList(m);
   CLIPS.forEach(c => c.el.classList.toggle('live', live.includes(c)));
-  atList.replaceChildren(...(live.length ? live.map(c => {
-    const li = document.createElement('li');
-    const b = document.createElement('button');
-    b.type = 'button';
-    b.clip = c;
-    paint(b, c.t);
-    b.innerHTML = `<span>${c.title}<small>${c.org}${c.note ? ` · ${c.note}` : ''}</small></span>`;
-    b.setAttribute('aria-current', c === current);
-    b.addEventListener('click', () => select(c, true));
-    li.append(b);
-    return li;
-  }) : [Object.assign(document.createElement('li'), { className: 'empty', textContent: 'Nada en esta fecha.' })]));
 }
 const monthAt = x => { const r = ruler.getBoundingClientRect(); return (x - r.left) / r.width * TOTAL - 0.5; };
 
@@ -203,7 +225,7 @@ handle.addEventListener('keydown', e => {
   stop();
 });
 
-/* ---------- Reproducción: el cabezal avanza 14 meses por segundo hasta hoy ---------- */
+/* ---------- Reproducción: el cabezal avanza 6 meses por segundo hasta hoy ---------- */
 let raf = 0;
 function stop() {
   if (!raf) return;
@@ -217,7 +239,7 @@ function play() {
   playBtn.textContent = '❚❚ Pausa';
   let t0 = performance.now();
   const tick = t => {
-    setHead(head + (t - t0) / 1000 * 14);
+    setHead(head + (t - t0) / 1000 * 6);
     t0 = t;
     // Con la secuencia desplazable (móvil), el cabezal no se sale de la vista
     const r = scroller.getBoundingClientRect(), p = ph.getBoundingClientRect();
@@ -251,5 +273,9 @@ function setFilter(k) {
 /* ---------- Arranque: el cabezal en hoy y abierto lo primero que sigue en curso ---------- */
 setHead(NOW);
 select(CLIPS.find(c => c.to === 'hoy'));
+lockHeights();
+document.fonts?.ready.then(lockHeights);
+let lastW = innerWidth;
+addEventListener('resize', () => { if (innerWidth !== lastW) { lastW = innerWidth; lockHeights(); } });
 scroller.scrollLeft = scroller.scrollWidth;
 $('y').textContent = today.getFullYear();
