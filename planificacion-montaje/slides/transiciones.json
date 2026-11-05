@@ -1,0 +1,360 @@
+{
+  "title": "Montaje · Transiciones en Premiere Pro",
+  "slides": [
+    {
+      "type": "cover",
+      "k": "Planificación de montaje · Prácticas",
+      "title": "Montaje con Premiere Pro",
+      "text": "Conceptos básicos y tareas paso a paso. Parte 1: transiciones de vídeo y audio",
+      "note": "Basado en Adobe Premiere Pro Classroom in a Book, edición 2025 (Maxim Jago), Lección 7."
+    },
+    {
+      "k": "Hoja de ruta",
+      "title": "Cuatro sesiones sobre transiciones",
+      "stats": [
+        { "v": "1", "l": "**Qué es una transición:** el corte, cuándo usar efectos y los handles" },
+        { "v": "2", "l": "**Vídeo paso a paso:** aplicar, sustituir, copiar y duración por defecto" },
+        { "v": "3", "l": "**Ajuste fino:** modo A/B, Morph Cut y qué hacer si faltan handles" },
+        { "v": "4", "l": "**Audio:** crossfades, atajos y fade handles" }
+      ]
+    },
+    {
+      "k": "Prácticas",
+      "title": "Calendario de entregas",
+      "head": ["Práctica", "Modalidad", "Entrega", "Evaluación"],
+      "rows": [
+        ["1. Montaje cocina", "Individual", "10/11/2026", "RA1, RA2, RA3"],
+        ["2. Colas TV", "Grupal", "21/11/2026", "RA3"],
+        ["3. Montaje aviones", "Individual", "01/12/2026", "RA1, RA2, RA3"],
+        ["4. Escuela rusa", "Individual", "12/12/2026", "RA1, RA2, RA3"]
+      ],
+      "note": "Esta presentación trabaja para las prácticas 1 y 3, que son las que se montan en Premiere Pro."
+    },
+    {
+      "k": "Práctica 1",
+      "title": "Montaje de un programa de cocina",
+      "head": ["Requisito", "Dónde se trabaja"],
+      "rows": [
+        ["Duración mínima de 1:30", "Edición en la Timeline"],
+        ["Al menos 3 transiciones entre planos", "Esta presentación: sesiones 1 a 3"],
+        ["Texto con animación con el nombre del programa", "Texto y keyframes"],
+        ["Banda sonora sincronizada con las imágenes", "Audio y marcadores"],
+        ["Vídeo H.264, YouTube HD 1080", "Exportación"]
+      ],
+      "note": "Individual · Entrega 10/11/2026 · Planos MASTER_03, 04 y 05 · Nombre: cocina_nombre apellido."
+    },
+    {
+      "k": "Práctica 3",
+      "title": "Promoción de una aerolínea",
+      "head": ["Requisito", "Dónde se trabaja"],
+      "rows": [
+        ["Duración entre 20 y 30 segundos", "Edición en la Timeline"],
+        ["Al menos 5 transiciones entre planos", "Esta presentación: sesiones 1 a 3"],
+        ["Texto con animación con el nombre inventado de la aerolínea", "Texto y keyframes"],
+        ["Banda sonora sincronizada con las imágenes", "Audio y marcadores"],
+        ["Al menos un efecto de vídeo", "Efectos"],
+        ["Audio grabado (marca, eslogan, gancho) en otra pista, con distintos planos sonoros", "Voz y planos sonoros"]
+      ]
+    },
+    {
+      "k": "Práctica 3 · Entrega y planos",
+      "title": "Qué se entrega y con qué se trabaja",
+      "groups": [
+        { "h": "En la carpeta", "items": ["Vídeo H.264, YouTube HD 1080, escalando la salida si hace falta", "El proyecto de Premiere", "Carpeta y vídeo: aviones_nombre apellido", "Entrega 01/12/2026 · RA1, RA2 y RA3"] },
+        { "h": "Planos facilitados", "items": ["`02_A380_TAKEOFF` · `03_AERIAL_SFO` · `04_JET_LANDING_2`", "`05_BAY_AREA_LIGHTS` · `06_MILKYWAY` · `07_KENYA`", "`08_SOUTH_POLE_DC3_` · `09_HWAIIAN_LANDING` · `10_MALDIVES`"] }
+      ]
+    },
+    {
+      "type": "big",
+      "k": "Sesión 1",
+      "title": "Qué es una transición",
+      "text": "El corte, cuándo conviene usar un efecto y por qué los handles lo hacen posible."
+    },
+    {
+      "k": "Sesión 1 · Conceptos",
+      "title": "El corte y la transición",
+      "groups": [
+        { "h": "El corte", "items": ["Punto donde un clip acaba y empieza el siguiente", "También se llama edición o punto de edición", "Se ve como una línea vertical entre clips"] },
+        { "h": "La transición", "items": ["Efecto preestablecido que une clips vecinos", "Disolvencias, barridos, inmersiones a un color", "Suaviza el paso de una escena a la siguiente"] }
+      ],
+      "note": "Se arrastra desde el panel Effects al punto de edición. La habilidad está en la colocación, la duración y los ajustes."
+    },
+    {
+      "k": "Sesión 1 · Conceptos",
+      "title": "Cuándo usar una transición",
+      "groups": [
+        { "h": "Cambio de lugar", "items": ["Pasar de un interior a un exterior"] },
+        { "h": "Paso del tiempo", "items": ["Un salto hacia delante en el tiempo"] },
+        { "h": "Cambio de perspectiva", "items": ["El punto de vista de un personaje cambia"] }
+      ],
+      "note": "Un fundido a negro al final de una escena indica que ha terminado. Si alguien se duerme y la imagen se vuelve difusa, entendemos que es un sueño."
+    },
+    {
+      "type": "big",
+      "k": "Sesión 1 · Buenas prácticas",
+      "title": "Si dudas, menos es más",
+      "text": "Casi todo son cortes. Si el efecto no aporta, distrae. Si parece intencionado, el público confía en tu decisión."
+    },
+    {
+      "k": "Sesión 1 · Conceptos",
+      "title": "Handles: el material que no se ve",
+      "lead": "Lo que queda antes del punto In y después del punto Out sigue disponible, pero oculto.",
+      "groups": [
+        { "h": "Para qué sirven", "items": ["La transición solapa el clip que sale con el que entra, y ese material sale de los handles"] },
+        { "h": "Un ejemplo", "items": ["Un Cross Dissolve de 2 s centrado necesita al menos 1 s de handle en cada clip"] },
+        { "h": "Cómo saber si hay", "items": ["Un triángulo en la esquina del clip indica que no quedan más fotogramas"] }
+      ]
+    },
+    {
+      "type": "big",
+      "k": "Sesión 2",
+      "title": "Transiciones de vídeo paso a paso",
+      "text": "Aplicar, sustituir y copiar transiciones de vídeo."
+    },
+    {
+      "k": "Sesión 2 · Vídeo",
+      "title": "Dónde están las transiciones",
+      "items": [
+        "Window > Workspaces > **Effects**, y restablece al diseño guardado.",
+        "En el panel Effects, abre **Video Transitions**.",
+        "Busca por nombre en el campo Search o recorre las carpetas: Dissolve, Immersive Video, Iris, Page Peel, Slide, Wipe y Zoom."
+      ],
+      "ordered": true,
+      "note": "Video Effects > Transition es otra carpeta: esos efectos se aplican a un clip entero, sin usar handles."
+    },
+    {
+      "k": "Sesión 2 · Vídeo",
+      "title": "Transición de un solo lado",
+      "items": [
+        "Effects > Video Transitions > Dissolve > **Cross Dissolve**.",
+        "Arrástralo al inicio del primer clip: un resaltado muestra dónde se añadirá.",
+        "Arrastra otro al final del último clip.",
+        "Reproduce: fundido desde negro al principio y a negro al final."
+      ],
+      "ordered": true,
+      "note": "Se ve negro porque no hay otro clip: el clip se vuelve transparente sobre el fondo de la Timeline. No usa handles."
+    },
+    {
+      "k": "Sesión 2 · Vídeo",
+      "title": "Transición entre dos clips",
+      "items": [
+        "Coloca el playhead en el corte y pulsa `=` dos o tres veces para acercar.",
+        "Arrastra **Dip To White** (Dissolve) al corte entre el primer y el segundo clip.",
+        "Encaja en tres posiciones: alinéala con el centro del corte.",
+        "Arrastra **Push** (Slide) al corte entre el segundo y el tercero, centrada.",
+        "Flecha arriba o abajo: salta al corte anterior o siguiente."
+      ],
+      "ordered": true,
+      "note": "Si las flechas no responden, comprueba que el panel Timeline está activo, con contorno azul."
+    },
+    {
+      "k": "Sesión 2 · Vídeo",
+      "title": "Cambiar la dirección y sustituir",
+      "groups": [
+        { "h": "Cambiar la dirección", "items": ["Clic en el icono de Push en la Timeline", "En Effect Controls, pulsa los triángulos junto a la miniatura A/B", "Si Effect Controls está vacío, vuelve a seleccionar la transición"] },
+        { "h": "Sustituir", "items": ["Arrastra la nueva encima, por ejemplo Barn Doors sobre Push", "Hereda duración y alineación, no los colores de borde", "Para borrar: selecciónala y Delete/Backspace"] }
+      ]
+    },
+    {
+      "k": "Sesión 2 · Vídeo",
+      "title": "Duración por defecto",
+      "items": [
+        "macOS: Premiere Pro > Settings > Timeline. Windows: Edit > Preferences > Timeline.",
+        "En **Video Transition Default Duration** verás 25 o 30 fotogramas, según la región.",
+        "Cámbialo a 1 segundo y pulsa OK."
+      ],
+      "ordered": true,
+      "note": "Las transiciones ya aplicadas conservan sus ajustes. Si la duración está en fotogramas, el tiempo real cambia con la frecuencia de la secuencia."
+    },
+    {
+      "k": "Sesión 2 · Vídeo",
+      "title": "Barras de render",
+      "head": ["Color", "Qué significa"],
+      "rows": [
+        ["Amarilla", "Premiere espera poder reproducir el efecto con fluidez"],
+        ["Roja", "Puede hacer falta renderizar para no perder fotogramas"],
+        ["Verde", "Ya está renderizada"]
+      ],
+      "note": "Renderiza con Return (macOS) o Enter (Windows). Con In y Out marcados, solo se renderiza esa zona."
+    },
+    {
+      "k": "Sesión 2 · Vídeo",
+      "title": "Varias transiciones de golpe",
+      "groups": [
+        { "h": "Aplicar la de por defecto", "items": ["Con Selection, arrastra un marco alrededor de los clips", "Sequence > Apply Default Transitions To Selection, o `Shift+D`", "Para cambiarla: clic derecho > Set Selected As Default Transition"] },
+        { "h": "Copiar una transición", "items": ["Aplica una y alárgala", "Selecciónala y copia con `Cmd/Ctrl+C`", "Con Cmd/Ctrl, arrastra un marco sobre otros cortes", "Pega con `Cmd/Ctrl+V`"] }
+      ]
+    },
+    {
+      "k": "Taller · Práctica 1",
+      "title": "Manos a la obra: tres transiciones",
+      "items": [
+        "Revisa los handles de tus planos: busca triángulos en las esquinas de los clips.",
+        "Aplica al menos tres transiciones, por ejemplo Cross Dissolve, Dip To White y una de Slide o Wipe.",
+        "Centra cada una sobre el corte y reprodúcela.",
+        "Si no va fluido, renderiza con Return o Enter.",
+        "Pregúntate: ¿tiene cada transición un motivo?"
+      ],
+      "note": "Material: MASTER_03, MASTER_04 y MASTER_05."
+    },
+    {
+      "type": "big",
+      "k": "Sesión 3",
+      "title": "Ajuste fino",
+      "text": "Modo A/B, Morph Cut y el problema de los handles insuficientes."
+    },
+    {
+      "k": "Sesión 3 · Ajuste fino",
+      "title": "Modo A/B en Effect Controls",
+      "lead": "Divide la pista en clip A, clip B y la transición entre ambos, para manipular los handles.",
+      "items": [
+        "Selecciona la transición en la Timeline.",
+        "En Effect Controls, marca **Show Actual Sources**.",
+        "En **Alignment** elige Start At Cut: la transición se mueve.",
+        "Pulsa **Play The Transition** para previsualizarla."
+      ],
+      "ordered": true,
+      "note": "Si no ves la línea de tiempo del panel, pulsa Show/Hide Timeline View."
+    },
+    {
+      "k": "Sesión 3 · Ajuste fino",
+      "title": "Cuatro formas de cambiar la duración",
+      "items": [
+        "**Arrastrar en la Timeline** el borde del icono, con Selection.",
+        "**Arrastrar en la línea A/B** de Effect Controls.",
+        "**Valor Duration:** escribe 300 y pulsa Tab = 00:00:03:00.",
+        "**Doble clic** en el icono y cambia Duration."
+      ],
+      "ordered": true,
+      "note": "Si la transición invade a la siguiente, Alignment pasa a Custom Start. Reprodúcela siempre."
+    },
+    {
+      "k": "Sesión 3 · Ajuste fino",
+      "title": "Rolling Edit frente a Slide",
+      "groups": [
+        { "h": "Rolling Edit", "items": ["Puntero rojo sobre la línea del corte", "Cambia el momento del corte", "Se actualizan el Out del clip izquierdo y el In del derecho"] },
+        { "h": "Slide", "items": ["Puntero sobre la transición, a un lado del corte", "Mueve el inicio y el final del efecto", "No cambia su duración ni el punto de edición"] }
+      ]
+    },
+    {
+      "k": "Sesión 3 · Ajuste fino",
+      "title": "Morph Cut: el corte invisible",
+      "items": [
+        "Localiza un jump cut en una entrevista.",
+        "Arrastra **Morph Cut** (Video Transitions > Dissolve) al corte.",
+        "Espera al análisis en segundo plano.",
+        "Doble clic y pon la duración en 16 fotogramas.",
+        "Renderiza y reproduce."
+      ],
+      "ordered": true,
+      "note": "Funciona con una sola persona que mira a cámara, cuando quitas pausas y la imagen cambia poco."
+    },
+    {
+      "k": "Sesión 3 · Ajuste fino",
+      "title": "Cuando faltan handles",
+      "lead": "Si alargas la transición más allá de los handles, aparecen barras diagonales: Premiere congela el último fotograma disponible.",
+      "groups": [
+        { "h": "Ajustar la transición", "items": ["Cambia su duración o su posición"] },
+        { "h": "Rolling Edit", "items": ["Arrastra el corte, no el icono del efecto"] },
+        { "h": "Ripple Edit", "items": ["Acorta un clip para aumentar su handle"] }
+      ]
+    },
+    {
+      "type": "big",
+      "k": "Sesión 4",
+      "title": "Transiciones de audio",
+      "text": "Crossfades, atajos y fade handles."
+    },
+    {
+      "k": "Sesión 4 · Audio",
+      "title": "Por qué transiciones de audio",
+      "groups": [
+        { "h": "Quitan chasquidos", "items": ["Eliminan pops y cortes bruscos"] },
+        { "h": "El público lo nota", "items": ["Se fija más en la inconsistencia del sonido que en su calidad"] },
+        { "h": "Uno o dos fotogramas", "items": ["Lo habitual en cada corte para evitar chasquidos"] }
+      ],
+      "note": "Truco: duración por defecto de audio en dos fotogramas, selecciona los clips y Sequence > Apply Audio Transition."
+    },
+    {
+      "k": "Sesión 4 · Audio",
+      "title": "Tres tipos de crossfade",
+      "head": ["Tipo", "Cómo suena", "Cuándo"],
+      "rows": [
+        ["**Constant Gain**", "Cambio constante; puede notarse una bajada de nivel", "Ediciones de música"],
+        ["**Constant Power**", "Suave y gradual, sin bajada en el medio", "La de por defecto"],
+        ["**Exponential Fade**", "Curva logarítmica", "Un solo lado: entrar desde el silencio"]
+      ],
+      "note": "Están en Effects > Audio Transitions > Crossfade."
+    },
+    {
+      "k": "Sesión 4 · Audio",
+      "title": "Aplicar un crossfade paso a paso",
+      "items": [
+        "Abre una secuencia con audio y elige Selection.",
+        "Arrastra **Exponential Fade** al inicio del primer clip de audio.",
+        "Clic derecho en el borde del último clip > **Apply Default Transitions**.",
+        "Arrastra un extremo de la transición para alargarla y escucha.",
+        "Playhead cerca del principio y `Cmd/Ctrl+D`: Cross Dissolve de vídeo."
+      ],
+      "ordered": true,
+      "note": "Para añadir solo la de audio a un clip enlazado, mantén Option/Alt al hacer clic derecho."
+    },
+    {
+      "k": "Sesión 4 · Audio",
+      "title": "Crossfades en todos los cortes",
+      "items": [
+        "Con Selection, mantén `Cmd+Option` (macOS) o `Ctrl+Alt` (Windows).",
+        "Arrastra un marco sobre los cortes de Audio 1, empezando por debajo de los clips.",
+        "Pulsa `Shift+D`: solo audio, porque solo hay audio seleccionado.",
+        "Pulsa Esc para deseleccionar y reproduce."
+      ],
+      "ordered": true,
+      "note": "Cmd/Ctrl selecciona cortes; Option/Alt desvincula audio y vídeo; Shift+Cmd/Ctrl+D aplica la de audio por defecto."
+    },
+    {
+      "k": "Sesión 4 · Audio",
+      "title": "Fade handles: fundidos rápidos",
+      "lead": "Cada clip de audio tiene un fade handle en cada extremo. Pasa el puntero por el clip o selecciónalo para verlo.",
+      "groups": [
+        { "h": "Izquierda o derecha", "items": ["Ajusta la duración del fundido"] },
+        { "h": "Arriba o abajo", "items": ["Ajusta la curva del fundido"] }
+      ]
+    },
+    {
+      "k": "Chuleta",
+      "title": "Atajos de transiciones",
+      "head": ["Atajo", "Acción", "Atajo", "Acción"],
+      "rows": [
+        ["`=`", "Acercar zoom", "`Cmd/Ctrl+D`", "Vídeo por defecto"],
+        ["`\\`", "Ver toda la secuencia", "`Shift+D`", "Por defecto a la selección"],
+        ["`V`", "Selection", "`Shift+Cmd/Ctrl+D`", "Audio por defecto"],
+        ["`↑ ↓`", "Corte anterior o siguiente", "`Cmd/Ctrl+C / V`", "Copiar / pegar"],
+        ["Return / Enter", "Renderizar", "Delete / Backspace", "Borrar transición"]
+      ]
+    },
+    {
+      "k": "Repaso",
+      "title": "Cinco preguntas",
+      "items": [
+        "¿Cómo aplicas la transición por defecto a varios clips de una secuencia?",
+        "En el panel Effects, ¿cómo localizas una transición por su nombre?",
+        "¿Cómo sustituyes una transición por otra?",
+        "¿Cuáles son tres formas de cambiar la duración de una transición de vídeo?",
+        "¿Cuál es una forma fácil de subir gradualmente el nivel de audio al inicio de un clip?"
+      ],
+      "ordered": true
+    },
+    {
+      "k": "Repaso · Respuestas",
+      "title": "Respuestas",
+      "items": [
+        "Selecciona los clips y Sequence > Apply Default Transitions To Selection, o `Shift+D`.",
+        "Escribe el nombre en el buscador de Effects; añade letras para afinar.",
+        "Arrastra la nueva encima: hereda la temporización, no los colores de borde.",
+        "Arrastrar el borde en la Timeline o en la línea A/B, cambiar Duration en Effect Controls o con doble clic en el icono.",
+        "Un crossfade al inicio del clip o arrastrar su fade handle."
+      ],
+      "ordered": true
+    }
+  ]
+}

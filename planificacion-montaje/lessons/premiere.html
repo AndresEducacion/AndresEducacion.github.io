@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Premiere Pro paso a paso | Montaje</title>
+<meta name="description" content="Guía de Adobe Premiere Pro del proyecto a la exportación: interfaz, importación, secuencia, edición, efectos, keyframes, transiciones, audio, subtítulos y exportación.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2024%2024'%3E%3Crect%20x%3D'-1'%20y%3D'-1'%20width%3D'26'%20height%3D'26'%20rx%3D'5'%20fill%3D'%23191919'%2F%3E%3Cg%20fill%3D'none'%20stroke%3D'%239b7bff'%20stroke-width%3D'1.6'%20stroke-linecap%3D'round'%20stroke-linejoin%3D'round'%3E%3Crect%20x%3D'2.5'%20y%3D'2.5'%20width%3D'8.5'%20height%3D'6'%20rx%3D'.8'%2F%3E%3Crect%20x%3D'13'%20y%3D'2.5'%20width%3D'8.5'%20height%3D'6'%20rx%3D'.8'%2F%3E%3Cpath%20d%3D'M16.2%204l2.8%201.5-2.8%201.5z'%20fill%3D'%239b7bff'%2F%3E%3Crect%20x%3D'2.5'%20y%3D'13'%20width%3D'6.5'%20height%3D'3'%20rx%3D'.6'%2F%3E%3Crect%20x%3D'13'%20y%3D'13'%20width%3D'8.5'%20height%3D'3'%20rx%3D'.6'%2F%3E%3Crect%20x%3D'2.5'%20y%3D'18.5'%20width%3D'6.5'%20height%3D'3'%20rx%3D'.6'%2F%3E%3Crect%20x%3D'13'%20y%3D'18.5'%20width%3D'5'%20height%3D'3'%20rx%3D'.6'%2F%3E%3Cpath%20d%3D'M11%2012v10'%2F%3E%3Cpath%20d%3D'M9.5%2010.4h3L11%2012z'%20fill%3D'%239b7bff'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../assets/mont.css">
+</head>
+<body class="m-mont">
+<header class="top">
+  <a class="brand" href="../index.html">MONT<span class="dash"> —</span> Montaje y postproducción</a>
+  <nav aria-label="Módulo">
+    <a href="../index.html#temario">Temario</a>
+    <a href="../index.html#practicas">Prácticas</a>
+    <a href="../index.html#recursos">Recursos</a>
+  </nav>
+  <a class="back" href="../../index.html">← Portal</a>
+</header>
+
+<main>
+  <section class="hero small">
+    <p class="kicker"><a href="../index.html">MONT</a> / Guía · Premiere Pro</p>
+    <h1>Premiere Pro paso a paso</h1>
+    <p class="lead">Del proyecto vacío a la exportación, en siete bloques y en el orden real de trabajo: sin proyecto no hay material, sin material no hay secuencia, y los subtítulos se hacen al final porque dependen del audio definitivo.</p>
+  </section>
+
+  <section class="sec doc" id="presentacion">
+    <h2 class="section-title">00 · La guía en diapositivas</h2>
+    <p>Los nombres de paneles y menús van en inglés, como aparecen en la interfaz. Si tu Premiere está en español, cambian los nombres pero no la posición.</p>
+    <div class="deck" data-src="../slides/premiere.json"></div>
+  </section>
+
+  <section class="sec doc" id="proyecto">
+    <h2 class="section-title">01 · Proyecto e interfaz</h2>
+    <h3>Crear un proyecto nuevo</h3>
+    <ol class="steps">
+      <li>En la pantalla de inicio (Home screen), pulsa <strong>New Project</strong>.</li>
+      <li>Escribe el nombre del proyecto y elige dónde guardarlo. Si tienes una plantilla, selecciónala aquí.</li>
+      <li>Pulsa el icono <strong>Settings</strong> para revisar General, Color, Scratch Disks e Ingest Settings.</li>
+      <li>Elige los vídeos y demás archivos: se van reuniendo en la <strong>Selection Tray</strong>, abajo.</li>
+      <li>Pulsa <strong>Create</strong> para entrar en el proyecto con el material importado.</li>
+    </ol>
+    <p class="note"><strong>Consejo:</strong> guarda el proyecto en una carpeta junto con los vídeos, para que el trabajo no se disperse. Con <em>Skip import mode</em> te saltas la pantalla de importación y añades los medios desde el panel Project.</p>
+
+    <h3>Los paneles que más vas a usar</h3>
+    <figure class="ui" aria-label="Esquema de la interfaz de Premiere Pro">
+      <div class="ui-src"><b>Source Monitor</b><span>Previsualiza un clip y marca su In y su Out</span></div>
+      <div class="ui-prg"><b>Program Monitor</b><span>Muestra la secuencia que estás montando</span></div>
+      <div class="ui-prop"><b>Properties</b><span>Controles de lo seleccionado</span></div>
+      <div class="ui-proj"><b>Project</b><span>Tus clips y secuencias</span></div>
+      <div class="ui-tools"><b>Tools</b></div>
+      <div class="ui-tl"><b>Timeline</b><span>Donde se monta: clips, transiciones y efectos en pistas</span></div>
+      <figcaption>Esquema orientativo: la disposición exacta depende del espacio de trabajo. Effects, Effect Controls, Essential Sound y Text se abren desde el menú Window.</figcaption>
+    </figure>
+
+    <h3>Espacios de trabajo</h3>
+    <p>Un espacio de trabajo es una disposición de paneles guardada: no cambia el proyecto, solo lo que ves. Premiere trae 16; estos son los más útiles:</p>
+    <div class="table"><table>
+      <thead><tr><th>Workspace</th><th>Cuándo usarlo</th></tr></thead>
+      <tbody>
+        <tr><td>Essentials</td><td>Con un solo monitor: todo a mano</td></tr>
+        <tr><td>Assembly</td><td>Primer montaje, con el panel Project grande</td></tr>
+        <tr><td>Captions and Graphics</td><td>Subtítulos y gráficos</td></tr>
+        <tr><td>Vertical</td><td>Vídeo vertical, con un solo monitor alternable</td></tr>
+        <tr><td>Learning</td><td>Tutoriales dentro del programa mientras editas</td></tr>
+        <tr><td>Review</td><td>Revisiones con Frame.io</td></tr>
+        <tr><td>Production</td><td>Trabajo en equipo en una Production</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note"><strong>Truco:</strong> para guardar el tuyo, Window &gt; Workspaces &gt; Save as New Workspace. Si un panel desaparece o la pantalla se desordena, Window &gt; Workspaces &gt; Reset to Saved Layout.</p>
+
+    <h3>Panel Tools</h3>
+    <div class="table"><table>
+      <thead><tr><th>Herramienta</th><th>Tecla</th><th>Para qué sirve</th></tr></thead>
+      <tbody>
+        <tr><td>Selection</td><td><kbd>V</kbd></td><td>Seleccionar y mover. Es la herramienta por defecto</td></tr>
+        <tr><td>Track Select</td><td><kbd>A</kbd></td><td>Selecciona un clip y todo lo que tiene a su derecha</td></tr>
+        <tr><td>Ripple Edit</td><td><kbd>B</kbd></td><td>Recorta el In o el Out y cierra el hueco que deja</td></tr>
+        <tr><td>Razor</td><td><kbd>C</kbd></td><td>Corta un clip en dos. Con <kbd>Shift</kbd> corta todas las pistas</td></tr>
+        <tr><td>Slip</td><td><kbd>Y</kbd></td><td>Cambia qué parte del clip se ve sin cambiar su duración</td></tr>
+        <tr><td>Pen</td><td><kbd>P</kbd></td><td>Crea y selecciona keyframes</td></tr>
+        <tr><td>Hand</td><td><kbd>H</kbd></td><td>Desplaza la vista de la Timeline a izquierda o derecha</td></tr>
+        <tr><td>Type</td><td><kbd>T</kbd></td><td>Añade texto a la secuencia</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note"><strong>Ojo:</strong> si el programa no responde como esperas, comprueba que la herramienta activa es Selection.</p>
+  </section>
+
+  <section class="sec doc" id="importar">
+    <h2 class="section-title">02 · Importar y secuencia</h2>
+    <h3>Importar medios a un proyecto abierto</h3>
+    <ol class="steps">
+      <li>Con el proyecto abierto, pulsa <strong>Import</strong> en la barra superior.</li>
+      <li>Selecciona los vídeos, audios e imágenes: se reúnen en la Selection Tray.</li>
+      <li>Clic derecho sobre un archivo de la bandeja para quitarlo, o vacíala entera.</li>
+      <li>Revisa las <strong>Import Settings</strong> (debajo).</li>
+      <li>Confirma: los medios aparecen en el panel Project, o como secuencia nueva si esa opción está activa.</li>
+    </ol>
+    <div class="table"><table>
+      <thead><tr><th>Import Setting</th><th>Qué hace</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Organize Media</strong></td><td>Crea un bin con el nombre que elijas y muestra ahí los medios. Los archivos no se copian a otro lugar.</td></tr>
+        <tr><td><strong>Copy media</strong></td><td>Copia desde una ubicación temporal, como una tarjeta de cámara. Puedes editar mientras copia; la verificación MD5 detecta archivos corruptos.</td></tr>
+        <tr><td><strong>Create new sequence</strong></td><td>Premiere toma la resolución y los fotogramas por segundo del primer archivo seleccionado. Desactivada, los medios solo van al panel Project.</td></tr>
+        <tr><td><strong>Automatic transcription</strong></td><td>Genera la transcripción nada más importar. Ahorra tiempo si después vas a crear subtítulos.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note"><strong>Consejo:</strong> deja Create new sequence activado cuando todo el material tiene la misma resolución y velocidad de fotogramas. Si el primer clip es distinto al resto, crea la secuencia a mano.</p>
+
+    <h3>Crear una secuencia</h3>
+    <ol class="steps">
+      <li>Importa el material al proyecto.</li>
+      <li>Arrastra un clip del panel Project hasta el icono <strong>New Item</strong>, en la parte inferior del panel.</li>
+      <li>Premiere crea la secuencia con los ajustes de ese clip y la abre en la Timeline.</li>
+      <li>Alternativa: <strong>File &gt; New &gt; Sequence</strong> y eliges los ajustes a mano.</li>
+      <li>Para cambiar de secuencia, ábrela desde el panel Project.</li>
+    </ol>
+    <p>Un proyecto puede tener una o más secuencias, cada una con sus propios ajustes. Resolución y fotogramas por segundo deben encajar con el material y con la entrega final.</p>
+
+    <h3>Añadir y quitar clips: Insert y Overwrite</h3>
+    <p>Arrastra un clip del panel Project o del Source Monitor a la Timeline, o suéltalo en el Program Monitor. Con el clip abierto en el Source Monitor también puedes usar los botones <strong>Insert</strong> y <strong>Overwrite</strong>. Para quitar un clip, selecciónalo y pulsa <kbd>Delete</kbd>.</p>
+    <div class="tl" role="img" aria-label="Insert empuja a la derecha los clips siguientes; Overwrite sustituye lo que había en ese tramo">
+      <div class="tl-row"><b>antes</b><div class="tl-track"><span class="tl-clip v" style="flex:3">Clip 1</span><span class="tl-clip v" style="flex:3">Clip 2</span><span class="tl-gap" style="flex:3"></span></div></div>
+      <div class="tl-row"><b>ins.</b><div class="tl-track"><span class="tl-clip v" style="flex:1.5">1</span><span class="tl-clip t" style="flex:2">Nuevo</span><span class="tl-clip v" style="flex:1.5">1</span><span class="tl-clip v" style="flex:3">Clip 2</span><span class="tl-gap" style="flex:1"></span></div></div>
+      <div class="tl-row"><b>ovr.</b><div class="tl-track"><span class="tl-clip v" style="flex:1.5">1</span><span class="tl-clip t" style="flex:2">Nuevo</span><span class="tl-clip v" style="flex:2.5">Clip 2</span><span class="tl-gap" style="flex:3"></span></div></div>
+      <p class="cap"><strong>Insert</strong> coloca el clip y empuja a la derecha lo que había después: la secuencia se alarga. <strong>Overwrite</strong> lo coloca encima y sustituye lo que hubiera en ese tramo: la duración no cambia.</p>
+    </div>
+  </section>
+
+  <section class="sec doc" id="edicion">
+    <h2 class="section-title">03 · Edición básica</h2>
+    <h3>Cortar y recortar clips</h3>
+    <div class="cards">
+      <div><span class="k">Razor · C</span><h4>Cortar</h4><p>Haz clic en el punto del clip donde quieras cortar. Con <kbd>Shift</kbd> cortas todas las pistas; con <kbd>Alt</kbd> (Windows) u <kbd>Option</kbd> (Mac), solo el audio o el vídeo.</p></div>
+      <div><span class="k">Ripple Edit · B</span><h4>Recortar sin huecos</h4><p>Arrastra el final de un clip hacia dentro o hacia fuera. Los clips siguientes se desplazan y no queda hueco.</p></div>
+      <div><span class="k">Selection · V</span><h4>Recorte directo</h4><p>Pasa el cursor por el borde del clip hasta que cambie el icono y arrástralo para mover el In o el Out.</p></div>
+    </div>
+    <p class="note"><strong>Importante:</strong> recorta antes de aplicar transiciones, porque usan los fotogramas extra que quedan fuera del In y del Out. Al cortar no pierdes material: Premiere crea otra instancia del clip con otros puntos In y Out. De la misma familia es <strong>Rolling Edit</strong> (<kbd>N</kbd>), que mueve el corte entre dos clips sin cambiar la duración total.</p>
+
+    <h3>Posición, escala y opacidad</h3>
+    <ol class="steps">
+      <li>Selecciona el clip en la Timeline.</li>
+      <li>Abre <strong>Window &gt; Effect Controls</strong> si el panel no está visible.</li>
+      <li>Despliega <strong>Motion</strong>: Position, Scale y Rotation.</li>
+      <li>Cambia un valor escribiéndolo o arrastrando sobre el número.</li>
+      <li>Despliega <strong>Opacity</strong> para cambiar la transparencia del clip.</li>
+    </ol>
+    <p>Motion y Opacity son efectos fijos: aparecen siempre en Effect Controls aunque no hayas aplicado nada. El panel <strong>Properties</strong> reúne los parámetros más usados del clip seleccionado, y cada valor de Effect Controls se puede animar con keyframes.</p>
+  </section>
+
+  <section class="sec doc" id="efectos">
+    <h2 class="section-title">04 · Efectos, keyframes y transiciones</h2>
+    <h3>Aplicar un efecto a un clip</h3>
+    <ol class="steps">
+      <li>Con una secuencia abierta, selecciona un clip en la Timeline.</li>
+      <li>Abre <strong>Window &gt; Effects</strong>.</li>
+      <li>Busca el efecto por categoría o escribe su nombre en el buscador.</li>
+      <li>Arrástralo y suéltalo sobre el clip de vídeo o de audio.</li>
+      <li>Reproduce para verlo y ajústalo en Effect Controls.</li>
+    </ol>
+    <p class="note"><strong>Fíjate:</strong> para ver qué lleva un clip, pasa el cursor sobre su icono <em>fx</em> en la Timeline. Si un efecto de audio no se deja arrastrar, desactiva Show Track Volume o Show Track Keyframes en esa pista.</p>
+
+    <h3>Animar una propiedad con keyframes</h3>
+    <ol class="steps">
+      <li>Selecciona el clip y abre Effect Controls.</li>
+      <li>Coloca el playhead donde debe empezar el cambio.</li>
+      <li>Activa <strong>Toggle Animation</strong>, el cronómetro de la propiedad (por ejemplo Scale): se crea el primer keyframe.</li>
+      <li>Mueve el playhead al punto final y cambia el valor: se crea el segundo keyframe.</li>
+      <li>Reproduce: Premiere calcula los valores intermedios (interpolación).</li>
+    </ol>
+    <p>Hacen falta al menos <strong>dos keyframes</strong>: uno con el valor inicial y otro con el final. Pruébalo aquí, con los mismos controles que en Premiere: activa el cronómetro de un parámetro, mueve el cabezal y cambia el valor. Los números azules se cambian escribiendo o arrastrando en horizontal.</p>
+    <div class="tool-slot" data-tool="keyframes" data-text="AEROLÍNEA NUBE"></div>
+    <p class="note"><strong>Fíjate:</strong> si desactivas el cronómetro se borran todos los keyframes de ese parámetro. En Premiere, para verlos también en la Timeline: llave inglesa &gt; Show Video Keyframes.</p>
+
+    <h3>Añadir una transición entre dos clips</h3>
+    <ol class="steps">
+      <li>Recorta los clips antes: la transición usa los fotogramas extra de cada extremo.</li>
+      <li>Abre <strong>Window &gt; Effects</strong> y despliega Video Transitions.</li>
+      <li>Arrastra la transición al corte entre los dos clips.</li>
+      <li>Arrastra el borde de la transición en la Timeline para cambiar su duración.</li>
+      <li>Reproduce el corte para comprobar el resultado.</li>
+    </ol>
+    <p>Sin fotogramas extra (<em>handles</em>), Premiere no puede solapar los dos planos. Por defecto se aplican <strong>Cross Dissolve</strong> en vídeo y <strong>Constant Power</strong> en audio. Todo esto se desarrolla en la lección de <a href="transiciones.html">transiciones</a>.</p>
+    <div class="table"><table>
+      <thead><tr><th>Acción</th><th>Cómo se hace</th></tr></thead>
+      <tbody>
+        <tr><td>Elegir la transición por defecto</td><td>Panel Effects, clic derecho &gt; Set Selected as Default Transition</td></tr>
+        <tr><td>Fijar su duración</td><td>Preferences &gt; Timeline (Mac: Settings &gt; Timeline)</td></tr>
+        <tr><td>Aplicarla a un corte</td><td><kbd>Ctrl/Cmd</kbd> + <kbd>D</kbd> (vídeo)</td></tr>
+        <tr><td>Vídeo y audio a la vez</td><td><kbd>Shift</kbd> + <kbd>D</kbd></td></tr>
+        <tr><td>Varios clips</td><td>Selecciónalos y Sequence &gt; Apply Default Transitions to Selection</td></tr>
+        <tr><td>Casi toda la secuencia</td><td>Sequence &gt; Automate to Sequence</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note"><strong>Ojo:</strong> cambiar la transición por defecto afecta a todos los proyectos, pero no a las transiciones ya colocadas. Según la versión, <kbd>Shift</kbd> + <kbd>D</kbd> aplica «vídeo y audio a la vez» o «por defecto a la selección»: compruébalo en el aula.</p>
+  </section>
+
+  <section class="sec doc" id="audio">
+    <h2 class="section-title">05 · Audio</h2>
+    <h3>Etiquetar el audio en Essential Sound</h3>
+    <ol class="steps">
+      <li>Selecciona los clips de audio en la Timeline.</li>
+      <li>Abre <strong>Window &gt; Essential Sound</strong>.</li>
+      <li>Asigna un tipo: <strong>Dialogue, Music, SFX o Ambience</strong>.</li>
+      <li>El panel muestra entonces los grupos de ajustes propios de ese tipo.</li>
+      <li>Etiquetar por pista es más rápido que hacerlo clip a clip.</li>
+    </ol>
+    <div class="cards">
+      <div><span class="k">Dialogue</span><p>Unificar el volumen, reducir ruido de fondo, comprimir y ecualizar.</p></div>
+      <div><span class="k">Music y Ambience</span><p>Pueden bajar solas cuando hay voz. Es el <em>ducking</em>.</p></div>
+    </div>
+
+    <h3>Mezclar: tres ajustes que se notan</h3>
+    <div class="cards">
+      <div><h4>Unificar el volumen</h4><p>En la sección Loudness, <strong>Auto-Match</strong> iguala el volumen entre clips y evita saltos.</p></div>
+      <div><h4>Limpiar la voz</h4><p><strong>Enhance Speech</strong> y los grupos de reparación y claridad mejoran el diálogo grabado.</p></div>
+      <div><h4>Música y ambiente</h4><p><strong>Clip Volume</strong> baja su nivel; el ecualizador paramétrico ajusta frecuencias concretas.</p></div>
+    </div>
+    <p class="note"><strong>Truco:</strong> si un ajuste no convence, Clear Audio Type devuelve el clip a su estado original. Los ajustes buenos se guardan como preset para otros proyectos.</p>
+
+    <h3>Bajar la música bajo la voz (ducking)</h3>
+    <ol class="steps">
+      <li>Etiqueta la voz como Dialogue y la música como Music.</li>
+      <li>Con la música seleccionada, activa <strong>Ducking</strong> en Essential Sound.</li>
+      <li>Ajusta los parámetros (tabla de debajo).</li>
+      <li>Pulsa <strong>Generate Keyframes</strong>.</li>
+      <li>Escucha y corrige a mano los keyframes que no te convenzan.</li>
+    </ol>
+    <div class="tl" role="img" aria-label="Pista de voz con dos frases y pista de música que baja de nivel mientras suena la voz">
+      <div class="tl-row"><b>A1</b><div class="tl-track"><span class="tl-gap" style="flex:2"></span><span class="tl-clip a" style="flex:3">Voz</span><span class="tl-gap" style="flex:1.5"></span><span class="tl-clip a" style="flex:2.5">Voz</span><span class="tl-gap" style="flex:1"></span></div></div>
+      <div class="tl-row"><b>A2</b><div class="tl-track duck"><span class="tl-clip a2" style="flex:10;justify-content:flex-start">Música</span></div></div>
+      <svg class="duck-line" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 8H180L210 30H500L530 8H620L650 30H900L930 8H1000"/></svg>
+      <p class="cap">Premiere añade un efecto <strong>Amplify</strong> a la música con keyframes en su ganancia: baja cuando hay voz y vuelve a subir en las pausas.</p>
+    </div>
+    <div class="table"><table>
+      <thead><tr><th>Parámetro</th><th>Qué controla</th></tr></thead>
+      <tbody>
+        <tr><td>Duck Against</td><td>Tipos de audio que hacen bajar la música: Dialogue, SFX, etc.</td></tr>
+        <tr><td>Sensitivity</td><td>Umbral de activación. Valores medios hacen más ajustes entre pausas de voz.</td></tr>
+        <tr><td>Duck Amount</td><td>Cuánto baja la música. Hacia la derecha, más reducción.</td></tr>
+        <tr><td>Fade Duration</td><td>Rapidez del cambio: rápido con música y habla veloces, lento con locuciones.</td></tr>
+        <tr><td>Fade Position</td><td>Dónde cae el fundido respecto al diálogo: fuera, dentro o en el centro.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note"><strong>Cuidado:</strong> volver a pulsar Generate Keyframes borra los cambios manuales. Empieza con los valores por defecto, escucha y mueve primero Duck Amount.</p>
+    <!-- Fase 3: herramienta interactiva de ducking -->
+    <div class="tool-slot" data-tool="ducking"></div>
+  </section>
+
+  <section class="sec doc" id="subtitulos">
+    <h2 class="section-title">06 · Subtítulos</h2>
+    <div class="cards">
+      <div><span class="k">1 · Transcribir</span><p>Convierte el audio en texto con Speech to Text.</p></div>
+      <div><span class="k">2 · Crear</span><p>Genera los subtítulos en la Timeline a partir del texto.</p></div>
+      <div><span class="k">3 · Revisar</span><p>Corrige el texto y elige el aspecto.</p></div>
+      <div><span class="k">4 · Exportar</span><p>Dentro del vídeo o en un archivo aparte.</p></div>
+    </div>
+    <p>Los subtítulos se crean cuando la edición está casi terminada, porque dependen del audio final.</p>
+
+    <h3>Transcribir con Speech to Text</h3>
+    <ol class="steps">
+      <li>Abre <strong>Window &gt; Text</strong> y ve a la pestaña Transcript.</li>
+      <li>Pulsa el icono de la pestaña y elige <strong>Generate static transcript</strong>.</li>
+      <li>Elige el idioma del vídeo y descarga el paquete de idioma si lo pide.</li>
+      <li>Decide si separar a los hablantes con Speaker labeling.</li>
+      <li>Elige qué audio analizar (los clips Dialogue o una pista) y pulsa <strong>Transcribe</strong>.</li>
+    </ol>
+    <p>Si activaste Automatic transcription al importar, este paso ya está hecho. También puedes transcribir solo el tramo de In a Out.</p>
+
+    <h3>Crear subtítulos desde la transcripción</h3>
+    <ol class="steps">
+      <li>Cambia a <strong>Window &gt; Workspaces &gt; Captions and Graphics</strong>.</li>
+      <li>Con la transcripción lista, elige <strong>Captions &gt; Create captions from transcript</strong>.</li>
+      <li>Elige el Caption preset (<em>Subtitle default</em> sirve para casi todo) y el Format.</li>
+      <li>Ajusta caracteres por línea, duración y separación entre subtítulos.</li>
+      <li>Elige una o dos líneas y pulsa <strong>Create captions</strong>.</li>
+    </ol>
+
+    <h3>Revisar, estilizar y exportar</h3>
+    <div class="cards">
+      <div><h4>Editar el texto</h4><p>En el panel Text o directamente sobre el Program Monitor.</p></div>
+      <div><h4>Dar estilo</h4><p>Fuente, color y posición en Properties; guarda el estilo para reutilizarlo.</p></div>
+      <div><h4>Traducir</h4><p>Premiere traduce los subtítulos y los guarda en una pista nueva.</p></div>
+      <div><h4>Exportar</h4><p>Grabados en la imagen, en un .srt aparte o dentro de un QuickTime o MXF.</p></div>
+    </div>
+    <p class="note"><strong>Ojo:</strong> repasa los subtítulos de principio a fin antes de entregar: la transcripción automática falla con nombres propios.</p>
+  </section>
+
+  <section class="sec doc" id="exportar">
+    <h2 class="section-title">07 · Exportar</h2>
+    <ol class="steps">
+      <li>Termina la edición y selecciona la secuencia en la Timeline.</li>
+      <li>Elige <strong>File &gt; Export &gt; Media</strong> o pulsa <kbd>Ctrl/Cmd</kbd> + <kbd>M</kbd>.</li>
+      <li>A la izquierda, elige el destino: tu disco (Media File), YouTube, Vimeo…</li>
+      <li>Escribe nombre y ubicación, y elige el formato <strong>H.264</strong>.</li>
+      <li>Preset <strong>Match Source – Adaptive High Bitrate</strong> y pulsa <strong>Export</strong>.</li>
+    </ol>
+    <div class="cards">
+      <div><h4>Media Encoder</h4><p>Con Send to Media Encoder, la exportación se hace en segundo plano. Útil en vídeos largos.</p></div>
+      <div><h4>Quick Export</h4><p>El icono de la esquina superior derecha exporta con nombre y preset.</p></div>
+    </div>
+  </section>
+
+  <section class="sec doc" id="chuleta">
+    <h2 class="section-title">08 · Chuleta de atajos</h2>
+    <div class="table"><table>
+      <thead><tr><th>Atajo</th><th>Acción</th><th>Atajo</th><th>Acción</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>V</kbd></td><td>Selection</td><td><kbd>Ctrl/Cmd</kbd>+<kbd>D</kbd></td><td>Transición de vídeo</td></tr>
+        <tr><td><kbd>B</kbd></td><td>Ripple Edit</td><td><kbd>Shift</kbd>+<kbd>D</kbd></td><td>Vídeo y audio</td></tr>
+        <tr><td><kbd>C</kbd></td><td>Razor</td><td><kbd>Ctrl/Cmd</kbd>+<kbd>M</kbd></td><td>Exportar</td></tr>
+        <tr><td><kbd>=</kbd></td><td>Acercar zoom</td><td><kbd>Ctrl/Cmd</kbd>+<kbd>Z</kbd></td><td>Deshacer</td></tr>
+        <tr><td><kbd>\</kbd></td><td>Ver toda la secuencia</td><td><kbd>Delete</kbd></td><td>Quitar clip</td></tr>
+      </tbody>
+    </table></div>
+    <p>Cmd en macOS, Ctrl en Windows; Delete en macOS, Backspace en Windows. Pasando el cursor sobre una herramienta o un botón aparece su atajo. Si tu teclado no tiene <kbd>=</kbd> o <kbd>\</kbd>, usa el navegador de la parte inferior de la Timeline.</p>
+  </section>
+
+  <section class="sec doc" id="control">
+    <h2 class="section-title">09 · Antes de entregar</h2>
+    <p>Marca cada punto cuando lo hayas comprobado. Se guarda en este navegador.</p>
+    <ul class="check" data-key="premiere">
+      <li><label><input type="checkbox"><span>Proyecto guardado y material enlazado.</span></label></li>
+      <li><label><input type="checkbox"><span>Secuencia con los ajustes de la entrega.</span></label></li>
+      <li><label><input type="checkbox"><span>Cortes recortados y sin huecos.</span></label></li>
+      <li><label><input type="checkbox"><span>Transiciones con handles suficientes.</span></label></li>
+      <li><label><input type="checkbox"><span>Volumen igualado con Auto-Match.</span></label></li>
+      <li><label><input type="checkbox"><span>Música bajada bajo la voz.</span></label></li>
+      <li><label><input type="checkbox"><span>Subtítulos revisados de principio a fin.</span></label></li>
+      <li><label><input type="checkbox"><span>Archivo exportado y visto entero en un reproductor.</span></label></li>
+    </ul>
+    <p class="note">Basado en la documentación oficial de Adobe Premiere (<a href="https://helpx.adobe.com/premiere/desktop/" target="_blank" rel="noopener">helpx.adobe.com/premiere</a>), consultada en octubre de 2026. Los menús pueden cambiar según la versión del programa.</p>
+  </section>
+
+  <nav class="pager" aria-label="Lecciones">
+    <a href="ut2.html">Anterior<strong>← Planos, cortes y reglas</strong></a>
+    <a class="next" href="transiciones.html">Siguiente<strong>Transiciones →</strong></a>
+  </nav>
+</main>
+
+<footer>© <span data-year>2026</span> · Andrés Vidal Martín Martín · Montaje · <a href="mailto:avmmeducacion@gmail.com">avmmeducacion@gmail.com</a></footer>
+<script src="../../assets/site.js" defer></script>
+<script src="../assets/mont.js" defer></script>
+<script src="../assets/keyframes.js" defer></script>
+</body>
+</html>

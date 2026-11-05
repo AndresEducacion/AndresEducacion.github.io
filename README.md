@@ -8,7 +8,7 @@ Portal central con el material didáctico de cada módulo.
 | `isde/` | Instalaciones de Sonorización de Eventos |
 | `realizacion-tv/` | Procesos de Realización de Televisión |
 | `laboratorio-de-mezcla/` | Laboratorio de mezcla |
-| `planificacion-montaje/` | Planificación del montaje y postproducción (plantilla provisional) |
+| `planificacion-montaje/` | Planificación del montaje y postproducción |
 
 `index.html` es el portal (Three.js, guardado localmente en `assets/vendor/`; no hay build ni dependencias).
 `assets/site.css` y `assets/site.js` son el estilo y el comportamiento comunes de las cinco secciones: interfaz de Notion en modo oscuro con la estética del portal. Cada sección se identifica con una clase en `<body>`:
@@ -22,6 +22,8 @@ Portal central con el material didáctico de cada módulo.
 | `m-mont` | Planificación del montaje | `#9b7bff` | monitores y línea de tiempo |
 
 La clase fija el acento (`--acc`) y el icono (`--icon`, una máscara SVG lineal). El icono lo usan la marca de la barra superior y el icono de la cabecera, y `site.js` genera con él el favicon de la página. Cada página lleva además un favicon estático igual, por si no se ejecuta JavaScript.
+
+Montaje añade encima `planificacion-montaje/assets/mont.css` y `mont.js`: pasos numerados, teclas, esquemas de Timeline, escala de planos, listas de control que se guardan en el navegador y cuenta atrás de las entregas (`<span class="due" data-date="AAAA-MM-DD">`). Los `<div class="tool-slot" data-tool="…">` marcan dónde van las herramientas interactivas de cada lección; mientras están vacíos no se ven. La primera es `planificacion-montaje/assets/keyframes.js`, un simulador de Effect Controls que rellena los huecos `data-tool="keyframes"` (el texto del rótulo se elige con `data-text`).
 
 ## Presentaciones
 

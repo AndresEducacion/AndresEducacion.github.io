@@ -1,0 +1,402 @@
+{
+  "title": "Montaje · Premiere Pro paso a paso",
+  "slides": [
+    {
+      "type": "cover",
+      "k": "Guía práctica · Adobe Premiere Pro",
+      "title": "Premiere Pro paso a paso",
+      "text": "Del proyecto vacío a la exportación: interfaz, importación, secuencia, edición, efectos, transiciones, audio y subtítulos",
+      "note": "Basado en la documentación oficial de Adobe Premiere (helpx.adobe.com), consultada en octubre de 2026."
+    },
+    {
+      "k": "Hoja de ruta",
+      "title": "Siete bloques, en el orden en que se trabaja",
+      "items": [
+        "**Proyecto e interfaz:** crear el proyecto y conocer los paneles.",
+        "**Importar y secuencia:** traer el material y montar la Timeline.",
+        "**Edición básica:** cortar, recortar y ajustar la imagen.",
+        "**Efectos y transiciones:** efectos, keyframes y fundidos entre planos.",
+        "**Audio:** igualar volumen y bajar la música bajo la voz.",
+        "**Subtítulos:** transcribir, crear y estilizar los subtítulos.",
+        "**Exportar:** sacar el archivo final."
+      ],
+      "ordered": true,
+      "note": "Sin proyecto no hay material, sin material no hay secuencia, y los subtítulos se hacen al final porque dependen del audio definitivo."
+    },
+    {
+      "type": "big",
+      "k": "Bloque 1",
+      "title": "Proyecto e interfaz",
+      "text": "Crear el proyecto, reconocer los paneles y elegir el espacio de trabajo."
+    },
+    {
+      "k": "Bloque 1 · Proyecto",
+      "title": "Crear un proyecto nuevo",
+      "items": [
+        "En la pantalla de inicio (Home screen), pulsa **New Project**.",
+        "Escribe el nombre del proyecto y elige dónde guardarlo. Si tienes una plantilla, selecciónala aquí.",
+        "Pulsa el icono **Settings** para revisar General, Color, Scratch Disks e Ingest Settings.",
+        "Elige los vídeos y demás archivos: se van reuniendo en la **Selection Tray**, abajo.",
+        "Pulsa **Create** para entrar en el proyecto con el material importado."
+      ],
+      "ordered": true,
+      "note": "Con Skip import mode te saltas la pantalla de importación. Guarda el proyecto en una carpeta junto con los vídeos."
+    },
+    {
+      "k": "Bloque 1 · Interfaz",
+      "title": "Los paneles que más vas a usar",
+      "head": ["Panel", "Para qué sirve"],
+      "rows": [
+        ["**Project**", "Tus clips y secuencias, en vista de lista o de iconos"],
+        ["**Source Monitor**", "Previsualiza un clip y marca su In y su Out"],
+        ["**Program Monitor**", "Muestra la secuencia que estás montando"],
+        ["**Timeline**", "Donde se monta: clips, transiciones y efectos en pistas"],
+        ["**Tools**", "Herramientas de edición, cada una con su atajo"],
+        ["**Properties**", "Controles de vídeo, audio y texto de lo seleccionado"]
+      ]
+    },
+    {
+      "k": "Bloque 1 · Interfaz",
+      "title": "Espacios de trabajo",
+      "head": ["Workspace", "Cuándo usarlo"],
+      "rows": [
+        ["Essentials", "Con un solo monitor: todo a mano"],
+        ["Assembly", "Primer montaje, con el panel Project grande"],
+        ["Captions and Graphics", "Subtítulos y gráficos"],
+        ["Vertical", "Vídeo vertical, con un solo monitor alternable"],
+        ["Learning", "Tutoriales dentro del programa"],
+        ["Review", "Revisiones con Frame.io"],
+        ["Production", "Trabajo en equipo en una Production"]
+      ],
+      "note": "Para guardar el tuyo: Window > Workspaces > Save as New Workspace. Si se desordena: Reset to Saved Layout."
+    },
+    {
+      "k": "Bloque 1 · Interfaz",
+      "title": "Panel Tools",
+      "head": ["Herramienta", "Tecla", "Para qué sirve"],
+      "rows": [
+        ["Selection", "`V`", "Seleccionar y mover. Es la herramienta por defecto"],
+        ["Track Select", "`A`", "Selecciona un clip y todo lo que tiene a su derecha"],
+        ["Ripple Edit", "`B`", "Recorta el In o el Out y cierra el hueco que deja"],
+        ["Razor", "`C`", "Corta un clip en dos. Con Shift corta todas las pistas"],
+        ["Slip", "`Y`", "Cambia qué parte del clip se ve sin cambiar su duración"],
+        ["Pen", "`P`", "Crea y selecciona keyframes"],
+        ["Hand", "`H`", "Desplaza la vista de la Timeline"],
+        ["Type", "`T`", "Añade texto a la secuencia"]
+      ],
+      "note": "Si el programa no responde como esperas, comprueba que la herramienta activa es Selection."
+    },
+    {
+      "type": "big",
+      "k": "Bloque 2",
+      "title": "Importar y secuencia",
+      "text": "Traer el material, crear la secuencia y colocar los primeros clips."
+    },
+    {
+      "k": "Bloque 2 · Importar",
+      "title": "Importar medios a un proyecto abierto",
+      "items": [
+        "Con el proyecto abierto, pulsa **Import** en la barra superior.",
+        "Selecciona los vídeos, audios e imágenes: se reúnen en la Selection Tray.",
+        "Clic derecho sobre un archivo de la bandeja para quitarlo, o vacíala entera.",
+        "Revisa las **Import Settings**.",
+        "Confirma: los medios aparecen en el panel Project, o como secuencia nueva si esa opción está activa."
+      ],
+      "ordered": true,
+      "note": "Premiere también importa fotos y series numeradas de imágenes como un solo clip de vídeo."
+    },
+    {
+      "k": "Bloque 2 · Importar",
+      "title": "Import Settings",
+      "head": ["Opción", "Qué hace"],
+      "rows": [
+        ["**Organize Media**", "Crea un bin con el nombre que elijas. Los archivos no se copian a otro lugar"],
+        ["**Copy media**", "Copia desde una tarjeta de cámara mientras editas; la verificación MD5 detecta archivos corruptos"],
+        ["**Create new sequence**", "La secuencia toma la resolución y los fps del primer archivo seleccionado"],
+        ["**Automatic transcription**", "Transcribe al importar: ahorra tiempo si después vas a subtitular"]
+      ]
+    },
+    {
+      "k": "Bloque 2 · Secuencia",
+      "title": "Crear una secuencia",
+      "items": [
+        "Importa el material al proyecto.",
+        "Arrastra un clip del panel Project hasta el icono **New Item**.",
+        "Premiere crea la secuencia con los ajustes de ese clip y la abre en la Timeline.",
+        "Alternativa: **File > New > Sequence** y eliges los ajustes a mano.",
+        "Para cambiar de secuencia, ábrela desde el panel Project."
+      ],
+      "ordered": true,
+      "note": "Resolución y fotogramas por segundo deben encajar con el material y con la entrega final."
+    },
+    {
+      "k": "Bloque 2 · Timeline",
+      "title": "Añadir y quitar clips",
+      "items": [
+        "Selecciona un clip en el panel Project y arrástralo a la Timeline.",
+        "También vale arrastrarlo desde el Source Monitor o soltarlo en el Program Monitor.",
+        "Con el clip abierto en el Source Monitor, usa los botones **Insert** y **Overwrite**.",
+        "Para quitar un clip, selecciónalo y pulsa Delete."
+      ],
+      "groups": [
+        { "h": "Insert", "items": ["Coloca el clip y empuja a la derecha lo que había después"] },
+        { "h": "Overwrite", "items": ["Coloca el clip encima y sustituye lo que hubiera en ese tramo"] }
+      ]
+    },
+    {
+      "type": "big",
+      "k": "Bloque 3",
+      "title": "Edición básica",
+      "text": "Cortar, recortar y ajustar la imagen de cada clip."
+    },
+    {
+      "k": "Bloque 3 · Cortes",
+      "title": "Cortar y recortar clips",
+      "groups": [
+        { "h": "Razor · C", "items": ["Clic donde quieras cortar", "Con Shift cortas todas las pistas", "Con Alt/Option, solo audio o solo vídeo"] },
+        { "h": "Ripple Edit · B", "items": ["Arrastra el final del clip hacia dentro o fuera", "Los clips siguientes se desplazan y no queda hueco"] },
+        { "h": "Recorte directo", "items": ["Pasa el cursor por el borde del clip hasta que cambie el icono", "Arrastra para mover el In o el Out"] }
+      ],
+      "note": "Recorta antes de aplicar transiciones: usan los fotogramas que quedan fuera del In y del Out."
+    },
+    {
+      "k": "Bloque 3 · Ajustes",
+      "title": "Posición, escala y opacidad",
+      "items": [
+        "Selecciona el clip en la Timeline.",
+        "Abre **Window > Effect Controls** si no está visible.",
+        "Despliega **Motion**: Position, Scale y Rotation.",
+        "Cambia un valor escribiéndolo o arrastrando sobre el número.",
+        "Despliega **Opacity** para cambiar la transparencia."
+      ],
+      "ordered": true,
+      "note": "El panel Properties reúne los parámetros más usados. Cada valor de Effect Controls se puede animar con keyframes."
+    },
+    {
+      "type": "big",
+      "k": "Bloque 4",
+      "title": "Efectos y transiciones",
+      "text": "Aplicar efectos, animarlos con keyframes y unir planos con transiciones."
+    },
+    {
+      "k": "Bloque 4 · Efectos",
+      "title": "Aplicar un efecto a un clip",
+      "items": [
+        "Con una secuencia abierta, selecciona un clip en la Timeline.",
+        "Abre **Window > Effects**.",
+        "Busca el efecto por categoría o escribe su nombre.",
+        "Arrástralo sobre el clip de vídeo o de audio.",
+        "Reproduce y ajústalo en Effect Controls."
+      ],
+      "ordered": true,
+      "note": "Los efectos de audio no se dejan arrastrar si la pista tiene activos Show Track Volume o Show Track Keyframes."
+    },
+    {
+      "k": "Bloque 4 · Keyframes",
+      "title": "Animar una propiedad",
+      "items": [
+        "Selecciona el clip y abre Effect Controls.",
+        "Coloca el playhead donde empieza el cambio.",
+        "Activa **Toggle Animation**, el cronómetro de la propiedad: primer keyframe.",
+        "Mueve el playhead al final y cambia el valor: segundo keyframe.",
+        "Reproduce: Premiere calcula los valores intermedios (interpolación)."
+      ],
+      "ordered": true,
+      "note": "Para verlos en la Timeline: llave inglesa > Show Video Keyframes."
+    },
+    {
+      "k": "Bloque 4 · Transiciones",
+      "title": "Añadir una transición entre dos clips",
+      "items": [
+        "Recorta antes los clips: la transición usa los fotogramas extra de cada extremo.",
+        "Abre **Window > Effects** y despliega Video Transitions.",
+        "Arrastra la transición al corte entre los dos clips.",
+        "Arrastra su borde en la Timeline para cambiar la duración.",
+        "Reproduce el corte para comprobarlo."
+      ],
+      "ordered": true,
+      "note": "Sin handles Premiere no puede solapar los planos. Por defecto: Cross Dissolve en vídeo y Constant Power en audio."
+    },
+    {
+      "k": "Bloque 4 · Transiciones",
+      "title": "Transiciones por defecto",
+      "head": ["Acción", "Cómo se hace"],
+      "rows": [
+        ["Elegir la transición", "Panel Effects, clic derecho > Set Selected as Default Transition"],
+        ["Fijar su duración", "Preferences > Timeline (Mac: Settings > Timeline)"],
+        ["Aplicarla a un corte", "`Ctrl/Cmd + D` (vídeo)"],
+        ["Vídeo y audio a la vez", "`Shift + D`"],
+        ["Varios clips", "Sequence > Apply Default Transitions to Selection"],
+        ["Casi toda la secuencia", "Sequence > Automate to Sequence"]
+      ],
+      "note": "Cambiar la transición por defecto no afecta a las ya colocadas. Los atajos pueden variar según la versión."
+    },
+    {
+      "type": "big",
+      "k": "Bloque 5",
+      "title": "Audio",
+      "text": "Etiquetar los clips, igualar el volumen y bajar la música cuando habla alguien."
+    },
+    {
+      "k": "Bloque 5 · Audio",
+      "title": "Etiquetar el audio en Essential Sound",
+      "items": [
+        "Selecciona los clips de audio en la Timeline.",
+        "Abre **Window > Essential Sound**.",
+        "Asigna un tipo: **Dialogue, Music, SFX o Ambience**.",
+        "El panel muestra los ajustes propios de ese tipo.",
+        "Etiquetar por pista es más rápido que clip a clip."
+      ],
+      "ordered": true,
+      "groups": [
+        { "h": "Dialogue", "items": ["Unificar volumen, reducir ruido, comprimir y ecualizar"] },
+        { "h": "Music y Ambience", "items": ["Pueden bajar solas cuando hay voz: es el ducking"] }
+      ]
+    },
+    {
+      "k": "Bloque 5 · Audio",
+      "title": "Mezclar: tres ajustes que se notan",
+      "groups": [
+        { "h": "Unificar el volumen", "items": ["En Loudness, **Auto-Match** iguala el volumen entre clips"] },
+        { "h": "Limpiar la voz", "items": ["**Enhance Speech** y los grupos de reparación y claridad"] },
+        { "h": "Música y ambiente", "items": ["**Clip Volume** baja su nivel; el EQ paramétrico ajusta frecuencias"] }
+      ],
+      "note": "Clear Audio Type devuelve el clip a su estado original. Los ajustes buenos se guardan como preset."
+    },
+    {
+      "k": "Bloque 5 · Audio",
+      "title": "Bajar la música bajo la voz",
+      "items": [
+        "Etiqueta la voz como Dialogue y la música como Music.",
+        "Con la música seleccionada, activa **Ducking** en Essential Sound.",
+        "Ajusta los parámetros.",
+        "Pulsa **Generate Keyframes**.",
+        "Escucha y corrige a mano los keyframes que no te convenzan."
+      ],
+      "ordered": true,
+      "note": "Premiere crea un efecto Amplify con keyframes en su ganancia. Ojo: volver a pulsar Generate Keyframes borra los cambios manuales."
+    },
+    {
+      "k": "Bloque 5 · Audio",
+      "title": "Parámetros del ducking",
+      "head": ["Parámetro", "Qué controla"],
+      "rows": [
+        ["Duck Against", "Tipos de audio que hacen bajar la música: Dialogue, SFX…"],
+        ["Sensitivity", "Umbral de activación. Valores medios ajustan más entre pausas de voz"],
+        ["Duck Amount", "Cuánto baja la música"],
+        ["Fade Duration", "Rapidez del cambio: rápido con habla veloz, lento con locuciones"],
+        ["Fade Position", "Dónde cae el fundido respecto al diálogo: fuera, dentro o en el centro"]
+      ],
+      "note": "Empieza con los valores por defecto, escucha y mueve primero Duck Amount."
+    },
+    {
+      "type": "big",
+      "k": "Bloque 6",
+      "title": "Subtítulos",
+      "text": "De la transcripción automática a unos subtítulos listos para exportar."
+    },
+    {
+      "k": "Bloque 6 · Subtítulos",
+      "title": "El flujo en cuatro pasos",
+      "stats": [
+        { "v": "1", "l": "**Transcribir** el audio con Speech to Text" },
+        { "v": "2", "l": "**Crear** los subtítulos en la Timeline" },
+        { "v": "3", "l": "**Revisar** el texto y el aspecto" },
+        { "v": "4", "l": "**Exportar** dentro del vídeo o aparte" }
+      ],
+      "note": "Se crean cuando la edición está casi terminada: dependen del audio final."
+    },
+    {
+      "k": "Bloque 6 · Subtítulos",
+      "title": "Transcribir con Speech to Text",
+      "items": [
+        "Abre **Window > Text** y ve a la pestaña Transcript.",
+        "Pulsa el icono de la pestaña y elige **Generate static transcript**.",
+        "Elige el idioma del vídeo y descarga el paquete si lo pide.",
+        "Decide si separar a los hablantes con Speaker labeling.",
+        "Elige qué audio analizar y pulsa **Transcribe**."
+      ],
+      "ordered": true,
+      "note": "Se puede transcribir solo el tramo de In a Out."
+    },
+    {
+      "k": "Bloque 6 · Subtítulos",
+      "title": "Crear subtítulos desde la transcripción",
+      "items": [
+        "Cambia a **Window > Workspaces > Captions and Graphics**.",
+        "Elige **Captions > Create captions from transcript**.",
+        "Elige el Caption preset (Subtitle default sirve casi siempre) y el Format.",
+        "Ajusta caracteres por línea, duración y separación entre subtítulos.",
+        "Elige una o dos líneas y pulsa **Create captions**."
+      ],
+      "ordered": true
+    },
+    {
+      "k": "Bloque 6 · Subtítulos",
+      "title": "Revisar, estilizar y exportar",
+      "groups": [
+        { "h": "Editar", "items": ["Corrige en el panel Text o sobre el Program Monitor"] },
+        { "h": "Dar estilo", "items": ["Fuente, color y posición en Properties; guarda el estilo"] },
+        { "h": "Traducir", "items": ["Premiere traduce a otra pista nueva"] },
+        { "h": "Exportar", "items": ["Grabados en la imagen, en .srt aparte o dentro de QuickTime o MXF"] }
+      ],
+      "note": "Repásalos de principio a fin: la transcripción automática falla con nombres propios."
+    },
+    {
+      "type": "big",
+      "k": "Bloque 7",
+      "title": "Exportar",
+      "text": "Sacar el archivo final, con una chuleta de atajos y una lista de control."
+    },
+    {
+      "k": "Bloque 7 · Exportar",
+      "title": "Exportar el vídeo",
+      "items": [
+        "Termina la edición y selecciona la secuencia en la Timeline.",
+        "**File > Export > Media** o `Ctrl/Cmd + M`.",
+        "Elige el destino: Media File, YouTube, Vimeo…",
+        "Escribe nombre y ubicación, y elige el formato **H.264**.",
+        "Preset **Match Source – Adaptive High Bitrate** y pulsa Export."
+      ],
+      "ordered": true,
+      "note": "Send to Media Encoder exporta en segundo plano. Quick Export, arriba a la derecha, exporta con nombre y preset."
+    },
+    {
+      "k": "Chuleta",
+      "title": "Atajos de esta guía",
+      "head": ["Atajo", "Acción", "Atajo", "Acción"],
+      "rows": [
+        ["`V`", "Selection", "`Ctrl/Cmd+D`", "Transición de vídeo"],
+        ["`B`", "Ripple Edit", "`Shift+D`", "Vídeo y audio"],
+        ["`C`", "Razor", "`Ctrl/Cmd+M`", "Exportar"],
+        ["`=`", "Acercar zoom", "`Ctrl/Cmd+Z`", "Deshacer"],
+        ["`\\`", "Ver toda la secuencia", "Delete", "Quitar clip"]
+      ],
+      "note": "Cmd en macOS, Ctrl en Windows. Delete en macOS, Backspace en Windows."
+    },
+    {
+      "k": "Antes de entregar",
+      "title": "Lista de control",
+      "items": [
+        "Proyecto guardado y material enlazado.",
+        "Secuencia con los ajustes de la entrega.",
+        "Cortes recortados y sin huecos.",
+        "Transiciones con handles suficientes.",
+        "Volumen igualado con Auto-Match.",
+        "Música bajada bajo la voz.",
+        "Subtítulos revisados de principio a fin.",
+        "Archivo exportado y visto entero en un reproductor."
+      ],
+      "cols": 2
+    },
+    {
+      "k": "Fuentes",
+      "title": "Documentación de Adobe consultada",
+      "groups": [
+        { "h": "Proyecto, interfaz y edición", "items": ["Create new projects", "Create a sequence", "Overview of workspaces", "Tools panel", "Add or remove clips", "Cut clips"] },
+        { "h": "Efectos, audio, subtítulos y exportación", "items": ["Apply effects", "Default transitions", "Essential Sound panel", "Automatically duck audio", "Create captions", "Export video"] }
+      ],
+      "note": "Páginas de helpx.adobe.com/premiere consultadas en octubre de 2026. Los menús pueden cambiar según la versión."
+    }
+  ]
+}

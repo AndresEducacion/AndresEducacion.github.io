@@ -1,0 +1,319 @@
+{
+  "title": "Montaje · Premiere Pro para las prácticas",
+  "slides": [
+    {
+      "type": "cover",
+      "k": "Planificación de montaje",
+      "title": "Premiere Pro paso a paso",
+      "text": "Importar, interfaz, timeline, efectos, transiciones y keyframes, explicado en pasos cortos",
+      "note": "Parte básica, pensada para las prácticas de cocina, colas y aviones."
+    },
+    {
+      "k": "Mapa",
+      "title": "Qué vamos a ver",
+      "items": [
+        "**Importar y ajustes:** proyecto, secuencia y tipos de archivo.",
+        "**Interfaz:** zonas principales y espacios de trabajo.",
+        "**Timeline:** pistas, cortar y ordenar, parámetros de cada clip.",
+        "**Efectos, transiciones y audio:** música, voz y atajos.",
+        "**Keyframes:** texto animado, subtítulos, croma y color Lumetri.",
+        "**Exportar y entregar:** H.264 HD 1080 y fechas."
+      ],
+      "ordered": true
+    },
+    {
+      "k": "1 · Importar y ajustes",
+      "title": "Crear un proyecto",
+      "items": [
+        "Abre Premiere Pro y pulsa **New project** (o File > New > Project).",
+        "Escribe el nombre que pide la ficha, por ejemplo aviones_nombre apellido.",
+        "Elige la carpeta donde se guarda y pulsa **Create**.",
+        "Guarda a menudo con `Ctrl/Cmd+S`."
+      ],
+      "ordered": true,
+      "note": "Consejo: guarda el proyecto y los clips en la misma carpeta. La práctica 3 pide entregar también el proyecto."
+    },
+    {
+      "k": "1 · Importar y ajustes",
+      "title": "Crear la secuencia",
+      "items": [
+        "Forma rápida: arrastra el primer clip a la Timeline vacía. La secuencia toma los ajustes de ese clip.",
+        "Forma manual: File > New > Sequence (`Ctrl/Cmd+N`) y elige un preset.",
+        "Comprueba Sequence > Sequence Settings: tamaño de fotograma y frame rate.",
+        "Las tres prácticas se exportan en H.264 HD 1080: la secuencia debe ser **1920 × 1080**."
+      ],
+      "ordered": true
+    },
+    {
+      "k": "1 · Importar y ajustes",
+      "title": "Tipos de archivo que se importan",
+      "head": ["Tipo", "Formatos habituales", "En las prácticas"],
+      "rows": [
+        ["Vídeo", "MP4, MOV, MXF", "Clips MASTER_03 a 05 y los de los aviones"],
+        ["Audio", "WAV, MP3, AAC", "Banda sonora, locución y sonido ambiente"],
+        ["Imagen", "JPG, PNG, PSD", "Fotos del móvil (práctica 4)"]
+      ],
+      "note": "Premiere los mezcla en la misma secuencia: no hace falta convertirlos antes."
+    },
+    {
+      "k": "1 · Importar y ajustes",
+      "title": "Cuatro formas de importar",
+      "head": ["Forma", "Cómo"],
+      "rows": [
+        ["Menú", "File > Import (`Ctrl/Cmd+I`) y elige los archivos"],
+        ["Doble clic", "En una zona vacía del panel Project"],
+        ["Arrastrar", "Desde el Explorador o Finder al panel Project"],
+        ["Media Browser", "Navega por las carpetas, clic derecho > Import"]
+      ],
+      "note": "Ojo: Premiere enlaza los archivos, no los copia. Si mueves o borras la carpeta, el clip aparece como offline."
+    },
+    {
+      "k": "2 · Interfaz",
+      "title": "Zonas principales",
+      "head": ["Zona", "Para qué sirve"],
+      "rows": [
+        ["**Project**", "Todos los archivos importados, organizables en bins"],
+        ["**Source Monitor**", "Ver un clip suelto y marcar In y Out"],
+        ["**Program Monitor**", "La secuencia: lo que verá el espectador"],
+        ["**Timeline**", "Pistas de vídeo y audio con los clips en orden"],
+        ["**Tools**", "Selection, Razor y otras herramientas"],
+        ["**Effects y Effect Controls**", "La lista de efectos y los ajustes del clip elegido"]
+      ]
+    },
+    {
+      "k": "2 · Interfaz",
+      "title": "Espacios de trabajo",
+      "head": ["Espacio", "Para qué sirve"],
+      "rows": [
+        ["Editing", "Montar los clips en la Timeline"],
+        ["Color", "Corregir el color con Lumetri Color"],
+        ["Effects", "Aplicar y ajustar efectos"],
+        ["Audio", "Mezclar y ajustar el sonido"],
+        ["Captions and Graphics", "Títulos, gráficos y subtítulos"]
+      ],
+      "note": "Se cambia con Window > Workspaces. Si la pantalla se desordena: Reset to Saved Layout."
+    },
+    {
+      "k": "3 · Timeline",
+      "title": "Pistas de vídeo y de audio",
+      "groups": [
+        { "h": "Vídeo (V1, V2…)", "items": ["Se apilan: lo que está arriba tapa lo de abajo", "Ejemplo: planos en V1 y texto en V2"] },
+        { "h": "Audio (A1, A2…)", "items": ["Suenan a la vez", "Cada pista tiene M (silenciar) y S (solo)", "Ejemplo: sonido de los clips en A1 y música en A2"] }
+      ]
+    },
+    {
+      "k": "3 · Timeline",
+      "title": "Cortar y ordenar clips",
+      "items": [
+        "Coloca el playhead donde quieres cortar. La barra espaciadora reproduce y pausa.",
+        "Corta con **Razor** (`C`) o con `Ctrl/Cmd+K` en la posición del cursor.",
+        "Vuelve a **Selection** (`V`), elige el trozo sobrante y bórralo con Delete.",
+        "Para cerrar el hueco a la vez, usa `Shift+Delete` (Ripple Delete).",
+        "Ordena arrastrando los clips. `Ctrl/Cmd+Z` si te equivocas."
+      ],
+      "ordered": true
+    },
+    {
+      "k": "3 · Timeline",
+      "title": "Parámetros de cada clip",
+      "head": ["Pista", "Parámetro", "Qué controla"],
+      "rows": [
+        ["Vídeo", "Motion: Position, Scale, Rotation", "Mover, escalar y girar"],
+        ["Vídeo", "Opacity", "Transparencia del clip"],
+        ["Vídeo", "Time Remapping > Speed", "Velocidad del clip"],
+        ["Audio", "Volume > Level", "Volumen del clip"],
+        ["Audio", "Panner", "Izquierda y derecha"]
+      ],
+      "note": "Selecciona el clip y abre Window > Effect Controls. Los efectos que añadas aparecen en esta misma lista."
+    },
+    {
+      "k": "4 · Efectos y transiciones",
+      "title": "Aplicar un efecto de vídeo",
+      "items": [
+        "Abre el panel **Effects** (Window > Effects).",
+        "Escribe el nombre en el buscador, o abre la carpeta Video Effects.",
+        "Arrastra el efecto sobre el clip en la Timeline.",
+        "Selecciona el clip y ajusta los valores en Effect Controls.",
+        "Para quitarlo, elígelo en Effect Controls y pulsa Delete."
+      ],
+      "ordered": true,
+      "note": "La práctica 3 pide al menos un efecto de vídeo. Carpetas útiles: Blur & Sharpen, Color Correction y Keying."
+    },
+    {
+      "k": "4 · Efectos y transiciones",
+      "title": "Añadir una transición de vídeo",
+      "items": [
+        "En Effects, escribe el nombre en el buscador, por ejemplo Cross Dissolve.",
+        "Arrástrala al corte entre dos clips. Necesita handles en ambos clips.",
+        "Atajo: `Ctrl/Cmd+D` pone la de por defecto. Con varios clips seleccionados, `Shift+D`.",
+        "Duración: arrastra el borde, haz doble clic y cambia Duration, o ajústala en Effect Controls.",
+        "Para cambiarla, arrastra otra encima. Para borrarla, Delete/Backspace."
+      ],
+      "ordered": true,
+      "stats": [
+        { "v": "3", "l": "transiciones como mínimo en la práctica 1" },
+        { "v": "5", "l": "transiciones como mínimo en la práctica 3" }
+      ]
+    },
+    {
+      "k": "4 · Efectos y transiciones",
+      "title": "Fundidos y crossfade de audio",
+      "items": [
+        "Selecciona el corte entre dos clips de audio, o el inicio de un clip.",
+        "En Effects abre Audio Transitions > Crossfade y arrastra uno al corte.",
+        "Atajo: `Shift+Ctrl/Cmd+D` aplica el crossfade por defecto.",
+        "Fundido rápido: arrastra el fade handle del clip."
+      ],
+      "ordered": true,
+      "note": "Tres tipos: Constant Gain, Constant Power y Exponential Fade."
+    },
+    {
+      "k": "4 · Efectos, transiciones y audio",
+      "title": "Banda sonora sincronizada",
+      "items": [
+        "Importa la música y arrástrala a una pista libre, por ejemplo A2.",
+        "Reproduce y pulsa `M` (marcador) en cada golpe o cambio de ritmo.",
+        "Activa el imán (Snap, `S`) y ajusta los clips para que cada cambio de plano caiga en un marcador.",
+        "Recorta la música sobrante y cierra con un fundido."
+      ],
+      "ordered": true,
+      "note": "Duraciones: cocina mínimo 1:30 · colas mínimo 50 s · aviones entre 20 y 30 s."
+    },
+    {
+      "k": "4 · Efectos, transiciones y audio",
+      "title": "Voz grabada y planos sonoros",
+      "items": [
+        "Grábala con Audition o Reaper, o en Premiere con el botón de micrófono (Voice-over record) de la pista.",
+        "Colócala en una pista distinta de la música, por ejemplo A3.",
+        "Voz en primer plano (más alta) y música en segundo plano (más baja) mientras habla.",
+        "Baja la música con keyframes en Volume > Level y súbela al terminar la voz.",
+        "Vigila el medidor de audio: que no llegue al rojo."
+      ],
+      "ordered": true
+    },
+    {
+      "k": "Chuleta",
+      "title": "Atajos de teclado",
+      "head": ["Básicos", "Acción", "Transiciones y vista", "Acción"],
+      "rows": [
+        ["Espacio", "Reproducir / pausa", "`Ctrl/Cmd+D`", "Vídeo por defecto"],
+        ["`V`", "Selection", "`Shift+D`", "Por defecto a selección"],
+        ["`C`", "Razor", "`Shift+Ctrl/Cmd+D`", "Audio por defecto"],
+        ["`Ctrl/Cmd+K`", "Cortar en cursor", "`=`", "Acercar zoom"],
+        ["`Shift+Delete`", "Ripple Delete", "`\\`", "Ver toda la secuencia"],
+        ["`Ctrl/Cmd+Z`", "Deshacer", "Return / Enter", "Renderizar"],
+        ["`Ctrl/Cmd+S`", "Guardar", "`Ctrl/Cmd+I`", "Importar"]
+      ],
+      "note": "Cmd en macOS, Ctrl en Windows. Compruébalos en la versión del aula."
+    },
+    {
+      "k": "5 · Keyframes",
+      "title": "Animar un parámetro",
+      "items": [
+        "Selecciona el clip y localiza el parámetro en Effect Controls, por ejemplo Position.",
+        "Sitúa el cursor donde empieza la animación y activa el cronómetro: primer keyframe.",
+        "Mueve el cursor y cambia el valor: segundo keyframe.",
+        "Reproduce: Premiere calcula el movimiento entre los dos."
+      ],
+      "ordered": true,
+      "note": "Truco: clic derecho en un keyframe > Ease In o Ease Out suaviza el arranque o la parada."
+    },
+    {
+      "k": "5 · Keyframes",
+      "title": "Ejemplo: posición, rotación y opacidad",
+      "head": ["Parámetro", "Keyframe 1", "Keyframe 2", "Resultado"],
+      "rows": [
+        ["Position", "Texto fuera de cuadro", "Texto en su sitio", "Entra deslizando"],
+        ["Rotation", "0°", "360°", "Da una vuelta completa"],
+        ["Opacity", "0 %", "100 %", "Aparece poco a poco"]
+      ],
+      "note": "Combina los tres en el rótulo animado de las prácticas 1 y 3. Al revés (100 % a 0 %), desaparece."
+    },
+    {
+      "k": "5 · Keyframes",
+      "title": "Crear el texto con animación",
+      "items": [
+        "Elige **Type** (`T`), haz clic en el Program Monitor y escribe el nombre.",
+        "Cambia fuente, tamaño y color en Essential Graphics.",
+        "El texto queda en una pista superior (V2). Arrastra su borde para darle duración.",
+        "Anímalo con keyframes de Position, Scale u Opacity.",
+        "Añade un Cross Dissolve al principio y al final del clip de texto."
+      ],
+      "ordered": true,
+      "note": "Cocina: nombre del programa. Aviones: nombre inventado de la aerolínea."
+    },
+    {
+      "k": "5 · Keyframes",
+      "title": "Subtítulos",
+      "items": [
+        "Elige el espacio Captions and Graphics y abre Window > Text.",
+        "Pulsa **Transcribe sequence**, elige el idioma y espera.",
+        "Lee y corrige el texto: la transcripción automática se equivoca.",
+        "Pulsa **Create captions**: aparece una pista de subtítulos.",
+        "Ajusta el aspecto. Para que queden dentro del vídeo, actívalos al exportar."
+      ],
+      "ordered": true,
+      "note": "Ninguna de las fichas pide subtítulos: es un extra."
+    },
+    {
+      "k": "5 · Keyframes y efectos",
+      "title": "Ejemplo: croma con Ultra Key",
+      "items": [
+        "Pon el nuevo fondo en V1 y el clip de fondo verde en V2, encima.",
+        "Busca **Ultra Key** (Video Effects > Keying) y arrástralo al clip de V2.",
+        "Usa el cuentagotas de Key Color sobre el verde del Program Monitor.",
+        "Afina con Setting (Default, Relaxed, Aggressive). Output en Alpha Channel muestra la máscara.",
+        "Vuelve a Output en Composite para ver el resultado."
+      ],
+      "ordered": true
+    },
+    {
+      "k": "5 · Keyframes y efectos",
+      "title": "Ejemplo: color con Lumetri",
+      "items": [
+        "Elige el espacio Color o abre Window > Lumetri Color.",
+        "Selecciona el clip en la Timeline.",
+        "En **Basic Correction** ajusta White Balance, Tone (Exposure, Contrast, Highlights, Shadows) y Saturation.",
+        "En **Creative** prueba un Look ya preparado.",
+        "Para varios clips: File > New > Adjustment Layer y arrástrala encima."
+      ],
+      "ordered": true
+    },
+    {
+      "k": "6 · Exportar y entregar",
+      "title": "Exportar en H.264 HD 1080",
+      "items": [
+        "Con la secuencia activa, File > Export > Media (`Ctrl/Cmd+M`) o la pestaña Export.",
+        "Formato **H.264**, con el preset de YouTube 1080p.",
+        "Comprueba que el tamaño es 1920 × 1080. Si no, la salida se escala.",
+        "Pon el nombre de la ficha, por ejemplo cocina_nombre apellido.",
+        "Pulsa Export y abre el archivo: mira imagen, sonido y duración."
+      ],
+      "ordered": true,
+      "note": "Práctica 3: entrega también el proyecto (File > Project Manager reúne los archivos)."
+    },
+    {
+      "k": "6 · Exportar y entregar",
+      "title": "Qué se entrega y cuándo",
+      "head": ["Práctica", "Duración", "Entrega", "Fecha"],
+      "rows": [
+        ["1 · Cocina", "Mínimo 1:30", "Vídeo H.264 HD 1080", "10/11/2026"],
+        ["2 · Colas (grupo)", "Mínimo 50 s", "Vídeo H.264 HD 1080", "21/11/2026"],
+        ["3 · Aviones", "20 a 30 s", "Vídeo H.264 HD 1080 y proyecto", "01/12/2026"],
+        ["4 · Escuela rusa", "10 fotos, 3 parejas, 2 planos", "PDF con fotos y enlaces a los vídeos 1, 2 y 3", "12/12/2026"]
+      ],
+      "note": "Carpeta y archivo llevan el mismo nombre: cocina_, colas_, aviones_ o escuela rusa_ seguido de nombre y apellido."
+    },
+    {
+      "k": "Cierre",
+      "title": "Qué usar en cada práctica",
+      "head": ["Práctica", "De esta presentación"],
+      "rows": [
+        ["1 · Cocina", "Cortar, 3 transiciones como mínimo, texto animado y banda sonora sincronizada"],
+        ["2 · Colas", "Cortar y ordenar, sonido ambiente en otra pista y crossfade entre cortes"],
+        ["3 · Aviones", "5 transiciones, texto animado, un efecto de vídeo, música sincronizada y voz grabada en pista aparte"]
+      ],
+      "note": "Para entregar: exportar en H.264 HD 1080 y repasar la tabla anterior. Los subtítulos son un extra."
+    }
+  ]
+}

@@ -1,0 +1,283 @@
+{
+  "title": "Montaje · UT 2 · Planos, cortes y reglas del montaje",
+  "slides": [
+    {
+      "type": "cover",
+      "k": "Montaje · Unidad 2",
+      "title": "Planos, cortes y reglas del montaje",
+      "text": "Tipos de plano, transiciones, tipos de montaje y reglas de corte"
+    },
+    {
+      "k": "Escala de planos",
+      "title": "Tres preguntas para nombrar un plano",
+      "items": [
+        "**¿Cuál es el sujeto completo?** Una persona, un coche, una taza o una sola hoja: lo decides tú antes de mirar el encuadre.",
+        "**¿Cuánto de él entra en el cuadro?** Todo, la mitad, una parte importante o un solo elemento.",
+        "**¿Cuánto espacio queda alrededor?** Si manda el entorno, el plano es abierto. Si el sujeto llena el cuadro, es cerrado."
+      ],
+      "ordered": true,
+      "note": "Idea clave: el plano mide la relación entre el sujeto y el cuadro. No importa si hay una cara, un cuerpo, un coche o un paisaje."
+    },
+    {
+      "k": "Escala de planos",
+      "title": "Misma escala, distinto sujeto",
+      "head": ["Plano", "En una persona", "En un coche"],
+      "rows": [
+        ["**GPG**", "Una figura minúscula en el paisaje", "Un coche pequeño: mandan la carretera y el campo"],
+        ["**PG / PE**", "El cuerpo entero, de pies a cabeza", "El coche entero, de parachoques a parachoques"],
+        ["**PM**", "De la cintura hacia arriba", "De la puerta al morro: medio coche"],
+        ["**PP**", "El rostro y los hombros", "El morro: capó, faro y rueda"],
+        ["**PPP**", "Los ojos y la boca", "El faro y parte de la rueda"],
+        ["**PD**", "Un ojo, una mano, un grano", "Un solo elemento: el tapacubos"]
+      ],
+      "note": "El plano americano (PA) solo tiene sentido en personas y no se traslada a objetos."
+    },
+    {
+      "k": "Escala de planos",
+      "title": "Del más abierto al más cerrado",
+      "head": ["Plano", "Qué entra en el cuadro", "Para qué sirve"],
+      "rows": [
+        ["**GPG**", "Manda el entorno; el sujeto se ve pequeño", "Situar la acción, dar escala o soledad"],
+        ["**PG / PE**", "El sujeto completo, con aire alrededor", "Mostrar el objeto entero y su forma"],
+        ["**PM**", "La mitad del sujeto; el corte cae en el centro", "Acercarnos sin perder el contexto"],
+        ["**PP**", "Una parte principal llena el cuadro", "Dar importancia a esa parte"],
+        ["**PPP**", "Solo una zona de esa parte", "Intensificar: cercanía y tensión"],
+        ["**PD**", "Un único elemento pequeño y aislado", "Dirigir la atención a un dato concreto"]
+      ]
+    },
+    {
+      "type": "big",
+      "k": "Escala de planos",
+      "title": "El detalle siempre es detalle de algo",
+      "text": "Si el sujeto cambia, el plano cambia: una hoja entera que llena el cuadro es un plano entero de la hoja."
+    },
+    {
+      "k": "Escala de planos · Repaso",
+      "title": "¿Qué plano es?",
+      "head": ["Imagen", "Respuesta"],
+      "rows": [
+        ["A · Una sala con una taza diminuta sobre la mesa", "**Gran plano general** de la taza: manda el espacio"],
+        ["B · La copa de un árbol, sin el tronco", "**Plano medio** del árbol"],
+        ["C · Un tapacubos que llena el cuadro", "**Plano detalle** de la rueda"]
+      ],
+      "note": "Primero decide cuál es el sujeto. Después, cuánto de él entra en el cuadro."
+    },
+    {
+      "k": "El montaje",
+      "title": "Qué hace el montaje",
+      "lead": "Con dos herramientas, el orden de los planos y su duración, el montaje cumple tres funciones.",
+      "groups": [
+        { "h": "Crear espacios", "items": ["Los planos abiertos y cerrados construyen un lugar que el espectador reconstruye"] },
+        { "h": "Manipular el tiempo", "items": ["Elipsis, flashbacks y flashforwards comprimen, estiran o reordenan la acción"] },
+        { "h": "Dar sentido", "items": ["Al yuxtaponer planos nacen analogía, contraste, causa y efecto o poesía"] }
+      ],
+      "note": "Montar es decidir qué plano viene después y cuánto dura."
+    },
+    {
+      "k": "El montaje",
+      "title": "Corte, encadenado y fundido",
+      "head": ["Transición", "Qué pasa", "Es como…"],
+      "rows": [
+        ["**Corte**", "Un plano sustituye al siguiente de golpe", "una coma"],
+        ["**Encadenado**", "La imagen se desvanece mientras aparece la siguiente", "un punto y seguido"],
+        ["**Fundido**", "La imagen va a negro o sale de él: deja una pausa", "un punto y aparte"]
+      ],
+      "note": "Menos habituales, más propios de la tele: cortinillas y barrido (suele indicar un gran paso de tiempo)."
+    },
+    {
+      "k": "El montaje",
+      "title": "Unir planos por similitud: match cut",
+      "head": ["Tipo", "Une dos planos por…"],
+      "rows": [
+        ["Visual", "forma, color o movimiento, parecidos o contrarios"],
+        ["Audio", "un sonido parecido o contrastado"],
+        ["Por idea", "una idea que se repite o se contrapone"],
+        ["Por diálogo", "una conversación que une dos escenas distantes"],
+        ["Split edit", "el sonido de una escena se oye en la siguiente"]
+      ],
+      "note": "2001: Una odisea del espacio (1968): un hueso lanzado al aire corta a una nave de forma casi idéntica."
+    },
+    {
+      "k": "Tiempo, espacio y ritmo",
+      "title": "Elipsis y secuencia de montaje",
+      "groups": [
+        { "h": "Elipsis", "items": ["Parte de la acción que no se narra", "Interna: dentro de una escena", "Externa: entre escenas"] },
+        { "h": "Escena y secuencia", "items": ["Escena: unidad de tiempo y espacio", "Secuencia: escenas con unidad dramática"] },
+        { "h": "Secuencia de montaje", "items": ["Escenas muy rápidas, a menudo con música, que resumen mucho tiempo", "Up: toda una vida en 4 minutos"] }
+      ]
+    },
+    {
+      "k": "Tiempo, espacio y ritmo",
+      "title": "Técnicas para manejar el tiempo",
+      "head": ["Técnica", "Qué hace", "Ejemplo"],
+      "rows": [
+        ["Flashback y flashforward", "Salta atrás o adelante en la historia", "Memento, Big Fish"],
+        ["Cámara lenta", "Estira el momento: solemnidad, belleza o suspense", "Los intocables"],
+        ["Bullet time", "Ralentiza la acción mientras la cámara se desplaza", "Matrix"],
+        ["Time-lapse", "Comprime horas en segundos", "Koyaanisqatsi"],
+        ["Stop-motion", "Animación fotograma a fotograma", "Pesadilla antes de Navidad"],
+        ["Freeze frame", "Congela un fotograma para remarcar un momento", "Los 400 golpes"]
+      ]
+    },
+    {
+      "k": "Tiempo, espacio y ritmo",
+      "title": "Orientar al espectador",
+      "groups": [
+        { "h": "Plano máster", "items": ["Plano general que abarca toda la acción", "Vuelve cuando la escena se parte en planos cortos"] },
+        { "h": "Eje de acción", "items": ["Línea imaginaria del movimiento o de la mirada", "Si alguien va de izquierda a derecha, sigue así"] },
+        { "h": "Raccord", "items": ["Continuidad de vestuario, atrezzo, luz y posición", "En el rodaje lo vigila el script"] }
+      ],
+      "note": "Saltar el eje se justifica si el actor se mueve en la toma, si la cámara lo cruza en la toma, con una toma neutra sobre el eje o con una acción nueva."
+    },
+    {
+      "k": "Tiempo, espacio y ritmo",
+      "title": "La regla del eje",
+      "groups": [
+        { "h": "Respetar el eje · se entiende", "items": ["Las dos cámaras quedan al mismo lado del eje", "En pantalla, A mira a la derecha y B a la izquierda: se miran"] },
+        { "h": "Saltar el eje · confunde", "items": ["La cámara 2 cruza al otro lado", "B pasa a mirar a la derecha, como A: parece que no se miran"] }
+      ]
+    },
+    {
+      "k": "Tiempo, espacio y ritmo",
+      "title": "Ritmo y tempo",
+      "groups": [
+        { "h": "Ritmo", "items": ["Relación entre plano y plano", "Lo marca sobre todo la duración de cada plano", "Rápido: muchos planos cortos (la ducha de Psicosis)", "Cadencioso: planos largos y pausados (Stalker)"] },
+        { "h": "Tempo", "items": ["Relación entre secuencias", "Depende del guion y de su estructura dramática"] }
+      ],
+      "note": "La duración de cada plano debe ser proporcional a su interés y a su significación."
+    },
+    {
+      "k": "Tipos de montaje",
+      "title": "Cuatro formas de clasificar el montaje",
+      "head": ["Criterio", "Tipos"],
+      "rows": [
+        ["Por cómo se produce", "**Interno:** dentro del plano · **Externo:** une planos con cortes"],
+        ["Por escala y duración", "**Analítico:** planos cortos y simples · **Sintético:** planos grandes y complejos"],
+        ["Por la totalidad del relato", "**Narrativo:** lineal, invertido, paralelo o alterno · **Expresivo:** rítmico o ideológico"],
+        ["Por el tiempo", "**Continuo:** dura lo mismo que la acción · **Discontinuo:** comprime o estira el tiempo"]
+      ]
+    },
+    {
+      "k": "Tipos de montaje",
+      "title": "Montaje interno: cortar sin cortar",
+      "lead": "Ocurre dentro del plano, por la puesta en escena y la cámara; no manipula el metraje.",
+      "items": [
+        "**Profundidad de campo:** dos acciones en el mismo plano, una delante y otra al fondo.",
+        "**Enfoque retórico:** cambiar el foco de un término a otro hace de corte.",
+        "**Acción del personaje:** su movimiento guía la lectura.",
+        "**Composición:** la disposición de los elementos sugiere cómo leer el plano.",
+        "**Fuera de campo:** sombras o sonidos reclaman la atención sin mostrarse."
+      ],
+      "note": "Ciudadano Kane: la madre y el abogado delante; al fondo, por la ventana, el niño jugando."
+    },
+    {
+      "k": "Tipos de montaje",
+      "title": "Montaje narrativo y tiempo",
+      "head": ["Tipo", "Qué hace", "Ejemplo"],
+      "rows": [
+        ["**Lineal**", "Avanza en una sola dirección, de forma lógica", "—"],
+        ["**Invertido**", "Rompe el orden con flashbacks y flashforwards", "Memento, Big Fish"],
+        ["**Paralelo**", "Escenas de tiempos distintos, mostradas a la vez", "El Padrino: el bautizo y los asesinatos"],
+        ["**Alterno**", "Mismo tiempo, lugares distintos; suelen juntarse", "Origen"]
+      ],
+      "note": "Paralelo y alterno se confunden: en el paralelo las escenas son de tiempos distintos; en el alterno, simultáneas."
+    },
+    {
+      "k": "Tipos de montaje",
+      "title": "Expresivo, continuo y discontinuo",
+      "groups": [
+        { "h": "Expresivo rítmico", "items": ["Los planos se repiten al compás de la banda sonora", "Los intocables de Eliot Ness"] },
+        { "h": "Expresivo ideológico", "items": ["Metáforas, analogías y conceptos", "La forma del agua"] },
+        { "h": "Continuo", "items": ["Dura lo mismo que la acción real", "Toma sostenida y toma de espera"] },
+        { "h": "Discontinuo", "items": ["Comprime o estira el tiempo con elipsis"] }
+      ]
+    },
+    {
+      "k": "Tipos de montaje",
+      "title": "Eisenstein: cinco métodos",
+      "head": ["Método", "Criterio", "Ejemplo"],
+      "rows": [
+        ["Métrico", "La duración exacta de las tomas, como un compás", "Octubre"],
+        ["Rítmico", "Duración y contenido del cuadro, con movimiento interno", "La escalera de Odesa"],
+        ["Tonal", "Todos los elementos crean un tono emocional", "La niebla, en Potemkin"],
+        ["Sobretonal", "Suma de forma colectiva todos los trozos tonales", "—"],
+        ["Intelectual", "Metáfora visual: asociar imágenes crea un significado nuevo", "La huelga"]
+      ],
+      "note": "Publicados en 1929: cada método suma elementos al anterior."
+    },
+    {
+      "k": "Tipos de montaje",
+      "title": "Pudovkin: cinco métodos",
+      "head": ["Método", "Qué hace", "Ejemplo"],
+      "rows": [
+        ["Contraste", "Dos planos funcionan como una comparación", "Tiempos modernos"],
+        ["Paralelismo", "Dos escenas alternas unidas por un nexo común", "—"],
+        ["Simbolismo", "Un plano da un sentido alegórico al anterior", "Psicosis: el desagüe y el ojo"],
+        ["Simultaneidad", "Dos hechos que ocurren a la vez y se relacionan", "—"],
+        ["Leitmotiv", "Un tema recurrente estructura el montaje", "Tiburón: las escenas bajo el agua"]
+      ],
+      "note": "Editar es un método que controla la dirección psicológica del espectador."
+    },
+    {
+      "k": "Reglas de corte",
+      "title": "Cinco reglas básicas de corte",
+      "items": [
+        "**Salto proporcional en la escala:** evita tamaños iguales seguidos y saltos bruscos.",
+        "**Cambio de ángulo:** al menos 30-45 grados entre una posición de cámara y la siguiente.",
+        "**Continuidad en el movimiento:** respeta el eje de acción y los lados de la pantalla.",
+        "**Continuidad en la óptica:** mantén la distancia focal dentro de una misma acción.",
+        "**Raccord:** vestuario, atrezzo, luz y posición coherentes entre planos."
+      ],
+      "ordered": true
+    },
+    {
+      "k": "Reglas de corte",
+      "title": "Murch: el corte perfecto",
+      "lead": "Seis criterios, ordenados por peso. La emoción pesa más que todos los demás juntos.",
+      "head": ["Criterio", "Peso"],
+      "rows": [
+        ["Emoción del momento", "**51 %**"],
+        ["Hacer avanzar la historia", "23 %"],
+        ["Ritmo interesante y adecuado", "10 %"],
+        ["Línea de la mirada", "7 %"],
+        ["Planaridad: los ejes", "5 %"],
+        ["Continuidad espacial 3D", "4 %"]
+      ],
+      "note": "Walter Murch, En el parpadeo de un ojo."
+    },
+    {
+      "k": "Reglas de corte",
+      "title": "Dmytryk: siete reglas",
+      "items": [
+        "Nunca cortes sin una buena razón: la única es mejorar la escena.",
+        "En la duda sobre el fotograma de corte, mejor que sobre a que falte.",
+        "Siempre que puedas, corta en movimiento.",
+        "Lo fresco es preferible a lo rancio: la obviedad es un pecado.",
+        "Cada escena empieza y termina con una acción continuada.",
+        "El corte lo motivan los valores dramáticos, no la correspondencia entre planos.",
+        "**Sustancia primero, forma después.**"
+      ],
+      "ordered": true,
+      "note": "Edward Dmytryk, El montaje."
+    },
+    {
+      "k": "Reglas de corte",
+      "title": "Consejos prácticos para cortar",
+      "items": [
+        "De PP a PM, corta en reposo. De PM a PP, corta en movimiento.",
+        "En un decorado nuevo, empieza por un PG y ve de lo general a lo concreto.",
+        "En un diálogo no abuses de los cortes: encabalga el sonido de uno con la imagen del otro.",
+        "Un plano novedoso debe durar más que uno que el espectador ya conoce.",
+        "El fundido es un punto y aparte: no lo uses gratuitamente.",
+        "Sube el volumen en los primeros planos y bájalo en los planos amplios."
+      ],
+      "cols": 2
+    },
+    {
+      "type": "big",
+      "k": "Lo esencial",
+      "title": "Orden, duración y una razón para cortar",
+      "text": "Montar es decidir el orden y la duración de los planos. Corta con una razón: primero la emoción, luego la historia. Respeta el eje, el raccord y el ritmo."
+    }
+  ]
+}

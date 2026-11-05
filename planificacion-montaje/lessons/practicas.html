@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Premiere Pro para las prácticas | Montaje</title>
+<meta name="description" content="Premiere Pro en pasos cortos para las prácticas de cocina, colas y aviones: importar, timeline, transiciones, banda sonora, voz, keyframes, croma, Lumetri, exportación y entregas.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2024%2024'%3E%3Crect%20x%3D'-1'%20y%3D'-1'%20width%3D'26'%20height%3D'26'%20rx%3D'5'%20fill%3D'%23191919'%2F%3E%3Cg%20fill%3D'none'%20stroke%3D'%239b7bff'%20stroke-width%3D'1.6'%20stroke-linecap%3D'round'%20stroke-linejoin%3D'round'%3E%3Crect%20x%3D'2.5'%20y%3D'2.5'%20width%3D'8.5'%20height%3D'6'%20rx%3D'.8'%2F%3E%3Crect%20x%3D'13'%20y%3D'2.5'%20width%3D'8.5'%20height%3D'6'%20rx%3D'.8'%2F%3E%3Cpath%20d%3D'M16.2%204l2.8%201.5-2.8%201.5z'%20fill%3D'%239b7bff'%2F%3E%3Crect%20x%3D'2.5'%20y%3D'13'%20width%3D'6.5'%20height%3D'3'%20rx%3D'.6'%2F%3E%3Crect%20x%3D'13'%20y%3D'13'%20width%3D'8.5'%20height%3D'3'%20rx%3D'.6'%2F%3E%3Crect%20x%3D'2.5'%20y%3D'18.5'%20width%3D'6.5'%20height%3D'3'%20rx%3D'.6'%2F%3E%3Crect%20x%3D'13'%20y%3D'18.5'%20width%3D'5'%20height%3D'3'%20rx%3D'.6'%2F%3E%3Cpath%20d%3D'M11%2012v10'%2F%3E%3Cpath%20d%3D'M9.5%2010.4h3L11%2012z'%20fill%3D'%239b7bff'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../assets/mont.css">
+</head>
+<body class="m-mont">
+<header class="top">
+  <a class="brand" href="../index.html">MONT<span class="dash"> —</span> Montaje y postproducción</a>
+  <nav aria-label="Módulo">
+    <a href="../index.html#temario">Temario</a>
+    <a href="../index.html#practicas">Prácticas</a>
+    <a href="../index.html#recursos">Recursos</a>
+  </nav>
+  <a class="back" href="../../index.html">← Portal</a>
+</header>
+
+<main>
+  <section class="hero small">
+    <p class="kicker"><a href="../index.html">MONT</a> / Prácticas · Premiere Pro</p>
+    <h1>Premiere Pro para las prácticas</h1>
+    <p class="lead">Lo justo para montar las prácticas de cocina, colas y aviones, en pasos cortos: importar, cortar, transiciones, banda sonora, voz, texto animado, croma, color y exportación. Al principio tienes qué se entrega y cuándo.</p>
+  </section>
+
+  <section class="sec doc" id="presentacion">
+    <h2 class="section-title">00 · En diapositivas</h2>
+    <p>Cada diapositiva es una tarea corta que puedes hacer en vivo con los clips de las prácticas. Los nombres de menús pueden variar un poco según la versión: compruébalos en la del aula.</p>
+    <div class="deck" data-src="../slides/practicas.json"></div>
+  </section>
+
+  <section class="sec doc" id="entregas">
+    <h2 class="section-title">01 · Qué se entrega y cuándo</h2>
+    <div class="table"><table>
+      <thead><tr><th>Práctica</th><th>Modalidad</th><th>Duración</th><th>Entrega</th><th>Fecha</th></tr></thead>
+      <tbody>
+        <tr><td><a href="#p1">1 · Cocina</a></td><td>Individual</td><td>Mínimo 1:30</td><td>Vídeo H.264 HD 1080</td><td>10/11/2026 <span class="due" data-date="2026-11-10"></span></td></tr>
+        <tr><td><a href="#p2">2 · Colas TV</a></td><td>Grupo</td><td>Mínimo 50 s</td><td>Vídeo H.264 HD 1080</td><td>21/11/2026 <span class="due" data-date="2026-11-21"></span></td></tr>
+        <tr><td><a href="#p3">3 · Aviones</a></td><td>Individual</td><td>20 a 30 s</td><td>Vídeo H.264 HD 1080 y proyecto de Premiere</td><td>01/12/2026 <span class="due" data-date="2026-12-01"></span></td></tr>
+        <tr><td><a href="#p4">4 · Escuela rusa</a></td><td>Individual</td><td>10 fotos, 3 parejas, 2 planos</td><td>PDF con las fotos y enlaces a los vídeos 1, 2 y 3</td><td>12/12/2026 <span class="due" data-date="2026-12-12"></span></td></tr>
+      </tbody>
+    </table></div>
+    <p class="note"><strong>Importante:</strong> carpeta y archivo llevan el mismo nombre: <code>cocina_</code>, <code>colas_</code>, <code>aviones_</code> o <code>escuela rusa_</code> seguido de tu nombre y apellido.</p>
+
+    <div class="cards">
+      <div id="p1"><span class="k">Práctica 1 · RA1, RA2, RA3</span><h4>Montaje de un programa de cocina</h4>
+        <p>Duración mínima de 1:30, al menos <strong>3 transiciones</strong> entre planos, texto con animación con el nombre del programa y banda sonora sincronizada con las imágenes.</p>
+        <p class="eg">Planos: MASTER_03, MASTER_04 y MASTER_05. Nombre: cocina_nombre apellido.</p></div>
+      <div id="p2"><span class="k">Práctica 2 · RA3 · en grupo</span><h4>Colas para televisión</h4>
+        <p>Mínimo 50 segundos, planos montados por corte y sonido ambiente en un canal aparte.</p>
+        <p class="eg">Se trabaja: cortar y ordenar, sonido ambiente en otra pista y crossfade entre cortes.</p></div>
+      <div id="p3" class="hot"><span class="k">Práctica 3 · RA1, RA2, RA3</span><h4>Promoción de una aerolínea</h4>
+        <p>Entre 20 y 30 segundos, al menos <strong>5 transiciones</strong>, texto animado con el nombre inventado de la aerolínea, banda sonora sincronizada, al menos un efecto de vídeo y un audio grabado (marca, eslogan o gancho sonoro) en otra pista, con distintos planos sonoros.</p>
+        <p class="eg">Se entrega también el proyecto de Premiere. Nombre: aviones_nombre apellido.</p></div>
+      <div id="p4"><span class="k">Práctica 4 · RA1, RA2, RA3</span><h4>Escuela rusa</h4>
+        <p>Con fotos del móvil: 10 planos al estilo de Vertov, el efecto Kuleshov con tres parejas de imágenes y una metáfora de Eisenstein con dos planos. No se monta en Premiere.</p>
+        <p class="eg">Se entrega en PDF, con enlaces a los vídeos de las prácticas 1, 2 y 3 en tu Drive.</p></div>
+    </div>
+
+    <h3>Planos facilitados para la práctica 3</h3>
+    <p><code>02_A380_TAKEOFF</code> <code>03_AERIAL_SFO</code> <code>04_JET_LANDING_2</code> <code>05_BAY_AREA_LIGHTS</code> <code>06_MILKYWAY</code> <code>07_KENYA</code> <code>08_SOUTH_POLE_DC3_</code> <code>09_HWAIIAN_LANDING</code> <code>10_MALDIVES</code></p>
+
+    <h3>Qué usar en cada práctica</h3>
+    <div class="table"><table>
+      <thead><tr><th>Práctica</th><th>De esta lección</th></tr></thead>
+      <tbody>
+        <tr><td>1 · Cocina</td><td><a href="#cortar">Cortar</a>, <a href="#transicion">3 transiciones</a> como mínimo, <a href="#texto">texto animado</a> y <a href="#banda">banda sonora sincronizada</a></td></tr>
+        <tr><td>2 · Colas</td><td><a href="#cortar">Cortar y ordenar</a>, sonido ambiente en <a href="#pistas">otra pista</a> y <a href="#crossfade">crossfade</a> entre cortes</td></tr>
+        <tr><td>3 · Aviones</td><td><a href="#transicion">5 transiciones</a>, <a href="#texto">texto animado</a>, un <a href="#efecto">efecto de vídeo</a>, <a href="#banda">música sincronizada</a> y <a href="#voz">voz grabada</a> en pista aparte</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="sec doc" id="importar">
+    <h2 class="section-title">02 · Proyecto, secuencia e importación</h2>
+    <h3>Crear un proyecto</h3>
+    <ol class="steps">
+      <li>Abre Premiere Pro y pulsa <strong>New project</strong> en la pantalla de inicio (o File &gt; New &gt; Project).</li>
+      <li>Escribe el nombre que pide la ficha, por ejemplo <em>aviones_nombre apellido</em>.</li>
+      <li>Elige la carpeta donde se guarda y pulsa <strong>Create</strong>.</li>
+      <li>Guarda a menudo con <kbd>Ctrl/Cmd</kbd>+<kbd>S</kbd>.</li>
+    </ol>
+    <p class="note"><strong>Consejo:</strong> guarda el proyecto y los clips en la misma carpeta. La práctica 3 pide entregar también el proyecto de Premiere.</p>
+
+    <h3>Crear la secuencia</h3>
+    <ol class="steps">
+      <li><strong>Forma rápida:</strong> arrastra el primer clip al panel Timeline vacío. La secuencia se crea con los ajustes de ese clip.</li>
+      <li><strong>Forma manual:</strong> File &gt; New &gt; Sequence (<kbd>Ctrl/Cmd</kbd>+<kbd>N</kbd>) y elige un preset.</li>
+      <li>Comprueba los ajustes en Sequence &gt; Sequence Settings: tamaño de fotograma y frame rate.</li>
+      <li>Las tres prácticas se exportan en H.264 HD 1080, así que la secuencia debe ser <strong>1920 × 1080</strong>.</li>
+    </ol>
+    <p class="note"><strong>Ojo:</strong> si el primer clip es vertical o 4K, Premiere crea la secuencia con esos ajustes. Por eso conviene mirar Sequence Settings.</p>
+
+    <h3>Tipos de archivo e importación</h3>
+    <div class="table"><table>
+      <thead><tr><th>Tipo</th><th>Formatos habituales</th><th>En las prácticas</th></tr></thead>
+      <tbody>
+        <tr><td>Vídeo</td><td>MP4, MOV, MXF</td><td>Clips MASTER_03 a 05 y los de los aviones</td></tr>
+        <tr><td>Audio</td><td>WAV, MP3, AAC</td><td>Banda sonora, locución y sonido ambiente</td></tr>
+        <tr><td>Imagen</td><td>JPG, PNG, PSD</td><td>Fotos del móvil (práctica 4)</td></tr>
+      </tbody>
+    </table></div>
+    <p>Premiere los mezcla en la misma secuencia: no hace falta convertirlos antes. Hay cuatro formas de importar, y todas hacen lo mismo:</p>
+    <div class="cards">
+      <div><h4>Menú</h4><p>File &gt; Import (<kbd>Ctrl/Cmd</kbd>+<kbd>I</kbd>) y elige los archivos.</p></div>
+      <div><h4>Doble clic</h4><p>En una zona vacía del panel Project.</p></div>
+      <div><h4>Arrastrar</h4><p>Desde el Explorador o el Finder al panel Project.</p></div>
+      <div><h4>Media Browser</h4><p>Navega por las carpetas, clic derecho sobre el clip &gt; Import.</p></div>
+    </div>
+    <p class="note"><strong>Cuidado:</strong> Premiere <em>enlaza</em> los archivos, no los copia dentro del proyecto. Si mueves o borras la carpeta, o te llevas el proyecto a otro ordenador sin los vídeos, el clip aparece como <em>media offline</em>.</p>
+  </section>
+
+  <section class="sec doc" id="interfaz">
+    <h2 class="section-title">03 · Interfaz</h2>
+    <div class="table"><table>
+      <thead><tr><th>Zona</th><th>Para qué sirve</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Project</strong></td><td>Todos los archivos importados, organizables en carpetas (bins)</td></tr>
+        <tr><td><strong>Source Monitor</strong></td><td>Ver un clip suelto y marcar sus puntos In y Out</td></tr>
+        <tr><td><strong>Program Monitor</strong></td><td>Muestra la secuencia: lo que verá el espectador</td></tr>
+        <tr><td><strong>Timeline</strong></td><td>Donde se monta: pistas de vídeo y audio con los clips en orden</td></tr>
+        <tr><td><strong>Tools</strong></td><td>Herramientas de edición: Selection, Razor y otras</td></tr>
+        <tr><td><strong>Effects y Effect Controls</strong></td><td>Effects es la lista de efectos; Effect Controls ajusta los del clip elegido</td></tr>
+      </tbody>
+    </table></div>
+    <p>Para las prácticas bastan tres espacios de trabajo (Window &gt; Workspaces): <strong>Editing</strong> para montar, <strong>Audio</strong> para la banda sonora y el sonido ambiente, y <strong>Color</strong> si corriges el color. También están Effects y Captions and Graphics. Si la pantalla se desordena, <em>Reset to Saved Layout</em>. Más detalle en la <a href="premiere.html#proyecto">guía de Premiere</a>.</p>
+  </section>
+
+  <section class="sec doc" id="timeline">
+    <h2 class="section-title">04 · La Timeline</h2>
+    <h3 id="pistas">Pistas de vídeo y de audio</h3>
+    <div class="tl" role="img" aria-label="Timeline con texto en V2, tres clips en V1, el audio de los clips en A1 y la música en A2">
+      <div class="tl-row"><b>V2</b><div class="tl-track"><span class="tl-gap" style="flex:1"></span><span class="tl-clip t" style="flex:3">Texto</span><span class="tl-gap" style="flex:6"></span></div></div>
+      <div class="tl-row"><b>V1</b><div class="tl-track"><span class="tl-clip v" style="flex:3">Clip 1</span><span class="tl-clip v" style="flex:4">Clip 2</span><span class="tl-clip v" style="flex:3">Clip 3</span></div></div>
+      <div class="tl-row"><b>A1</b><div class="tl-track"><span class="tl-clip a" style="flex:3">Audio 1</span><span class="tl-clip a" style="flex:4">Audio 2</span><span class="tl-clip a" style="flex:3">Audio 3</span></div></div>
+      <div class="tl-row"><b>A2</b><div class="tl-track"><span class="tl-clip a2" style="flex:10">Música</span></div></div>
+      <p class="cap">Esquema, no captura. En la práctica 3, el texto animado va en V2 sobre los planos de V1, la banda sonora en una pista de audio y la voz grabada en otra.</p>
+    </div>
+    <div class="cards">
+      <div><span class="k">Vídeo (V)</span><p>Las pistas se apilan: lo que está en una pista superior tapa lo de las inferiores.</p></div>
+      <div><span class="k">Audio (A)</span><p>Las pistas suenan a la vez. Cada una tiene sus botones <strong>M</strong> (silenciar) y <strong>S</strong> (solo).</p></div>
+    </div>
+    <p>El candado y el ojo de cada pista sirven para bloquearla u ocultarla mientras trabajas.</p>
+
+    <h3 id="cortar">Cortar y ordenar clips</h3>
+    <p>Es la tarea central de las tres prácticas: elegir planos, cortarlos y ordenarlos.</p>
+    <ol class="steps">
+      <li>Coloca el cursor de reproducción (playhead) donde quieres cortar. La <kbd>barra espaciadora</kbd> reproduce y pausa.</li>
+      <li>Corta con la herramienta <strong>Razor</strong> (<kbd>C</kbd>) haciendo clic en el clip, o con <kbd>Ctrl/Cmd</kbd>+<kbd>K</kbd> en la posición del cursor.</li>
+      <li>Vuelve a <strong>Selection</strong> (<kbd>V</kbd>), elige el trozo sobrante y bórralo con <kbd>Delete</kbd>.</li>
+      <li>Para cerrar el hueco a la vez, usa <kbd>Shift</kbd>+<kbd>Delete</kbd> (Ripple Delete).</li>
+      <li>Ordena arrastrando los clips con Selection. Pulsa <kbd>Ctrl/Cmd</kbd>+<kbd>Z</kbd> si te equivocas.</li>
+    </ol>
+    <p class="note"><strong>Recuerda</strong> las reglas de la <a href="ut2.html#reglas">UT 2</a>: no cortes sin una buena razón, corta en movimiento cuando puedas y evita saltos bruscos de escala. Después de un Ripple Delete los clips se desplazan a la izquierda: si hay audio en otras pistas, comprueba que sigue sincronizado.</p>
+
+    <h3>Parámetros de cada clip</h3>
+    <div class="table"><table>
+      <thead><tr><th>Pista</th><th>Parámetro</th><th>Qué controla</th></tr></thead>
+      <tbody>
+        <tr><td>Vídeo</td><td>Motion: Position, Scale, Rotation</td><td>Mover, escalar y girar</td></tr>
+        <tr><td>Vídeo</td><td>Opacity</td><td>Transparencia del clip</td></tr>
+        <tr><td>Vídeo</td><td>Time Remapping &gt; Speed</td><td>Velocidad del clip</td></tr>
+        <tr><td>Audio</td><td>Volume &gt; Level</td><td>Volumen del clip</td></tr>
+        <tr><td>Audio</td><td>Panner</td><td>Izquierda y derecha</td></tr>
+      </tbody>
+    </table></div>
+    <p>Selecciona el clip en la Timeline y abre Window &gt; Effect Controls. Los efectos que añadas aparecen en esa misma lista, y son los mismos parámetros que animarás con keyframes.</p>
+  </section>
+
+  <section class="sec doc" id="efectos">
+    <h2 class="section-title">05 · Efectos, transiciones y audio</h2>
+    <h3 id="efecto">Aplicar un efecto de vídeo</h3>
+    <ol class="steps">
+      <li>Abre el panel <strong>Effects</strong> (Window &gt; Effects).</li>
+      <li>Escribe el nombre en el cuadro de búsqueda, o abre la carpeta Video Effects.</li>
+      <li>Arrastra el efecto sobre el clip en la Timeline.</li>
+      <li>Selecciona el clip y ajusta los valores en Effect Controls.</li>
+      <li>Para quitarlo, elígelo en Effect Controls y pulsa <kbd>Delete</kbd>.</li>
+    </ol>
+    <p class="note"><strong>Fíjate:</strong> la práctica 3 pide al menos un efecto de vídeo. Ideas sencillas: un desenfoque (Blur &amp; Sharpen), un ajuste de color (Color Correction) o un croma (Keying). Si el efecto no se ve, comprueba que el clip está seleccionado y que el botón <em>fx</em> está activado en Effect Controls.</p>
+
+    <h3 id="transicion">Añadir una transición de vídeo</h3>
+    <ol class="steps">
+      <li>En Effects, escribe el nombre en el buscador, por ejemplo <strong>Cross Dissolve</strong>.</li>
+      <li>Arrástrala al corte entre dos clips. Necesita <em>handles</em>: material sobrante en ambos clips.</li>
+      <li>Atajo: <kbd>Ctrl/Cmd</kbd>+<kbd>D</kbd> pone la transición por defecto. Con varios clips seleccionados, <kbd>Shift</kbd>+<kbd>D</kbd>.</li>
+      <li>Duración: arrastra el borde del icono, o haz doble clic y cambia Duration, o ajústala en Effect Controls.</li>
+      <li>Para cambiarla, arrastra la nueva encima. Para borrarla, selecciónala y pulsa <kbd>Delete</kbd>/<kbd>Backspace</kbd>.</li>
+    </ol>
+    <div class="cards">
+      <div><span class="k">Práctica 1</span><h4>Mínimo 3 transiciones</h4></div>
+      <div><span class="k">Práctica 3</span><h4>Mínimo 5 transiciones</h4></div>
+    </div>
+    <p>Todo el detalle (handles, modo A/B, qué hacer si faltan fotogramas) está en la lección de <a href="transiciones.html">transiciones</a>.</p>
+
+    <h3 id="crossfade">Fundidos y crossfade de audio</h3>
+    <ol class="steps">
+      <li>Selecciona el corte entre dos clips de audio, o el inicio de un clip.</li>
+      <li>En Effects abre Audio Transitions &gt; Crossfade y arrastra uno al corte.</li>
+      <li>Atajo: <kbd>Shift</kbd>+<kbd>Ctrl/Cmd</kbd>+<kbd>D</kbd> aplica el crossfade de audio por defecto.</li>
+      <li>Fundido rápido de un clip: arrastra su <em>fade handle</em> para subir o bajar el nivel gradualmente.</li>
+    </ol>
+    <p>Hay tres tipos: <span class="tag">Constant Gain</span> <span class="tag">Constant Power</span> <span class="tag">Exponential Fade</span>. Sirven para que la banda sonora entre y salga sin cortes bruscos, y para unir el sonido ambiente de la práctica 2 entre cortes.</p>
+
+    <h3 id="banda">Banda sonora sincronizada</h3>
+    <p>Las prácticas 1 y 3 piden que los cortes sigan el ritmo de la música.</p>
+    <ol class="steps">
+      <li>Importa la música y arrástrala a una pista de audio libre, por ejemplo A2.</li>
+      <li>Reproduce y pulsa <kbd>M</kbd> (marcador) en cada golpe o cambio de ritmo de la música.</li>
+      <li>Activa el imán (Snap, <kbd>S</kbd>) y ajusta los clips para que cada cambio de plano caiga en un marcador.</li>
+      <li>Recorta la música sobrante y cierra con un fundido (fade handle o crossfade).</li>
+    </ol>
+    <div class="tl" role="img" aria-label="Marcadores sobre la música y cortes de plano que caen justo en cada marcador">
+      <div class="tl-marks" style="margin-left:40px"><span>▼</span><span>▼</span><span>▼</span><span>▼</span><span>▼</span></div>
+      <div class="tl-row"><b>V1</b><div class="tl-track"><span class="tl-clip v" style="flex:1">1</span><span class="tl-clip v2" style="flex:1">2</span><span class="tl-clip v" style="flex:1">3</span><span class="tl-clip v2" style="flex:1">4</span></div></div>
+      <div class="tl-row"><b>A2</b><div class="tl-track"><span class="tl-clip a2" style="flex:1">Música</span></div></div>
+      <p class="cap">Cada cambio de plano cae en un marcador (▼) puesto con <kbd>M</kbd> sobre un golpe de la música. La duración final se lee en el código de tiempo del final de la secuencia.</p>
+    </div>
+    <p class="note"><strong>Recuerda</strong> las duraciones: cocina mínimo 1:30 · colas mínimo 50 s · aviones entre 20 y 30 s.</p>
+    <!-- Fase 3: herramienta interactiva de montaje al ritmo de la música -->
+    <div class="tool-slot" data-tool="ritmo"></div>
+
+    <h3 id="voz">Voz grabada y planos sonoros</h3>
+    <ol class="steps">
+      <li>Grábala con Audition o Reaper, o en Premiere con el botón de micrófono (Voice-over record) de la pista de audio.</li>
+      <li>Colócala en una pista distinta de la música, por ejemplo A3.</li>
+      <li>Voz en primer plano (más alta) y música en segundo plano (más baja) mientras habla.</li>
+      <li>Baja la música con keyframes en Volume &gt; Level de Effect Controls y súbela al terminar la voz.</li>
+      <li>Vigila el medidor de audio: que no llegue al rojo.</li>
+    </ol>
+    <p>En la práctica 3, el audio grabado es el nombre de la marca, el eslogan o un gancho sonoro. Para bajar la música automáticamente puedes usar el <a href="premiere.html#audio">ducking de Essential Sound</a>.</p>
+  </section>
+
+  <section class="sec doc" id="keyframes">
+    <h2 class="section-title">06 · Keyframes, texto, croma y color</h2>
+    <h3>Animar un parámetro</h3>
+    <ol class="steps">
+      <li>Selecciona el clip y localiza el parámetro en Effect Controls, por ejemplo Position.</li>
+      <li>Sitúa el cursor donde empieza la animación y activa el cronómetro del parámetro: se crea el primer keyframe.</li>
+      <li>Mueve el cursor a otro momento y cambia el valor: se crea otro keyframe.</li>
+      <li>Reproduce: Premiere calcula el movimiento entre los dos.</li>
+    </ol>
+    <p class="note"><strong>Truco:</strong> clic derecho en un keyframe &gt; Ease In o Ease Out suaviza el arranque o la parada. Si desactivas el cronómetro, se borran todos los keyframes de ese parámetro.</p>
+
+    <h3>Ejemplo: posición, rotación y opacidad</h3>
+    <div class="table"><table>
+      <thead><tr><th>Parámetro</th><th>Keyframe 1</th><th>Keyframe 2</th><th>Resultado</th></tr></thead>
+      <tbody>
+        <tr><td>Position</td><td>El texto fuera de cuadro</td><td>El texto en su sitio</td><td>Entra deslizando</td></tr>
+        <tr><td>Rotation</td><td>0°</td><td>360°</td><td>Da una vuelta completa</td></tr>
+        <tr><td>Opacity</td><td>0 %</td><td>100 %</td><td>Aparece poco a poco</td></tr>
+      </tbody>
+    </table></div>
+    <p>Combina los tres en el mismo rótulo. Al revés (100 % a 0 %), desaparece. Con 1 o 2 segundos entre keyframes suele bastar: las duraciones largas se ven lentas. Ensáyalo con el nombre de tu programa o de tu aerolínea antes de hacerlo en Premiere:</p>
+    <div class="tool-slot" data-tool="keyframes" data-text="COCINA RÁPIDA"></div>
+
+    <h3 id="texto">Crear el texto con animación</h3>
+    <ol class="steps">
+      <li>Elige la herramienta <strong>Type</strong> (<kbd>T</kbd>), haz clic en el Program Monitor y escribe el nombre.</li>
+      <li>Cambia fuente, tamaño y color en Essential Graphics (Window &gt; Essential Graphics).</li>
+      <li>El texto queda en una pista de vídeo superior (V2). Arrastra su borde para darle la duración que quieras.</li>
+      <li>Anímalo con keyframes de Position, Scale u Opacity, como en el ejemplo anterior.</li>
+      <li>Añade un Cross Dissolve al principio y al final del clip de texto para entrar y salir suave.</li>
+    </ol>
+    <div class="cards">
+      <div><span class="k">Práctica 1 · Cocina</span><p>El nombre del programa.</p></div>
+      <div><span class="k">Práctica 3 · Aviones</span><p>El nombre inventado de la aerolínea.</p></div>
+    </div>
+
+    <h3>Subtítulos (extra)</h3>
+    <ol class="steps">
+      <li>Elige el espacio Captions and Graphics y abre Window &gt; Text.</li>
+      <li>Pulsa <strong>Transcribe sequence</strong>, elige el idioma y espera: Premiere convierte la voz en texto.</li>
+      <li>Lee y corrige el texto: la transcripción automática se equivoca.</li>
+      <li>Pulsa <strong>Create captions</strong>: aparece una pista de subtítulos en la Timeline.</li>
+      <li>Ajusta el aspecto en Essential Graphics. Para que queden dentro del vídeo, actívalos al exportar (pestaña Captions).</li>
+    </ol>
+    <p class="note"><strong>Aviso:</strong> ninguna de las prácticas pide subtítulos. Es un extra.</p>
+
+    <h3>Croma con Ultra Key</h3>
+    <ol class="steps">
+      <li>Pon el nuevo fondo en V1 y el clip de fondo verde en V2, encima.</li>
+      <li>En Effects busca <strong>Ultra Key</strong> (Video Effects &gt; Keying) y arrástralo al clip de V2.</li>
+      <li>En Effect Controls, usa el cuentagotas de <strong>Key Color</strong> y haz clic en el verde del Program Monitor.</li>
+      <li>Afina con Setting (Default, Relaxed, Aggressive). Cambia Output a <strong>Alpha Channel</strong> para ver la máscara.</li>
+      <li>Vuelve a poner Output en <strong>Composite</strong> para ver el resultado final.</li>
+    </ol>
+    <p>En Alpha Channel, lo transparente se ve negro y lo opaco blanco: busca un negro limpio y un blanco sólido. Si quedan bordes verdes, retoca Matte Generation y Matte Cleanup. Funciona mejor con un fondo verde iluminado de forma uniforme.</p>
+
+    <h3>Color con Lumetri</h3>
+    <ol class="steps">
+      <li>Elige el espacio <strong>Color</strong> (Window &gt; Workspaces) o abre Window &gt; Lumetri Color.</li>
+      <li>Selecciona el clip en la Timeline.</li>
+      <li>En <strong>Basic Correction</strong> ajusta White Balance, Tone (Exposure, Contrast, Highlights, Shadows) y Saturation.</li>
+      <li>En <strong>Creative</strong> prueba un Look ya preparado para dar un estilo al clip.</li>
+      <li>Para varios clips a la vez: File &gt; New &gt; Adjustment Layer y arrástrala encima de ellos.</li>
+    </ol>
+    <p class="note"><strong>Consejo:</strong> primero equilibra el blanco, luego la exposición y el contraste, y por último la saturación. Corrige cada clip para igualar los planos y da el estilo al final. En la práctica 3 cuenta como efecto de vídeo.</p>
+  </section>
+
+  <section class="sec doc" id="exportar">
+    <h2 class="section-title">07 · Exportar y entregar</h2>
+    <ol class="steps">
+      <li>Con la secuencia activa, abre File &gt; Export &gt; Media (<kbd>Ctrl/Cmd</kbd>+<kbd>M</kbd>) o la pestaña Export.</li>
+      <li>Formato <strong>H.264</strong>, con el preset de YouTube 1080p.</li>
+      <li>Comprueba que el tamaño sea 1920 × 1080. Si la secuencia es de otro tamaño, la salida se escala.</li>
+      <li>Pon el nombre de la ficha, por ejemplo <em>cocina_nombre apellido</em>, y guárdalo en la carpeta de entrega.</li>
+      <li>Pulsa Export y abre el archivo: mira imagen, sonido y duración.</li>
+    </ol>
+    <p class="note"><strong>Importante:</strong> en la práctica 3 entregas también el proyecto de Premiere. File &gt; Project Manager ayuda a reunir todos los archivos en una carpeta.</p>
+
+    <h3>Antes de entregar</h3>
+    <ul class="check" data-key="entrega">
+      <li><label><input type="checkbox"><span>La secuencia es de 1920 × 1080.</span></label></li>
+      <li><label><input type="checkbox"><span>La duración cumple la ficha (código de tiempo del final de la secuencia).</span></label></li>
+      <li><label><input type="checkbox"><span>Hay las transiciones mínimas y cada una tiene un motivo.</span></label></li>
+      <li><label><input type="checkbox"><span>El texto animado tiene el nombre que pide la ficha.</span></label></li>
+      <li><label><input type="checkbox"><span>Los cortes caen en el ritmo de la música y no hay saltos de volumen.</span></label></li>
+      <li><label><input type="checkbox"><span>El medidor de audio no llega al rojo.</span></label></li>
+      <li><label><input type="checkbox"><span>Exportado en H.264, con el nombre de la ficha, y visto entero en un reproductor.</span></label></li>
+      <li><label><input type="checkbox"><span>Carpeta y archivo se llaman igual (y, en la práctica 3, está el proyecto dentro).</span></label></li>
+    </ul>
+  </section>
+
+  <section class="sec doc" id="chuleta">
+    <h2 class="section-title">08 · Chuleta de atajos</h2>
+    <div class="table"><table>
+      <thead><tr><th>Básicos</th><th>Acción</th><th>Transiciones y vista</th><th>Acción</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>Espacio</kbd></td><td>Reproducir / pausa</td><td><kbd>Ctrl/Cmd</kbd>+<kbd>D</kbd></td><td>Vídeo por defecto</td></tr>
+        <tr><td><kbd>V</kbd></td><td>Selection</td><td><kbd>Shift</kbd>+<kbd>D</kbd></td><td>Por defecto a selección</td></tr>
+        <tr><td><kbd>C</kbd></td><td>Razor</td><td><kbd>Shift</kbd>+<kbd>Ctrl/Cmd</kbd>+<kbd>D</kbd></td><td>Audio por defecto</td></tr>
+        <tr><td><kbd>Ctrl/Cmd</kbd>+<kbd>K</kbd></td><td>Cortar en cursor</td><td><kbd>=</kbd></td><td>Acercar zoom</td></tr>
+        <tr><td><kbd>Shift</kbd>+<kbd>Delete</kbd></td><td>Ripple Delete</td><td><kbd>\</kbd></td><td>Ver toda la secuencia</td></tr>
+        <tr><td><kbd>Ctrl/Cmd</kbd>+<kbd>Z</kbd></td><td>Deshacer</td><td><kbd>Return</kbd> / <kbd>Enter</kbd></td><td>Renderizar</td></tr>
+        <tr><td><kbd>Ctrl/Cmd</kbd>+<kbd>S</kbd></td><td>Guardar</td><td><kbd>M</kbd></td><td>Añadir marcador</td></tr>
+        <tr><td><kbd>Ctrl/Cmd</kbd>+<kbd>I</kbd></td><td>Importar</td><td><kbd>S</kbd></td><td>Activar el imán (Snap)</td></tr>
+      </tbody>
+    </table></div>
+    <p>Cmd en macOS, Ctrl en Windows. Los atajos se pueden ver y cambiar en el cuadro Keyboard Shortcuts y pueden depender del panel activo.</p>
+  </section>
+
+  <nav class="pager" aria-label="Lecciones">
+    <a href="transiciones.html">Anterior<strong>← Transiciones</strong></a>
+  </nav>
+</main>
+
+<footer>© <span data-year>2026</span> · Andrés Vidal Martín Martín · Montaje · <a href="mailto:avmmeducacion@gmail.com">avmmeducacion@gmail.com</a></footer>
+<script src="../../assets/site.js" defer></script>
+<script src="../assets/mont.js" defer></script>
+<script src="../assets/keyframes.js" defer></script>
+</body>
+</html>

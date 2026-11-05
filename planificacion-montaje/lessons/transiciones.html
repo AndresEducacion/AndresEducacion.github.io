@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Transiciones en Premiere Pro | Montaje</title>
+<meta name="description" content="Transiciones de vídeo y audio en Premiere Pro: el corte, los handles, aplicar y sustituir transiciones, modo A/B, Morph Cut, crossfades y fade handles.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2024%2024'%3E%3Crect%20x%3D'-1'%20y%3D'-1'%20width%3D'26'%20height%3D'26'%20rx%3D'5'%20fill%3D'%23191919'%2F%3E%3Cg%20fill%3D'none'%20stroke%3D'%239b7bff'%20stroke-width%3D'1.6'%20stroke-linecap%3D'round'%20stroke-linejoin%3D'round'%3E%3Crect%20x%3D'2.5'%20y%3D'2.5'%20width%3D'8.5'%20height%3D'6'%20rx%3D'.8'%2F%3E%3Crect%20x%3D'13'%20y%3D'2.5'%20width%3D'8.5'%20height%3D'6'%20rx%3D'.8'%2F%3E%3Cpath%20d%3D'M16.2%204l2.8%201.5-2.8%201.5z'%20fill%3D'%239b7bff'%2F%3E%3Crect%20x%3D'2.5'%20y%3D'13'%20width%3D'6.5'%20height%3D'3'%20rx%3D'.6'%2F%3E%3Crect%20x%3D'13'%20y%3D'13'%20width%3D'8.5'%20height%3D'3'%20rx%3D'.6'%2F%3E%3Crect%20x%3D'2.5'%20y%3D'18.5'%20width%3D'6.5'%20height%3D'3'%20rx%3D'.6'%2F%3E%3Crect%20x%3D'13'%20y%3D'18.5'%20width%3D'5'%20height%3D'3'%20rx%3D'.6'%2F%3E%3Cpath%20d%3D'M11%2012v10'%2F%3E%3Cpath%20d%3D'M9.5%2010.4h3L11%2012z'%20fill%3D'%239b7bff'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../assets/mont.css">
+</head>
+<body class="m-mont">
+<header class="top">
+  <a class="brand" href="../index.html">MONT<span class="dash"> —</span> Montaje y postproducción</a>
+  <nav aria-label="Módulo">
+    <a href="../index.html#temario">Temario</a>
+    <a href="../index.html#practicas">Prácticas</a>
+    <a href="../index.html#recursos">Recursos</a>
+  </nav>
+  <a class="back" href="../../index.html">← Portal</a>
+</header>
+
+<main>
+  <section class="hero small">
+    <p class="kicker"><a href="../index.html">MONT</a> / Taller · Premiere Pro</p>
+    <h1>Transiciones de vídeo y audio</h1>
+    <p class="lead">Cuatro sesiones para las prácticas 1 y 3: qué es una transición y cuándo usarla, cómo aplicarla paso a paso, el ajuste fino con el modo A/B y las transiciones de audio. Basado en la Lección 7 de <em>Adobe Premiere Pro Classroom in a Book</em> (edición 2025).</p>
+  </section>
+
+  <section class="sec doc" id="presentacion">
+    <h2 class="section-title">00 · El taller en diapositivas</h2>
+    <p>Puedes repetir todos los pasos con los planos de tus prácticas.</p>
+    <div class="deck" data-src="../slides/transiciones.json"></div>
+  </section>
+
+  <section class="sec doc" id="conceptos">
+    <h2 class="section-title">01 · Qué es una transición</h2>
+    <div class="cards">
+      <div><span class="k">Corte</span><div class="tl mini"><div class="tl-track"><span class="tl-clip v" style="flex:1">A</span><span class="tl-clip t" style="flex:1">B</span></div></div><p>El punto donde un clip acaba y empieza el siguiente. También se llama edición o punto de edición, y se ve como una línea vertical entre clips.</p></div>
+      <div><span class="k">Transición</span><div class="tl mini"><div class="tl-track"><span class="tl-clip v" style="flex:1">A</span><span class="tl-clip fx" style="flex:.6"></span><span class="tl-clip t" style="flex:1">B</span></div></div><p>Un efecto preestablecido que une clips vecinos: disolvencias, barridos, inmersiones a un color. Suaviza el paso de una escena a la siguiente.</p></div>
+    </div>
+    <p>Se aplica arrastrándola desde el panel Effects hasta el punto de edición. La habilidad está en la <strong>colocación</strong>, la <strong>duración</strong> y los <strong>ajustes</strong> (dirección, movimiento, posiciones de inicio y fin). Se puede ajustar en la Timeline, pero es más cómodo y preciso en Effect Controls.</p>
+
+    <h3>Cuándo usar una transición</h3>
+    <p>Las transiciones funcionan cuando ayudan al espectador a entender la historia. Una disolvencia, un fundido a negro o una transición animada pueden indicar:</p>
+    <div class="cards">
+      <div><h4>Cambio de lugar</h4><p>Por ejemplo, pasar de un interior a un exterior.</p></div>
+      <div><h4>Paso del tiempo</h4><p>Un salto hacia delante en el tiempo.</p></div>
+      <div><h4>Cambio de perspectiva</h4><p>El punto de vista de un personaje cambia.</p></div>
+    </div>
+    <p>Un <strong>fundido a negro</strong> al final de una escena indica con claridad que ha terminado. Y si un personaje se duerme y la imagen se vuelve difusa y luminosa, el público entiende que es un sueño.</p>
+
+    <div class="cards">
+      <div class="hot"><span class="k">Buenas prácticas</span><h4>Si dudas, menos es más</h4><p>La mayoría de programas de televisión y películas usan solo cortes. Si un efecto no aporta, distrae y recuerda al público que está viendo una historia. Si parece intencionado, el público confía en tu decisión, guste o no.</p></div>
+    </div>
+    <p class="note"><strong>Fíjate:</strong> hay excepciones con sentido. En informativos se usan para suavizar un <em>jump cut</em> (corte entre dos planos muy parecidos, que parece que falta un trozo). En Star Wars, los barridos lentos y marcados evocan las series antiguas y avisan de que se cruza espacio y tiempo.</p>
+
+    <h3>Handles: el material que no se ve</h3>
+    <p>Antes de llevar un clip a la secuencia fijas un punto In y un punto Out. Lo que queda fuera, al principio y al final, sigue disponible pero oculto: son los <strong>handles</strong>.</p>
+    <div class="tl" role="img" aria-label="Un clip con un handle oculto antes del punto In, la parte usada en la secuencia, y otro handle oculto después del punto Out">
+      <div class="tl-row"><b>clip</b><div class="tl-track"><span class="tl-clip ghost" style="flex:2">handle</span><span class="tl-clip v" style="flex:4">parte usada en la secuencia</span><span class="tl-clip ghost" style="flex:2">handle</span></div></div>
+      <div class="tl-marks" style="margin-left:calc(40px + 25%);margin-right:25%"><span>▲ In</span><span>Out ▲</span></div>
+      <p class="cap">La transición solapa el final del clip que sale con el principio del que entra, y ese material sale de los handles.</p>
+    </div>
+    <div class="cards">
+      <div><h4>Un ejemplo</h4><p>Un Cross Dissolve de 2 segundos centrado en el corte necesita al menos 1 segundo de handle en cada clip.</p></div>
+      <div><h4>Cómo saber si hay</h4><p>Un triángulo en la esquina del clip, en la Timeline, indica que no quedan más fotogramas del clip original. El Source Monitor muestra cuánto material queda.</p></div>
+    </div>
+    <!-- Fase 3: herramienta interactiva de handles y transiciones -->
+    <div class="tool-slot" data-tool="handles"></div>
+  </section>
+
+  <section class="sec doc" id="video">
+    <h2 class="section-title">02 · Transiciones de vídeo paso a paso</h2>
+    <h3>Dónde están</h3>
+    <ol class="steps">
+      <li>Window &gt; Workspaces &gt; <strong>Effects</strong>, y restablece al diseño guardado.</li>
+      <li>En el panel Effects, abre <strong>Video Transitions</strong>.</li>
+      <li>Busca por nombre en el campo Search o recorre las carpetas.</li>
+    </ol>
+    <p>Las siete subcategorías: <span class="tag">Dissolve</span> <span class="tag">Immersive Video</span> <span class="tag">Iris</span> <span class="tag">Page Peel</span> <span class="tag">Slide</span> <span class="tag">Wipe</span> <span class="tag">Zoom</span></p>
+    <p class="note"><strong>Ojo:</strong> Video Effects &gt; Transition es otra carpeta distinta. Esos efectos se aplican a un clip entero y revelan su contenido entre el primer y el último fotograma, sin usar handles. Van bien para superponer texto o gráficos.</p>
+
+    <h3>Transición de un solo lado</h3>
+    <ol class="steps">
+      <li>Abre la secuencia en la Timeline.</li>
+      <li>Ve a Effects &gt; Video Transitions &gt; Dissolve &gt; <strong>Cross Dissolve</strong>.</li>
+      <li>Arrástralo al inicio del primer clip: un resaltado muestra dónde se añadirá. Suelta.</li>
+      <li>Arrastra otro Cross Dissolve al final del último clip.</li>
+      <li>Reproduce: fundido desde negro al principio y a negro al final.</li>
+    </ol>
+    <p>¿Por qué se ve negro? Al final del último clip no hay otro clip conectado, así que la imagen se disuelve en el fondo negro de la Timeline. Parece un Dip To Black, pero en realidad el clip se vuelve transparente. No usa handles: la transición no pasa del final del clip.</p>
+
+    <h3>Transición entre dos clips</h3>
+    <ol class="steps">
+      <li>Coloca el playhead en el corte y pulsa <kbd>=</kbd> dos o tres veces para acercar el zoom.</li>
+      <li>Arrastra <strong>Dip To White</strong> (grupo Dissolve) al corte entre el primer y el segundo clip.</li>
+      <li>Encaja en una de tres posiciones y el puntero cambia para indicarla. Alinéala con el <strong>centro</strong> del corte.</li>
+      <li>En el grupo Slide, arrastra <strong>Push</strong> al corte entre el segundo y el tercer clip, centrada.</li>
+      <li>Flecha <kbd>↑</kbd> o <kbd>↓</kbd>: salta al corte anterior o siguiente.</li>
+    </ol>
+    <div class="tl" role="img" aria-label="Tres posiciones de una transición: terminando en el corte, centrada en el corte y empezando en el corte">
+      <div class="tl-row"><b>fin</b><div class="tl-track"><span class="tl-clip v" style="flex:3">A</span><span class="tl-clip t" style="flex:3">B</span></div></div>
+      <div class="tl-row"><b>centro</b><div class="tl-track"><span class="tl-clip v" style="flex:2.4">A</span><span class="tl-clip fx" style="flex:1.2">fx</span><span class="tl-clip t" style="flex:2.4">B</span></div></div>
+      <p class="cap">Dip To White va llenando la imagen de blanco hasta una pantalla totalmente blanca y así oculta el corte. Si las flechas no responden, comprueba que el panel Timeline está activo (contorno azul).</p>
+    </div>
+
+    <h3>Cambiar la dirección y sustituir</h3>
+    <div class="cards">
+      <div><h4>Cambiar la dirección</h4><p>Haz clic una vez en el icono de la transición Push en la Timeline. En Effect Controls, pulsa los triángulos junto a la miniatura A/B: por ejemplo, de West To East a East To West. Si el panel aparece vacío, vuelve a seleccionar la transición.</p></div>
+      <div><h4>Sustituir una transición</h4><p>Arrastra la nueva encima de la existente, por ejemplo Barn Doors (Wipe) sobre Push. Hereda la duración y la alineación, pero no otros ajustes, como los colores de borde. Prueba Border Width en 7 para un borde negro fino.</p></div>
+    </div>
+    <p>Para eliminar una transición, selecciónala y pulsa <kbd>Delete</kbd> (macOS) o <kbd>Backspace</kbd> (Windows).</p>
+
+    <h3>Duración por defecto</h3>
+    <ol class="steps">
+      <li>macOS: Premiere Pro &gt; Settings &gt; Timeline. Windows: Edit &gt; Preferences &gt; Timeline.</li>
+      <li>En <strong>Video Transition Default Duration</strong> verás 25 o 30 fotogramas, según la región.</li>
+      <li>Cámbialo a 1 segundo y pulsa OK.</li>
+    </ol>
+    <div class="table"><table>
+      <thead><tr><th>Preferences &gt; Timeline</th><th>Valor</th></tr></thead>
+      <tbody>
+        <tr><td>Video Transition Default Duration</td><td>1.00 s</td></tr>
+        <tr><td>Audio Transition Default Duration</td><td>1.00 s</td></tr>
+        <tr><td>Still Image Default Duration</td><td>5.00 s</td></tr>
+      </tbody>
+    </table></div>
+    <p>Las transiciones ya aplicadas conservan sus ajustes; las nuevas usan la duración nueva. Si la duración está en fotogramas, el tiempo real cambia con la frecuencia de la secuencia: por eso conviene ponerla en segundos.</p>
+
+    <h3>Barras de render</h3>
+    <div class="cards render">
+      <div><i style="--c:#e0b200"></i><h4>Amarilla</h4><p>Premiere espera poder reproducir el efecto con fluidez.</p></div>
+      <div><i style="--c:#d6402f"></i><h4>Roja</h4><p>Puede hacer falta renderizar para reproducir sin perder fotogramas.</p></div>
+      <div><i style="--c:#2e9b57"></i><h4>Verde</h4><p>Ya está renderizada: la reproducción debe ser fluida.</p></div>
+    </div>
+    <p>Para renderizar, pulsa <kbd>Return</kbd> (macOS) o <kbd>Enter</kbd> (Windows). Si marcas In y Out sobre una zona, solo se renderiza esa parte.</p>
+
+    <h3>Varias transiciones de golpe</h3>
+    <div class="cards">
+      <div><h4>Aplicar la de por defecto</h4><p>Con Selection, arrastra un marco alrededor de los clips empezando en una zona vacía. Después, Sequence &gt; Apply Default Transitions To Selection, o <kbd>Shift</kbd>+<kbd>D</kbd>. Para cambiar la de por defecto: clic derecho sobre otra en Effects &gt; Set Selected As Default Transition (queda con contorno azul).</p></div>
+      <div><h4>Copiar una transición</h4><p>Aplica una a un corte y alárgala. Selecciónala y copia con <kbd>Cmd/Ctrl</kbd>+<kbd>C</kbd>. Mantén <kbd>Cmd/Ctrl</kbd> y arrastra un marco sobre otros cortes (seleccionas cortes, no clips). Pega con <kbd>Cmd/Ctrl</kbd>+<kbd>V</kbd>.</p></div>
+    </div>
+    <p class="note"><strong>Cuidado:</strong> al aplicar la transición por defecto a una selección también se sustituyen los crossfades de audio existentes por otros con la duración de audio por defecto. Con <kbd>Option</kbd>/<kbd>Alt</kbd> seleccionas solo la parte de vídeo o de audio de un clip enlazado.</p>
+  </section>
+
+  <section class="sec doc" id="ajuste">
+    <h2 class="section-title">03 · Ajuste fino</h2>
+    <h3>Modo A/B en Effect Controls</h3>
+    <p>Divide la pista en dos: el clip A, el clip B y la transición entre ambos. Ahí se ven los handles y se ajusta con precisión el momento del efecto.</p>
+    <ol class="steps">
+      <li>Selecciona la transición en la Timeline.</li>
+      <li>En Effect Controls, marca <strong>Show Actual Sources</strong> para ver el resultado en la miniatura.</li>
+      <li>En el menú <strong>Alignment</strong> elige Start At Cut: la transición se mueve.</li>
+      <li>Pulsa <strong>Play The Transition</strong>, el botón de arriba a la izquierda, para previsualizarla.</li>
+    </ol>
+    <div class="tl" role="img" aria-label="Línea de tiempo A/B: el clip A arriba, la transición en el centro y el clip B abajo, solapados">
+      <div class="tl-row"><b>A</b><div class="tl-track"><span class="tl-clip v" style="flex:5">clip A</span><span class="tl-clip ghost" style="flex:2">handle</span><span class="tl-gap" style="flex:3"></span></div></div>
+      <div class="tl-row"><b>fx</b><div class="tl-track"><span class="tl-gap" style="flex:4"></span><span class="tl-clip fx" style="flex:2">transición</span><span class="tl-gap" style="flex:4"></span></div></div>
+      <div class="tl-row"><b>B</b><div class="tl-track"><span class="tl-gap" style="flex:3"></span><span class="tl-clip ghost" style="flex:2">handle</span><span class="tl-clip t" style="flex:5">clip B</span></div></div>
+      <p class="cap">Esquema de la línea de tiempo A/B. Si no la ves, pulsa Show/Hide Timeline View, arriba a la derecha del panel.</p>
+    </div>
+
+    <h3>Cuatro formas de cambiar la duración</h3>
+    <div class="cards">
+      <div><span class="k">1</span><h4>Arrastrar en la Timeline</h4><p>Con Selection, arrastra el borde del icono de la transición.</p></div>
+      <div><span class="k">2</span><h4>Arrastrar en la línea A/B</h4><p>Lo mismo, pero en la línea de tiempo A/B de Effect Controls.</p></div>
+      <div><span class="k">3</span><h4>Valor Duration</h4><p>En Effect Controls, clic en los números azules, escribe 300 y pulsa <kbd>Tab</kbd>: se convierte en 00:00:03:00, es decir, 3 segundos.</p></div>
+      <div><span class="k">4</span><h4>Doble clic</h4><p>Doble clic en el icono de la transición y cambia Duration en el cuadro Set Transition Duration.</p></div>
+    </div>
+    <p class="note"><strong>Recuerda:</strong> revisa siempre el resultado. Si la transición invade a la siguiente, Alignment pasa a Custom Start y Premiere ajusta el inicio solo. Reprodúcela para ver el material que ha salido de los handles.</p>
+
+    <h3>Rolling Edit frente a Slide</h3>
+    <div class="cards">
+      <div><h4>Rolling Edit</h4><p>El puntero se vuelve rojo sobre la línea vertical del corte. Arrastra a izquierda o derecha: cambia el <strong>momento del corte</strong>. Al soltar se actualizan el Out del clip de la izquierda y el In del de la derecha.</p></div>
+      <div><h4>Slide</h4><p>El puntero cambia sobre la transición, a un lado de la línea del corte. Mueve el inicio y el final <strong>del efecto</strong>, sin cambiar su duración ni el punto de edición.</p></div>
+    </div>
+    <p class="note"><strong>Consejo:</strong> si la línea del corte está pegada al borde del efecto, amplía el zoom de la línea A/B. Si ves una línea azul, es el playhead: apártalo.</p>
+
+    <h3>Morph Cut: el corte invisible</h3>
+    <ol class="steps">
+      <li>Localiza un corte con salto (<em>jump cut</em>) en una entrevista.</li>
+      <li>Arrastra <strong>Morph Cut</strong> (Video Transitions &gt; Dissolve) al corte entre los dos clips.</li>
+      <li>Espera al análisis (<em>Analyzing in background</em>); puedes seguir trabajando.</li>
+      <li>Doble clic en la transición y pon la duración en 16 fotogramas.</li>
+      <li>Renderiza con <kbd>Return</kbd> o <kbd>Enter</kbd> y reproduce.</li>
+    </ol>
+    <p>Funciona con entrevistas de una sola persona que mira a cámara, cuando quitas pausas o contenido y la imagen cambia muy poco. Mejor con duraciones cortas: no es perfecto, pero es difícil que el público note el empalme.</p>
+
+    <h3>Cuando faltan handles</h3>
+    <p>Si alargas una transición más allá de los handles disponibles, aparece con barras diagonales: Premiere mantiene en pantalla el último fotograma disponible (un fotograma congelado) para completarla.</p>
+    <div class="tl" role="img" aria-label="Transición con una zona rayada en el centro que representa el fotograma congelado">
+      <div class="tl-row"><b>V1</b><div class="tl-track"><span class="tl-clip v" style="flex:3">A</span><span class="tl-clip freeze" style="flex:2">congelado</span><span class="tl-clip t" style="flex:3">B</span></div></div>
+      <p class="cap">Zona rayada: fotograma congelado.</p>
+    </div>
+    <div class="cards">
+      <div><h4>Ajustar la transición</h4><p>Cambia su duración o su posición.</p></div>
+      <div><h4>Rolling Edit</h4><p>Arrastra el corte, no el icono del efecto. Mejora el resultado, aunque no siempre quita todos los congelados.</p></div>
+      <div><h4>Ripple Edit</h4><p>Acorta un clip arrastrando un lado del corte: así aumenta su handle.</p></div>
+    </div>
+  </section>
+
+  <section class="sec doc" id="audio">
+    <h2 class="section-title">04 · Transiciones de audio</h2>
+    <div class="cards">
+      <div><h4>Quitan chasquidos</h4><p>Eliminan <em>pops</em> y cortes bruscos en la banda sonora.</p></div>
+      <div><h4>El público lo nota</h4><p>Se fija más en la inconsistencia del sonido que en la calidad global de la banda sonora.</p></div>
+      <div><h4>Uno o dos fotogramas</h4><p>Es habitual poner transiciones de audio muy cortas en cada corte para evitar chasquidos.</p></div>
+    </div>
+    <p class="note"><strong>Truco:</strong> pon la duración por defecto de las transiciones de audio en dos fotogramas, selecciona varios clips y elige Sequence &gt; Apply Audio Transition.</p>
+
+    <h3>Tres tipos de crossfade</h3>
+    <p>Están en Effects &gt; Audio Transitions &gt; Crossfade. En la Timeline, una curva sobre el icono muestra cómo cambia el nivel con el tiempo.</p>
+    <div class="cards xf">
+      <div><svg viewBox="0 0 120 60" aria-hidden="true"><path class="o" d="M5 8L115 52"/><path class="i" d="M5 52L115 8"/></svg><h4>Constant Gain</h4><p>Cambia el volumen de forma constante. Puede notarse una ligera bajada de nivel en el medio.</p><p class="eg">Ideal para ediciones de música.</p></div>
+      <div class="hot"><svg viewBox="0 0 120 60" aria-hidden="true"><path class="o" d="M5 8C60 8 95 25 115 52"/><path class="i" d="M5 52C25 25 60 8 115 8"/></svg><h4>Constant Power</h4><p>La de por defecto. Suave y gradual, como una disolvencia de vídeo: mezcla sin una bajada notable en el medio.</p></div>
+      <div><svg viewBox="0 0 120 60" aria-hidden="true"><path class="o" d="M5 8C30 45 60 52 115 52"/><path class="i" d="M5 52C60 52 90 45 115 8"/></svg><h4>Exponential Fade</h4><p>Curva logarítmica para bajar y subir el audio.</p><p class="eg">Muchos editores la prefieren en transiciones de un solo lado, como entrar con música desde el silencio.</p></div>
+    </div>
+
+    <h3>Aplicar un crossfade paso a paso</h3>
+    <ol class="steps">
+      <li>Abre una secuencia con clips con audio y elige la herramienta Selection.</li>
+      <li>Effects &gt; Audio Transitions &gt; Crossfade: arrastra <strong>Exponential Fade</strong> al inicio del primer clip de audio.</li>
+      <li>Clic derecho en el borde derecho del último clip &gt; <strong>Apply Default Transitions</strong>.</li>
+      <li>Arrastra un extremo de la transición de audio para alargarla y escucha.</li>
+      <li>Playhead cerca del principio y <kbd>Cmd/Ctrl</kbd>+<kbd>D</kbd>: Cross Dissolve de vídeo por defecto.</li>
+    </ol>
+    <p>El paso 3 añade una transición de vídeo y otra de audio, porque están enlazados. Para añadir solo la de audio, mantén <kbd>Option</kbd> (macOS) o <kbd>Alt</kbd> (Windows) al hacer clic derecho.</p>
+
+    <h3>Crossfades en todos los cortes</h3>
+    <ol class="steps">
+      <li>Con Selection, mantén <kbd>Cmd</kbd>+<kbd>Option</kbd> (macOS) o <kbd>Ctrl</kbd>+<kbd>Alt</kbd> (Windows).</li>
+      <li>Arrastra un marco sobre los cortes de audio de la pista Audio 1, empezando por debajo de los clips para no coger vídeo.</li>
+      <li>Pulsa <kbd>Shift</kbd>+<kbd>D</kbd>: se aplica la transición por defecto, solo de audio porque solo hay audio seleccionado.</li>
+      <li>Pulsa <kbd>Esc</kbd> o haz clic en una zona vacía para deseleccionar, y reproduce.</li>
+    </ol>
+    <div class="table"><table>
+      <thead><tr><th>Tecla</th><th>Qué hace</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>Cmd/Ctrl</kbd></td><td>Selecciona cortes en vez de clips</td></tr>
+        <tr><td><kbd>Option/Alt</kbd></td><td>Desvincula temporalmente audio y vídeo</td></tr>
+        <tr><td><kbd>Shift</kbd>+<kbd>Cmd/Ctrl</kbd>+<kbd>D</kbd></td><td>Transición de audio por defecto, aunque haya vídeo seleccionado</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Fade handles: fundidos rápidos</h3>
+    <p>Todos los clips de audio tienen un <strong>fade handle</strong> en cada extremo. Para verlo, pasa el puntero por el clip o selecciónalo. Si ya hay un fundido, el tirador aparece sobre el icono de la transición.</p>
+    <div class="cards">
+      <div><span class="k">← →</span><h4>Izquierda o derecha</h4><p>Ajusta la duración del fundido o del crossfade.</p></div>
+      <div><span class="k">↑ ↓</span><h4>Arriba o abajo</h4><p>Ajusta la curva del fundido o del crossfade.</p></div>
+    </div>
+    <p>Para subir el nivel gradualmente al inicio de un clip: aplica un crossfade de audio al principio o arrastra su fade handle.</p>
+  </section>
+
+  <section class="sec doc" id="taller">
+    <h2 class="section-title">05 · Taller: tres transiciones</h2>
+    <p>Ejercicio para la práctica 1, con los planos MASTER_03, MASTER_04 y MASTER_05. Marca cada paso al terminarlo.</p>
+    <ul class="check" data-key="taller-transiciones">
+      <li><label><input type="checkbox"><span>Revisa los handles de tus planos: busca triángulos en las esquinas de los clips.</span></label></li>
+      <li><label><input type="checkbox"><span>Aplica al menos tres transiciones entre planos, por ejemplo Cross Dissolve, Dip To White y una de Slide o Wipe.</span></label></li>
+      <li><label><input type="checkbox"><span>Centra cada una sobre el corte y reprodúcela para comprobar el resultado.</span></label></li>
+      <li><label><input type="checkbox"><span>Si no va fluido, renderiza con Return (macOS) o Enter (Windows).</span></label></li>
+      <li><label><input type="checkbox"><span>Pregúntate: ¿tiene cada transición un motivo?</span></label></li>
+    </ul>
+    <p class="note"><strong>Recuerda:</strong> que la práctica pida un mínimo no significa que haya que llenarla de efectos. Si dudas, menos es más.</p>
+  </section>
+
+  <section class="sec doc" id="chuleta">
+    <h2 class="section-title">06 · Chuleta de atajos</h2>
+    <div class="table"><table>
+      <thead><tr><th>Atajo</th><th>Acción</th><th>Atajo</th><th>Acción</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>=</kbd></td><td>Acercar zoom</td><td><kbd>Cmd/Ctrl</kbd>+<kbd>D</kbd></td><td>Vídeo por defecto</td></tr>
+        <tr><td><kbd>\</kbd></td><td>Ver toda la secuencia</td><td><kbd>Shift</kbd>+<kbd>D</kbd></td><td>Por defecto a la selección</td></tr>
+        <tr><td><kbd>V</kbd></td><td>Herramienta Selection</td><td><kbd>Shift</kbd>+<kbd>Cmd/Ctrl</kbd>+<kbd>D</kbd></td><td>Audio por defecto</td></tr>
+        <tr><td><kbd>↑</kbd> <kbd>↓</kbd></td><td>Corte anterior o siguiente</td><td><kbd>Cmd/Ctrl</kbd>+<kbd>C</kbd> / <kbd>V</kbd></td><td>Copiar / pegar</td></tr>
+        <tr><td><kbd>Return</kbd> / <kbd>Enter</kbd></td><td>Renderizar</td><td><kbd>Delete</kbd> / <kbd>Backspace</kbd></td><td>Borrar transición</td></tr>
+      </tbody>
+    </table></div>
+    <p>También: <kbd>Cmd/Ctrl</kbd>+<kbd>Z</kbd> deshace y <kbd>Esc</kbd> deselecciona. Los atajos suelen depender del panel activo.</p>
+  </section>
+
+  <section class="sec doc" id="repaso">
+    <h2 class="section-title">07 · Repaso</h2>
+    <details class="qa"><summary>¿Cómo aplicas la transición por defecto a varios clips de una secuencia?</summary><div><p>Selecciona los clips y elige Sequence &gt; Apply Default Transitions To Selection, o pulsa <kbd>Shift</kbd>+<kbd>D</kbd>.</p></div></details>
+    <details class="qa"><summary>En el panel Effects, ¿cómo localizas una transición por su nombre?</summary><div><p>Escribe el nombre en el campo de búsqueda. Se muestran los efectos y transiciones, de audio y vídeo, que contienen esas letras; añade más para afinar.</p></div></details>
+    <details class="qa"><summary>¿Cómo sustituyes una transición por otra?</summary><div><p>Arrastra la nueva sobre la que rechazas. Hereda la temporización, pero no otros ajustes, como los colores de borde.</p></div></details>
+    <details class="qa"><summary>¿Cuáles son tres formas de cambiar la duración de una transición de vídeo?</summary><div><p>Arrastrar el borde del icono en la Timeline, hacerlo en la línea A/B de Effect Controls, cambiar Duration en Effect Controls o hacer doble clic en el icono y cambiar Duration en el cuadro.</p></div></details>
+    <details class="qa"><summary>¿Cuál es una forma fácil de subir gradualmente el nivel de audio al inicio de un clip?</summary><div><p>Aplicar un crossfade de audio al inicio del clip o arrastrar su fade handle.</p></div></details>
+    <details class="qa"><summary>¿Qué pasa si alargas una transición más allá de los handles?</summary><div><p>Aparecen barras diagonales: Premiere congela el último fotograma disponible para completarla.</p></div></details>
+  </section>
+
+  <nav class="pager" aria-label="Lecciones">
+    <a href="premiere.html">Anterior<strong>← Premiere Pro paso a paso</strong></a>
+    <a class="next" href="practicas.html">Siguiente<strong>Premiere para las prácticas →</strong></a>
+  </nav>
+</main>
+
+<footer>© <span data-year>2026</span> · Andrés Vidal Martín Martín · Montaje · <a href="mailto:avmmeducacion@gmail.com">avmmeducacion@gmail.com</a></footer>
+<script src="../../assets/site.js" defer></script>
+<script src="../assets/mont.js" defer></script>
+</body>
+</html>

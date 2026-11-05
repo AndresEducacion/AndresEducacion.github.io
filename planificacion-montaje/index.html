@@ -4,93 +4,131 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MONT | Planificación del montaje y postproducción</title>
+<meta name="description" content="Material de Montaje: planos, cortes y reglas del montaje, Premiere Pro paso a paso, transiciones y las prácticas del trimestre.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2024%2024'%3E%3Crect%20x%3D'-1'%20y%3D'-1'%20width%3D'26'%20height%3D'26'%20rx%3D'5'%20fill%3D'%23191919'%2F%3E%3Cg%20fill%3D'none'%20stroke%3D'%239b7bff'%20stroke-width%3D'1.6'%20stroke-linecap%3D'round'%20stroke-linejoin%3D'round'%3E%3Crect%20x%3D'2.5'%20y%3D'2.5'%20width%3D'8.5'%20height%3D'6'%20rx%3D'.8'%2F%3E%3Crect%20x%3D'13'%20y%3D'2.5'%20width%3D'8.5'%20height%3D'6'%20rx%3D'.8'%2F%3E%3Cpath%20d%3D'M16.2%204l2.8%201.5-2.8%201.5z'%20fill%3D'%239b7bff'%2F%3E%3Crect%20x%3D'2.5'%20y%3D'13'%20width%3D'6.5'%20height%3D'3'%20rx%3D'.6'%2F%3E%3Crect%20x%3D'13'%20y%3D'13'%20width%3D'8.5'%20height%3D'3'%20rx%3D'.6'%2F%3E%3Crect%20x%3D'2.5'%20y%3D'18.5'%20width%3D'6.5'%20height%3D'3'%20rx%3D'.6'%2F%3E%3Crect%20x%3D'13'%20y%3D'18.5'%20width%3D'5'%20height%3D'3'%20rx%3D'.6'%2F%3E%3Cpath%20d%3D'M11%2012v10'%2F%3E%3Cpath%20d%3D'M9.5%2010.4h3L11%2012z'%20fill%3D'%239b7bff'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E">
 <link rel="stylesheet" href="../assets/site.css">
-<style>
-/* Plantilla provisional: el texto de ejemplo se ve atenuado hasta que se sustituya por el real */
-.prov{color:var(--mut)}
-</style>
+<link rel="stylesheet" href="assets/mont.css">
 </head>
 <body class="m-mont">
 <header class="top">
   <a class="brand" href="index.html">MONT<span class="dash"> —</span> Montaje y postproducción</a>
-  <nav aria-label="Apartados">
-    <a href="#presentacion">Presentación</a>
+  <nav aria-label="Módulo">
     <a href="#temario">Temario</a>
     <a href="#practicas">Prácticas</a>
     <a href="#recursos">Recursos</a>
-    <a href="#evaluacion">Evaluación</a>
   </nav>
   <a class="back" href="../index.html">← Portal</a>
 </header>
 
 <main>
   <section class="hero">
-    <p class="kicker">Módulo · FP Comunicación Audiovisual</p>
+    <p class="kicker">Módulo 05 · FP Comunicación Audiovisual</p>
     <h1>Planificación del montaje y postproducción</h1>
-    <div class="doc"><p class="note warn" role="note"><strong>Contenido provisional.</strong> Todo el texto de esta página es de ejemplo y debe sustituirse por el real.</p></div>
-  </section>
-
-  <section id="presentacion" class="sec" aria-labelledby="t-presentacion">
-    <h2 id="t-presentacion" class="section-title">Presentación del módulo</h2>
-    <div class="doc">
-      <p class="prov">[Provisional] Breve descripción del módulo, horas, profesorado y objetivos generales.</p>
-      <ul>
-        <li>Duración: <em>por definir</em> horas</li>
-        <li>Curso: <em>por definir</em></li>
-        <li>Resultados de aprendizaje: <em>por definir</em></li>
-      </ul>
-    </div>
+    <p class="lead">Aprende a pensar el montaje y a llevarlo a cabo: la escala de planos, cómo y por qué se une un plano con otro, y Adobe Premiere Pro de principio a fin para montar las prácticas del trimestre.</p>
+    <p class="next-due" data-next-due hidden></p>
   </section>
 
   <section id="temario" class="sec" aria-labelledby="t-temario">
     <h2 id="t-temario" class="section-title">Temario</h2>
-    <ul class="list prov">
-      <li><span class="row"><span class="num">01</span><span><strong>[Provisional] Flujo de trabajo en postproducción</strong></span></span></li>
-      <li><span class="row"><span class="num">02</span><span><strong>[Provisional] Organización de material y proyectos</strong></span></span></li>
-      <li><span class="row"><span class="num">03</span><span><strong>[Provisional] Planificación del montaje</strong></span></span></li>
-      <li><span class="row"><span class="num">04</span><span><strong>[Provisional] Exportación y control de calidad</strong></span></span></li>
+    <ul class="list">
+      <li><a class="row" href="lessons/ut2.html">
+        <span class="num">UT2</span>
+        <span><strong>Planos, cortes y reglas del montaje</strong><small>Escala de planos, transiciones, tiempo, espacio y ritmo, tipos de montaje y reglas de corte de Murch y Dmytryk.</small></span>
+        <span class="tag">Teoría</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
+      <li><a class="row" href="lessons/premiere.html">
+        <span class="num">PR1</span>
+        <span><strong>Premiere Pro paso a paso</strong><small>Del proyecto vacío a la exportación: interfaz, importación, edición, efectos, keyframes, audio y subtítulos.</small></span>
+        <span class="tag">Guía</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
+      <li><a class="row" href="lessons/transiciones.html">
+        <span class="num">PR2</span>
+        <span><strong>Transiciones de vídeo y audio</strong><small>Cuándo usarlas, handles, modo A/B, Morph Cut, crossfades y fade handles, con un taller para la práctica 1.</small></span>
+        <span class="tag">Taller</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
+      <li><a class="row" href="lessons/practicas.html">
+        <span class="num">PR3</span>
+        <span><strong>Premiere Pro para las prácticas</strong><small>Cortar, banda sonora sincronizada, voz, texto animado, croma, Lumetri y exportación en H.264 HD 1080.</small></span>
+        <span class="tag">Prácticas</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
     </ul>
   </section>
 
   <section id="practicas" class="sec" aria-labelledby="t-practicas">
     <h2 id="t-practicas" class="section-title">Prácticas</h2>
-    <div class="doc">
-      <p class="prov">[Provisional] Listado de prácticas con enunciado, fecha de entrega y criterios.</p>
-      <ul>
-        <li>Práctica 1 · <em>por definir</em></li>
-        <li>Práctica 2 · <em>por definir</em></li>
-      </ul>
-    </div>
+    <ul class="list">
+      <li><a class="row" href="lessons/practicas.html#p1">
+        <span class="num">P1</span>
+        <span><strong>Montaje de un programa de cocina</strong><small>Individual · mínimo 1:30 · 3 transiciones, texto animado y banda sonora sincronizada · 10/11/2026 <span class="due" data-date="2026-11-10"></span></small></span>
+        <span class="tag">Premiere</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
+      <li><a class="row" href="lessons/practicas.html#p2">
+        <span class="num">P2</span>
+        <span><strong>Colas para televisión</strong><small>En grupo · mínimo 50 s · planos por corte y sonido ambiente aparte · 21/11/2026 <span class="due" data-date="2026-11-21"></span></small></span>
+        <span class="tag">Premiere</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
+      <li><a class="row" href="lessons/practicas.html#p3">
+        <span class="num">P3</span>
+        <span><strong>Promoción de una aerolínea</strong><small>Individual · 20 a 30 s · 5 transiciones, efecto de vídeo y voz grabada · 01/12/2026 <span class="due" data-date="2026-12-01"></span></small></span>
+        <span class="tag">Premiere</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
+      <li><a class="row" href="lessons/practicas.html#p4">
+        <span class="num">P4</span>
+        <span><strong>Escuela rusa</strong><small>Individual · Vertov, Kuleshov y Eisenstein con fotos del móvil · PDF · 12/12/2026 <span class="due" data-date="2026-12-12"></span></small></span>
+        <span class="tag">Fotografía</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
+    </ul>
   </section>
 
   <section id="recursos" class="sec" aria-labelledby="t-recursos">
-    <h2 id="t-recursos" class="section-title">Recursos y descargas</h2>
-    <div class="doc">
-      <p class="prov">[Provisional] Aquí irán enlaces a PDFs, plantillas y material. Los vídeos pesados mejor como enlace externo.</p>
-      <ul>
-        <li><em>Documento de ejemplo (pendiente de añadir)</em></li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="evaluacion" class="sec" aria-labelledby="t-evaluacion">
-    <h2 id="t-evaluacion" class="section-title">Evaluación</h2>
-    <div class="doc"><p class="prov">[Provisional] Criterios de evaluación y calificación.</p></div>
-    <div class="table">
-      <table>
-        <thead><tr><th>Apartado</th><th>Peso</th></tr></thead>
-        <tbody>
-          <tr><td>Prácticas</td><td>por definir</td></tr>
-          <tr><td>Prueba teórica</td><td>por definir</td></tr>
-          <tr><td>Actitud y participación</td><td>por definir</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <h2 id="t-recursos" class="section-title">Recursos</h2>
+    <ul class="list">
+      <li><a class="row" href="lessons/ut2.html#presentacion">
+        <span class="num">R1</span>
+        <span><strong>UT 2 en diapositivas</strong><small>Planos, cortes y reglas del montaje, con descarga en PowerPoint.</small></span>
+        <span class="tag">Presentación</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
+      <li><a class="row" href="lessons/premiere.html#presentacion">
+        <span class="num">R2</span>
+        <span><strong>Premiere Pro paso a paso en diapositivas</strong><small>Los siete bloques de la guía, con descarga en PowerPoint.</small></span>
+        <span class="tag">Presentación</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
+      <li><a class="row" href="lessons/transiciones.html#presentacion">
+        <span class="num">R3</span>
+        <span><strong>Transiciones en diapositivas</strong><small>Las cuatro sesiones del taller, con descarga en PowerPoint.</small></span>
+        <span class="tag">Presentación</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
+      <li><a class="row" href="lessons/practicas.html#presentacion">
+        <span class="num">R4</span>
+        <span><strong>Premiere para las prácticas en diapositivas</strong><small>Pasos cortos para cocina, colas y aviones, con descarga en PowerPoint.</small></span>
+        <span class="tag">Presentación</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
+      <li><a class="row" href="lessons/premiere.html#efectos">
+        <span class="num">R5</span>
+        <span><strong>Simulador de keyframes</strong><small>Anima un rótulo con Position, Scale, Rotation y Opacity como en Effect Controls, con retos para el texto animado de las prácticas.</small></span>
+        <span class="tag">Interactivo</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
+      <li><a class="row" href="lessons/practicas.html#chuleta">
+        <span class="num">R6</span>
+        <span><strong>Chuleta de atajos de Premiere</strong><small>Los atajos de teclado que más vas a usar al montar.</small></span>
+        <span class="tag">Atajos</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
+      <li><a class="row" href="lessons/practicas.html#exportar">
+        <span class="num">R7</span>
+        <span><strong>Lista de control antes de entregar</strong><small>Compruébalo todo antes de exportar; las casillas se guardan en tu navegador.</small></span>
+        <span class="tag">Entrega</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
+      <li><a class="row" href="lessons/ut2.html#videos">
+        <span class="num">R8</span>
+        <span><strong>Vídeos de referencia</strong><small>Match cut, elipsis, cámara lenta, salto de eje, montaje paralelo y reglas de montaje.</small></span>
+        <span class="tag">Vídeo</span><span class="arrow" aria-hidden="true">→</span>
+      </a></li>
+    </ul>
   </section>
 </main>
 
-<footer>© <span data-year>2026</span> · Andrés Vidal Martín Martín · Planificación del montaje y postproducción · plantilla</footer>
+<footer>© <span data-year>2026</span> · Andrés Vidal Martín Martín · Montaje · <a href="mailto:avmmeducacion@gmail.com">avmmeducacion@gmail.com</a></footer>
 <script src="../assets/site.js" defer></script>
+<script src="assets/mont.js" defer></script>
 </body>
 </html>

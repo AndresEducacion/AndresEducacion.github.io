@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UT 2 · Planos, cortes y reglas del montaje | Montaje</title>
+<meta name="description" content="Escala de planos, transiciones, tiempo, espacio y ritmo, tipos de montaje, Eisenstein y Pudovkin, y reglas de corte de Murch y Dmytryk.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2024%2024'%3E%3Crect%20x%3D'-1'%20y%3D'-1'%20width%3D'26'%20height%3D'26'%20rx%3D'5'%20fill%3D'%23191919'%2F%3E%3Cg%20fill%3D'none'%20stroke%3D'%239b7bff'%20stroke-width%3D'1.6'%20stroke-linecap%3D'round'%20stroke-linejoin%3D'round'%3E%3Crect%20x%3D'2.5'%20y%3D'2.5'%20width%3D'8.5'%20height%3D'6'%20rx%3D'.8'%2F%3E%3Crect%20x%3D'13'%20y%3D'2.5'%20width%3D'8.5'%20height%3D'6'%20rx%3D'.8'%2F%3E%3Cpath%20d%3D'M16.2%204l2.8%201.5-2.8%201.5z'%20fill%3D'%239b7bff'%2F%3E%3Crect%20x%3D'2.5'%20y%3D'13'%20width%3D'6.5'%20height%3D'3'%20rx%3D'.6'%2F%3E%3Crect%20x%3D'13'%20y%3D'13'%20width%3D'8.5'%20height%3D'3'%20rx%3D'.6'%2F%3E%3Crect%20x%3D'2.5'%20y%3D'18.5'%20width%3D'6.5'%20height%3D'3'%20rx%3D'.6'%2F%3E%3Crect%20x%3D'13'%20y%3D'18.5'%20width%3D'5'%20height%3D'3'%20rx%3D'.6'%2F%3E%3Cpath%20d%3D'M11%2012v10'%2F%3E%3Cpath%20d%3D'M9.5%2010.4h3L11%2012z'%20fill%3D'%239b7bff'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../assets/mont.css">
+</head>
+<body class="m-mont">
+<header class="top">
+  <a class="brand" href="../index.html">MONT<span class="dash"> —</span> Montaje y postproducción</a>
+  <nav aria-label="Módulo">
+    <a href="../index.html#temario">Temario</a>
+    <a href="../index.html#practicas">Prácticas</a>
+    <a href="../index.html#recursos">Recursos</a>
+  </nav>
+  <a class="back" href="../../index.html">← Portal</a>
+</header>
+
+<main>
+  <section class="hero small">
+    <p class="kicker"><a href="../index.html">MONT</a> / Teoría · UT 2</p>
+    <h1>Planos, cortes y reglas del montaje</h1>
+    <p class="lead">Ya sabes nombrar un plano. Ahora toca entender cómo se unen dos planos y por qué: transiciones, tiempo, espacio, ritmo, tipos de montaje y las reglas que usan los montadores para decidir dónde cortar.</p>
+  </section>
+
+  <section class="sec doc" id="presentacion">
+    <h2 class="section-title">00 · La unidad en diapositivas</h2>
+    <p>Resumen de toda la unidad para seguir en clase o repasar. Debajo tienes cada apartado desarrollado.</p>
+    <div class="deck" data-src="../slides/ut2.json"></div>
+  </section>
+
+  <section class="sec doc" id="escala">
+    <h2 class="section-title">01 · Escala de planos</h2>
+    <p class="def">El plano mide la relación entre el <strong>sujeto</strong> y el <strong>cuadro</strong>. No importa si hay una cara, un cuerpo, un coche o un paisaje.</p>
+    <p>Para nombrar cualquier plano, hazte tres preguntas en este orden:</p>
+    <ol class="steps">
+      <li><strong>¿Cuál es el sujeto completo?</strong> Una persona, un coche, una taza o una sola hoja: lo decides tú antes de mirar el encuadre.</li>
+      <li><strong>¿Cuánto de él entra en el cuadro?</strong> Todo, la mitad, una parte importante o un solo elemento.</li>
+      <li><strong>¿Cuánto espacio queda alrededor?</strong> Si manda el entorno, el plano es abierto. Si el sujeto llena el cuadro, es cerrado.</li>
+    </ol>
+
+    <figure class="scale">
+      <svg viewBox="0 0 800 340" role="img" aria-label="Un coche visto de lado con cuatro rectángulos: plano entero alrededor de todo el coche, plano medio de la puerta al morro, primer plano del morro con faro y rueda, y plano detalle del tapacubos">
+        <g class="car">
+          <path class="body" d="M118 262v-44q0-14 14-18l96-12 66-50h206l84 52 82 12q18 4 18 22v38z"/>
+          <path class="glass" d="M306 168l-46 34h142v-34zM420 168v34h132l-60-34z"/>
+          <rect class="light" x="664" y="214" width="20" height="14" rx="3"/>
+          <circle class="wheel" cx="236" cy="266" r="40"/><circle class="hub" cx="236" cy="266" r="17"/>
+          <circle class="wheel" cx="574" cy="266" r="40"/><circle class="hub" cx="574" cy="266" r="17"/>
+          <path class="ground" d="M40 306h720"/>
+        </g>
+        <rect class="frame f1" x="92" y="108" width="626" height="222" rx="4"/><text class="lbl f1" x="102" y="130">PE</text>
+        <rect class="frame f2" x="400" y="120" width="306" height="200" rx="4"/><text class="lbl f2" x="410" y="142">PM</text>
+        <rect class="frame f3" x="508" y="176" width="190" height="136" rx="4"/><text class="lbl f3" x="518" y="198">PP</text>
+        <rect class="frame f4" x="548" y="240" width="52" height="52" rx="4"/><text class="lbl f4" x="606" y="262">PD</text>
+      </svg>
+      <div class="scale-strip" aria-hidden="true">
+        <span><b>GPG</b>manda el entorno</span><span><b>PG / PE</b>sujeto entero</span><span><b>PM</b>la mitad</span><span><b>PP</b>una parte</span><span><b>PPP</b>dentro de la parte</span><span><b>PD</b>un elemento</span>
+      </div>
+      <figcaption>Un solo coche, cuatro rectángulos: cada rectángulo es la pantalla. Cuanto más pequeño, más cerrado es el plano.</figcaption>
+    </figure>
+
+    <div class="table"><table>
+      <thead><tr><th>Plano</th><th>En una persona</th><th>En un coche</th></tr></thead>
+      <tbody>
+        <tr><td><strong>GPG</strong></td><td>Una figura minúscula en el paisaje</td><td>Un coche pequeño: mandan la carretera y el campo</td></tr>
+        <tr><td><strong>PG / PE</strong></td><td>El cuerpo entero, de pies a cabeza</td><td>El coche entero, de parachoques a parachoques</td></tr>
+        <tr><td><strong>PM</strong></td><td>De la cintura hacia arriba</td><td>De la puerta al morro: medio coche</td></tr>
+        <tr><td><strong>PP</strong></td><td>El rostro y los hombros</td><td>El morro: capó, faro y rueda</td></tr>
+        <tr><td><strong>PPP</strong></td><td>Los ojos y la boca</td><td>El faro y parte de la rueda</td></tr>
+        <tr><td><strong>PD</strong></td><td>Un ojo, una mano, un grano</td><td>Un solo elemento: el tapacubos</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note"><strong>Fíjate:</strong> el plano americano (PA, o 3/4) solo tiene sentido en personas: corta por las rodillas y no se traslada a objetos.</p>
+
+    <h3>Qué entra en el cuadro y para qué sirve</h3>
+    <div class="cards">
+      <div><span class="k">GPG</span><h4>Gran plano general</h4><p>El entorno es el protagonista; el sujeto se ve pequeño, casi un elemento más del paisaje.</p><p class="eg">Sirve para situar la acción y dar escala o soledad.</p></div>
+      <div><span class="k">PG / PE</span><h4>Plano general o entero</h4><p>El sujeto completo, de un extremo al otro, con algo de aire alrededor.</p><p class="eg">Es el plano para identificar qué es.</p></div>
+      <div><span class="k">PM</span><h4>Plano medio</h4><p>La mitad del sujeto: el corte cae en el centro del objeto. Puede ser corto o largo.</p><p class="eg">Nos acerca sin perder del todo el contexto.</p></div>
+      <div><span class="k">PP</span><h4>Primer plano</h4><p>Una parte principal del sujeto llena el cuadro; ya no vemos el objeto entero.</p><p class="eg">Da importancia a esa parte.</p></div>
+      <div><span class="k">PPP</span><h4>Primerísimo primer plano</h4><p>Nos metemos dentro de esa parte: solo una zona de ella ocupa el cuadro.</p><p class="eg">Intensifica: crea cercanía y tensión.</p></div>
+      <div><span class="k">PD</span><h4>Plano detalle</h4><p>Un único elemento pequeño, aislado del conjunto, llena la imagen.</p><p class="eg">Dirige la atención a un dato concreto.</p></div>
+    </div>
+    <p class="note"><strong>Recuerda:</strong> el detalle siempre es detalle de algo. Si el sujeto cambia, el plano cambia: una hoja entera que llena el cuadro es un <em>plano entero de la hoja</em>.</p>
+
+    <!-- Fase 3: herramienta interactiva de escala de planos -->
+    <div class="tool-slot" data-tool="escala-planos"></div>
+
+    <h3>¿Qué plano es?</h3>
+    <p>Primero decide cuál es el sujeto. Después, cuánto de él entra en el cuadro.</p>
+    <details class="qa"><summary>A · Una sala con una taza diminuta sobre la mesa.</summary><div><p><strong>Gran plano general</strong> de la taza: manda el espacio. Si decides que el sujeto es la sala, es un plano general de la sala. El plano depende del sujeto elegido.</p></div></details>
+    <details class="qa"><summary>B · La copa de un árbol, sin el tronco.</summary><div><p><strong>Plano medio</strong> del árbol: vemos aproximadamente la mitad.</p></div></details>
+    <details class="qa"><summary>C · Un tapacubos que llena el cuadro.</summary><div><p><strong>Plano detalle</strong> de la rueda (o del coche): un solo elemento aislado.</p></div></details>
+  </section>
+
+  <section class="sec doc" id="montaje">
+    <h2 class="section-title">02 · Qué hace el montaje</h2>
+    <p>El montaje juega con dos herramientas: el <strong>orden</strong> de los planos y su <strong>duración</strong>. Con ellas cumple tres funciones:</p>
+    <div class="cards">
+      <div><span class="k">1</span><h4>Crear espacios</h4><p>Los planos abiertos y cerrados construyen un lugar que el espectador reconstruye en su cabeza.</p></div>
+      <div><span class="k">2</span><h4>Manipular el tiempo</h4><p>Elipsis, flashbacks y flashforwards comprimen, estiran o reordenan la acción.</p></div>
+      <div><span class="k">3</span><h4>Dar sentido</h4><p>Al yuxtaponer planos nacen relaciones de analogía, contraste, causa y efecto, o incluso poéticas.</p></div>
+    </div>
+    <p class="def">Montar es decidir qué plano viene después y cuánto dura.</p>
+
+    <h3>Corte, encadenado y fundido</h3>
+    <p>Una transición es la forma de paso de un plano o una secuencia a la siguiente. Se recuerdan bien como signos de puntuación:</p>
+    <div class="cards">
+      <div><span class="k">, coma</span><h4>Corte</h4><p>Sin transición: un plano sustituye al siguiente de golpe.</p></div>
+      <div><span class="k">. punto y seguido</span><h4>Encadenado</h4><p>La imagen se desvanece mientras empieza a verse la siguiente.</p></div>
+      <div><span class="k">¶ punto y aparte</span><h4>Fundido</h4><p>La imagen se desvanece, normalmente a negro, o sale de él. Rompe el curso narrativo y deja una pausa.</p></div>
+    </div>
+    <p>Hay efectos menos habituales, más propios de la realización de televisión: las <strong>cortinillas</strong> y el <strong>barrido</strong>, que suele indicar un gran paso de tiempo.</p>
+
+    <h3>Unir planos por similitud: el match cut</h3>
+    <p>El <em>match cut</em> une dos planos por algo que se parece o que contrasta, con un corte limpio o un encadenado.</p>
+    <div class="table"><table>
+      <thead><tr><th>Tipo</th><th>Une dos planos por…</th></tr></thead>
+      <tbody>
+        <tr><td>Visual</td><td>forma, color o movimiento, parecidos o contrarios</td></tr>
+        <tr><td>Audio</td><td>un sonido parecido o contrastado</td></tr>
+        <tr><td>Por idea</td><td>una idea que se repite o se contrapone</td></tr>
+        <tr><td>Por diálogo</td><td>una conversación que une dos escenas distantes</td></tr>
+        <tr><td>Split edit</td><td>el sonido de una escena se oye en la siguiente (también se llama encabalgamiento o <em>audio bridge</em>)</td></tr>
+      </tbody>
+    </table></div>
+    <div class="cards">
+      <div class="hot"><span class="k">1968</span><h4>2001: Una odisea del espacio</h4><p>Un hueso lanzado al aire corta a una nave espacial de forma casi idéntica.</p></div>
+      <div><span class="k">1962</span><h4>Lawrence de Arabia</h4><p>La cerilla se apaga y el corte nos lleva al sol saliendo en el desierto.</p></div>
+    </div>
+  </section>
+
+  <section class="sec doc" id="tiempo">
+    <h2 class="section-title">03 · El tiempo</h2>
+    <div class="cards">
+      <div><h4>Elipsis</h4><p>Parte de la acción que no se narra, porque no aporta, facilita el ritmo o crea suspense. Es <strong>interna</strong> si salta dentro de una escena y <strong>externa</strong> si salta entre escenas.</p><p class="eg">Ciudadano Kane: el paso de los años con pocos planos.</p></div>
+      <div><h4>Escena y secuencia</h4><p><strong>Escena:</strong> unidad de tiempo y espacio. <strong>Secuencia:</strong> escenas con unidad dramática. Tres secuencias forman un acto y tres actos una historia convencional.</p></div>
+      <div><h4>Secuencia de montaje</h4><p>Escenas muy rápidas, a menudo con música, que resumen mucho tiempo.</p><p class="eg">Up: toda una vida de pareja en 4 minutos. Rocky: el entrenamiento.</p></div>
+    </div>
+    <h3>Técnicas para manejar el tiempo</h3>
+    <div class="table"><table>
+      <thead><tr><th>Técnica</th><th>Qué hace</th><th>Ejemplo</th></tr></thead>
+      <tbody>
+        <tr><td>Flashback y flashforward</td><td>Salta atrás o adelante en la historia (analepsis y prolepsis)</td><td>Memento, Big Fish</td></tr>
+        <tr><td>Cámara lenta</td><td>Se graba más rápido y se reproduce a velocidad normal: solemnidad, belleza o suspense</td><td>Los intocables, Los siete samuráis</td></tr>
+        <tr><td>Bullet time</td><td>Ralentiza la acción mientras la cámara se desplaza</td><td>Matrix</td></tr>
+        <tr><td>Time-lapse</td><td>Comprime horas en segundos; el hyper-lapse añade movimiento de cámara</td><td>Koyaanisqatsi</td></tr>
+        <tr><td>Stop-motion</td><td>Animación fotograma a fotograma</td><td>Pesadilla antes de Navidad</td></tr>
+        <tr><td>Freeze frame</td><td>Congela un fotograma para remarcar un momento</td><td>Los 400 golpes</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="sec doc" id="espacio">
+    <h2 class="section-title">04 · El espacio</h2>
+    <p>Al mostrar un escenario nuevo hay que ubicar a los personajes para que el espectador se oriente. Después, los planos cortos se leen como parte de ese espacio ya visto.</p>
+    <div class="cards">
+      <div><h4>Plano máster</h4><p>Plano general que abarca toda la acción. Vuelve cada vez que la escena se parte en planos cortos. Grabarlo es «cubrirse».</p></div>
+      <div><h4>Eje de acción</h4><p>La línea imaginaria del movimiento o de la mirada. Si alguien va de izquierda a derecha, sigue así en los planos siguientes.</p></div>
+      <div><h4>Raccord</h4><p>Continuidad de vestuario, atrezzo, maquillaje, luz, posición y movimiento. En el rodaje lo vigila el script.</p></div>
+    </div>
+
+    <h3>La regla del eje</h3>
+    <figure class="scale eje">
+      <div class="eje-pair">
+      <svg viewBox="0 0 400 300" role="img" aria-label="Respetar el eje: vista desde arriba de dos personajes, A y B, con las dos cámaras del mismo lado del eje. En pantalla A mira a la derecha y B a la izquierda: se miran.">
+        <g>
+          <text class="ttl" x="200" y="22">Respetar el eje · se entiende</text>
+          <path class="axis" d="M30 120h340"/>
+          <path class="cone" d="M110 62l-26 40h52z"/><rect class="cam" x="96" y="44" width="28" height="18" rx="3"/><text class="sm" x="110" y="38">C1</text>
+          <path class="cone" d="M290 62l-26 40h52z"/><rect class="cam" x="276" y="44" width="28" height="18" rx="3"/><text class="sm" x="290" y="38">C2</text>
+          <circle class="pa" cx="110" cy="120" r="16"/><path class="pa" d="M128 112v16l14-8z"/>
+          <circle class="pb" cx="290" cy="120" r="16"/><path class="pb" d="M272 112v16l-14-8z"/>
+          <rect class="scr" x="30" y="190" width="160" height="90" rx="6"/><rect class="scr" x="210" y="190" width="160" height="90" rx="6"/>
+          <circle class="pa" cx="100" cy="242" r="16"/><path class="pa" d="M118 234v16l16-8z"/>
+          <circle class="pb" cx="300" cy="242" r="16"/><path class="pb" d="M282 234v16l-16-8z"/>
+          <text class="sm" x="110" y="208">plano C1</text><text class="sm" x="290" y="208">plano C2</text>
+        </g>
+      </svg>
+      <svg viewBox="0 0 400 300" role="img" aria-label="Saltar el eje: la cámara 2 está al otro lado del eje. En pantalla A y B miran los dos a la derecha y parece que no se miran.">
+        <g>
+          <text class="ttl" x="200" y="22">Saltar el eje · confunde</text>
+          <path class="axis" d="M30 120h340"/>
+          <path class="cone" d="M110 62l-26 40h52z"/><rect class="cam" x="96" y="44" width="28" height="18" rx="3"/><text class="sm" x="110" y="38">C1</text>
+          <path class="cone" d="M290 178l-26-40h52z"/><rect class="cam" x="276" y="178" width="28" height="18" rx="3"/><text class="sm" x="330" y="192">C2</text>
+          <circle class="pa" cx="110" cy="120" r="16"/><path class="pa" d="M128 112v16l14-8z"/>
+          <circle class="pb" cx="290" cy="120" r="16"/><path class="pb" d="M272 112v16l-14-8z"/>
+          <rect class="scr" x="30" y="210" width="160" height="80" rx="6"/><rect class="scr bad" x="210" y="210" width="160" height="80" rx="6"/>
+          <circle class="pa" cx="100" cy="256" r="16"/><path class="pa" d="M118 248v16l16-8z"/>
+          <circle class="pb" cx="280" cy="256" r="16"/><path class="pb" d="M298 248v16l16-8z"/>
+          <text class="sm" x="110" y="228">plano C1</text><text class="sm" x="290" y="228">plano C2</text>
+        </g>
+      </svg>
+      </div>
+      <figcaption>Vista desde arriba. Con las dos cámaras al mismo lado del eje, A mira a la derecha y B a la izquierda: se miran. Si la cámara 2 cruza el eje, B pasa a mirar a la derecha, como A, y parece que no se miran.</figcaption>
+    </figure>
+    <p>Saltar el eje sin desorientar al espectador se justifica con:</p>
+    <ul>
+      <li>un movimiento del actor o actores en la misma toma;</li>
+      <li>un movimiento de la cámara que cruza el eje durante la toma;</li>
+      <li>una toma neutra, rodada sobre el mismo eje;</li>
+      <li>una acción nueva que justifique el salto.</li>
+    </ul>
+    <!-- Fase 3: herramienta interactiva del eje -->
+    <div class="tool-slot" data-tool="eje"></div>
+  </section>
+
+  <section class="sec doc" id="ritmo">
+    <h2 class="section-title">05 · Ritmo y tempo</h2>
+    <p>Son dos conceptos que se confunden a menudo:</p>
+    <div class="cards">
+      <div class="hot"><h4>Ritmo</h4><p>La relación entre plano y plano. Lo marca el montaje, sobre todo la duración de cada plano.</p></div>
+      <div><h4>Tempo</h4><p>La relación entre secuencias. Depende del guion y de su estructura dramática.</p></div>
+    </div>
+    <div class="cards">
+      <div><span class="k">Ritmo rápido</span><p>Muchos planos, cada vez más cortos.</p><p class="eg">La ducha de Psicosis: decenas de planos en menos de un minuto.</p></div>
+      <div><span class="k">Ritmo cadencioso</span><p>Planos largos y pausados.</p><p class="eg">Stalker, de Tarkovski.</p></div>
+    </div>
+    <p class="def">La duración de cada plano debe ser proporcional a su interés y a su significación. Un ritmo lento no es la ausencia de ritmo.</p>
+  </section>
+
+  <section class="sec doc" id="tipos">
+    <h2 class="section-title">06 · Tipos de montaje</h2>
+    <p>Cada teórico plantea su propia clasificación. Estas son cuatro formas de ordenarlas:</p>
+    <div class="table"><table>
+      <thead><tr><th>Criterio</th><th>Tipos</th></tr></thead>
+      <tbody>
+        <tr><td>Por cómo se produce</td><td><strong>Interno:</strong> ocurre dentro del plano · <strong>Externo:</strong> une planos con cortes</td></tr>
+        <tr><td>Por escala y duración</td><td><strong>Analítico:</strong> planos cortos y simples (acción, videoclips) · <strong>Sintético:</strong> planos grandes y complejos, hasta el plano secuencia</td></tr>
+        <tr><td>Por la totalidad del relato</td><td><strong>Narrativo:</strong> lineal, invertido, paralelo o alterno · <strong>Expresivo:</strong> rítmico o ideológico</td></tr>
+        <tr><td>Por el tiempo</td><td><strong>Continuo:</strong> dura lo mismo que la acción · <strong>Discontinuo:</strong> comprime o estira el tiempo</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Montaje interno: cortar sin cortar</h3>
+    <p>Ocurre dentro del plano, por la puesta en escena y la cámara; no manipula el metraje.</p>
+    <ul>
+      <li><strong>Profundidad de campo:</strong> dos acciones distintas en el mismo plano, una en primer término y otra al fondo.</li>
+      <li><strong>Enfoque retórico:</strong> cambiar el foco de un término a otro hace de corte.</li>
+      <li><strong>Acción del personaje:</strong> su movimiento dentro del plano guía la lectura.</li>
+      <li><strong>Composición:</strong> la disposición de los elementos sugiere cómo leer el plano.</li>
+      <li><strong>Fuera de campo:</strong> sombras o sonidos reclaman la atención sin mostrarse.</li>
+    </ul>
+    <p class="note"><strong>Ejemplo:</strong> en Ciudadano Kane, la madre y el abogado hablan en primer término mientras, al fondo, por la ventana, el niño juega en la nieve. El espectador hace el montaje sin que haya corte.</p>
+
+    <h3>Montaje narrativo</h3>
+    <div class="table"><table>
+      <thead><tr><th>Tipo</th><th>Qué hace</th><th>Ejemplo</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Lineal</strong></td><td>La historia avanza en una sola dirección, de forma lógica</td><td>—</td></tr>
+        <tr><td><strong>Invertido</strong></td><td>Rompe el orden cronológico con flashbacks y flashforwards</td><td>Memento, Big Fish</td></tr>
+        <tr><td><strong>Paralelo</strong></td><td>Escenas de tiempos distintos, mostradas a la vez para asociar ideas</td><td>El Padrino: el bautizo y los asesinatos</td></tr>
+        <tr><td><strong>Alterno</strong></td><td>Mismo tiempo, lugares distintos; suelen acabar juntándose</td><td>Origen; los rescates de Griffith</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note"><strong>Ojo:</strong> paralelo y alterno se confunden. En el paralelo las escenas son de tiempos distintos; en el alterno, simultáneas.</p>
+
+    <h3>Expresivo, continuo y discontinuo</h3>
+    <div class="cards">
+      <div><span class="k">Expresivo</span><h4>Rítmico</h4><p>Los planos aparecen y se repiten al compás de la banda sonora.</p><p class="eg">Los intocables de Eliot Ness: el carrito en la escalera.</p></div>
+      <div><span class="k">Expresivo</span><h4>Ideológico o poético</h4><p>Busca crear sensaciones con metáforas, analogías y conceptos.</p><p class="eg">La forma del agua.</p></div>
+      <div><span class="k">Tiempo</span><h4>Continuo</h4><p>Dura lo mismo que la acción real. La toma sostenida y la toma de espera suavizan las salidas de cuadro.</p></div>
+      <div><span class="k">Tiempo</span><h4>Discontinuo</h4><p>Comprime o estira el tiempo con elipsis, evidentes o suavizadas.</p></div>
+    </div>
+  </section>
+
+  <section class="sec doc" id="teoricos">
+    <h2 class="section-title">07 · Eisenstein y Pudovkin</h2>
+    <h3>Eisenstein: cinco métodos</h3>
+    <p>Publicados en 1929. Cada método suma elementos al anterior, del más sencillo (métrico) al más sutil (intelectual).</p>
+    <div class="table"><table>
+      <thead><tr><th>Método</th><th>Criterio</th><th>Ejemplo</th></tr></thead>
+      <tbody>
+        <tr><td>Métrico</td><td>La duración exacta de las tomas, como un compás musical</td><td>Octubre</td></tr>
+        <tr><td>Rítmico</td><td>Duración y contenido del cuadro, con movimiento interno</td><td>La escalera de Odesa (El acorazado Potemkin)</td></tr>
+        <tr><td>Tonal</td><td>Todos los elementos de la toma crean un tono emocional</td><td>La niebla, en Potemkin</td></tr>
+        <tr><td>Sobretonal</td><td>Suma de forma colectiva todos los trozos tonales</td><td>—</td></tr>
+        <tr><td>Intelectual</td><td>Metáfora visual: asociar imágenes crea un significado nuevo</td><td>La huelga</td></tr>
+      </tbody>
+    </table></div>
+    <h3>Pudovkin: cinco métodos</h3>
+    <p>Para Pudovkin, editar es un método que controla la dirección psicológica del espectador.</p>
+    <div class="table"><table>
+      <thead><tr><th>Método</th><th>Qué hace</th><th>Ejemplo</th></tr></thead>
+      <tbody>
+        <tr><td>Contraste</td><td>Dos planos funcionan como una comparación</td><td>Tiempos modernos: las ovejas y los obreros</td></tr>
+        <tr><td>Paralelismo</td><td>Dos escenas alternas unidas por un nexo común, como una forma o un objeto</td><td>—</td></tr>
+        <tr><td>Simbolismo</td><td>Un plano da un sentido alegórico al anterior</td><td>Psicosis: la sangre por el desagüe y el ojo</td></tr>
+        <tr><td>Simultaneidad</td><td>Dos hechos que ocurren a la vez y se relacionan</td><td>—</td></tr>
+        <tr><td>Leitmotiv</td><td>Un tema recurrente estructura el montaje, como un estribillo</td><td>Tiburón: las escenas bajo el agua</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="sec doc" id="reglas">
+    <h2 class="section-title">08 · Reglas de corte</h2>
+    <p>Son normas básicas, no leyes: «el joven conoce las reglas, pero el viejo las excepciones».</p>
+    <h3>Cinco reglas básicas</h3>
+    <ol class="steps">
+      <li><strong>Salto proporcional en la escala:</strong> evita tamaños iguales seguidos y saltos bruscos.</li>
+      <li><strong>Cambio de ángulo:</strong> al menos 30-45 grados entre una posición de cámara y la siguiente.</li>
+      <li><strong>Continuidad en el movimiento:</strong> respeta el eje de acción y los lados de la pantalla.</li>
+      <li><strong>Continuidad en la óptica:</strong> mantén la distancia focal dentro de una misma acción.</li>
+      <li><strong>Raccord:</strong> vestuario, atrezzo, luz y posición coherentes entre planos.</li>
+    </ol>
+
+    <h3>Murch: el corte perfecto</h3>
+    <p>Walter Murch, montador de <em>Apocalypse Now</em>, ordena por peso seis criterios para decidir dónde cortar. La emoción pesa más que todos los demás juntos.</p>
+    <div class="bars" role="list">
+      <div role="listitem"><span>Emoción del momento</span><i style="--w:100%"></i><b>51 %</b></div>
+      <div role="listitem"><span>Hacer avanzar la historia</span><i style="--w:45%"></i><b>23 %</b></div>
+      <div role="listitem"><span>Ritmo interesante y adecuado</span><i style="--w:19.6%"></i><b>10 %</b></div>
+      <div role="listitem"><span>Línea de la mirada</span><i style="--w:13.7%"></i><b>7 %</b></div>
+      <div role="listitem"><span>Planaridad: los ejes</span><i style="--w:9.8%"></i><b>5 %</b></div>
+      <div role="listitem"><span>Continuidad espacial 3D</span><i style="--w:7.8%"></i><b>4 %</b></div>
+    </div>
+
+    <h3>Dmytryk: siete reglas</h3>
+    <ol class="steps">
+      <li>Nunca cortes sin una buena razón: la única es mejorar la escena.</li>
+      <li>En la duda sobre el fotograma de corte, mejor que sobre a que falte.</li>
+      <li>Siempre que puedas, corta en movimiento: ayuda a enmascarar el corte.</li>
+      <li>Lo fresco es preferible a lo rancio: la obviedad es un pecado.</li>
+      <li>Cada escena empieza y termina con una acción continuada.</li>
+      <li>El corte lo motivan los valores dramáticos, no la correspondencia entre planos.</li>
+      <li><strong>Sustancia primero, forma después.</strong></li>
+    </ol>
+
+    <h3>Consejos prácticos para cortar</h3>
+    <div class="cards">
+      <div><h4>Reposo y movimiento</h4><p>De PP a PM, corta en reposo. De PM a PP, corta en movimiento.</p></div>
+      <div><h4>Decorado nuevo</h4><p>Empieza por un PG y ve de lo general a lo concreto.</p></div>
+      <div><h4>Diálogos</h4><p>No abuses de los cortes: encabalga el sonido de uno con la imagen del otro.</p></div>
+      <div><h4>Planos novedosos</h4><p>Un plano nuevo debe durar más que uno que el espectador ya conoce.</p></div>
+      <div><h4>Fundidos</h4><p>El fundido es un punto y aparte: no lo uses gratuitamente.</p></div>
+      <div><h4>Plano sonoro</h4><p>Sube el volumen en los primeros planos y bájalo en los planos amplios.</p></div>
+    </div>
+    <!-- Fase 3: herramienta interactiva de puntos clave del corte -->
+    <div class="tool-slot" data-tool="key-points"></div>
+  </section>
+
+  <section class="sec doc" id="videos">
+    <h2 class="section-title">09 · Vídeos para seguir</h2>
+    <p>Ejemplos de las técnicas de la unidad. Ábrelos con la teoría delante y localiza el momento exacto.</p>
+    <h3>Transiciones y match cut</h3>
+    <ul class="links">
+      <li><a href="https://www.youtube.com/watch?v=rne-VdFC2NA" target="_blank" rel="noopener">2001: una odisea del espacio · del hueso a la nave</a><small>YouTube</small></li>
+      <li><a href="https://youtu.be/BPumZgU_-p4" target="_blank" rel="noopener">Match cuts</a><small>YouTube</small></li>
+      <li><a href="https://youtu.be/exjqpjhCA10" target="_blank" rel="noopener">Ejemplo de match cut</a><small>YouTube</small></li>
+      <li><a href="https://youtu.be/Os8c8nwpFJI" target="_blank" rel="noopener">Audio match cut</a><small>YouTube</small></li>
+      <li><a href="https://www.youtube.com/watch?v=GH0i_pIehqE" target="_blank" rel="noopener">Sound bridge</a><small>YouTube</small></li>
+      <li><a href="https://youtu.be/iLOkHLbHpnY" target="_blank" rel="noopener">3 match cut transitions en Premiere Pro</a><small>YouTube</small></li>
+    </ul>
+    <h3>Tiempo</h3>
+    <ul class="links">
+      <li><a href="https://youtu.be/gzlhM9_4LIE?t=14" target="_blank" rel="noopener">Elipsis · lenguaje cinematográfico</a><small>YouTube</small></li>
+      <li><a href="https://youtu.be/RQ5HZNe-YFQ" target="_blank" rel="noopener">Elipsis en el cine</a><small>YouTube</small></li>
+      <li><a href="https://www.youtube.com/watch?v=uSAH3yByxRM" target="_blank" rel="noopener">Up · secuencia de montaje «Married Life»</a><small>YouTube</small></li>
+      <li><a href="https://youtu.be/RVd6CnKLPgY" target="_blank" rel="noopener">Ratatouille · flashback</a><small>YouTube</small></li>
+      <li><a href="https://youtu.be/SNvXpbr7K9c" target="_blank" rel="noopener">Sherlock Holmes · flashforward</a><small>YouTube</small></li>
+      <li><a href="https://youtu.be/5cL6yMPThKA" target="_blank" rel="noopener">Cómo se hace la cámara lenta</a><small>YouTube</small></li>
+      <li><a href="https://youtu.be/8DajVKAkL50" target="_blank" rel="noopener">Matrix · bullet time</a><small>YouTube</small></li>
+      <li><a href="https://vimeo.com/165459021" target="_blank" rel="noopener">Valladolid hyperlapse</a><small>Vimeo</small></li>
+    </ul>
+    <h3>Espacio y tipos de montaje</h3>
+    <ul class="links">
+      <li><a href="https://youtu.be/TuHWK1Ez_20" target="_blank" rel="noopener">Ejemplo de salto de eje</a><small>YouTube</small></li>
+      <li><a href="https://youtu.be/AKfA-Zn-sN0" target="_blank" rel="noopener">Montaje interno: ejemplos</a><small>YouTube</small></li>
+      <li><a href="https://www.youtube.com/watch?v=Er40xuqa_Qk" target="_blank" rel="noopener">El Padrino · el bautizo (montaje paralelo)</a><small>YouTube</small></li>
+      <li><a href="https://www.youtube.com/watch?v=QJpRSf4q-hI" target="_blank" rel="noopener">Los intocables · tiroteo en la escalera</a><small>YouTube</small></li>
+      <li><a href="https://www.youtube.com/watch?v=zsw7cCkbUvk" target="_blank" rel="noopener">El acorazado Potemkin · la escalera de Odesa</a><small>YouTube</small></li>
+      <li><a href="https://www.youtube.com/watch?v=YHJVh6zoAMY" target="_blank" rel="noopener">La huelga · montaje intelectual</a><small>YouTube</small></li>
+    </ul>
+    <h3>Reglas de montaje</h3>
+    <ul class="links">
+      <li><a href="https://www.youtube.com/watch?v=L8KLblZGCgs" target="_blank" rel="noopener">Principios básicos de montaje</a><small>YouTube</small></li>
+      <li><a href="https://youtu.be/jK2adxWTiKY" target="_blank" rel="noopener">Corte y transición</a><small>YouTube</small></li>
+      <li><a href="https://youtu.be/OmXbWGv-o3k" target="_blank" rel="noopener">10 reglas esenciales en el montaje</a><small>YouTube</small></li>
+    </ul>
+  </section>
+
+  <section class="sec doc" id="repaso">
+    <h2 class="section-title">10 · Repaso</h2>
+    <details class="qa"><summary>¿De qué depende el nombre de un plano?</summary><div><p>De la relación entre el sujeto elegido y el cuadro: cuánto del sujeto entra y cuánto espacio queda alrededor. No depende de que haya una cara.</p></div></details>
+    <details class="qa"><summary>¿Con qué dos herramientas trabaja el montaje?</summary><div><p>El orden de los planos y su duración.</p></div></details>
+    <details class="qa"><summary>¿Qué diferencia hay entre un encadenado y un fundido?</summary><div><p>En el encadenado una imagen se desvanece mientras aparece la siguiente (punto y seguido). En el fundido la imagen va a negro o sale de él, y deja una pausa (punto y aparte).</p></div></details>
+    <details class="qa"><summary>¿Qué diferencia hay entre ritmo y tempo?</summary><div><p>El ritmo es la relación entre plano y plano y lo marca sobre todo su duración. El tempo es la relación entre secuencias y depende del guion.</p></div></details>
+    <details class="qa"><summary>¿En qué se diferencian el montaje paralelo y el alterno?</summary><div><p>En el paralelo las escenas son de tiempos distintos; en el alterno ocurren a la vez en lugares distintos.</p></div></details>
+    <details class="qa"><summary>¿Qué pasa si una cámara salta el eje en un diálogo?</summary><div><p>Los dos personajes aparecen mirando hacia el mismo lado de la pantalla y parece que no se miran: el espectador se desorienta.</p></div></details>
+    <details class="qa"><summary>Según Murch, ¿qué criterio pesa más al cortar?</summary><div><p>La emoción del momento (51 %), más que todos los demás juntos.</p></div></details>
+    <details class="qa"><summary>Al pasar de un PM a un PP, ¿cortas en reposo o en movimiento?</summary><div><p>En movimiento, demorando el corte hasta que casi ha terminado el movimiento.</p></div></details>
+  </section>
+
+  <nav class="pager" aria-label="Lecciones">
+    <a class="next" href="premiere.html">Siguiente<strong>Premiere Pro paso a paso →</strong></a>
+  </nav>
+</main>
+
+<footer>© <span data-year>2026</span> · Andrés Vidal Martín Martín · Montaje · <a href="mailto:avmmeducacion@gmail.com">avmmeducacion@gmail.com</a></footer>
+<script src="../../assets/site.js" defer></script>
+<script src="../assets/mont.js" defer></script>
+</body>
+</html>
