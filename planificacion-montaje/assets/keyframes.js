@@ -74,6 +74,7 @@
             <li data-goal="slide">Que entre deslizando desde fuera del cuadro<small>Position</small></li>
             <li data-goal="spin">Que dé una vuelta completa<small>Rotation</small></li>
             <li data-goal="fade">Que aparezca poco a poco<small>Opacity</small></li>
+            <li data-goal="grow">Que crezca desde muy pequeño hasta su tamaño normal<small>Scale</small></li>
             <li data-goal="ease">Suaviza el arranque o la parada<small>Ease In / Ease Out</small></li>
             <li data-goal="all">Combina las tres primeras en el mismo rótulo</li>
           </ul>
@@ -82,10 +83,10 @@
       </div>
       <div class="kf-bar">
         <button type="button" class="kf-play" data-act="play" aria-label="Reproducir">${PLAY}</button>
-        <button type="button" data-act="back" aria-label="Fotograma anterior">◂</button>
-        <button type="button" data-act="fwd" aria-label="Fotograma siguiente">▸</button>
+        <button type="button" data-act="back" aria-label="Keyframe anterior" title="Keyframe anterior (Mayús: un fotograma)">◂</button>
+        <button type="button" data-act="fwd" aria-label="Keyframe siguiente" title="Keyframe siguiente (Mayús: un fotograma)">▸</button>
         <span class="kf-time">00:00:00:00</span>
-        <span class="kf-hint">Espacio reproduce · ← → mueven un fotograma</span>
+        <span class="kf-hint">Espacio reproduce · ← → saltan entre keyframes · Mayús + ← → un fotograma</span>
       </div>
       <div class="kf-ec" role="group" aria-label="Effect Controls">
         <div class="kf-c kf-hd" style="grid-row:1">Effect Controls · Motion y Opacity</div>
@@ -175,6 +176,22 @@
       if (k) { S.f = k.f; S.sel = { p, k }; renderKeys(); }
     }
 
+    // Flechas: saltan al keyframe anterior o siguiente de cualquier parámetro; con Mayús, un fotograma
+    function step(dir, frame) {
+      stop();
+      const f = frameNow();
+      if (frame) { S.f = clamp(f + dir, 0, LAST); renderFrame(); return; }
+      const all = S.p.flatMap(p => p.anim ? p.keys.map(k => ({ p, k })) : []).sort((a, b) => a.k.f - b.k.f);
+      const hit = dir > 0 ? all.find(x => x.k.f > f) : all.reverse().find(x => x.k.f < f);
+      if (!hit) {
+        msg(all.length ? `No hay más keyframes ${dir > 0 ? 'después' : 'antes'} de ${tc(f)}.` : 'Todavía no hay keyframes: activa el cronómetro de un parámetro. Con Mayús + flecha te mueves de fotograma en fotograma.');
+        return;
+      }
+      S.f = hit.k.f;
+      S.sel = hit;
+      renderKeys();
+    }
+
     function reset(all = true) {
       stop();
       S.p.forEach(p => { p.anim = false; p.value = p.def.slice(); p.keys = []; });
@@ -191,7 +208,7 @@
       set('pos', [k(0, [-(half[0] + 80), 540]), k(25, [960, 540], { ein: true })]);
       set('rot', [k(0, [0]), k(25, [360], { ein: true })]);
       set('op', [k(0, [0]), k(20, [100])]);
-      msg('Ejemplo: Position, Rotation y Opacity animados del fotograma 0 al 25, con <strong>Ease In</strong> en la llegada (keyframe redondeado). Mira las curvas en cada carril y prueba a cambiar valores.');
+      msg('Ejemplo: Position, Rotation y Opacity animados del fotograma 0 al 25, con <strong>Ease In</strong> en la llegada (keyframe redondeado). Mira las curvas en cada carril. El reto de <strong>Scale</strong> queda para ti: haz que el rótulo crezca desde muy pequeño.');
       renderKeys();
       play(true);
     }
@@ -305,17 +322,19 @@
       const [hw, hh] = halfSize();
       const outside = (v, s) => v[0] + hw * s / 100 < 0 || v[0] - hw * s / 100 > FW || v[1] + hh * s / 100 < 0 || v[1] - hh * s / 100 > FH;
       const inside = v => v[0] > FW * .2 && v[0] < FW * .8 && v[1] > FH * .15 && v[1] < FH * .85;
-      const ps = span(pos), rs = span(rot), os = span(op);
+      const ps = span(pos), rs = span(rot), os = span(op), ss = span(sc);
       const g = {
         slide: !!ps && outside(ps[0].v, valueAt(sc, ps[0].f)[0]) && inside(ps[1].v),
         spin: !!rs && Math.abs(rs[1].v[0] - rs[0].v[0]) >= 360,
         fade: !!os && os[0].v[0] <= 5 && os[1].v[0] >= 95,
+        // Crecer: de un 30 % o menos hasta su tamaño normal (100 %, con un margen)
+        grow: !!ss && ss[0].v[0] <= 30 && ss[1].v[0] >= 90 && ss[1].v[0] <= 110,
         ease: S.p.some(p => p.anim && p.keys.length >= 2 && p.keys.some(k => k.ein || k.eout))
       };
       g.all = g.slide && g.spin && g.fade;
       slot.querySelectorAll('.kf-goals li').forEach(li => li.classList.toggle('ok', !!g[li.dataset.goal]));
       const done = Object.values(g).every(Boolean);
-      if (done && !S.done) msg('<strong>Rótulo completo.</strong> Entra deslizando, gira, aparece y frena con suavidad: es lo que piden las prácticas 1 y 3 para el texto animado.');
+      if (done && !S.done) msg('<strong>Rótulo completo.</strong> Entra deslizando, gira, aparece, crece y frena con suavidad: es lo que piden las prácticas 1 y 3 para el texto animado.');
       S.done = done;
     }
 
@@ -337,7 +356,7 @@
       }
       const act = b.dataset.act;
       if (act === 'play') play(!S.playing);
-      else if (act === 'back' || act === 'fwd') { stop(); S.f = clamp(frameNow() + (act === 'fwd' ? 1 : -1), 0, LAST); renderFrame(); }
+      else if (act === 'back' || act === 'fwd') step(act === 'fwd' ? 1 : -1, e.shiftKey);
       else if (act === 'demo') demo();
       else if (act === 'reset') reset();
       else if (act === 'undo' && S.undo) {
@@ -444,9 +463,7 @@
       if (e.key === ' ' && !t.matches('button')) { e.preventDefault(); play(!S.playing); }
       else if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
         e.preventDefault();
-        stop();
-        S.f = clamp(frameNow() + (e.key === 'ArrowRight' ? 1 : -1) * (e.shiftKey ? 5 : 1), 0, LAST);
-        renderFrame();
+        step(e.key === 'ArrowRight' ? 1 : -1, e.shiftKey);
       } else if ((e.key === 'Delete' || e.key === 'Backspace') && S.sel) {
         e.preventDefault();
         removeKey(S.sel.p, S.sel.k);
