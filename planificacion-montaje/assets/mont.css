@@ -153,6 +153,44 @@ kbd{display:inline-block;font:500 .82em/1.5 var(--mono);padding:0 6px;margin:0 1
 .links li::before{content:"▶";flex:none;font-size:10px;color:var(--acc)}
 .links small{margin-left:auto;color:var(--mut);font-size:12.5px;white-space:nowrap}
 
+/* ---------- Presentaciones de artefacto (assets/artdeck.js) ----------
+   Lienzo de 1920 × 1080 escalado con --k. Valores por defecto del formato de diapositivas: los estilos en línea mandan. */
+.adeck{margin-top:16px;margin-bottom:10px}
+.sec>.adeck{max-width:var(--wide)}
+.ad-stage{position:relative;aspect-ratio:16/9;overflow:hidden;border:1px solid var(--line);background:#000;cursor:pointer;user-select:none;-webkit-user-select:none}
+.ad-stage:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.ad-canvas{position:absolute;left:0;top:0;width:1920px;height:1080px;transform:scale(var(--k,.5));transform-origin:0 0}
+.ad-slide{position:absolute;left:0;top:0;width:1920px;height:1080px;box-sizing:border-box;overflow:hidden;
+  font-family:sans-serif;font-size:32px;line-height:1.4;color:#000;background:#fff;text-align:left;letter-spacing:normal}
+/* Sin display, una diapositiva o un <div> es una columna; con display:flex, una fila como en CSS */
+.ad-slide:not([style*="display"]),.ad-slide div:not([style*="display"]){display:flex;flex-direction:column}
+.ad-slide:not(.on){display:none!important}
+.ad-slide *{box-sizing:border-box}
+.ad-slide div{min-width:0}
+.ad-slide h1,.ad-slide h2,.ad-slide h3,.ad-slide p,.ad-slide ul,.ad-slide ol,.ad-slide table{margin:0}
+.ad-slide h1{font-size:96px;font-weight:600;line-height:1.1}
+.ad-slide h2{font-size:64px;font-weight:600;line-height:1.15}
+.ad-slide h3{font-size:44px;font-weight:600;line-height:1.2}
+.ad-slide p{font-size:inherit}
+.ad-slide ul,.ad-slide ol{padding-left:1.25em}
+.ad-slide li+li{margin-top:.25em}
+.ad-slide b,.ad-slide strong{font-weight:700}
+.ad-slide a{color:inherit}
+.ad-slide table{width:100%;border-collapse:collapse;font-size:inherit}
+.ad-slide th,.ad-slide td{padding:.35em .6em;text-align:left;vertical-align:top;border-bottom:2px solid rgba(128,128,128,.3)}
+.ad-slide th{font-weight:700}
+.ad-slide img{display:block;max-width:none}
+.ad-slide x-shape,.ad-slide x-icon{display:block;flex:none}
+.ad-slide x-icon svg{display:block;width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ad-slide x-shape[kind=ellipse]{border-radius:50%}
+.ad-slide x-shape[kind=diamond]{clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+.ad-slide x-shape[kind=arrow-right]{clip-path:polygon(0 30%,60% 30%,60% 0,100% 50%,60% 100%,60% 70%,0 70%)}
+.ad-slide x-shape[kind=arrow-left]{clip-path:polygon(100% 30%,40% 30%,40% 0,0 50%,40% 100%,40% 70%,100% 70%)}
+.ad-slide x-shape[kind=arrow-up]{clip-path:polygon(30% 100%,30% 40%,0 40%,50% 0,100% 40%,70% 40%,70% 100%)}
+.ad-slide x-shape[kind=arrow-down]{clip-path:polygon(30% 0,30% 60%,0 60%,50% 100%,100% 60%,70% 60%,70% 0)}
+.adeck:fullscreen{background:#000;display:flex;flex-direction:column;justify-content:center;padding:2vh 2vw}
+.adeck:fullscreen .ad-stage,.adeck:fullscreen .deck-bar{width:min(100%,calc((100vh - 90px) * 16 / 9));margin:0 auto}
+
 /* ---------- Simulador de keyframes (assets/keyframes.js) ---------- */
 .kf-tool{margin:18px auto 22px;border:1px solid var(--line2);border-radius:var(--r);background:var(--panel);overflow:hidden;font-size:14px;color:var(--soft)}
 .kf-tool:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
