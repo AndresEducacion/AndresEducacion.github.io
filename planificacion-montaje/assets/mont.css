@@ -262,13 +262,14 @@ kbd{display:inline-block;font:500 .82em/1.5 var(--mono);padding:0 6px;margin:0 1
 .kf-graph path{fill:none;stroke-width:1.5;vector-effect:non-scaling-stroke;opacity:.6}
 .kf-graph .d0{stroke:var(--acc)}
 .kf-graph .d1{stroke:var(--n-yellow)}
-.kfk{position:absolute;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;padding:0;border:0;background:none;display:flex;cursor:grab;touch-action:none;z-index:1}
+.kfk{position:absolute;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;padding:0;border:0;background:none;-webkit-appearance:none;appearance:none;display:block;cursor:grab;touch-action:none;z-index:1}
 .kfk::after{content:"";position:absolute;inset:-8px}
-.kfk i{flex:1;background:var(--soft);transition:background .15s}
-.kfk .l{clip-path:polygon(100% 0,0 50%,100% 100%)}
-.kfk .r{clip-path:polygon(0 0,100% 50%,0 100%)}
-.kfk.ein .l{clip-path:none;border-radius:8px 0 0 8px}
-.kfk.eout .r{clip-path:none;border-radius:0 8px 8px 0}
+/* Mitades con tamaño explícito (no flex dentro de <button>, que Safari resuelve mal) y clip-path con prefijo */
+.kfk i{position:absolute;top:0;width:8px;height:16px;background:var(--soft);transition:background .15s}
+.kfk .l{left:0;-webkit-clip-path:polygon(100% 0,0 50%,100% 100%);clip-path:polygon(100% 0,0 50%,100% 100%)}
+.kfk .r{left:8px;-webkit-clip-path:polygon(0 0,100% 50%,0 100%);clip-path:polygon(0 0,100% 50%,0 100%)}
+.kfk.ein .l{-webkit-clip-path:none;clip-path:none;border-radius:8px 0 0 8px}
+.kfk.eout .r{-webkit-clip-path:none;clip-path:none;border-radius:0 8px 8px 0}
 .kfk.at i{background:var(--fg)}
 .kfk.sel i{background:var(--acc)}
 .kfk:active{cursor:grabbing}
