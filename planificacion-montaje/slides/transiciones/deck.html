@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Montaje con Premiere Pro: transiciones</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&amp;display=swap">
+</head>
+<body>
+<section id="cover" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:space-between">
+<div style="position:absolute;left:1000px;top:260px;width:300px;height:96px;background:#6D6CE6;border-radius:12px"></div>
+<div style="position:absolute;left:1300px;top:260px;width:492px;height:96px;background:#8E8DF5;border-radius:12px"></div>
+<div style="position:absolute;left:1240px;top:248px;width:120px;height:120px;background:linear-gradient(to right, #6D6CE6, #8E8DF5);border:3px solid #ECEAF4;border-radius:12px"></div>
+<div style="position:absolute;left:1100px;top:400px;width:330px;height:96px;background:#F4B63F;border-radius:12px"></div>
+<div style="position:absolute;left:1442px;top:400px;width:350px;height:96px;background:#F4B63F;border-radius:12px"></div>
+<div style="position:absolute;left:1000px;top:540px;width:380px;height:96px;background:#3A3F58;border-radius:12px"></div>
+<div style="position:absolute;left:1392px;top:540px;width:400px;height:96px;background:#3A3F58;border-radius:12px"></div>
+<div style="position:absolute;left:1160px;top:680px;width:632px;height:96px;background:#3A3F58;border-radius:12px"></div>
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF;width:820px">Planificación de montaje · Prácticas</p>
+<div style="display:flex;flex-direction:column;gap:32px">
+<h1 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:112px;font-weight:700;line-height:1.05;width:860px">Montaje con Premiere Pro</h1>
+<p style="font-size:36px;line-height:1.4;color:#AEB1C6;width:820px">Conceptos básicos y tareas paso a paso. Parte 1: transiciones de vídeo y audio.</p>
+</div>
+<p style="font-size:26px;line-height:1.4;color:#8F93AB;width:820px">Basado en Adobe Premiere Pro Classroom in a Book, edición 2025 (Maxim Jago).</p>
+</section>
+<section id="roadmap" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Hoja de ruta</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Cuatro sesiones sobre transiciones</h2>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px">
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:96px;font-weight:700;line-height:1;color:#4A49C9">1</p>
+<h3 style="font-size:36px;font-weight:700;line-height:1.2">Qué es una transición</h3>
+<p style="font-size:26px;line-height:1.4;color:#4B4E60">El corte, cuándo usar efectos y qué son los handles.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px">
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:96px;font-weight:700;line-height:1;color:#4A49C9">2</p>
+<h3 style="font-size:36px;font-weight:700;line-height:1.2">Vídeo paso a paso</h3>
+<p style="font-size:26px;line-height:1.4;color:#4B4E60">Aplicar, sustituir, copiar y fijar la duración por defecto.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px">
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:96px;font-weight:700;line-height:1;color:#4A49C9">3</p>
+<h3 style="font-size:36px;font-weight:700;line-height:1.2">Ajuste fino</h3>
+<p style="font-size:26px;line-height:1.4;color:#4B4E60">Modo A/B, Morph Cut y qué hacer si faltan handles.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px">
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:96px;font-weight:700;line-height:1;color:#4A49C9">4</p>
+<h3 style="font-size:36px;font-weight:700;line-height:1.2">Transiciones de audio</h3>
+<p style="font-size:26px;line-height:1.4;color:#4B4E60">Crossfades, atajos y fade handles.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Montaje con Premiere Pro</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Classroom in a Book 2025 · Lección 7</p>
+</section>
+<section id="calendario" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Prácticas</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Calendario de entregas</h2>
+<table style="font-size:30px;color:#17181F">
+<tr style="background:#E7E4DA"><th style="width:30%;font-weight:700">Práctica</th><th style="width:30%;font-weight:700">Modalidad</th><th style="width:22%;font-weight:700">Entrega</th><th style="width:18%;font-weight:700">Evaluación</th></tr>
+<tr><td>1. Montaje cocina</td><td>Individual</td><td>10/11/2026</td><td>RA1, RA2, RA3</td></tr>
+<tr><td>2. Colas TV</td><td>Grupal</td><td>21/11/2026</td><td>RA3</td></tr>
+<tr><td>3. Montaje aviones</td><td>Individual</td><td>01/12/2026</td><td>RA1, RA2, RA3</td></tr>
+<tr><td>4. Escuela rusa</td><td>Individual</td><td>12/12/2026</td><td>RA1, RA2, RA3</td></tr>
+</table>
+<p style="font-size:28px;line-height:1.4;color:#4B4E60">Esta presentación trabaja para las prácticas 1 y 3, que son las que se montan en Premiere Pro.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Montaje con Premiere Pro</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Fichas de las prácticas 1 a 4</p>
+</section>
+<section id="p1" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Práctica 1</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Montaje de un programa de cocina</h2>
+<table style="font-size:28px;color:#ECEAF4">
+<tr style="background:#1E2029"><th style="width:56%;font-weight:700">Requisito</th><th style="width:44%;font-weight:700">Dónde se trabaja</th></tr>
+<tr><td>Duración mínima de 1:30</td><td>Próxima parte: Lección 5 (p. 116)</td></tr>
+<tr><td>Al menos 3 transiciones entre planos</td><td>Esta parte: sesiones 1 a 3</td></tr>
+<tr><td>Texto con animación con el nombre del programa</td><td>Próxima parte: Lecciones 9 y 15</td></tr>
+<tr><td>Banda sonora sincronizada con las imágenes</td><td>Próxima parte: Lección 10 (p. 270)</td></tr>
+<tr><td>Vídeo h.264, YouTube HD 1080, escalando la salida si hace falta</td><td>Próxima parte: Lección 16 (p. 468)</td></tr>
+</table>
+<div style="display:flex;gap:16px;flex-wrap:wrap">
+<p style="font-size:26px;background:#1E2029;border:2px solid #343748;border-radius:999px;padding:12px 28px">Individual</p>
+<p style="font-size:26px;background:#1E2029;border:2px solid #343748;border-radius:999px;padding:12px 28px">Entrega: 10/11/2026</p>
+<p style="font-size:26px;background:#1E2029;border:2px solid #343748;border-radius:999px;padding:12px 28px">Planos: MASTER_03, 04 y 05</p>
+<p style="font-size:26px;background:#1E2029;border:2px solid #343748;border-radius:999px;padding:12px 28px">Nombre: cocina_nombre apellido</p>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#8F93AB">Montaje con Premiere Pro</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#8F93AB;text-align:right">Ficha de la práctica 1</p>
+</section>
+<section id="p3_req" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Práctica 3 · Requisitos</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Promoción de una aerolínea</h2>
+<table style="font-size:26px;color:#ECEAF4">
+<tr style="background:#1E2029"><th style="width:58%;font-weight:700">Requisito</th><th style="width:42%;font-weight:700">Dónde se trabaja</th></tr>
+<tr><td>Duración entre 20 y 30 segundos</td><td>Próxima parte: Lección 5 (p. 116)</td></tr>
+<tr><td>Al menos 5 transiciones entre planos</td><td>Esta parte: sesiones 1 a 3</td></tr>
+<tr><td>Texto con animación con el nombre inventado de la aerolínea</td><td>Próxima parte: Lecciones 9 y 15</td></tr>
+<tr><td>Banda sonora sincronizada con las imágenes</td><td>Próxima parte: Lección 10 (p. 270)</td></tr>
+<tr><td>Al menos un efecto de vídeo en algunos planos</td><td>Próxima parte: Lección 12 (p. 332)</td></tr>
+<tr><td>Grabar un audio (marca, eslogan, gancho sonoro) e insertarlo en otra pista, con distintos planos sonoros</td><td>Próxima parte: Lecciones 3 y 10</td></tr>
+</table>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#8F93AB">Montaje con Premiere Pro</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#8F93AB;text-align:right">Ficha de la práctica 3</p>
+</section>
+<section id="p3_entrega" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Práctica 3 · Entrega y planos</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Qué se entrega y con qué se trabaja</h2>
+<div style="display:flex;gap:32px;align-items:stretch">
+<div style="width:760px;display:flex;flex-direction:column;gap:18px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:40px">
+<h3 style="font-size:38px;font-weight:700;line-height:1.2">En la carpeta</h3>
+<ul style="font-size:30px;line-height:1.4">
+<li>Vídeo h.264, resolución YouTube HD 1080, escalando la salida final si hace falta.</li>
+<li>El proyecto de Premiere.</li>
+<li>Carpeta y vídeo: aviones_nombre apellido.</li>
+</ul>
+<p style="font-size:28px;font-weight:700;color:#4A49C9">Entrega: 01/12/2026 · RA1, RA2 y RA3</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:18px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:40px">
+<h3 style="font-size:38px;font-weight:700;line-height:1.2">Planos facilitados</h3>
+<div style="display:flex;flex-wrap:wrap;gap:12px">
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;background:#E7E4DA;border-radius:10px;padding:10px 16px">02_A380_TAKEOFF</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;background:#E7E4DA;border-radius:10px;padding:10px 16px">03_AERIAL_SFO</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;background:#E7E4DA;border-radius:10px;padding:10px 16px">04_JET_LANDING_2</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;background:#E7E4DA;border-radius:10px;padding:10px 16px">05_BAY_AREA_LIGHTS</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;background:#E7E4DA;border-radius:10px;padding:10px 16px">06_MILKYWAY</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;background:#E7E4DA;border-radius:10px;padding:10px 16px">07_KENYA</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;background:#E7E4DA;border-radius:10px;padding:10px 16px">08_SOUTH_POLE_DC3_</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;background:#E7E4DA;border-radius:10px;padding:10px 16px">09_HWAIIAN_LANDING</p>
+<p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:24px;background:#E7E4DA;border-radius:10px;padding:10px 16px">10_MALDIVES</p>
+</div>
+<p style="font-size:26px;line-height:1.4;color:#4B4E60">Nombres de archivo tal como están en la carpeta de la práctica.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Montaje con Premiere Pro</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Ficha de la práctica 3</p>
+</section>
+<section id="s1_div" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:32px">
+<p style="position:absolute;right:128px;top:200px;width:420px;font-family:'Space Grotesk', Arial, sans-serif;font-size:400px;font-weight:700;line-height:1;color:transparent;-webkit-text-stroke:3px #A9A8FF;text-align:right">1</p>
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Sesión 1</p>
+<h1 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:112px;font-weight:700;line-height:1.05;width:1100px">Qué es una transición</h1>
+<p style="font-size:36px;line-height:1.4;color:#AEB1C6;width:1000px">El corte, cuándo conviene usar un efecto y por qué los handles lo hacen posible.</p>
+</section>
+<section id="corte" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Sesión 1 · Conceptos</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">El corte y la transición</h2>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px">
+<div style="display:flex;height:72px">
+<div style="flex:1;background:#6D6CE6;border-radius:12px 0 0 12px"></div>
+<div style="flex:1;background:#F4B63F;border-radius:0 12px 12px 0;border-left:4px solid #17181F"></div>
+</div>
+<h3 style="font-size:38px;font-weight:700;line-height:1.2">El corte</h3>
+<p style="font-size:30px;line-height:1.4">Es el punto del montaje donde un clip acaba y empieza el siguiente. También se llama edición o punto de edición, y se ve como una línea vertical entre clips.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px">
+<div style="display:flex;height:72px">
+<div style="flex:1;background:#6D6CE6;border-radius:12px 0 0 12px"></div>
+<div style="width:160px;background:linear-gradient(to right, #6D6CE6, #F4B63F)"></div>
+<div style="flex:1;background:#F4B63F;border-radius:0 12px 12px 0"></div>
+</div>
+<h3 style="font-size:38px;font-weight:700;line-height:1.2">La transición</h3>
+<p style="font-size:30px;line-height:1.4">Es un efecto preestablecido que une clips vecinos: disolvencias, barridos, inmersiones a un color. Suaviza el paso de una escena a la siguiente.</p>
+</div>
+</div>
+<div style="background:#E7E4DA;border-radius:20px;padding:28px 36px">
+<p style="font-size:30px;line-height:1.4"><b>Cómo se aplica:</b> arrastra la transición desde el panel Effects hasta el punto de edición entre dos clips. La habilidad está en la colocación, la duración y los ajustes (dirección, movimiento, posiciones de inicio y fin).</p>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Montaje con Premiere Pro · Sesión 1</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Classroom in a Book 2025 · pp. 184 a 186</p>
+</section>
+<section id="cuando" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Sesión 1 · Conceptos</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Cuándo usar una transición</h2>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px">
+<x-icon name="Globe" style="color:#4A49C9;width:64px;height:64px"></x-icon>
+<h3 style="font-size:36px;font-weight:700;line-height:1.2">Cambio de lugar</h3>
+<p style="font-size:28px;line-height:1.4;color:#4B4E60">Por ejemplo, pasar de un interior a un exterior.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px">
+<x-icon name="Clock" style="color:#4A49C9;width:64px;height:64px"></x-icon>
+<h3 style="font-size:36px;font-weight:700;line-height:1.2">Paso del tiempo</h3>
+<p style="font-size:28px;line-height:1.4;color:#4B4E60">Un salto hacia delante en el tiempo.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px">
+<x-icon name="Users" style="color:#4A49C9;width:64px;height:64px"></x-icon>
+<h3 style="font-size:36px;font-weight:700;line-height:1.2">Cambio de perspectiva</h3>
+<p style="font-size:28px;line-height:1.4;color:#4B4E60">El punto de vista de un personaje cambia.</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#E7E4DA;border-radius:20px;padding:28px 36px">
+<p style="font-size:30px;line-height:1.4"><b>Fundido a negro:</b> al final de una escena indica con claridad que ha terminado.</p>
+<p style="font-size:30px;line-height:1.4"><b>Lenguaje visual:</b> si un personaje se duerme y la imagen se vuelve difusa y luminosa, el público entiende que es un sueño.</p>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Montaje con Premiere Pro · Sesión 1</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Classroom in a Book 2025 · p. 185</p>
+</section>
+<section id="moderacion" data-transition="fade" style="background:#4A49C9;color:#F4F2EC;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;justify-content:space-between;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#F4F2EC">Sesión 1 · Buenas prácticas</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:96px;font-weight:700;line-height:1.05;width:1400px">Si dudas, menos es más</h2>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#5B5AD4;border:2px solid #8E8DF5;border-radius:20px;padding:36px">
+<h3 style="font-size:36px;font-weight:700;line-height:1.2">Casi todo son cortes</h3>
+<p style="font-size:28px;line-height:1.4">La mayoría de programas de TV y películas usan solo cortes.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#5B5AD4;border:2px solid #8E8DF5;border-radius:20px;padding:36px">
+<h3 style="font-size:36px;font-weight:700;line-height:1.2">El efecto debe aportar</h3>
+<p style="font-size:28px;line-height:1.4">Si no da un beneficio extra, distrae y recuerda al público que está viendo una historia.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#5B5AD4;border:2px solid #8E8DF5;border-radius:20px;padding:36px">
+<h3 style="font-size:36px;font-weight:700;line-height:1.2">Con intención</h3>
+<p style="font-size:28px;line-height:1.4">Si parece intencionado, el público confía en tu decisión, guste o no.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#F4F2EC">Montaje con Premiere Pro · Sesión 1</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#F4F2EC;text-align:right">Classroom in a Book 2025 · pp. 185 y 186</p>
+</section>
+<section id="handles" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Sesión 1 · Conceptos</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Handles: el material que no se ve</h2>
+<div style="display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;justify-content:space-between">
+<p style="font-size:24px;color:#AEB1C6">Inicio original del clip</p>
+<p style="font-size:24px;color:#AEB1C6">Final original del clip</p>
+</div>
+<div style="display:flex;height:104px">
+<div style="flex:2;background:#2B2E3D;border:2px dashed #5A5F7A;border-radius:12px 0 0 12px;display:flex;align-items:center;justify-content:center">
+<p style="font-size:26px;color:#AEB1C6">Handle oculto</p>
+</div>
+<div style="flex:4;background:#5857D6;display:flex;align-items:center;justify-content:center">
+<p style="font-size:28px;font-weight:700;color:#ECEAF4">Parte usada en la secuencia</p>
+</div>
+<div style="flex:2;background:#2B2E3D;border:2px dashed #5A5F7A;border-radius:0 12px 12px 0;display:flex;align-items:center;justify-content:center">
+<p style="font-size:26px;color:#AEB1C6">Handle oculto</p>
+</div>
+</div>
+<div style="display:flex">
+<div style="flex:2"></div>
+<div style="flex:4;display:flex;justify-content:space-between">
+<p style="font-size:26px;font-weight:700;color:#F4B63F">Punto In</p>
+<p style="font-size:26px;font-weight:700;color:#F4B63F">Punto Out</p>
+</div>
+<div style="flex:2"></div>
+</div>
+</div>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#1E2029;border:2px solid #343748;border-radius:20px;padding:36px">
+<h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#A9A8FF">Para qué sirven</h3>
+<p style="font-size:28px;line-height:1.4">El efecto crea un solapamiento entre el clip que sale y el que entra, y ese material sale de los handles.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#1E2029;border:2px solid #343748;border-radius:20px;padding:36px">
+<h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#A9A8FF">Un ejemplo</h3>
+<p style="font-size:28px;line-height:1.4">Un Cross Dissolve de 2 segundos centrado en el corte necesita al menos 1 segundo de handle en ambos clips.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#1E2029;border:2px solid #343748;border-radius:20px;padding:36px">
+<h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#A9A8FF">Cómo saber si hay</h3>
+<p style="font-size:28px;line-height:1.4">Un triángulo en la esquina del clip, en la Timeline, indica que no quedan más fotogramas del clip original.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#8F93AB">Montaje con Premiere Pro · Sesión 1</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#8F93AB;text-align:right">Classroom in a Book 2025 · pp. 186 y 187</p>
+</section>
+<section id="s2_div" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:32px">
+<p style="position:absolute;right:128px;top:200px;width:420px;font-family:'Space Grotesk', Arial, sans-serif;font-size:400px;font-weight:700;line-height:1;color:transparent;-webkit-text-stroke:3px #A9A8FF;text-align:right">2</p>
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Sesión 2</p>
+<h1 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:112px;font-weight:700;line-height:1.05;width:1100px">Transiciones de vídeo paso a paso</h1>
+<p style="font-size:36px;line-height:1.4;color:#AEB1C6;width:1000px">Aplicar, sustituir y copiar transiciones, y fijar la duración por defecto.</p>
+</section>
+<section id="donde" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Sesión 2 · Vídeo</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Dónde están las transiciones</h2>
+<div style="display:flex;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">1</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">Menú Workspaces › Effects, y restablece al diseño guardado.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">2</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">En el panel Effects, abre Video Transitions.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">3</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">Busca por nombre en el campo Search o recorre las carpetas.</p>
+</div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-wrap:wrap;gap:14px">
+<p style="font-size:28px;font-weight:700;background:#4A49C9;color:#F4F2EC;border-radius:999px;padding:10px 26px">Dissolve</p>
+<p style="font-size:28px;font-weight:700;background:#4A49C9;color:#F4F2EC;border-radius:999px;padding:10px 26px">Immersive Video</p>
+<p style="font-size:28px;font-weight:700;background:#4A49C9;color:#F4F2EC;border-radius:999px;padding:10px 26px">Iris</p>
+<p style="font-size:28px;font-weight:700;background:#4A49C9;color:#F4F2EC;border-radius:999px;padding:10px 26px">Page Peel</p>
+<p style="font-size:28px;font-weight:700;background:#4A49C9;color:#F4F2EC;border-radius:999px;padding:10px 26px">Slide</p>
+<p style="font-size:28px;font-weight:700;background:#4A49C9;color:#F4F2EC;border-radius:999px;padding:10px 26px">Wipe</p>
+<p style="font-size:28px;font-weight:700;background:#4A49C9;color:#F4F2EC;border-radius:999px;padding:10px 26px">Zoom</p>
+</div>
+<p style="font-size:26px;line-height:1.4;color:#4B4E60">Las siete subcategorías de Video Transitions.</p>
+</div>
+</div>
+<div style="background:#E7E4DA;border-radius:20px;padding:28px 36px">
+<p style="font-size:28px;line-height:1.4"><b>Otra carpeta distinta:</b> Video Effects › Transition. Esos efectos se aplican a un clip entero y revelan su contenido entre el primer y el último fotograma, sin usar handles. Van bien para superponer texto o gráficos.</p>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Montaje con Premiere Pro · Sesión 2</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Classroom in a Book 2025 · pp. 184 y 188</p>
+</section>
+<section id="solo_lado" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Sesión 2 · Vídeo</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Transición de un solo lado</h2>
+<div style="display:flex;gap:48px;align-items:flex-start">
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">1</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">Abre la secuencia en la Timeline.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">2</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">Effects › Video Transitions › Dissolve › Cross Dissolve.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">3</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">Arrástralo al inicio del primer clip. Un resaltado muestra dónde se añadirá; suelta.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">4</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">Arrastra otro Cross Dissolve al final del último clip.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">5</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">Reproduce: fundido desde negro al principio y a negro al final.</p>
+</div>
+</div>
+<div style="width:620px;display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px">
+<h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#4A49C9">¿Por qué se ve negro?</h3>
+<p style="font-size:28px;line-height:1.4">Al final del último clip no hay otro clip conectado, así que la imagen se disuelve en el fondo negro de la Timeline. Parece un Dip To Black, pero en realidad el clip se vuelve transparente.</p>
+<p style="font-size:28px;line-height:1.4">No usa handles: la transición no pasa del final del clip.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Montaje con Premiere Pro · Sesión 2</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Classroom in a Book 2025 · pp. 188 y 189</p>
+</section>
+<section id="entre_clips" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Sesión 2 · Vídeo</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Transición entre dos clips</h2>
+<div style="display:flex;gap:48px;align-items:flex-start">
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">1</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">Coloca el playhead en el corte y pulsa = dos o tres veces para acercar el zoom.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">2</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">Arrastra Dip To White (grupo Dissolve) al corte entre el primer y el segundo clip.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">3</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">Encaja en una de tres posiciones y el puntero cambia para indicarla. Alinéala con el centro del corte.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">4</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">En el grupo Slide, arrastra Push al corte entre el segundo y el tercer clip, centrada.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">5</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">Flecha arriba o abajo: salta al corte anterior o siguiente.</p>
+</div>
+</div>
+<div style="width:620px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px">
+<h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#4A49C9">Dip To White</h3>
+<p style="font-size:28px;line-height:1.4">Va llenando la imagen de blanco hasta una pantalla totalmente blanca, y así oculta el corte.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:14px;background:#E7E4DA;border-radius:20px;padding:36px">
+<h3 style="font-size:34px;font-weight:700;line-height:1.2">Si las flechas no responden</h3>
+<p style="font-size:28px;line-height:1.4">Comprueba que el panel Timeline está activo, con contorno azul.</p>
+</div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Montaje con Premiere Pro · Sesión 2</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Classroom in a Book 2025 · pp. 189 y 190</p>
+</section>
+<section id="direccion" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Sesión 2 · Vídeo</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Cambiar la dirección y sustituir</h2>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px">
+<h3 style="font-size:36px;font-weight:700;line-height:1.2;color:#4A49C9">Cambiar la dirección</h3>
+<ol style="font-size:28px;line-height:1.4">
+<li>Haz clic una vez en el icono de la transición Push en la Timeline.</li>
+<li>En Effect Controls, pulsa los triángulos junto a la miniatura A/B, por ejemplo de West To East a East To West.</li>
+<li>Pasa el puntero por un triángulo para ver qué hace.</li>
+</ol>
+<p style="font-size:26px;line-height:1.4;color:#4B4E60">Si Effect Controls aparece vacío, vuelve a seleccionar la transición.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px">
+<h3 style="font-size:36px;font-weight:700;line-height:1.2;color:#4A49C9">Sustituir una transición</h3>
+<ol style="font-size:28px;line-height:1.4">
+<li>Arrastra la nueva encima de la existente, por ejemplo Barn Doors (grupo Wipe) sobre Push.</li>
+<li>Hereda la duración y la alineación, pero no otros ajustes, como los colores de borde.</li>
+<li>En Effect Controls, pon Border Width en 7 para un borde negro fino.</li>
+</ol>
+<p style="font-size:26px;line-height:1.4;color:#4B4E60">Es una forma rápida de probar alternativas.</p>
+</div>
+</div>
+<div style="background:#E7E4DA;border-radius:20px;padding:28px 36px">
+<p style="font-size:28px;line-height:1.4"><b>Eliminar una transición:</b> selecciónala en la Timeline y pulsa Delete (macOS) o Backspace (Windows).</p>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Montaje con Premiere Pro · Sesión 2</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Classroom in a Book 2025 · pp. 191 y 196</p>
+</section>
+<section id="duracion_def" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Sesión 2 · Vídeo</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Duración por defecto</h2>
+<div style="display:flex;gap:48px;align-items:flex-start">
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">1</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">macOS: Premiere Pro › Settings › Timeline. Windows: Edit › Preferences › Timeline.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">2</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">En Video Transition Default Duration verás 25 o 30 fotogramas, según la región.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">3</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">Cámbialo a 1 segundo y pulsa OK.</p>
+</div>
+<p style="font-size:26px;line-height:1.4;color:#4B4E60">Las transiciones ya aplicadas conservan sus ajustes; las nuevas usan la duración nueva.</p>
+</div>
+<div style="width:700px;display:flex;flex-direction:column;gap:18px;background:#1E2029;color:#ECEAF4;border-radius:20px;padding:36px">
+<p style="font-size:24px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#A9A8FF">Preferencias › Timeline</p>
+<table style="font-size:26px;color:#ECEAF4">
+<tr><td style="width:64%">Video Transition Default Duration</td><td style="width:36%">1.00 s</td></tr>
+<tr><td>Audio Transition Default Duration</td><td>1.00 s</td></tr>
+<tr><td>Still Image Default Duration</td><td>5.00 s</td></tr>
+</table>
+<p style="font-size:26px;line-height:1.4;color:#AEB1C6">Si la duración está en fotogramas, el tiempo real cambia con la frecuencia de la secuencia.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Montaje con Premiere Pro · Sesión 2</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Classroom in a Book 2025 · p. 192</p>
+</section>
+<section id="render" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Sesión 2 · Vídeo</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Barras de render: amarillo, rojo, verde</h2>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px">
+<div style="height:20px;background:#E0B200;border-radius:10px"></div>
+<h3 style="font-size:36px;font-weight:700;line-height:1.2">Amarilla</h3>
+<p style="font-size:28px;line-height:1.4">Premiere espera poder reproducir el efecto con fluidez.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px">
+<div style="height:20px;background:#D6402F;border-radius:10px"></div>
+<h3 style="font-size:36px;font-weight:700;line-height:1.2">Roja</h3>
+<p style="font-size:28px;line-height:1.4">Puede hacer falta renderizar para reproducir sin perder fotogramas.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px">
+<div style="height:20px;background:#2E9B57;border-radius:10px"></div>
+<h3 style="font-size:36px;font-weight:700;line-height:1.2">Verde</h3>
+<p style="font-size:28px;line-height:1.4">Ya está renderizada: la reproducción debe ser fluida.</p>
+</div>
+</div>
+<div style="background:#E7E4DA;border-radius:20px;padding:28px 36px;display:flex;flex-direction:column;gap:12px">
+<p style="font-size:30px;line-height:1.4"><b>Cómo renderizar:</b> pulsa Return (macOS) o Enter (Windows).</p>
+<p style="font-size:30px;line-height:1.4"><b>Solo una parte:</b> marca In y Out sobre esa zona de la secuencia y renderiza; solo se renderiza lo seleccionado.</p>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Montaje con Premiere Pro · Sesión 2</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Classroom in a Book 2025 · pp. 192 y 195</p>
+</section>
+<section id="varias" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Sesión 2 · Vídeo</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Varias transiciones de golpe</h2>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px">
+<h3 style="font-size:36px;font-weight:700;line-height:1.2;color:#4A49C9">Aplicar la transición por defecto</h3>
+<ol style="font-size:28px;line-height:1.4">
+<li>Con la herramienta Selection, arrastra un marco alrededor de los clips de vídeo, empezando en una zona vacía.</li>
+<li>Sequence › Apply Default Transitions To Selection, o pulsa Shift+D.</li>
+</ol>
+<p style="font-size:26px;line-height:1.4;color:#4B4E60">La de vídeo por defecto es un Cross Dissolve. Para cambiarla, clic derecho sobre otra en Effects › Set Selected As Default Transition (queda con contorno azul).</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px">
+<h3 style="font-size:36px;font-weight:700;line-height:1.2;color:#4A49C9">Copiar una transición</h3>
+<ol style="font-size:28px;line-height:1.4">
+<li>Aplica una a un corte y alárgala arrastrando su borde.</li>
+<li>Selecciónala con un clic y copia con Cmd/Ctrl+C.</li>
+<li>Mantén Cmd/Ctrl y arrastra un marco sobre otros cortes: seleccionas cortes, no clips.</li>
+<li>Pega con Cmd/Ctrl+V.</li>
+</ol>
+<p style="font-size:26px;line-height:1.4;color:#4B4E60">Ideal para repetir ajustes personalizados.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Montaje con Premiere Pro · Sesión 2</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Classroom in a Book 2025 · pp. 193 y 194</p>
+</section>
+<section id="taller1" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Taller · Práctica 1</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Manos a la obra: tres transiciones</h2>
+<div style="display:flex;flex-direction:column;gap:22px">
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:44px;height:44px;border:3px solid #A9A8FF;border-radius:10px;flex:none"></div>
+<p style="flex:1;font-size:32px;line-height:1.35">Revisa los handles de tus planos: busca triángulos en las esquinas de los clips.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:44px;height:44px;border:3px solid #A9A8FF;border-radius:10px;flex:none"></div>
+<p style="flex:1;font-size:32px;line-height:1.35">Aplica al menos tres transiciones entre planos, por ejemplo Cross Dissolve, Dip To White y una de Slide o Wipe.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:44px;height:44px;border:3px solid #A9A8FF;border-radius:10px;flex:none"></div>
+<p style="flex:1;font-size:32px;line-height:1.35">Centra cada una sobre el corte y reprodúcela para comprobar el resultado.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:44px;height:44px;border:3px solid #A9A8FF;border-radius:10px;flex:none"></div>
+<p style="flex:1;font-size:32px;line-height:1.35">Si no va fluido, renderiza con Return (macOS) o Enter (Windows).</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:44px;height:44px;border:3px solid #F4B63F;border-radius:10px;flex:none"></div>
+<p style="flex:1;font-size:32px;line-height:1.35;color:#F4B63F">Pregúntate: ¿tiene cada transición un motivo?</p>
+</div>
+</div>
+<p style="font-size:28px;line-height:1.4;color:#AEB1C6">Material: MASTER_03, MASTER_04 y MASTER_05.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#8F93AB">Montaje con Premiere Pro · Sesión 2</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#8F93AB;text-align:right">Ficha de la práctica 1 · pp. 188 a 195</p>
+</section>
+<section id="s3_div" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:32px">
+<p style="position:absolute;right:128px;top:200px;width:420px;font-family:'Space Grotesk', Arial, sans-serif;font-size:400px;font-weight:700;line-height:1;color:transparent;-webkit-text-stroke:3px #A9A8FF;text-align:right">3</p>
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Sesión 3</p>
+<h1 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:112px;font-weight:700;line-height:1.05;width:1100px">Ajuste fino de transiciones</h1>
+<p style="font-size:36px;line-height:1.4;color:#AEB1C6;width:1000px">Modo A/B, Morph Cut y qué hacer cuando faltan handles.</p>
+</section>
+<section id="ab" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Sesión 3 · Ajuste fino</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Modo A/B en Effect Controls</h2>
+<p style="font-size:30px;line-height:1.4;color:#4B4E60">Divide una pista en dos: el clip A, el clip B y la transición entre ambos. Así se manipulan los handles y otras opciones.</p>
+<div style="display:flex;gap:48px;align-items:flex-start">
+<div style="flex:1;display:flex;flex-direction:column;gap:22px">
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">1</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">Selecciona la transición en la Timeline.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">2</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">En Effect Controls, marca Show Actual Sources para ver el resultado en la miniatura.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">3</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">En el menú Alignment elige Start At Cut: la transición se mueve.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">4</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">Pulsa Play The Transition, el botón de arriba a la izquierda, para previsualizarla.</p>
+</div>
+</div>
+<div style="width:640px;display:flex;flex-direction:column;gap:12px;background:#1E2029;border-radius:20px;padding:36px">
+<div style="display:flex;gap:16px;align-items:center">
+<p style="width:40px;font-size:26px;font-weight:700;color:#A9A8FF">A</p>
+<div style="flex:1;height:48px;background:#5857D6;border-radius:8px"></div>
+</div>
+<div style="display:flex;gap:16px;align-items:center">
+<p style="width:40px;font-size:26px;font-weight:700;color:#F4B63F">fx</p>
+<div style="display:flex;flex:1">
+<div style="flex:3"></div>
+<div style="flex:2;height:48px;background:linear-gradient(to right, #5857D6, #F4B63F);border-radius:8px"></div>
+<div style="flex:1"></div>
+</div>
+</div>
+<div style="display:flex;gap:16px;align-items:center">
+<p style="width:40px;font-size:26px;font-weight:700;color:#A9A8FF">B</p>
+<div style="display:flex;flex:1">
+<div style="flex:3"></div>
+<div style="flex:3;height:48px;background:#8E8DF5;border-radius:8px"></div>
+</div>
+</div>
+<p style="font-size:26px;line-height:1.4;color:#AEB1C6">Si no ves la línea de tiempo, pulsa Show/Hide Timeline View, arriba a la derecha del panel.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Montaje con Premiere Pro · Sesión 3</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Classroom in a Book 2025 · pp. 195 y 196</p>
+</section>
+<section id="duracion" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Sesión 3 · Ajuste fino</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Cuatro formas de cambiar la duración</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
+<div style="display:flex;flex-direction:column;gap:12px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:32px">
+<h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#4A49C9">1. Arrastrar en la Timeline</h3>
+<p style="font-size:28px;line-height:1.4">Con Selection, arrastra el borde del icono de la transición.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:32px">
+<h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#4A49C9">2. Arrastrar en la línea A/B</h3>
+<p style="font-size:28px;line-height:1.4">Lo mismo, pero en la línea de tiempo A/B de Effect Controls.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:32px">
+<h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#4A49C9">3. Valor Duration</h3>
+<p style="font-size:28px;line-height:1.4">En Effect Controls, clic en los números azules, escribe 300 y pulsa Tab: se convierte en 00:00:03:00, es decir 3 segundos.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:32px">
+<h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#4A49C9">4. Doble clic</h3>
+<p style="font-size:28px;line-height:1.4">Doble clic en el icono de la transición y cambia Duration en el cuadro Set Transition Duration.</p>
+</div>
+</div>
+<div style="background:#E7E4DA;border-radius:20px;padding:28px 36px">
+<p style="font-size:28px;line-height:1.4"><b>Revisa siempre el resultado:</b> si la transición invade a la siguiente, Alignment pasa a Custom Start y Premiere ajusta el inicio solo. Reprodúcela para ver el material que ha salido de los handles.</p>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Montaje con Premiere Pro · Sesión 3</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Classroom in a Book 2025 · pp. 196, 197 y 205</p>
+</section>
+<section id="rolling" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Sesión 3 · Ajuste fino</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Rolling Edit frente a Slide</h2>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px">
+<h3 style="font-size:38px;font-weight:700;line-height:1.2;color:#4A49C9">Rolling Edit</h3>
+<p style="font-size:28px;line-height:1.4;color:#4B4E60">El puntero se vuelve rojo sobre la línea vertical del corte.</p>
+<ul style="font-size:30px;line-height:1.4">
+<li>Arrastra a izquierda o derecha.</li>
+<li>Cambia el momento del corte.</li>
+<li>El Out del clip de la izquierda y el In del de la derecha se actualizan al soltar.</li>
+</ul>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px">
+<h3 style="font-size:38px;font-weight:700;line-height:1.2;color:#4A49C9">Slide</h3>
+<p style="font-size:28px;line-height:1.4;color:#4B4E60">El puntero cambia sobre la transición, a un lado de la línea del corte.</p>
+<ul style="font-size:30px;line-height:1.4">
+<li>Mueve el inicio y el final del efecto.</li>
+<li>No cambia su duración.</li>
+<li>No cambia el punto de edición entre los clips.</li>
+</ul>
+</div>
+</div>
+<div style="background:#E7E4DA;border-radius:20px;padding:28px 36px">
+<p style="font-size:28px;line-height:1.4"><b>Consejo:</b> si la línea del corte está pegada al borde del efecto, amplía el zoom de la línea A/B. Si ves una línea azul, es el playhead: apártalo.</p>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Montaje con Premiere Pro · Sesión 3</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Classroom in a Book 2025 · pp. 197 y 198</p>
+</section>
+<section id="morph" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Sesión 3 · Ajuste fino</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Morph Cut: el corte invisible</h2>
+<div style="display:flex;gap:48px;align-items:flex-start">
+<div style="flex:1;display:flex;flex-direction:column;gap:22px">
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">1</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">Localiza un corte con salto (jump cut) en una entrevista.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">2</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">Arrastra Morph Cut (Video Transitions › Dissolve) al corte entre los dos clips.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">3</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">Espera al análisis (Analyzing in background); puedes seguir trabajando.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">4</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">Doble clic en la transición y pon la duración en 16 fotogramas.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">5</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">Renderiza con Return o Enter y reproduce.</p>
+</div>
+</div>
+<div style="width:620px;display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px">
+<h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#4A49C9">Cuándo funciona</h3>
+<p style="font-size:28px;line-height:1.4">Con entrevistas de una sola persona que mira a cámara, cuando quitas pausas o contenido y la imagen cambia muy poco.</p>
+<p style="font-size:28px;line-height:1.4">Funciona mejor con duraciones cortas. El resultado no es perfecto, pero es difícil que el público note el empalme.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Montaje con Premiere Pro · Sesión 3</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Classroom in a Book 2025 · pp. 198 y 199</p>
+</section>
+<section id="handles_insuf" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:28px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Sesión 3 · Ajuste fino</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Cuando faltan handles</h2>
+<p style="font-size:30px;line-height:1.4;color:#AEB1C6">Si alargas una transición más allá de los handles disponibles, aparece con barras diagonales: Premiere mantiene en pantalla el último fotograma disponible (un fotograma congelado) para completarla.</p>
+<div style="display:flex;flex-direction:column;gap:8px">
+<div style="display:flex;height:64px">
+<div style="flex:3;background:#5857D6;border-radius:12px 0 0 12px"></div>
+<div style="flex:2;background:repeating-linear-gradient(135deg, #F4B63F 0px, #F4B63F 8px, #2B2E3D 8px, #2B2E3D 16px)"></div>
+<div style="flex:3;background:#8E8DF5;border-radius:0 12px 12px 0"></div>
+</div>
+<p style="font-size:26px;color:#F4B63F">Zona rayada: fotograma congelado</p>
+</div>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#1E2029;border:2px solid #343748;border-radius:20px;padding:32px">
+<h3 style="font-size:32px;font-weight:700;line-height:1.2;color:#A9A8FF">Ajustar la transición</h3>
+<p style="font-size:28px;line-height:1.4">Cambia su duración o su posición.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#1E2029;border:2px solid #343748;border-radius:20px;padding:32px">
+<h3 style="font-size:32px;font-weight:700;line-height:1.2;color:#A9A8FF">Rolling Edit</h3>
+<p style="font-size:28px;line-height:1.4">Arrastra el corte, no el icono del efecto. Mejora el resultado, aunque no siempre quita todos los congelados.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#1E2029;border:2px solid #343748;border-radius:20px;padding:32px">
+<h3 style="font-size:32px;font-weight:700;line-height:1.2;color:#A9A8FF">Ripple Edit</h3>
+<p style="font-size:28px;line-height:1.4">Acorta un clip arrastrando un lado del corte: así aumenta su handle.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#8F93AB">Montaje con Premiere Pro · Sesión 3</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#8F93AB;text-align:right">Classroom in a Book 2025 · pp. 199 a 201</p>
+</section>
+<section id="s4_div" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:32px">
+<p style="position:absolute;right:128px;top:200px;width:420px;font-family:'Space Grotesk', Arial, sans-serif;font-size:400px;font-weight:700;line-height:1;color:transparent;-webkit-text-stroke:3px #A9A8FF;text-align:right">4</p>
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Sesión 4</p>
+<h1 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:112px;font-weight:700;line-height:1.05;width:1100px">Transiciones de audio</h1>
+<p style="font-size:36px;line-height:1.4;color:#AEB1C6;width:1000px">Crossfades, atajos de teclado y fade handles.</p>
+</section>
+<section id="audio_por_que" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Sesión 4 · Audio</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Por qué transiciones de audio</h2>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px">
+<x-icon name="Activity" style="color:#4A49C9;width:64px;height:64px"></x-icon>
+<h3 style="font-size:36px;font-weight:700;line-height:1.2">Quitan chasquidos</h3>
+<p style="font-size:28px;line-height:1.4;color:#4B4E60">Eliminan pops y cortes bruscos en la banda sonora.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px">
+<x-icon name="Search" style="color:#4A49C9;width:64px;height:64px"></x-icon>
+<h3 style="font-size:36px;font-weight:700;line-height:1.2">El público lo nota</h3>
+<p style="font-size:28px;line-height:1.4;color:#4B4E60">Se fija más en la inconsistencia del sonido que en la calidad global de la banda sonora.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px">
+<x-icon name="Lightning" style="color:#4A49C9;width:64px;height:64px"></x-icon>
+<h3 style="font-size:36px;font-weight:700;line-height:1.2">Uno o dos fotogramas</h3>
+<p style="font-size:28px;line-height:1.4;color:#4B4E60">Es habitual poner transiciones de audio muy cortas en cada corte para evitar chasquidos.</p>
+</div>
+</div>
+<div style="background:#E7E4DA;border-radius:20px;padding:28px 36px">
+<p style="font-size:28px;line-height:1.4"><b>Truco:</b> pon la duración por defecto de las transiciones de audio en dos fotogramas, selecciona varios clips y elige Sequence › Apply Audio Transition.</p>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Montaje con Premiere Pro · Sesión 4</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Classroom in a Book 2025 · pp. 201 y 204</p>
+</section>
+<section id="crossfades" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Sesión 4 · Audio</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Tres tipos de crossfade</h2>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px">
+<h3 style="font-size:36px;font-weight:700;line-height:1.2;color:#4A49C9">Constant Gain</h3>
+<p style="font-size:28px;line-height:1.4">Ajusta el volumen de forma constante entre los clips. Puede notarse una ligera bajada de nivel.</p>
+<p style="font-size:28px;line-height:1.4;font-weight:700">Ideal para ediciones de música.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #4A49C9;border-radius:20px;padding:36px">
+<h3 style="font-size:36px;font-weight:700;line-height:1.2;color:#4A49C9">Constant Power</h3>
+<p style="font-size:28px;line-height:1.4">La de por defecto. Suave y gradual, como una disolvencia de vídeo: mezcla los clips sin una bajada notable en el medio.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px">
+<h3 style="font-size:36px;font-weight:700;line-height:1.2;color:#4A49C9">Exponential Fade</h3>
+<p style="font-size:28px;line-height:1.4">Usa una curva logarítmica para bajar y subir el audio.</p>
+<p style="font-size:28px;line-height:1.4;font-weight:700">Muchos editores la prefieren en transiciones de un solo lado, como entrar con música desde el silencio.</p>
+</div>
+</div>
+<p style="font-size:26px;line-height:1.4;color:#4B4E60">Están en Effects › Audio Transitions › Crossfade. En la Timeline, una curva sobre el icono muestra cómo cambia el nivel con el tiempo.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Montaje con Premiere Pro · Sesión 4</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Classroom in a Book 2025 · p. 202</p>
+</section>
+<section id="audio_aplicar" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Sesión 4 · Audio</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Aplicar un crossfade paso a paso</h2>
+<div style="display:flex;gap:48px;align-items:flex-start">
+<div style="flex:1;display:flex;flex-direction:column;gap:22px">
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">1</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">Abre una secuencia con clips con audio y elige la herramienta Selection.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">2</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">Effects › Audio Transitions › Crossfade: arrastra Exponential Fade al inicio del primer clip de audio.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">3</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">Clic derecho en el borde derecho del último clip › Apply Default Transitions.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">4</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">Arrastra un extremo de la transición de audio para alargarla y escucha.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">5</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">Playhead cerca del principio y Cmd/Ctrl+D: Cross Dissolve de vídeo por defecto.</p>
+</div>
+</div>
+<div style="width:620px;display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px">
+<h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#4A49C9">Solo audio</h3>
+<p style="font-size:28px;line-height:1.4">El paso 3 añade una transición de vídeo y otra de audio, porque están enlazados. Para añadir solo la de audio, mantén Option (macOS) o Alt (Windows) al hacer clic derecho.</p>
+<p style="font-size:28px;line-height:1.4">Los atajos usan la selección de pistas o de clips para decidir dónde aplican.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Montaje con Premiere Pro · Sesión 4</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Classroom in a Book 2025 · pp. 202 y 203</p>
+</section>
+<section id="audio_lote" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Sesión 4 · Audio</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Crossfades en todos los cortes</h2>
+<div style="display:flex;gap:48px;align-items:flex-start">
+<div style="flex:1;display:flex;flex-direction:column;gap:22px">
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">1</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">Con Selection, mantén Cmd+Option (macOS) o Ctrl+Alt (Windows).</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">2</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">Arrastra un marco sobre los cortes de audio de la pista Audio 1, empezando por debajo de los clips para no coger vídeo.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">3</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">Pulsa Shift+D: se aplica la transición por defecto, solo de audio porque solo hay audio seleccionado.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">4</p></div>
+<p style="flex:1;font-size:30px;line-height:1.35">Pulsa Esc o haz clic en una zona vacía para deseleccionar, y reproduce.</p>
+</div>
+</div>
+<div style="width:620px;display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px">
+<h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#4A49C9">Qué hace cada tecla</h3>
+<p style="font-size:28px;line-height:1.4"><b>Cmd/Ctrl:</b> selecciona cortes en vez de clips.</p>
+<p style="font-size:28px;line-height:1.4"><b>Option/Alt:</b> desvincula temporalmente audio y vídeo.</p>
+<p style="font-size:28px;line-height:1.4"><b>Shift+Cmd/Ctrl+D:</b> transición de audio por defecto, aunque haya vídeo seleccionado.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Montaje con Premiere Pro · Sesión 4</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Classroom in a Book 2025 · pp. 203 y 204</p>
+</section>
+<section id="fade_handles" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Sesión 4 · Audio</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Fade handles: fundidos rápidos</h2>
+<p style="font-size:30px;line-height:1.4;color:#4B4E60">Todos los clips de audio tienen un fade handle en cada extremo. Para verlo, pasa el puntero por el clip o selecciónalo. Si ya hay un fundido, el tirador aparece sobre el icono de la transición.</p>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:18px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px">
+<div style="display:flex;gap:24px">
+<x-shape kind="arrow-left" style="background:#4A49C9;width:96px;height:48px"></x-shape>
+<x-shape kind="arrow-right" style="background:#4A49C9;width:96px;height:48px"></x-shape>
+</div>
+<h3 style="font-size:36px;font-weight:700;line-height:1.2">Izquierda o derecha</h3>
+<p style="font-size:30px;line-height:1.4">Ajusta la duración del fundido o del crossfade.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:18px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px">
+<div style="display:flex;gap:24px">
+<x-shape kind="arrow-up" style="background:#4A49C9;width:48px;height:96px"></x-shape>
+<x-shape kind="arrow-down" style="background:#4A49C9;width:48px;height:96px"></x-shape>
+</div>
+<h3 style="font-size:36px;font-weight:700;line-height:1.2">Arriba o abajo</h3>
+<p style="font-size:30px;line-height:1.4">Ajusta la curva del fundido o del crossfade.</p>
+</div>
+</div>
+<div style="background:#E7E4DA;border-radius:20px;padding:28px 36px">
+<p style="font-size:28px;line-height:1.4"><b>Subir el nivel gradualmente al inicio de un clip:</b> aplica un crossfade de audio al principio o arrastra su fade handle.</p>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Montaje con Premiere Pro · Sesión 4</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Classroom in a Book 2025 · pp. 204 y 205</p>
+</section>
+<section id="atajos" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Chuleta</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Atajos de la Lección 7</h2>
+<div style="display:flex;gap:32px;align-items:flex-start">
+<table style="flex:1;font-size:26px;color:#ECEAF4;font-family:'JetBrains Mono', 'Courier New', monospace">
+<tr style="background:#1E2029"><th style="width:44%;font-weight:700">Atajo</th><th style="width:56%;font-weight:700">Acción</th></tr>
+<tr><td>=</td><td>Acercar zoom</td></tr>
+<tr><td>\</td><td>Ver toda la secuencia</td></tr>
+<tr><td>V</td><td>Herramienta Selection</td></tr>
+<tr><td>↑ ↓</td><td>Corte anterior o siguiente</td></tr>
+<tr><td>Return / Enter</td><td>Renderizar</td></tr>
+</table>
+<table style="flex:1;font-size:26px;color:#ECEAF4;font-family:'JetBrains Mono', 'Courier New', monospace">
+<tr style="background:#1E2029"><th style="width:50%;font-weight:700">Atajo</th><th style="width:50%;font-weight:700">Acción</th></tr>
+<tr><td>Cmd/Ctrl+D</td><td>Vídeo por defecto</td></tr>
+<tr><td>Shift+D</td><td>Por defecto a la selección</td></tr>
+<tr><td>Shift+Cmd/Ctrl+D</td><td>Audio por defecto</td></tr>
+<tr><td>Cmd/Ctrl+C / V</td><td>Copiar / pegar</td></tr>
+<tr><td>Delete / Backspace</td><td>Borrar transición</td></tr>
+</table>
+</div>
+<p style="font-size:26px;line-height:1.4;color:#AEB1C6">Cmd en macOS, Ctrl en Windows. Return en macOS, Enter en Windows. Delete en macOS, Backspace en Windows.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#8F93AB">Montaje con Premiere Pro · Chuleta</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#8F93AB;text-align:right">Classroom in a Book 2025 · pp. 189 a 204</p>
+</section>
+<section id="repaso" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Repaso</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Cinco preguntas</h2>
+<div style="display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">1</p></div>
+<p style="flex:1;font-size:32px;line-height:1.35">¿Cómo aplicas la transición por defecto a varios clips de una secuencia?</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">2</p></div>
+<p style="flex:1;font-size:32px;line-height:1.35">En el panel Effects, ¿cómo localizas una transición por su nombre?</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">3</p></div>
+<p style="flex:1;font-size:32px;line-height:1.35">¿Cómo sustituyes una transición por otra?</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">4</p></div>
+<p style="flex:1;font-size:32px;line-height:1.35">¿Cuáles son tres formas de cambiar la duración de una transición de vídeo?</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">5</p></div>
+<p style="flex:1;font-size:32px;line-height:1.35">¿Cuál es una forma fácil de subir gradualmente el nivel de audio al inicio de un clip?</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Montaje con Premiere Pro · Repaso</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Classroom in a Book 2025 · p. 205</p>
+</section>
+<section id="respuestas" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Repaso · Respuestas</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Respuestas</h2>
+<div style="display:flex;flex-direction:column;gap:22px">
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:52px;height:52px;border-radius:50%;background:#A9A8FF;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:28px;font-weight:700;color:#14151B">1</p></div>
+<p style="flex:1;font-size:28px;line-height:1.35">Selecciona los clips y elige Sequence › Apply Default Transitions To Selection, o pulsa Shift+D.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:52px;height:52px;border-radius:50%;background:#A9A8FF;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:28px;font-weight:700;color:#14151B">2</p></div>
+<p style="flex:1;font-size:28px;line-height:1.35">Escribe el nombre en el campo de búsqueda de Effects. Se muestran los efectos y transiciones, de audio y vídeo, que contienen esas letras; añade más para afinar.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:52px;height:52px;border-radius:50%;background:#A9A8FF;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:28px;font-weight:700;color:#14151B">3</p></div>
+<p style="flex:1;font-size:28px;line-height:1.35">Arrastra la nueva sobre la que rechazas. Hereda la temporización, pero no otros ajustes, como los colores de borde.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:52px;height:52px;border-radius:50%;background:#A9A8FF;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:28px;font-weight:700;color:#14151B">4</p></div>
+<p style="flex:1;font-size:28px;line-height:1.35">Arrastrar el borde del icono en la Timeline, hacerlo en la línea A/B de Effect Controls, cambiar Duration en Effect Controls o hacer doble clic en el icono y cambiar Duration en el cuadro.</p>
+</div>
+<div style="display:flex;gap:24px;align-items:center">
+<div style="width:52px;height:52px;border-radius:50%;background:#A9A8FF;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:28px;font-weight:700;color:#14151B">5</p></div>
+<p style="flex:1;font-size:28px;line-height:1.35">Aplica un crossfade de audio al inicio del clip o arrastra el fade handle del clip.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#8F93AB">Montaje con Premiere Pro · Repaso</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#8F93AB;text-align:right">Classroom in a Book 2025 · p. 205</p>
+</section>
+<section id="siguiente" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Siguiente parte</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Lo que falta para cerrar las prácticas</h2>
+<table style="font-size:28px;color:#17181F">
+<tr style="background:#E7E4DA"><th style="width:50%;font-weight:700">Para la práctica</th><th style="width:50%;font-weight:700">Capítulo del libro</th></tr>
+<tr><td>Importar y organizar planos</td><td>Lecciones 3 y 4 (pp. 62 y 86)</td></tr>
+<tr><td>Editar en la Timeline</td><td>Lecciones 5 y 6 (pp. 116 y 148)</td></tr>
+<tr><td>Texto con animación</td><td>Lecciones 9 y 15 (pp. 242 y 443)</td></tr>
+<tr><td>Banda sonora y volumen</td><td>Lección 10 (p. 270)</td></tr>
+<tr><td>Grabar una locución</td><td>Lección 3 (p. 80)</td></tr>
+<tr><td>Efectos de vídeo</td><td>Lección 12 (p. 332)</td></tr>
+<tr><td>Exportar en H.264</td><td>Lección 16 (p. 468)</td></tr>
+</table>
+<p style="font-size:26px;line-height:1.4;color:#4B4E60">Páginas según el índice del libro. El PDF aportado solo incluye completa la Lección 7; para desarrollar estos temas hacen falta sus páginas.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Montaje con Premiere Pro</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Classroom in a Book 2025 · Índice</p>
+</section>
+</body>
+</html>

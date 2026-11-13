@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Montaje: planos, cortes y reglas (UT 2)</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&amp;display=swap">
+</head>
+<body>
+<section id="cover" data-transition="fade" style="background:#1B1F2B;color:#F6F3EC;font-family:'Public Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:32px">
+<div style="position:absolute;left:1220px;top:270px;width:560px;height:420px;border:4px solid #F2B134;border-radius:12px"></div>
+<div style="position:absolute;left:1360px;top:322px;width:420px;height:315px;border:4px solid #F2B134;border-radius:12px"></div>
+<div style="position:absolute;left:1500px;top:375px;width:280px;height:210px;border:4px solid #F2B134;border-radius:12px"></div>
+<div style="position:absolute;left:1640px;top:427px;width:140px;height:105px;background:#F2B134;border-radius:12px"></div>
+<p style="font-size:28px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#F2B134">Montaje · Unidad 2</p>
+<h1 style="font-family:'Libre Baskerville', Georgia, serif;font-size:104px;font-weight:700;line-height:1.1;width:1000px">Planos, cortes y reglas del montaje</h1>
+<p style="font-size:36px;line-height:1.4;color:#B8BFCC;width:1000px">Tipos de plano, transiciones, tipos de montaje y reglas de corte.</p>
+<aside>Presentación de la unidad 2 de Planificación de montaje (apuntes «UT 2. Planos y cortes, cómo armonizarlos», 22 páginas). Retoma el hilo: ya saben nombrar un plano; ahora aprenden cómo se unen dos planos y por qué. Los rectángulos concéntricos de la portada recuerdan la escala de planos, del más abierto al detalle.</aside>
+</section>
+<section id="p-regla" data-transition="fade" style="background:#F6F3EC;color:#1B1F2B;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:64px;font-weight:700;line-height:1.15">Tres preguntas para nombrar un plano</h2>
+<div style="display:flex;gap:32px">
+<div style="flex:1.4;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;align-items:center;gap:24px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:28px">
+<div style="width:64px;height:64px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><p style="font-size:32px;font-weight:700;color:#1B1F2B">1</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px">
+<h3 style="font-size:32px;font-weight:600;line-height:1.2">¿Cuál es el sujeto completo?</h3>
+<p style="font-size:28px;line-height:1.4;color:#565D70">Una persona, un coche, una taza o una sola hoja: lo decides tú antes de mirar el encuadre.</p>
+</div>
+</div>
+<div style="display:flex;align-items:center;gap:24px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:28px">
+<div style="width:64px;height:64px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><p style="font-size:32px;font-weight:700;color:#1B1F2B">2</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px">
+<h3 style="font-size:32px;font-weight:600;line-height:1.2">¿Cuánto de él entra en el cuadro?</h3>
+<p style="font-size:28px;line-height:1.4;color:#565D70">Todo, la mitad, una parte importante o un solo elemento.</p>
+</div>
+</div>
+<div style="display:flex;align-items:center;gap:24px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:28px">
+<div style="width:64px;height:64px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><p style="font-size:32px;font-weight:700;color:#1B1F2B">3</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px">
+<h3 style="font-size:32px;font-weight:600;line-height:1.2">¿Cuánto espacio queda alrededor?</h3>
+<p style="font-size:28px;line-height:1.4;color:#565D70">Si manda el entorno, el plano es abierto. Si el sujeto llena el cuadro, es cerrado.</p>
+</div>
+</div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:24px;background:#1B1F2B;color:#F6F3EC;border-radius:16px;padding:48px">
+<p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#F2B134">Idea clave</p>
+<p style="font-family:'Libre Baskerville', Georgia, serif;font-size:40px;font-weight:700;line-height:1.3">El plano mide la relación entre el sujeto y el cuadro.</p>
+<p style="font-size:30px;line-height:1.4;color:#B8BFCC">No importa si hay una cara, un cuerpo, un coche o un paisaje.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#565D70">Escala de planos · Apuntes UT 2 · pp. 1-2</p>
+<aside>Punto de partida: los alumnos sabían identificar planos solo cuando había una cara o un cuerpo humano. La regla vale para cualquier cosa: primero se elige el sujeto (la persona, el coche, la taza, la hoja) y después se mide cuánto de ese sujeto entra en el cuadro y cuánto espacio queda alrededor. La forma que se muestra define el plano, no que sea un rostro. Los apuntes (p. 1) hablan de «delimitación del espacio, del decorado o del actor que elegimos para fotografiar»: el sujeto lo elige quien encuadra.</aside>
+</section>
+<section id="p-tabla" data-transition="fade" style="background:#F6F3EC;color:#1B1F2B;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:64px;font-weight:700;line-height:1.15">Misma escala, distinto sujeto</h2>
+<table style="font-size:28px;width:100%;color:#1B1F2B">
+<tr><th style="width:14%">Plano</th><th style="width:40%">En una persona</th><th style="width:46%">En un coche</th></tr>
+<tr><td style="width:14%">GPG</td><td style="width:40%">Una figura minúscula en el paisaje</td><td style="width:46%">Un coche pequeño: mandan la carretera y el campo</td></tr>
+<tr><td style="width:14%">PG / PE</td><td style="width:40%">El cuerpo entero, de pies a cabeza</td><td style="width:46%">El coche entero, de parachoques a parachoques</td></tr>
+<tr><td style="width:14%">PM</td><td style="width:40%">De la cintura hacia arriba</td><td style="width:46%">De la puerta al morro: medio coche</td></tr>
+<tr><td style="width:14%">PP</td><td style="width:40%">El rostro y los hombros</td><td style="width:46%">El morro: capó, faro y rueda</td></tr>
+<tr><td style="width:14%">PPP</td><td style="width:40%">Los ojos y la boca</td><td style="width:46%">El faro y parte de la rueda</td></tr>
+<tr><td style="width:14%">PD</td><td style="width:40%">Un ojo, una mano, un grano</td><td style="width:46%">Un solo elemento: el tapacubos</td></tr>
+</table>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#565D70">Escala de planos · Apuntes UT 2 · p. 1</p>
+<aside>Lee la tabla de arriba abajo: la columna del coche sigue exactamente la misma lógica que la de la persona. Los apuntes (p. 1) ordenan la escala así: plano detalle (PD), primerísimo primer plano (PPP), primer plano (PP), plano medio corto o largo (PM), plano americano o 3/4 (PA), plano general o entero (PG, PE) y gran plano general (GPG). El plano americano solo tiene sentido en personas y no se traslada a objetos.</aside>
+</section>
+<section id="p-coche" data-transition="fade" style="background:#F6F3EC;color:#1B1F2B;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:64px;font-weight:700;line-height:1.15">El sujeto no cambia, cambia el encuadre</h2>
+<div style="display:flex;gap:48px;align-items:center">
+<img src="img/38303fbf27e5fae710589f61d68248a2.png" alt="Un coche con cuatro rectángulos de colores: plano entero, plano medio, primer plano y plano detalle" style="width:840px;height:630px;object-fit:cover;border-radius:16px">
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<h3 style="font-size:36px;font-weight:600;line-height:1.25">Un solo coche, cuatro rectángulos.</h3>
+<p style="font-size:30px;line-height:1.4;color:#565D70">Cuanto más pequeño es el rectángulo, más cerrado es el plano.</p>
+<p style="font-size:30px;line-height:1.4;color:#565D70">El rectángulo es la pantalla: lo que queda dentro es lo que ve el espectador.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#565D70">Escala de planos · Ilustración esquemática</p>
+<aside>Imagina cada rectángulo de color como la pantalla. Pide que digan en voz alta el nombre de cada uno (plano entero, plano medio, primer plano, plano detalle) antes de pasar a las diapositivas siguientes, donde se ve la escala completa con tres objetos distintos.</aside>
+</section>
+<section id="p-ggp" data-transition="fade" style="background:#F6F3EC;color:#1B1F2B;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;align-items:center;gap:28px">
+<p style="font-size:28px;font-weight:700;background:#F2B134;color:#1B1F2B;border-radius:50%;padding:10px 28px">GPG</p>
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:64px;font-weight:700;line-height:1.15">Gran plano general</h2>
+</div>
+<div style="display:flex;gap:32px">
+<div style="display:flex;flex-direction:column;gap:8px"><img src="img/44cf9a0a4140b96e6b66884acd10bd9a.png" alt="Árbol diminuto en un prado, gran plano general" style="width:532px;height:399px;object-fit:cover;border-radius:16px"><p style="font-size:24px;color:#565D70">Árbol</p></div>
+<div style="display:flex;flex-direction:column;gap:8px"><img src="img/4accb88c722654e0739a15ce80e8ae0b.png" alt="Coche pequeño en una carretera, gran plano general" style="width:532px;height:399px;object-fit:cover;border-radius:16px"><p style="font-size:24px;color:#565D70">Coche</p></div>
+<div style="display:flex;flex-direction:column;gap:8px"><img src="img/3927ea30ac283c9d51493cbaae91addb.png" alt="Taza diminuta sobre una mesa en una sala, gran plano general" style="width:532px;height:399px;object-fit:cover;border-radius:16px"><p style="font-size:24px;color:#565D70">Taza</p></div>
+</div>
+<div style="display:flex;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:8px"><p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#B23A20">Qué entra en el cuadro</p><p style="font-size:28px;line-height:1.4">El entorno es el protagonista. El sujeto se ve pequeño, casi un elemento más del paisaje.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px"><p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#B23A20">Para qué sirve</p><p style="font-size:28px;line-height:1.4">Situar la acción y dar sensación de escala o de soledad.</p></div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#565D70">Escala de planos · Apuntes UT 2 · pp. 1-2 · Ilustraciones esquemáticas</p>
+<aside>Aquí el sujeto casi desaparece. La taza solo aparece en un rincón de la sala: sigue siendo el sujeto, pero este plano lo manda el espacio.</aside>
+</section>
+<section id="p-pe" data-transition="fade" style="background:#F6F3EC;color:#1B1F2B;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;align-items:center;gap:28px">
+<p style="font-size:28px;font-weight:700;background:#F2B134;color:#1B1F2B;border-radius:50%;padding:10px 28px">PG / PE</p>
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:64px;font-weight:700;line-height:1.15">Plano general o entero</h2>
+</div>
+<div style="display:flex;gap:32px">
+<div style="display:flex;flex-direction:column;gap:8px"><img src="img/b2e54122f441c78aacf8514787cc33a6.png" alt="Árbol completo con su tronco y su copa, plano entero" style="width:532px;height:399px;object-fit:cover;border-radius:16px"><p style="font-size:24px;color:#565D70">Árbol</p></div>
+<div style="display:flex;flex-direction:column;gap:8px"><img src="img/85a21075eaa88a9126ac3cccf56d6ae0.png" alt="Coche completo de lado, plano entero" style="width:532px;height:399px;object-fit:cover;border-radius:16px"><p style="font-size:24px;color:#565D70">Coche</p></div>
+<div style="display:flex;flex-direction:column;gap:8px"><img src="img/553dbd510aa09e89557ee60ff4b3c9d2.png" alt="Taza completa con vapor, plano entero" style="width:532px;height:399px;object-fit:cover;border-radius:16px"><p style="font-size:24px;color:#565D70">Taza</p></div>
+</div>
+<div style="display:flex;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:8px"><p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#B23A20">Qué entra en el cuadro</p><p style="font-size:28px;line-height:1.4">El sujeto se ve completo, de un extremo al otro, con algo de aire alrededor.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px"><p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#B23A20">Para qué sirve</p><p style="font-size:28px;line-height:1.4">Mostrar el objeto entero y su forma. Es el plano para identificar qué es.</p></div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#565D70">Escala de planos · Apuntes UT 2 · pp. 1-2 · Ilustraciones esquemáticas</p>
+<aside>Los apuntes los agrupan como plano general (PG) o plano entero (PE). La clave: se ve el objeto completo, sin cortes.</aside>
+</section>
+<section id="p-pm" data-transition="fade" style="background:#F6F3EC;color:#1B1F2B;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;align-items:center;gap:28px">
+<p style="font-size:28px;font-weight:700;background:#F2B134;color:#1B1F2B;border-radius:50%;padding:10px 28px">PM</p>
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:64px;font-weight:700;line-height:1.15">Plano medio</h2>
+</div>
+<div style="display:flex;gap:32px">
+<div style="display:flex;flex-direction:column;gap:8px"><img src="img/643a965a1d319df8f09fbf37375c1583.png" alt="Copa del árbol sin el tronco, plano medio" style="width:532px;height:399px;object-fit:cover;border-radius:16px"><p style="font-size:24px;color:#565D70">Árbol</p></div>
+<div style="display:flex;flex-direction:column;gap:8px"><img src="img/cc0d2a0ddc22ba58f9a5f3de1cb4a03d.png" alt="Mitad delantera del coche, plano medio" style="width:532px;height:399px;object-fit:cover;border-radius:16px"><p style="font-size:24px;color:#565D70">Coche</p></div>
+<div style="display:flex;flex-direction:column;gap:8px"><img src="img/fa3e13ead5fe79009a19e8c151253bb2.png" alt="Taza sin la base, plano medio" style="width:532px;height:399px;object-fit:cover;border-radius:16px"><p style="font-size:24px;color:#565D70">Taza</p></div>
+</div>
+<div style="display:flex;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:8px"><p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#B23A20">Qué entra en el cuadro</p><p style="font-size:28px;line-height:1.4">Vemos aproximadamente la mitad del sujeto. El corte cae en el centro del objeto.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px"><p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#B23A20">Para qué sirve</p><p style="font-size:28px;line-height:1.4">Acercarnos sin perder del todo el contexto: seguimos reconociendo qué es.</p></div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#565D70">Escala de planos · Apuntes UT 2 · pp. 1-2 · Ilustraciones esquemáticas</p>
+<aside>Que noten que el corte cae en medio del sujeto: la copa del árbol sin el tronco, el coche sin la parte de atrás, la taza sin la base. Los apuntes distinguen plano medio corto y largo.</aside>
+</section>
+<section id="p-pp" data-transition="fade" style="background:#F6F3EC;color:#1B1F2B;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;align-items:center;gap:28px">
+<p style="font-size:28px;font-weight:700;background:#F2B134;color:#1B1F2B;border-radius:50%;padding:10px 28px">PP</p>
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:64px;font-weight:700;line-height:1.15">Primer plano</h2>
+</div>
+<div style="display:flex;gap:32px">
+<div style="display:flex;flex-direction:column;gap:8px"><img src="img/242fc6e7e3bc625d1de6c57f34e0cd40.png" alt="Follaje del árbol llenando el cuadro, primer plano" style="width:532px;height:399px;object-fit:cover;border-radius:16px"><p style="font-size:24px;color:#565D70">Árbol</p></div>
+<div style="display:flex;flex-direction:column;gap:8px"><img src="img/61d8fd752dc1625054d513cabda058fe.png" alt="Morro del coche con faro y rueda, primer plano" style="width:532px;height:399px;object-fit:cover;border-radius:16px"><p style="font-size:24px;color:#565D70">Coche</p></div>
+<div style="display:flex;flex-direction:column;gap:8px"><img src="img/48cec66e39ec9540f1ee67987b60af31.png" alt="Cuerpo de la taza con la estrella, primer plano" style="width:532px;height:399px;object-fit:cover;border-radius:16px"><p style="font-size:24px;color:#565D70">Taza</p></div>
+</div>
+<div style="display:flex;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:8px"><p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#B23A20">Qué entra en el cuadro</p><p style="font-size:28px;line-height:1.4">Una parte principal del sujeto llena el cuadro. Ya no vemos el objeto entero.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px"><p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#B23A20">Para qué sirve</p><p style="font-size:28px;line-height:1.4">Dar importancia a esa parte y empezar a hablar de ella, no del objeto.</p></div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#565D70">Escala de planos · Apuntes UT 2 · pp. 1-2 · Ilustraciones esquemáticas</p>
+<aside>En una persona sería la cara. En un objeto es su parte más reconocible: el follaje, el morro, el cuerpo de la taza.</aside>
+</section>
+<section id="p-ppp" data-transition="fade" style="background:#F6F3EC;color:#1B1F2B;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;align-items:center;gap:28px">
+<p style="font-size:28px;font-weight:700;background:#F2B134;color:#1B1F2B;border-radius:50%;padding:10px 28px">PPP</p>
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:64px;font-weight:700;line-height:1.15">Primerísimo primer plano</h2>
+</div>
+<div style="display:flex;gap:32px">
+<div style="display:flex;flex-direction:column;gap:8px"><img src="img/8949dc52633e2f7ee9dbcd3b6f59340d.png" alt="Hojas del árbol llenando el cuadro, primerísimo primer plano" style="width:532px;height:399px;object-fit:cover;border-radius:16px"><p style="font-size:24px;color:#565D70">Árbol</p></div>
+<div style="display:flex;flex-direction:column;gap:8px"><img src="img/e20caf3192a5faaf9826f7731e97b34c.png" alt="Faro y parte de la rueda del coche, primerísimo primer plano" style="width:532px;height:399px;object-fit:cover;border-radius:16px"><p style="font-size:24px;color:#565D70">Coche</p></div>
+<div style="display:flex;flex-direction:column;gap:8px"><img src="img/433829f3f4028fe836979d3e09adf2f2.png" alt="Borde de la taza con el café, primerísimo primer plano" style="width:532px;height:399px;object-fit:cover;border-radius:16px"><p style="font-size:24px;color:#565D70">Taza</p></div>
+</div>
+<div style="display:flex;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:8px"><p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#B23A20">Qué entra en el cuadro</p><p style="font-size:28px;line-height:1.4">Nos metemos dentro de esa parte: solo una zona de ella ocupa el cuadro.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px"><p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#B23A20">Para qué sirve</p><p style="font-size:28px;line-height:1.4">Intensificar: crea cercanía y tensión.</p></div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#565D70">Escala de planos · Apuntes UT 2 · pp. 1-2 · Ilustraciones esquemáticas</p>
+<aside>Diferencia con el primer plano: aquí ya cortamos la parte principal, no la mostramos entera. En una persona serían los ojos o la boca.</aside>
+</section>
+<section id="p-pd" data-transition="fade" style="background:#F6F3EC;color:#1B1F2B;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;align-items:center;gap:28px">
+<p style="font-size:28px;font-weight:700;background:#F2B134;color:#1B1F2B;border-radius:50%;padding:10px 28px">PD</p>
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:64px;font-weight:700;line-height:1.15">Plano detalle</h2>
+</div>
+<div style="display:flex;gap:32px">
+<div style="display:flex;flex-direction:column;gap:8px"><img src="img/e03ea05506b223f6449f5edc27e06f04.png" alt="Una hoja del árbol, plano detalle" style="width:532px;height:399px;object-fit:cover;border-radius:16px"><p style="font-size:24px;color:#565D70">Árbol</p></div>
+<div style="display:flex;flex-direction:column;gap:8px"><img src="img/539ff536ad21e5205f8d91b3300a7b3e.png" alt="Tapacubos del coche, plano detalle" style="width:532px;height:399px;object-fit:cover;border-radius:16px"><p style="font-size:24px;color:#565D70">Coche</p></div>
+<div style="display:flex;flex-direction:column;gap:8px"><img src="img/1b49519838f540f0b7d69572662e231d.png" alt="Estrella de la taza, plano detalle" style="width:532px;height:399px;object-fit:cover;border-radius:16px"><p style="font-size:24px;color:#565D70">Taza</p></div>
+</div>
+<div style="display:flex;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:8px"><p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#B23A20">Qué entra en el cuadro</p><p style="font-size:28px;line-height:1.4">Un único elemento pequeño, aislado del conjunto, llena la imagen.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px"><p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#B23A20">Para qué sirve</p><p style="font-size:28px;line-height:1.4">Dirigir la atención hacia un dato concreto: una hoja, un tapacubos, una estrella.</p></div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#565D70">Escala de planos · Apuntes UT 2 · pp. 1-2 · Ilustraciones esquemáticas</p>
+<aside>Aquí es donde más se atascan. Una hoja de árbol y un grano de la cara son lo mismo: un elemento aislado que llena el cuadro.</aside>
+</section>
+<section id="p-detalle" data-transition="fade" style="background:#F6F3EC;color:#1B1F2B;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:64px;font-weight:700;line-height:1.15">El detalle siempre es detalle de algo</h2>
+<div style="display:flex;gap:48px;align-items:center">
+<div style="display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;align-items:center;gap:24px">
+<img src="img/e03ea05506b223f6449f5edc27e06f04.png" alt="Una hoja del árbol, plano detalle" style="width:400px;height:300px;object-fit:cover;border-radius:16px">
+<p style="width:240px;font-size:28px;line-height:1.4;color:#565D70">Una hoja del árbol</p>
+</div>
+<div style="display:flex;align-items:center;gap:24px">
+<img src="img/1b49519838f540f0b7d69572662e231d.png" alt="Estrella de la taza, plano detalle" style="width:400px;height:300px;object-fit:cover;border-radius:16px">
+<p style="width:240px;font-size:28px;line-height:1.4;color:#565D70">La estrella de la taza</p>
+</div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:40px">
+<h3 style="font-size:32px;font-weight:600">La forma</h3>
+<p style="font-size:28px;line-height:1.4;color:#565D70">Se mide por cuánto del sujeto entra en el cuadro.</p>
+<h3 style="font-size:32px;font-weight:600">El significado</h3>
+<p style="font-size:28px;line-height:1.4;color:#565D70">Es lo que el plano nos hace mirar: aquí una hoja, allí una estrella.</p>
+<p style="font-size:30px;font-weight:700;line-height:1.4">Si el sujeto cambia, el plano cambia: una hoja entera que llena el cuadro es un plano entero de la hoja.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#565D70">Escala de planos · Ilustraciones esquemáticas</p>
+<aside>Esta es la diapositiva clave. Pregunta: «Si el sujeto de mi plano es la hoja, ¿qué plano es la hoja entera?». Respuesta: plano entero de la hoja. El plano es relativo al sujeto elegido: por eso una hoja y un grano de la cara son el mismo plano, el detalle.</aside>
+</section>
+<section id="p-quiz" data-transition="fade" style="background:#1B1F2B;color:#F6F3EC;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:64px;font-weight:700;line-height:1.15">¿Qué plano es?</h2>
+<div style="display:flex;gap:32px">
+<div style="display:flex;flex-direction:column;align-items:center;gap:12px">
+<img src="img/3927ea30ac283c9d51493cbaae91addb.png" alt="Pregunta A: una sala con una taza diminuta sobre la mesa" style="width:532px;height:399px;object-fit:cover;border-radius:16px">
+<div style="width:56px;height:56px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><p style="font-size:28px;font-weight:700;color:#1B1F2B">A</p></div>
+</div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:12px">
+<img src="img/643a965a1d319df8f09fbf37375c1583.png" alt="Pregunta B: la copa de un árbol sin el tronco" style="width:532px;height:399px;object-fit:cover;border-radius:16px">
+<div style="width:56px;height:56px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><p style="font-size:28px;font-weight:700;color:#1B1F2B">B</p></div>
+</div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:12px">
+<img src="img/539ff536ad21e5205f8d91b3300a7b3e.png" alt="Pregunta C: un tapacubos que llena el cuadro" style="width:532px;height:399px;object-fit:cover;border-radius:16px">
+<div style="width:56px;height:56px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><p style="font-size:28px;font-weight:700;color:#1B1F2B">C</p></div>
+</div>
+</div>
+<p style="font-size:30px;line-height:1.4;color:#B8BFCC">Primero decide cuál es el sujeto. Después, cuánto de él entra en el cuadro.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#B8BFCC">Escala de planos · Ilustraciones esquemáticas</p>
+<aside>Deja que debatan por parejas (unos 2 minutos). En A se puede discutir si el sujeto es la sala o la taza: si es la taza, gran plano general; si es la sala, plano general de la sala. Eso demuestra que el plano depende del sujeto elegido. B es plano medio del árbol (la copa sin el tronco). C es plano detalle de la rueda (el tapacubos).</aside>
+</section>
+<section id="p-solucion" data-transition="fade" style="background:#F6F3EC;color:#1B1F2B;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:64px;font-weight:700;line-height:1.15">Solución y resumen</h2>
+<div style="display:flex;gap:48px">
+<div style="flex:1.2;display:flex;flex-direction:column;gap:32px">
+<div style="display:flex;align-items:center;gap:24px">
+<div style="width:64px;height:64px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><p style="font-size:32px;font-weight:700;color:#1B1F2B">A</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px"><h3 style="font-size:36px;font-weight:600">Gran plano general</h3><p style="font-size:28px;line-height:1.4;color:#565D70">La taza es diminuta en la sala. Manda el espacio.</p></div>
+</div>
+<div style="display:flex;align-items:center;gap:24px">
+<div style="width:64px;height:64px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><p style="font-size:32px;font-weight:700;color:#1B1F2B">B</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px"><h3 style="font-size:36px;font-weight:600">Plano medio</h3><p style="font-size:28px;line-height:1.4;color:#565D70">Mitad del árbol: la copa, sin el tronco entero.</p></div>
+</div>
+<div style="display:flex;align-items:center;gap:24px">
+<div style="width:64px;height:64px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><p style="font-size:32px;font-weight:700;color:#1B1F2B">C</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px"><h3 style="font-size:36px;font-weight:600">Plano detalle</h3><p style="font-size:28px;line-height:1.4;color:#565D70">Un solo elemento aislado: el tapacubos.</p></div>
+</div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#1B1F2B;color:#F6F3EC;border-radius:16px;padding:40px">
+<p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#F2B134">Para recordar</p>
+<p style="font-size:28px;line-height:1.4">El plano no depende de la cara.</p>
+<p style="font-size:28px;line-height:1.4">Elige el sujeto.</p>
+<p style="font-size:28px;line-height:1.4">Mide cuánto de él entra en el cuadro.</p>
+<p style="font-size:28px;line-height:1.4">Cuanto más cerrado el plano, menos sujeto y más ocupa el cuadro.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#565D70">Escala de planos · Apuntes UT 2 · pp. 1-2</p>
+<aside>Cierre del bloque de tipos de plano. Siguiente paso natural: cómo se unen dos planos (transiciones y reglas de corte). Si sobra tiempo, pide que busquen en clase un objeto y lo nombren en cada plano.</aside>
+</section>
+<section id="montaje" data-transition="fade" style="background:#F6F3EC;color:#1B1F2B;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:64px;font-weight:700;line-height:1.15">Qué hace el montaje</h2>
+<p style="font-size:32px;line-height:1.4;color:#565D70">Con dos herramientas, el orden de los planos y su duración, el montaje cumple tres funciones.</p>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:40px">
+<div style="width:64px;height:64px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><p style="font-size:32px;font-weight:700;color:#1B1F2B">1</p></div>
+<h3 style="font-size:36px;font-weight:600">Crear espacios</h3>
+<p style="font-size:30px;line-height:1.4;color:#565D70">Los planos abiertos y cerrados construyen un lugar que el espectador reconstruye.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:40px">
+<div style="width:64px;height:64px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><p style="font-size:32px;font-weight:700;color:#1B1F2B">2</p></div>
+<h3 style="font-size:36px;font-weight:600">Manipular el tiempo</h3>
+<p style="font-size:30px;line-height:1.4;color:#565D70">Elipsis, flashbacks y flashforwards comprimen, estiran o reordenan la acción.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:40px">
+<div style="width:64px;height:64px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><p style="font-size:32px;font-weight:700;color:#1B1F2B">3</p></div>
+<h3 style="font-size:36px;font-weight:600">Dar sentido</h3>
+<p style="font-size:30px;line-height:1.4;color:#565D70">Al yuxtaponer planos nacen relaciones de analogía, contraste, causa y efecto, o incluso poéticas.</p>
+</div>
+</div>
+<p style="font-family:'Libre Baskerville', Georgia, serif;font-style:italic;font-size:40px;line-height:1.3">Montar es decidir qué plano viene después y cuánto dura.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#565D70">Apuntes UT 2 · p. 1</p>
+<aside>Los apuntes (p. 1) dicen que el montaje juega con dos elementos: el orden de los planos y su duración. Con ellos: a) crea nuevos espacios (planos cerrados y abiertos), b) manipula el tiempo (elipsis, flashbacks, flashforwards) y c) da sentido narrativo a unas imágenes en relación con otras: analogía, contraste, causa y efecto, relaciones poéticas o ideológicas. Conecta con lo que ya vieron: la escala de planos es la materia prima del montaje. Vídeos del PDF (p. 2) ¿Cuáles películas están hechas realmente con un solo plano secuencia?: https://youtu.be/BfpCmiBs7OY.</aside>
+</section>
+<section id="transiciones" data-transition="fade" style="background:#F6F3EC;color:#1B1F2B;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:64px;font-weight:700;line-height:1.15">Corte, encadenado y fundido</h2>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:40px">
+<div style="display:flex"><p style="font-size:28px;font-weight:600;background:#F2B134;color:#1B1F2B;padding:8px 24px;border-radius:50%">coma</p></div>
+<h3 style="font-size:40px;font-weight:600">Corte</h3>
+<p style="font-size:30px;line-height:1.4;color:#565D70">Sin transición: un plano sustituye al siguiente de golpe.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:40px">
+<div style="display:flex"><p style="font-size:28px;font-weight:600;background:#F2B134;color:#1B1F2B;padding:8px 24px;border-radius:50%">punto y seguido</p></div>
+<h3 style="font-size:40px;font-weight:600">Encadenado</h3>
+<p style="font-size:30px;line-height:1.4;color:#565D70">La imagen se desvanece mientras empieza a verse la siguiente.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:40px">
+<div style="display:flex"><p style="font-size:28px;font-weight:600;background:#F2B134;color:#1B1F2B;padding:8px 24px;border-radius:50%">punto y aparte</p></div>
+<h3 style="font-size:40px;font-weight:600">Fundido</h3>
+<p style="font-size:30px;line-height:1.4;color:#565D70">La imagen se desvanece, normalmente a negro, o sale de él. Rompe el curso narrativo y deja una pausa.</p>
+</div>
+</div>
+<p style="font-size:30px;line-height:1.4;color:#565D70">Hay efectos menos habituales, más propios de la realización de TV: cortinillas y barrido (que suele indicar un gran paso de tiempo).</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#565D70">Apuntes UT 2 · p. 3</p>
+<aside>Una transición es la forma de paso de una secuencia a otra (p. 3). La analogía con los signos de puntuación ayuda a recordarlas: el corte es la coma, el encadenado el punto y seguido y el fundido el punto y aparte. El fundido puede ser de cierre (hacia negro) o de apertura (se inicia en negro). Consejo de los apuntes (p. 22): cuidado con usar el fundido gratuitamente, porque rompe el curso narrativo. Vídeos del PDF (p. 3) 2001: una odisea del espacio · hueso fundido a nave: https://www.youtube.com/watch?v=rne-VdFC2NA; Match Cuts: https://youtu.be/BPumZgU_-p4; 3 Cinematic Match Cut Transitions in Premiere Pro: https://youtu.be/iLOkHLbHpnY.</aside>
+</section>
+<section id="matchcut" data-transition="fade" style="background:#F6F3EC;color:#1B1F2B;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:64px;font-weight:700;line-height:1.15">Unir planos por similitud</h2>
+<div style="display:flex;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:32px">
+<div style="display:flex;flex-direction:column;gap:12px;background:#1B1F2B;color:#F6F3EC;border-radius:16px;padding:40px">
+<h3 style="font-family:'Libre Baskerville', Georgia, serif;font-size:36px;font-weight:700;line-height:1.2">2001: Una odisea del espacio</h3>
+<p style="font-size:28px;line-height:1.4;color:#B8BFCC">(1968) Un hueso lanzado al aire corta a una nave espacial de forma casi idéntica.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#1B1F2B;color:#F6F3EC;border-radius:16px;padding:40px">
+<h3 style="font-family:'Libre Baskerville', Georgia, serif;font-size:36px;font-weight:700;line-height:1.2">Lawrence de Arabia*</h3>
+<p style="font-size:28px;line-height:1.4;color:#B8BFCC">(1962) La cerilla se apaga y el corte nos lleva al sol saliendo en el desierto.</p>
+</div>
+</div>
+<div style="flex:1">
+<table style="font-size:28px;width:100%;color:#1B1F2B">
+<tr><th style="width:30%">Tipo</th><th style="width:70%">Une dos planos por…</th></tr>
+<tr><td style="width:30%">Visual</td><td style="width:70%">forma, color o movimiento, parecidos o contrarios</td></tr>
+<tr><td style="width:30%">Audio</td><td style="width:70%">un sonido parecido o contrastado</td></tr>
+<tr><td style="width:30%">Por idea</td><td style="width:70%">una idea que se repite o se contrapone</td></tr>
+<tr><td style="width:30%">Por diálogo</td><td style="width:70%">una conversación que une dos escenas distantes</td></tr>
+<tr><td style="width:30%">Split edit</td><td style="width:70%">el sonido de una escena se oye en la siguiente</td></tr>
+</table>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#565D70">Apuntes UT 2 · pp. 3-4 · * Ejemplo añadido, no está en el PDF</p>
+<aside>El match-cut une dos escenas por similitud o contraste de forma, color o movimiento (p. 3), con corte limpio o encadenado. El ejemplo del PDF es 2001: Una odisea del espacio (1968), el hueso y la nave. Lawrence de Arabia es un ejemplo añadido, de memoria. El audio match-cut (el PDF enlaza una escena de Las crónicas de Narnia, p. 4) usa la similitud de sonidos. El audio bridge o split edit se conoce también como encabalgamiento: el sonido de una escena se escucha en otra diferente. Vídeos del PDF (p. 4) Ejemplo Match Cut: https://youtu.be/exjqpjhCA10; Audio match cut: https://youtu.be/Os8c8nwpFJI; Match cut: the art of cinematic technique: https://vimeo.com/188527960; Sound Bridge, audio match cut: https://www.youtube.com/watch?v=GH0i_pIehqE.</aside>
+</section>
+<section id="tiempo" data-transition="fade" style="background:#F6F3EC;color:#1B1F2B;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:64px;font-weight:700;line-height:1.15">Elipsis y secuencia de montaje</h2>
+<div style="display:flex;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:32px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<h3 style="font-size:36px;font-weight:600">Elipsis</h3>
+<p style="font-size:30px;line-height:1.4;color:#565D70">Parte de la acción que no se narra. Es interna si salta dentro de una escena y externa si salta entre escenas.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<h3 style="font-size:36px;font-weight:600">Escena y secuencia</h3>
+<p style="font-size:30px;line-height:1.4;color:#565D70">Escena: unidad de tiempo y espacio. Secuencia: escenas con unidad dramática.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<h3 style="font-size:36px;font-weight:600">Secuencia de montaje</h3>
+<p style="font-size:30px;line-height:1.4;color:#565D70">Escenas muy rápidas, a menudo con música, que resumen mucho tiempo.</p>
+</div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:24px;background:#1B1F2B;color:#F6F3EC;border-radius:16px;padding:48px">
+<h3 style="font-size:36px;font-weight:600;color:#F2B134">En el cine</h3>
+<p style="font-size:30px;line-height:1.4"><b>Ciudadano Kane</b><br><span style="color:#B8BFCC">Elipsis: el paso del tiempo con pocos planos.</span></p>
+<p style="font-size:30px;line-height:1.4"><b>Up</b><br><span style="color:#B8BFCC">Toda una vida de pareja resumida en 4 minutos.</span></p>
+<p style="font-size:30px;line-height:1.4"><b>Rocky*</b><br><span style="color:#B8BFCC">El entrenamiento, con música y saltos de tiempo.</span></p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#565D70">Apuntes UT 2 · pp. 5-6 · * Ejemplo añadido, no está en el PDF</p>
+<aside>La elipsis (p. 5) es la parte de la acción continua que no se narra, porque aporta información superflua, facilita el ritmo o crea suspense. Una cuenta atrás de diez minutos puede durar diez minutos; un día puede resumirse en un par de planos. Escena o secuencia mecánica: acción con unidad de tiempo y espacio. Secuencia dramática: escenas con unidad dramática; cambia el tiempo o el espacio. Tres secuencias forman un acto y tres actos una historia convencional (planteamiento, nudo, desenlace). Ejemplos del PDF: Ciudadano Kane (vídeo enlazado en la p. 5) y Up (p. 6). Rocky es un ejemplo añadido de memoria. Vídeos del PDF (p. 5) Elipsis · Lenguaje cinematográfico ep. 4: https://youtu.be/gzlhM9_4LIE?t=14; Intervenciones · Elipsis en el cine: https://youtu.be/RQ5HZNe-YFQ (p. 6) Up (2009) · Secuencia de montaje «Married Life»: https://www.youtube.com/watch?v=uSAH3yByxRM&amp;feature=emb_logo; Ratatouille · Flashback: https://youtu.be/RVd6CnKLPgY; Sherlock Holmes · Flashforward: https://youtu.be/SNvXpbr7K9c; 4 películas que se cuentan de atrás para adelante: https://youtu.be/Xm7fgWGn83M; Las 10 mejores escenas en slow motion del cine: https://youtu.be/O20lLNimdp8.</aside>
+</section>
+<section id="tecnicas" data-transition="fade" style="background:#F6F3EC;color:#1B1F2B;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:64px;font-weight:700;line-height:1.15">Técnicas para manejar el tiempo</h2>
+<table style="font-size:26px;width:100%;color:#1B1F2B">
+<tr><th style="width:22%">Técnica</th><th style="width:46%">Qué hace</th><th style="width:32%">Ejemplo</th></tr>
+<tr><td style="width:22%">Flashback y flashforward</td><td style="width:46%">Salta atrás o adelante en la historia</td><td style="width:32%">Memento, Big Fish</td></tr>
+<tr><td style="width:22%">Cámara lenta</td><td style="width:46%">Estira el momento: solemnidad, belleza o suspense</td><td style="width:32%">Los intocables, Los siete samuráis</td></tr>
+<tr><td style="width:22%">Bullet time</td><td style="width:46%">Ralentiza la acción mientras la cámara se desplaza</td><td style="width:32%">Matrix*</td></tr>
+<tr><td style="width:22%">Time-lapse</td><td style="width:46%">Comprime horas en segundos; el hyper-lapse añade movimiento de cámara</td><td style="width:32%">Koyaanisqatsi*</td></tr>
+<tr><td style="width:22%">Stop-motion</td><td style="width:46%">Animación fotograma a fotograma</td><td style="width:32%">Pesadilla antes de Navidad*</td></tr>
+<tr><td style="width:22%">Freeze frame</td><td style="width:46%">Congela un fotograma para remarcar un momento</td><td style="width:32%">Los 400 golpes*</td></tr>
+</table>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#565D70">Apuntes UT 2 · pp. 6-7 · * Ejemplo añadido, no está en el PDF</p>
+<aside>Analepsis (flashback) y prolepsis (flashforward): saltos atrás o adelante (p. 6). Cámara lenta (pp. 6-7): se graba más rápido de lo normal y se reproduce a velocidad estándar. Pudovkin la usó en 1933 en una escena de un suicida que salta a un río, Kurosawa en Los siete samuráis y Brian De Palma en Los intocables de Eliot Ness; Tarantino la usa en Reservoir Dogs. Bullet time: el PDF enlaza un vídeo (p. 7); Matrix es un ejemplo añadido. También añadidos: Koyaanisqatsi (time-lapse), Pesadilla antes de Navidad (stop-motion) y Los 400 golpes (freeze frame final). Vídeos del PDF (p. 7) Cómo se hace la cámara lenta y por qué es tan épica: https://youtu.be/5cL6yMPThKA; Cámara lenta fluida en Adobe Premiere Pro: https://youtu.be/QV6bBv6o65Q; Making of Bullet Time Effect: https://vimeo.com/23471746; Dodge this (slo-mo, bullet time) · The Matrix: https://youtu.be/8DajVKAkL50; Oreo Commercial: Stop Motion: https://youtu.be/HIUzm64va_s; Time Lapse: https://vimeo.com/2695394; Tipos de timelapse · capturas y opciones de creación: https://youtu.be/I6-eyIpE-Ak; Valladolid Hyperlapse: https://vimeo.com/165459021; Freeze frame effect: https://vimeo.com/209880168.</aside>
+</section>
+<section id="espacio" data-transition="fade" style="background:#F6F3EC;color:#1B1F2B;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:64px;font-weight:700;line-height:1.15">Orientar al espectador</h2>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:40px">
+<h3 style="font-size:36px;font-weight:600">Plano máster</h3>
+<p style="font-size:30px;line-height:1.4;color:#565D70">Plano general que abarca toda la acción. Vuelve cada vez que la escena se parte en planos cortos.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:40px">
+<h3 style="font-size:36px;font-weight:600">Eje de acción</h3>
+<p style="font-size:30px;line-height:1.4;color:#565D70">La línea imaginaria del movimiento o de la mirada. Si alguien va de izquierda a derecha, sigue así en los planos siguientes.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:40px">
+<h3 style="font-size:36px;font-weight:600">Raccord</h3>
+<p style="font-size:30px;line-height:1.4;color:#565D70">Continuidad de vestuario, atrezzo, luz y posición. En el rodaje lo vigila el script.</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:20px">
+<h3 style="font-size:32px;font-weight:600">Saltar el eje sin confundir se justifica con:</h3>
+<div style="display:flex;gap:24px">
+<p style="flex:1;font-size:28px;line-height:1.35;background:#F2B134;color:#1B1F2B;border-radius:16px;padding:20px 24px">El actor se mueve en la misma toma</p>
+<p style="flex:1;font-size:28px;line-height:1.35;background:#F2B134;color:#1B1F2B;border-radius:16px;padding:20px 24px">La cámara cruza el eje durante la toma</p>
+<p style="flex:1;font-size:28px;line-height:1.35;background:#F2B134;color:#1B1F2B;border-radius:16px;padding:20px 24px">Una toma neutra sobre el eje</p>
+<p style="flex:1;font-size:28px;line-height:1.35;background:#F2B134;color:#1B1F2B;border-radius:16px;padding:20px 24px">Una acción nueva que lo justifique</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#565D70">Apuntes UT 2 · pp. 7-9</p>
+<aside>Al mostrar un escenario nuevo hay que ubicar a los actores para que el espectador se oriente. Después se pueden introducir planos cortos de objetos y personajes, que se interpretan como parte del espacio ya visto. También se puede empezar por un detalle para crear misterio, pero en algún momento hay que mostrar el escenario completo (p. 7). El plano de situación o máster (p. 8) es la base sobre la que se desarrollan el resto de planos; grabarlo se conoce como «cubrirse». El eje de acción lo crea la línea del desplazamiento; el eje de miradas, la dirección en que mira un sujeto, e incluye su altura (p. 8). Las cuatro formas de saltar el eje vienen en las pp. 8-9. El raccord (p. 9) incluye vestuario, atrezzo, maquillaje, posición, movimiento y luz. Conecta con la escala de planos: cuando una escena se fragmenta en planos cortos, el máster vuelve para reorientar.</aside>
+</section>
+<section id="eje" data-transition="fade" style="background:#F6F3EC;color:#1B1F2B;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:64px;font-weight:700;line-height:1.15">La regla del eje</h2>
+<div style="display:flex;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;align-items:center;gap:20px">
+<h3 style="font-size:36px;font-weight:600">Respetar el eje</h3>
+<p style="font-size:28px;font-weight:600;background:#CBE9F2;color:#1B1F2B;border-radius:50%;padding:6px 24px">Se entiende</p>
+</div>
+<div style="position:relative;width:808px;height:480px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;overflow:hidden">
+<svg aria-label="Vista desde arriba: las dos cámaras están al mismo lado del eje. En pantalla, A mira a la derecha y B a la izquierda." viewBox="0 0 808 480" width="808" height="480">
+<polygon points="240,62 195,118 285,118" fill="#2FA4C7" fill-opacity="0.2"/>
+<polygon points="568,62 523,118 613,118" fill="#F2B134" fill-opacity="0.3"/>
+<line x1="100" y1="150" x2="708" y2="150" stroke="#D9482B" stroke-width="4" stroke-dasharray="14 10"/>
+<circle cx="240" cy="150" r="28" fill="#2FA4C7"/>
+<polygon points="268,140 268,160 292,150" fill="#2FA4C7"/>
+<circle cx="568" cy="150" r="28" fill="#F2B134"/>
+<polygon points="540,140 540,160 516,150" fill="#F2B134"/>
+<rect x="218" y="36" width="44" height="26" rx="4" fill="#1B1F2B"/>
+<polygon points="230,62 250,62 245,72 235,72" fill="#1B1F2B"/>
+<rect x="546" y="36" width="44" height="26" rx="4" fill="#1B1F2B"/>
+<polygon points="558,62 578,62 573,72 563,72" fill="#1B1F2B"/>
+<rect x="40" y="330" width="340" height="136" rx="12" fill="#1B1F2B"/>
+<rect x="428" y="330" width="340" height="136" rx="12" fill="#1B1F2B"/>
+<path d="M152 466 Q152 428 210 428 Q268 428 268 466 Z" fill="#2FA4C7"/>
+<circle cx="210" cy="400" r="26" fill="#2FA4C7"/>
+<polygon points="234,390 234,410 262,400" fill="#2FA4C7"/>
+<path d="M540 466 Q540 428 598 428 Q656 428 656 466 Z" fill="#F2B134"/>
+<circle cx="598" cy="400" r="26" fill="#F2B134"/>
+<polygon points="574,390 574,410 546,400" fill="#F2B134"/>
+</svg>
+<p style="position:absolute;left:150px;top:2px;width:180px;font-size:24px;text-align:center">Cámara 1</p>
+<p style="position:absolute;left:478px;top:2px;width:180px;font-size:24px;text-align:center">Cámara 2</p>
+<p style="position:absolute;left:220px;top:131px;width:40px;font-size:28px;font-weight:700;text-align:center">A</p>
+<p style="position:absolute;left:548px;top:131px;width:40px;font-size:28px;font-weight:700;text-align:center">B</p>
+<p style="position:absolute;left:300px;top:160px;width:208px;font-size:24px;font-weight:600;text-align:center;color:#B23A20">Eje de acción</p>
+<p style="position:absolute;left:56px;top:336px;width:300px;font-size:24px;color:#B8BFCC">Plano 1 · Cámara 1</p>
+<p style="position:absolute;left:444px;top:336px;width:300px;font-size:24px;color:#B8BFCC">Plano 2 · Cámara 2</p>
+</div>
+<p style="font-size:28px;line-height:1.4;color:#565D70">Las dos cámaras quedan al mismo lado del eje: A mira a la derecha y B a la izquierda.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;align-items:center;gap:20px">
+<h3 style="font-size:36px;font-weight:600">Saltar el eje</h3>
+<p style="font-size:28px;font-weight:600;background:#FBE6B8;color:#1B1F2B;border-radius:50%;padding:6px 24px">Confunde</p>
+</div>
+<div style="position:relative;width:808px;height:480px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;overflow:hidden">
+<svg aria-label="Vista desde arriba: la cámara 2 está al otro lado del eje. En pantalla, A y B miran a la derecha, como si ninguno mirase al otro." viewBox="0 0 808 480" width="808" height="480">
+<polygon points="240,62 195,118 285,118" fill="#2FA4C7" fill-opacity="0.2"/>
+<polygon points="568,238 523,182 613,182" fill="#F2B134" fill-opacity="0.3"/>
+<line x1="100" y1="150" x2="708" y2="150" stroke="#D9482B" stroke-width="4" stroke-dasharray="14 10"/>
+<circle cx="240" cy="150" r="28" fill="#2FA4C7"/>
+<polygon points="268,140 268,160 292,150" fill="#2FA4C7"/>
+<circle cx="568" cy="150" r="28" fill="#F2B134"/>
+<polygon points="540,140 540,160 516,150" fill="#F2B134"/>
+<rect x="218" y="36" width="44" height="26" rx="4" fill="#1B1F2B"/>
+<polygon points="230,62 250,62 245,72 235,72" fill="#1B1F2B"/>
+<rect x="546" y="238" width="44" height="26" rx="4" fill="#1B1F2B"/>
+<polygon points="558,238 578,238 573,228 563,228" fill="#1B1F2B"/>
+<rect x="40" y="330" width="340" height="136" rx="12" fill="#1B1F2B"/>
+<rect x="428" y="330" width="340" height="136" rx="12" fill="#1B1F2B"/>
+<path d="M152 466 Q152 428 210 428 Q268 428 268 466 Z" fill="#2FA4C7"/>
+<circle cx="210" cy="400" r="26" fill="#2FA4C7"/>
+<polygon points="234,390 234,410 262,400" fill="#2FA4C7"/>
+<path d="M540 466 Q540 428 598 428 Q656 428 656 466 Z" fill="#F2B134"/>
+<circle cx="598" cy="400" r="26" fill="#F2B134"/>
+<polygon points="622,390 622,410 650,400" fill="#F2B134"/>
+</svg>
+<p style="position:absolute;left:150px;top:2px;width:180px;font-size:24px;text-align:center">Cámara 1</p>
+<p style="position:absolute;left:478px;top:268px;width:180px;font-size:24px;text-align:center">Cámara 2</p>
+<p style="position:absolute;left:220px;top:131px;width:40px;font-size:28px;font-weight:700;text-align:center">A</p>
+<p style="position:absolute;left:548px;top:131px;width:40px;font-size:28px;font-weight:700;text-align:center">B</p>
+<p style="position:absolute;left:300px;top:160px;width:208px;font-size:24px;font-weight:600;text-align:center;color:#B23A20">Eje de acción</p>
+<p style="position:absolute;left:56px;top:336px;width:300px;font-size:24px;color:#B8BFCC">Plano 1 · Cámara 1</p>
+<p style="position:absolute;left:444px;top:336px;width:300px;font-size:24px;color:#B8BFCC">Plano 2 · Cámara 2</p>
+</div>
+<p style="font-size:28px;line-height:1.4;color:#565D70">La cámara 2 cruza el eje: B pasa a mirar a la derecha, como A. Parece que no se miran.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#565D70">Esquema visto desde arriba · Apuntes UT 2 · pp. 8-9 · Ejemplo real: <a href="https://youtu.be/TuHWK1Ez_20"><span style="color:#B23A20;font-weight:600">«Ejemplo de Salto de Eje» (youtu.be/TuHWK1Ez_20)</span></a></p>
+<aside>Cómo explicarlo (esquema visto desde arriba). El eje de miradas es la línea imaginaria que une a los dos personajes (p. 8): si A mira a la derecha y B a la izquierda, esa dirección debe mantenerse en todos los planos de la conversación. Izquierda: las dos cámaras están al mismo lado del eje, así que en pantalla A mira a la derecha y B a la izquierda y el espectador entiende que se miran. Derecha: la cámara 2 está al otro lado del eje; B aparece mirando a la derecha, igual que A, y parece que ninguno mira al otro: el espectador se desorienta. Lo mismo ocurre con el eje de acción: si alguien se desplaza de izquierda a derecha en un plano, debe seguir haciéndolo en los siguientes. La técnica ortodoxa dice que no hay que saltar el eje, pero los apuntes (pp. 8-9) recogen cuatro formas de hacerlo sin confundir: movimiento del actor o actores en la misma toma, movimiento de la cámara que cruza el eje durante la toma, una toma neutra realizada sobre el mismo eje o una nueva acción que justifique el salto. Los dibujos son esquemáticos, no proceden del PDF. Para ver un salto de eje real, reproduce el vídeo «Ejemplo de Salto de Eje» (Laura Álvarez): https://youtu.be/TuHWK1Ez_20. Pide que localicen el momento en que los personajes cambian de lado de la pantalla. El PDF enlaza además un vídeo en la p. 8: https://youtu.be/ER5nnjg6Nzs.</aside>
+</section>
+<section id="ritmo" data-transition="fade" style="background:#F6F3EC;color:#1B1F2B;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:64px;font-weight:700;line-height:1.15">Ritmo y tempo</h2>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#1B1F2B;color:#F6F3EC;border-radius:16px;padding:40px">
+<h3 style="font-size:36px;font-weight:600;color:#F2B134">Ritmo</h3>
+<p style="font-size:32px;line-height:1.4">La relación entre plano y plano. Lo marca sobre todo la duración de cada plano.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#F2B134;color:#1B1F2B;border-radius:16px;padding:40px">
+<h3 style="font-size:36px;font-weight:600">Tempo</h3>
+<p style="font-size:32px;line-height:1.4">La relación entre secuencias. Depende del guion y de su estructura dramática.</p>
+</div>
+</div>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:40px">
+<h3 style="font-size:36px;font-weight:600">Ritmo rápido</h3>
+<p style="font-size:30px;line-height:1.4;color:#565D70">Muchos planos muy cortos.</p>
+<p style="font-size:30px;line-height:1.4;font-style:italic">Psicosis, la ducha*</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:8px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:40px">
+<h3 style="font-size:36px;font-weight:600">Ritmo cadencioso</h3>
+<p style="font-size:30px;line-height:1.4;color:#565D70">Planos largos y pausados.</p>
+<p style="font-size:30px;line-height:1.4;font-style:italic">Stalker*</p>
+</div>
+</div>
+<p style="font-family:'Libre Baskerville', Georgia, serif;font-style:italic;font-size:36px;line-height:1.3">La duración de cada plano debe ser proporcional a su interés y a su significación.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#565D70">Apuntes UT 2 · p. 10 · * Ejemplo añadido, no está en el PDF</p>
+<aside>Los dos conceptos se confunden a menudo (p. 10). Ritmo: relación entre plano y plano; lo determina el montaje, sobre todo la duración de cada plano, que debe ser proporcional al interés del contenido. Tempo: relación entre secuencias (unidades narrativas); depende del guion y de la estructura dramática. Ritmo rápido: muchos planos y muy cortos, cada vez más cortos. Ritmo cadencioso: lo contrario. Combinar acciones rápidas con lentas acentúa la sensación de prisa y urgencia. Un ritmo lento no es la ausencia de ritmo (p. 21). Psicosis y Stalker son ejemplos añadidos de memoria: contrasta la ducha, con decenas de planos en menos de un minuto, con los planos larguísimos de Tarkovski.</aside>
+</section>
+<section id="tipos" data-transition="fade" style="background:#F6F3EC;color:#1B1F2B;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:64px;font-weight:700;line-height:1.15">Cuatro formas de clasificar el montaje</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
+<div style="display:flex;flex-direction:column;gap:12px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:40px">
+<h3 style="font-size:36px;font-weight:600">Por cómo se produce</h3>
+<p style="font-size:30px;line-height:1.4;color:#565D70"><b style="color:#1B1F2B">Interno:</b> ocurre dentro del plano.<br><b style="color:#1B1F2B">Externo:</b> une planos con cortes.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:40px">
+<h3 style="font-size:36px;font-weight:600">Por escala y duración</h3>
+<p style="font-size:30px;line-height:1.4;color:#565D70"><b style="color:#1B1F2B">Analítico:</b> planos cortos y simples.<br><b style="color:#1B1F2B">Sintético:</b> planos grandes y complejos.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:40px">
+<h3 style="font-size:36px;font-weight:600">Por la totalidad del relato</h3>
+<p style="font-size:30px;line-height:1.4;color:#565D70"><b style="color:#1B1F2B">Narrativo:</b> lineal, invertido, paralelo o alterno.<br><b style="color:#1B1F2B">Expresivo:</b> rítmico o ideológico.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:40px">
+<h3 style="font-size:36px;font-weight:600">Por el tiempo</h3>
+<p style="font-size:30px;line-height:1.4;color:#565D70"><b style="color:#1B1F2B">Continuo:</b> dura lo mismo que la acción.<br><b style="color:#1B1F2B">Discontinuo:</b> comprime o estira el tiempo.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#565D70">Apuntes UT 2 · pp. 10-14</p>
+<aside>Cada teórico plantea su propia clasificación; los apuntes (p. 10) reúnen cuatro criterios. 1) Modo de producción (pp. 10-12): interno, sin manipular el metraje, o externo, con cambio de plano. 2) Escala y duración (p. 13): el analítico (planos cortos; acción, videoclips) frente al sintético (planos grandes con profundidad de campo; su culmen es el plano secuencia, hoy menos de moda). 3) Totalidad del relato (pp. 13-14): narrativo o expresivo. 4) Continuidad temporal (p. 14): continuo o discontinuo. Las diapositivas siguientes detallan cada uno.</aside>
+</section>
+<section id="interno" data-transition="fade" style="background:#F6F3EC;color:#1B1F2B;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:64px;font-weight:700;line-height:1.15">Montaje interno: cortar sin cortar</h2>
+<p style="font-size:30px;line-height:1.4;color:#565D70">Ocurre dentro del plano, por la puesta en escena y la cámara; no manipula el metraje.</p>
+<div style="display:flex;gap:48px">
+<div style="flex:1.3;display:flex;flex-direction:column;gap:20px">
+<p style="font-size:28px;line-height:1.4"><b>Profundidad de campo:</b> dos acciones distintas en el mismo plano, una en primer término y otra al fondo.</p>
+<p style="font-size:28px;line-height:1.4"><b>Enfoque retórico:</b> cambiar el foco de un término a otro hace de corte.</p>
+<p style="font-size:28px;line-height:1.4"><b>Acción del personaje:</b> su movimiento dentro del plano guía la lectura.</p>
+<p style="font-size:28px;line-height:1.4"><b>Composición:</b> la disposición de los elementos sugiere cómo leer el plano.</p>
+<p style="font-size:28px;line-height:1.4"><b>Fuera de campo:</b> sombras o sonidos reclaman la atención sin mostrarse.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#1B1F2B;color:#F6F3EC;border-radius:16px;padding:48px">
+<h3 style="font-family:'Libre Baskerville', Georgia, serif;font-size:36px;font-weight:700;color:#F2B134">Ciudadano Kane</h3>
+<p style="font-size:30px;line-height:1.4">La madre y el abogado, en primer término. Al fondo, por la ventana, el niño jugando.</p>
+<p style="font-size:30px;line-height:1.4;color:#B8BFCC">El espectador hace el montaje sin que haya corte.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#565D70">Apuntes UT 2 · pp. 10-12</p>
+<aside>El montaje interno (p. 10) no requiere acción del montador: ocurre dentro del plano por la puesta en escena, la colocación de la cámara y su movimiento. Subtipos: por profundidad de campo (la escena de Ciudadano Kane con la madre y el abogado en primer término y el niño jugando al fondo, p. 11), por enfoque retórico, por acción o movimiento del personaje, por composición (por ejemplo, obligar a fijarse primero en el teléfono y su sonido) y por presencia del fuera de campo (p. 12). El montaje externo, el habitual, es el que sí implica cambio de plano: fragmenta la acción en planos rodados desde distintos ángulos y unidos en un orden y un ritmo concretos. Vídeos del PDF (p. 10) Montaje interno: ejemplos: https://youtu.be/AKfA-Zn-sN0; Prezi · Montaje interno y externo: https://prezi.com/y_wzs914xpto/montaje-interno-y-externo/.</aside>
+</section>
+<section id="narrativo" data-transition="fade" style="background:#F6F3EC;color:#1B1F2B;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:64px;font-weight:700;line-height:1.15">Montaje narrativo y tiempo</h2>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:32px">
+<h3 style="font-size:36px;font-weight:600">Lineal</h3>
+<p style="font-size:28px;line-height:1.4;color:#565D70">La historia avanza en una sola dirección, de forma lógica.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:32px">
+<h3 style="font-size:36px;font-weight:600">Invertido</h3>
+<p style="font-size:28px;line-height:1.4;color:#565D70">Rompe el orden cronológico con flashbacks y flashforwards.</p>
+<p style="font-size:28px;line-height:1.4;font-style:italic">Memento, Big Fish</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:32px">
+<h3 style="font-size:36px;font-weight:600">Paralelo</h3>
+<p style="font-size:28px;line-height:1.4;color:#565D70">Escenas de tiempos distintos, mostradas a la vez para asociar ideas.</p>
+<p style="font-size:28px;line-height:1.4;font-style:italic">El Padrino: el bautizo y los asesinatos</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:32px">
+<h3 style="font-size:36px;font-weight:600">Alterno</h3>
+<p style="font-size:28px;line-height:1.4;color:#565D70">Mismo tiempo, lugares distintos; suelen acabar juntándose.</p>
+<p style="font-size:28px;line-height:1.4;font-style:italic">Origen; los rescates de Griffith*</p>
+</div>
+</div>
+<p style="font-size:30px;line-height:1.4;background:#FBE6B8;color:#1B1F2B;border-radius:16px;padding:28px 32px">Paralelo y alterno se confunden: en el paralelo las escenas son de tiempos distintos; en el alterno, simultáneas.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#565D70">Apuntes UT 2 · p. 13 · * Ejemplo añadido, no está en el PDF</p>
+<aside>El montaje narrativo (p. 13) da sensación de totalidad (presentación, nudo, desenlace) sin exigir continuidad cronológica. Lineal: continuidad lógica. Invertido: flashbacks y flashforwards, sin intercalar planos de otra escena; ejemplos del PDF: Memento (2000) y Big Fish (2003). Paralelo: escenas de tiempos distintos, independientes cronológicamente, que se muestran a la vez creando asociación de ideas; el PDF cita la secuencia de El Padrino (1972) donde el bautizo de Michael se intercala con los asesinatos de los que es responsable: se contrapone la pureza del bautismo con los asesinatos. Alterno o creativo: acciones simultáneas en escenarios distintos, que suelen unirse al final; el PDF cita una escena de Origen de Nolan, con el sueño y el cuerpo en lugares distintos al mismo tiempo. Los rescates a contrarreloj de Griffith son un ejemplo añadido de memoria. Vídeos del PDF (p. 13) Memento · tráiler en español: https://www.youtube.com/watch?v=mV9l1enMqvk&amp;t=2s; El Padrino · final, asesinatos durante el bautismo: https://www.youtube.com/watch?v=Er40xuqa_Qk&amp;feature=emb_logo; Origen (Inception) · «Despiértalo»: https://www.youtube.com/watch?v=DD7fWBSoaA0.</aside>
+</section>
+<section id="expresivo" data-transition="fade" style="background:#F6F3EC;color:#1B1F2B;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:64px;font-weight:700;line-height:1.15">Expresivo, continuo y discontinuo</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
+<div style="display:flex;flex-direction:column;gap:8px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:32px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#565D70">Expresivo</p>
+<h3 style="font-size:36px;font-weight:600">Rítmico</h3>
+<p style="font-size:28px;line-height:1.4;color:#565D70">Los planos aparecen y se repiten al compás de la banda sonora y los efectos.</p>
+<p style="font-size:28px;line-height:1.4;font-style:italic">Los intocables de Eliot Ness</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:32px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#565D70">Expresivo</p>
+<h3 style="font-size:36px;font-weight:600">Ideológico o poético</h3>
+<p style="font-size:28px;line-height:1.4;color:#565D70">Busca crear sensaciones con metáforas, analogías y conceptos.</p>
+<p style="font-size:28px;line-height:1.4;font-style:italic">La forma del agua</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:32px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#565D70">Tiempo</p>
+<h3 style="font-size:36px;font-weight:600">Continuo</h3>
+<p style="font-size:28px;line-height:1.4;color:#565D70">Dura lo mismo que la acción real. La toma sostenida y la toma de espera suavizan las salidas de cuadro.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:32px">
+<p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#565D70">Tiempo</p>
+<h3 style="font-size:36px;font-weight:600">Discontinuo</h3>
+<p style="font-size:28px;line-height:1.4;color:#565D70">Comprime o estira el tiempo con elipsis, evidentes o suavizadas.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#565D70">Apuntes UT 2 · p. 14</p>
+<aside>El montaje expresivo (p. 14) aporta un concepto psicológico al relato y se centra en el mundo interior y subjetivo. Rítmico: los planos se repiten, aparecen y desaparecen conforme a la banda sonora; el PDF lo ilustra con Los intocables de Eliot Ness, donde el tiempo se ralentiza y el carrito cae lentamente por la escalera. Ideológico, conceptual o poético: la transición corresponde a sentimientos, analogías o metáforas; el ejemplo del PDF es La forma del agua. Continuo: la duración de las tomas editadas coincide con la acción real; la acción puede seguir fuera de pantalla con una toma sostenida (el personaje sale de cuadro y la cámara se queda) o una toma de espera (se muestra antes el lugar al que se dirige). Discontinuo: el tiempo se comprime o se amplía; también se puede estirar un momento deteniendo el tiempo. Vídeos del PDF (p. 14) Los intocables · tiroteo en la escalera: https://www.youtube.com/watch?v=QJpRSf4q-hI&amp;t=46s; La forma del agua · tráiler en español: https://youtu.be/gfVe2puMBs0.</aside>
+</section>
+<section id="eisenstein" data-transition="fade" style="background:#F6F3EC;color:#1B1F2B;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:64px;font-weight:700;line-height:1.15">Eisenstein: cinco métodos</h2>
+<p style="font-size:30px;line-height:1.4;color:#565D70">Publicados en 1929 en <i>Film Form</i>: cada método suma elementos al anterior.</p>
+<table style="font-size:26px;width:100%;color:#1B1F2B">
+<tr><th style="width:17%">Método</th><th style="width:53%">Criterio</th><th style="width:30%">Ejemplo</th></tr>
+<tr><td style="width:17%">Métrico</td><td style="width:53%">La duración exacta de las tomas, como un compás musical</td><td style="width:30%">Octubre</td></tr>
+<tr><td style="width:17%">Rítmico</td><td style="width:53%">Duración y contenido del cuadro, con movimiento interno</td><td style="width:30%">La escalera de Odesa</td></tr>
+<tr><td style="width:17%">Tonal</td><td style="width:53%">Todos los elementos de la toma crean un tono emocional</td><td style="width:30%">La niebla, en Potemkin</td></tr>
+<tr><td style="width:17%">Sobretonal</td><td style="width:53%">Suma de forma colectiva todos los trozos tonales</td><td style="width:30%">—</td></tr>
+<tr><td style="width:17%">Intelectual</td><td style="width:53%">Metáfora visual: asociar imágenes crea un nuevo significado</td><td style="width:30%">La huelga</td></tr>
+</table>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#565D70">Apuntes UT 2 · p. 15</p>
+<aside>Según Eisenstein, cada nuevo método eleva de nivel al anterior; el más sencillo es el métrico y el más sutil el intelectual (p. 15). Métrico: criterio fundamental es la longitud absoluta de las tomas; ejemplo del PDF, Octubre. Rítmico: duración y contenido del cuadro importan por igual; ejemplo, la escalera de Odesa en El acorazado Potemkin. Tonal: el movimiento se percibe en un sentido más amplio; ejemplo, la secuencia de la niebla de Potemkin (luz, sombra, agua, boyas, vapor, gaviotas). Sobretonal o armónico: tiene en cuenta, de forma colectiva, todos los trozos tonales de la narración. Intelectual o ideológico (también montaje de atracciones): explota la metáfora visual; en el final de La huelga intercala la masacre de los huelguistas con el degüello de una res. Vídeos del PDF (p. 15) El acorazado Potemkin · escalera de Odessa: https://www.youtube.com/watch?v=zsw7cCkbUvk; La huelga (1925) · fragmento de Eisenstein: https://www.youtube.com/watch?v=YHJVh6zoAMY.</aside>
+</section>
+<section id="pudovkin" data-transition="fade" style="background:#F6F3EC;color:#1B1F2B;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:64px;font-weight:700;line-height:1.15">Pudovkin: cinco métodos</h2>
+<p style="font-family:'Libre Baskerville', Georgia, serif;font-style:italic;font-size:30px;line-height:1.4;color:#565D70">«Editar es un método que controla la dirección psicológica del espectador.»</p>
+<table style="font-size:26px;width:100%;color:#1B1F2B">
+<tr><th style="width:19%">Método</th><th style="width:48%">Qué hace</th><th style="width:33%">Ejemplo</th></tr>
+<tr><td style="width:19%">Contraste</td><td style="width:48%">Dos planos funcionan como una comparación</td><td style="width:33%">Tiempos modernos*</td></tr>
+<tr><td style="width:19%">Paralelismo</td><td style="width:48%">Dos escenas alternas unidas por un nexo común, como una forma o un objeto</td><td style="width:33%">—</td></tr>
+<tr><td style="width:19%">Simbolismo</td><td style="width:48%">Un plano da un sentido alegórico al anterior</td><td style="width:33%">Psicosis: la sangre por el desagüe y el ojo</td></tr>
+<tr><td style="width:19%">Simultaneidad</td><td style="width:48%">Dos hechos que ocurren a la vez y se relacionan</td><td style="width:33%">—</td></tr>
+<tr><td style="width:19%">Leitmotiv</td><td style="width:48%">Un tema recurrente estructura el montaje, como un estribillo</td><td style="width:33%">Tiburón: las escenas bajo el agua</td></tr>
+</table>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#565D70">Apuntes UT 2 · pp. 15-16 · * Ejemplo añadido, no está en el PDF</p>
+<aside>La cita de Pudovkin es la del PDF (p. 15): «Editar no es un mero método de empalme de escenas separadas o piezas, es un método que controla la dirección psicológica del espectador»; aquí está abreviada. Sus cinco métodos: contraste (dos planos como comparación), paralelismo (dos escenas distintas de forma alternativa con un nexo común), simbolismo (un plano da sentido alegórico al otro; ejemplo del PDF, Psicosis: tras el asesinato en la ducha, la sangre que se va por el desagüe y después el ojo de la chica sin vida), simultaneidad (muy parecido al paralelismo, pero con hechos ocurridos a la vez y relacionados) y leitmotiv (un tema recurrente que estructura el resto de la edición; ejemplo del PDF, las escenas bajo el agua de Tiburón, p. 16). Tiempos modernos es un ejemplo añadido de memoria: las ovejas y los obreros como contraste.</aside>
+</section>
+<section id="basicas" data-transition="fade" style="background:#F6F3EC;color:#1B1F2B;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:64px;font-weight:700;line-height:1.15">Cinco reglas básicas de corte</h2>
+<div style="display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;align-items:center;gap:24px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:20px 32px">
+<div style="width:56px;height:56px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><p style="font-size:28px;font-weight:700;color:#1B1F2B">1</p></div>
+<p style="flex:1;font-size:28px;line-height:1.4"><b>Salto proporcional en la escala:</b> evita tamaños iguales seguidos y saltos bruscos.</p>
+</div>
+<div style="display:flex;align-items:center;gap:24px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:20px 32px">
+<div style="width:56px;height:56px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><p style="font-size:28px;font-weight:700;color:#1B1F2B">2</p></div>
+<p style="flex:1;font-size:28px;line-height:1.4"><b>Cambio de ángulo:</b> al menos 30-45 grados entre una posición de cámara y la siguiente.</p>
+</div>
+<div style="display:flex;align-items:center;gap:24px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:20px 32px">
+<div style="width:56px;height:56px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><p style="font-size:28px;font-weight:700;color:#1B1F2B">3</p></div>
+<p style="flex:1;font-size:28px;line-height:1.4"><b>Continuidad en el movimiento:</b> respeta el eje de acción y los lados de la pantalla.</p>
+</div>
+<div style="display:flex;align-items:center;gap:24px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:20px 32px">
+<div style="width:56px;height:56px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><p style="font-size:28px;font-weight:700;color:#1B1F2B">4</p></div>
+<p style="flex:1;font-size:28px;line-height:1.4"><b>Continuidad en la óptica:</b> mantén la distancia focal dentro de una misma acción.</p>
+</div>
+<div style="display:flex;align-items:center;gap:24px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:20px 32px">
+<div style="width:56px;height:56px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><p style="font-size:28px;font-weight:700;color:#1B1F2B">5</p></div>
+<p style="flex:1;font-size:28px;line-height:1.4"><b>Raccord:</b> vestuario, atrezzo, luz y posición coherentes entre planos.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#565D70">Apuntes UT 2 · pp. 16-18</p>
+<aside>«El joven conoce las reglas, pero el viejo las excepciones» (p. 16): son normas básicas, no leyes. 1) Salto proporcional en la escala (p. 16): al pasar de un plano a otro del mismo motivo se evitan los tamaños sucesivos iguales y los saltos bruscos; es la regla que enlaza directamente con la escala de planos. 2) Cambio de ángulo y posición (pp. 16-17): ni muy pequeño ni muy grande; norma de los 30-45 grados. 3) Continuidad en el movimiento (p. 17): el movimiento de objetos y personajes se hace en relación con los lados de la pantalla, independientemente de cómo suceda en la realidad. 4) Continuidad en la óptica (p. 18): conservar la distancia focal para no cambiar las dimensiones y proporciones del espacio. 5) Raccord (p. 18): concordancia de vestuario, atrezzo, luz, contenido, posición y movimiento.</aside>
+</section>
+<section id="murch" data-transition="fade" style="background:#1B1F2B;color:#F6F3EC;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:64px;font-weight:700;line-height:1.15">Murch: el corte perfecto</h2>
+<p style="font-size:30px;line-height:1.4;color:#B8BFCC">Seis criterios, ordenados por peso. La emoción pesa más que todos los demás juntos.</p>
+<div style="display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;align-items:center;gap:24px">
+<p style="width:560px;font-size:28px;line-height:1.3">Emoción del momento</p>
+<div style="width:880px;height:44px;background:#F2B134;border-radius:8px"></div>
+<p style="font-size:32px;font-weight:700;color:#F2B134">51%</p>
+</div>
+<div style="display:flex;align-items:center;gap:24px">
+<p style="width:560px;font-size:28px;line-height:1.3">Hacer avanzar la historia</p>
+<div style="width:397px;height:44px;background:#6C7690;border-radius:8px"></div>
+<p style="font-size:32px;font-weight:700">23%</p>
+</div>
+<div style="display:flex;align-items:center;gap:24px">
+<p style="width:560px;font-size:28px;line-height:1.3">Ritmo interesante y adecuado</p>
+<div style="width:173px;height:44px;background:#6C7690;border-radius:8px"></div>
+<p style="font-size:32px;font-weight:700">10%</p>
+</div>
+<div style="display:flex;align-items:center;gap:24px">
+<p style="width:560px;font-size:28px;line-height:1.3">Línea de la mirada</p>
+<div style="width:121px;height:44px;background:#6C7690;border-radius:8px"></div>
+<p style="font-size:32px;font-weight:700">7%</p>
+</div>
+<div style="display:flex;align-items:center;gap:24px">
+<p style="width:560px;font-size:28px;line-height:1.3">Planaridad: los ejes</p>
+<div style="width:86px;height:44px;background:#6C7690;border-radius:8px"></div>
+<p style="font-size:32px;font-weight:700">5%</p>
+</div>
+<div style="display:flex;align-items:center;gap:24px">
+<p style="width:560px;font-size:28px;line-height:1.3">Continuidad espacial 3D</p>
+<div style="width:69px;height:44px;background:#6C7690;border-radius:8px"></div>
+<p style="font-size:32px;font-weight:700">4%</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#B8BFCC">Walter Murch, <i>En el parpadeo de un ojo</i> · Apuntes UT 2 · p. 19</p>
+<aside>Walter Murch, montador de Apocalypse Now, expone en In the Blink of an Eye su jerarquía para decidir cuándo y dónde pasar de una toma a otra (p. 19). 1) Ser fiel a la emoción del momento (51 %). 2) Hacer avanzar la historia (23 %). 3) Que ocurra en un momento rítmicamente interesante y adecuado (10 %). 4) Respetar la línea de la mirada: la ubicación y el movimiento del centro de interés del espectador dentro de la imagen (7 %). 5) Respetar la planaridad, la gramática de las tres dimensiones traducida a dos (ejes, 5 %). 6) Seguir la continuidad tridimensional del espacio (4 %). El propio Murch se ríe de lo arbitrario de los porcentajes, pero concluye que, en la mayoría de los casos, lo que importa es la emoción. Vídeos del PDF (p. 19) In the Blink of an Eye (Walter Murch), libro: http://www.amazon.com/Blink-Eye-Revised-2nd-Edition/dp/1879505622.</aside>
+</section>
+<section id="dmytryk" data-transition="fade" style="background:#F6F3EC;color:#1B1F2B;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:64px;font-weight:700;line-height:1.15">Dmytryk: siete reglas</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+<div style="display:flex;align-items:center;gap:20px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:20px 28px">
+<div style="width:52px;height:52px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><p style="font-size:26px;font-weight:700;color:#1B1F2B">1</p></div>
+<p style="flex:1;font-size:28px;line-height:1.4">Nunca cortes sin una buena razón: la única es mejorar la escena.</p>
+</div>
+<div style="display:flex;align-items:center;gap:20px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:20px 28px">
+<div style="width:52px;height:52px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><p style="font-size:26px;font-weight:700;color:#1B1F2B">2</p></div>
+<p style="flex:1;font-size:28px;line-height:1.4">En la duda sobre el fotograma de corte, mejor que sobre a que falte.</p>
+</div>
+<div style="display:flex;align-items:center;gap:20px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:20px 28px">
+<div style="width:52px;height:52px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><p style="font-size:26px;font-weight:700;color:#1B1F2B">3</p></div>
+<p style="flex:1;font-size:28px;line-height:1.4">Siempre que puedas, corta en movimiento.</p>
+</div>
+<div style="display:flex;align-items:center;gap:20px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:20px 28px">
+<div style="width:52px;height:52px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><p style="font-size:26px;font-weight:700;color:#1B1F2B">4</p></div>
+<p style="flex:1;font-size:28px;line-height:1.4">Lo fresco es preferible a lo rancio: la obviedad es un pecado.</p>
+</div>
+<div style="display:flex;align-items:center;gap:20px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:20px 28px">
+<div style="width:52px;height:52px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><p style="font-size:26px;font-weight:700;color:#1B1F2B">5</p></div>
+<p style="flex:1;font-size:28px;line-height:1.4">Cada escena empieza y termina con una acción continuada.</p>
+</div>
+<div style="display:flex;align-items:center;gap:20px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:20px 28px">
+<div style="width:52px;height:52px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><p style="font-size:26px;font-weight:700;color:#1B1F2B">6</p></div>
+<p style="flex:1;font-size:28px;line-height:1.4">El corte lo motivan los valores dramáticos, no la correspondencia entre planos.</p>
+</div>
+<div style="grid-column:span 2;display:flex;align-items:center;gap:20px;background:#1B1F2B;color:#F6F3EC;border-radius:16px;padding:20px 28px">
+<div style="width:52px;height:52px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><p style="font-size:26px;font-weight:700;color:#1B1F2B">7</p></div>
+<p style="flex:1;font-family:'Libre Baskerville', Georgia, serif;font-style:italic;font-size:32px;line-height:1.4">Sustancia primero, forma después.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#565D70">Edward Dmytryk, <i>El montaje</i> · Apuntes UT 2 · pp. 19-20</p>
+<aside>Edward Dmytryk propuso estas reglas en su libro «El Montaje» (pp. 19-20). 1) Nunca hacer un corte sin una buena razón; si un plano nuevo no contribuye a los objetivos de la escena, mejor no cortar. 2) Ante la duda sobre el fotograma exacto, mejor que sobre a que falte (viene de cuando los empalmes se hacían con cinta adhesiva). 3) Siempre que sea posible, cortar en movimiento: ayuda a enmascarar el corte; el timing es fundamental. 4) Lo fresco es preferible a lo rancio: la obviedad es un pecado. 5) Todas las escenas deben comenzar y terminar con una acción continuada: la sensación de un fragmento de vida en movimiento. 6) El corte debe estar motivado por los valores, no por la correspondencia entre planos. 7) Substancia primero, forma después: la técnica no sirve de nada por sí misma.</aside>
+</section>
+<section id="consejos" data-transition="fade" style="background:#F6F3EC;color:#1B1F2B;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:64px;font-weight:700;line-height:1.15">Consejos prácticos para cortar</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+<div style="display:flex;align-items:center;gap:24px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:28px">
+<div style="width:64px;height:64px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><x-icon name="Activity" style="color:#1B1F2B;width:32px;height:32px"></x-icon></div>
+<p style="flex:1;font-size:28px;line-height:1.4">De PP a PM, corta en reposo. De PM a PP, corta en movimiento.</p>
+</div>
+<div style="display:flex;align-items:center;gap:24px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:28px">
+<div style="width:64px;height:64px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><x-icon name="Home" style="color:#1B1F2B;width:32px;height:32px"></x-icon></div>
+<p style="flex:1;font-size:28px;line-height:1.4">En un decorado nuevo, empieza por un PG y ve de lo general a lo concreto.</p>
+</div>
+<div style="display:flex;align-items:center;gap:24px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:28px">
+<div style="width:64px;height:64px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><x-icon name="Chat" style="color:#1B1F2B;width:32px;height:32px"></x-icon></div>
+<p style="flex:1;font-size:28px;line-height:1.4">En un diálogo no abuses de los cortes: encabalga el sonido de uno con la imagen del otro.</p>
+</div>
+<div style="display:flex;align-items:center;gap:24px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:28px">
+<div style="width:64px;height:64px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><x-icon name="Clock" style="color:#1B1F2B;width:32px;height:32px"></x-icon></div>
+<p style="flex:1;font-size:28px;line-height:1.4">Un plano novedoso debe durar más que uno que el espectador ya conoce.</p>
+</div>
+<div style="display:flex;align-items:center;gap:24px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:28px">
+<div style="width:64px;height:64px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><x-icon name="Warning" style="color:#1B1F2B;width:32px;height:32px"></x-icon></div>
+<p style="flex:1;font-size:28px;line-height:1.4">El fundido es un punto y aparte: no lo uses gratuitamente.</p>
+</div>
+<div style="display:flex;align-items:center;gap:24px;background:#FFFDF8;border:1px solid #E2DCCB;border-radius:16px;padding:28px">
+<div style="width:64px;height:64px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><x-icon name="Settings" style="color:#1B1F2B;width:32px;height:32px"></x-icon></div>
+<p style="flex:1;font-size:28px;line-height:1.4">Sube el volumen en los primeros planos y bájalo en los planos amplios.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#565D70">Apuntes UT 2 · pp. 20-22</p>
+<aside>Consejos finales de los apuntes (pp. 20-22). PP a PM: cortar en reposo para entrar después en actividad; PM a PP: cortar en movimiento, demorando el corte al primer plano hasta que casi se ha terminado el movimiento. En un decorado desconocido, empezar con un plano general y pasar a los planos cortos de los personajes. En diálogos, muchos cortes rompen la continuidad visual y el ritmo interpretativo: encabalgar. Un plano novedoso o inesperado debe ser más largo que otro familiar. El fundido rompe el curso narrativo; es un punto y aparte. Plano sonoro: subir el volumen en los primeros planos y bajarlo en los planos más amplios; no se oyen igual las cosas dentro y fuera de un coche. Otros consejos del PDF: falsear un fallo de raccord si la continuidad dramática es intensa, condensar el tiempo real con elipsis internas y montar para que destaquen solo los hechos más significativos.</aside>
+</section>
+<section id="cierre" data-transition="fade" style="background:#1B1F2B;color:#F6F3EC;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<h2 style="font-family:'Libre Baskerville', Georgia, serif;font-size:64px;font-weight:700;line-height:1.15">Lo esencial</h2>
+<div style="display:flex;gap:64px">
+<div style="flex:1.2;display:flex;flex-direction:column;gap:36px">
+<div style="display:flex;align-items:center;gap:24px">
+<div style="width:64px;height:64px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><p style="font-size:32px;font-weight:700;color:#1B1F2B">1</p></div>
+<p style="flex:1;font-size:36px;line-height:1.3">Montar es decidir el orden y la duración de los planos.</p>
+</div>
+<div style="display:flex;align-items:center;gap:24px">
+<div style="width:64px;height:64px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><p style="font-size:32px;font-weight:700;color:#1B1F2B">2</p></div>
+<p style="flex:1;font-size:36px;line-height:1.3">Corta con una razón: primero la emoción, luego la historia.</p>
+</div>
+<div style="display:flex;align-items:center;gap:24px">
+<div style="width:64px;height:64px;border-radius:50%;background:#F2B134;display:flex;align-items:center;justify-content:center"><p style="font-size:32px;font-weight:700;color:#1B1F2B">3</p></div>
+<p style="flex:1;font-size:36px;line-height:1.3">Respeta el eje, el raccord y el ritmo.</p>
+</div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#262B3A;border:1px solid #353B4E;border-radius:16px;padding:40px">
+<h3 style="font-size:32px;font-weight:600;color:#F2B134">Vídeos que cita el PDF</h3>
+<p style="font-size:28px;line-height:1.4"><a href="https://www.youtube.com/watch?v=L8KLblZGCgs"><span style="color:#F6F3EC">Principios básicos de montaje</span></a></p>
+<p style="font-size:28px;line-height:1.4"><a href="https://youtu.be/jK2adxWTiKY"><span style="color:#F6F3EC">Corte y transición</span></a></p>
+<p style="font-size:28px;line-height:1.4"><a href="https://youtu.be/OmXbWGv-o3k"><span style="color:#F6F3EC">10 reglas esenciales en el montaje</span></a></p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#B8BFCC">Apuntes UT 2 · p. 22</p>
+<aside>Cierre: tres ideas para llevarse. Los tres vídeos son los que el PDF enlaza al final (p. 22); conviene abrirlos antes de clase para comprobar que siguen disponibles. Hay más enlaces repartidos por el PDF (match-cut, bullet time, time-lapse, elipsis) en las pp. 3-7. Si queda tiempo, propón un ejercicio: elegir una escena conocida y nombrar el tipo de transición, el ritmo y la regla de corte que usa. Vídeos del PDF (p. 22) Sonidos diegéticos y extradiegéticos, en campo y fuera de campo: https://youtu.be/qpepm7hr970; Principios básicos de montaje: https://www.youtube.com/watch?v=L8KLblZGCgs; Corte y transición: https://youtu.be/jK2adxWTiKY; 10 reglas esenciales: https://youtu.be/OmXbWGv-o3k.</aside>
+</section>
+</body>
+</html>

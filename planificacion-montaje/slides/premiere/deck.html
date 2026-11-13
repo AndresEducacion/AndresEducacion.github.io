@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Premiere Pro paso a paso</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&amp;display=swap">
+</head>
+<body>
+<section id="cover" style="background:#14151b">
+<div style="position:absolute; top:260px; left:1000px; width:300px; height:96px; background:#6d6ce6; border-radius:12px"></div>
+<div style="position:absolute; top:260px; left:1300px; width:492px; height:96px; background:#8e8df5; border-radius:12px"></div>
+<div style="position:absolute; top:400px; left:1100px; width:330px; height:96px; background:#f4b63f; border-radius:12px"></div>
+<div style="position:absolute; top:400px; left:1442px; width:350px; height:96px; background:#f4b63f; border-radius:12px"></div>
+<div style="position:absolute; top:540px; left:1000px; width:380px; height:96px; background:#3a3f58; border-radius:12px"></div>
+<div style="position:absolute; top:540px; left:1392px; width:400px; height:96px; background:#3a3f58; border-radius:12px"></div>
+<div style="position:absolute; top:680px; left:1160px; width:632px; height:96px; background:#3a3f58; border-radius:12px"></div>
+<p style="position:absolute; top:128px; left:128px; width:820px; font-family:'DM Sans', Arial, sans-serif; font-size:24px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#a9a8ff">Guía práctica · Adobe Premiere Pro</p>
+<h1 style="position:absolute; top:311px; left:128px; width:860px; font-family:'Space Grotesk', Arial, sans-serif; font-size:112px; font-weight:700; line-height:1.05; color:#eceaf4">Premiere Pro paso a paso</h1>
+<p style="position:absolute; top:879px; left:128px; width:820px; font-family:'DM Sans', Arial, sans-serif; font-size:26px; line-height:1.4; color:#8f93ab">Basado en la documentación oficial de Adobe Premiere (helpx.adobe.com), consultada en octubre de 2026.</p>
+<p style="position:absolute; top:495.6px; left:0; width:820px; font-family:'DM Sans', Arial, sans-serif; font-size:36px; line-height:1.4; color:#aeb1c6">Del proyecto vacío a la exportación: interfaz, importación, secuencia, edición, efectos, transiciones, audio y subtítulos.</p>
+</section>
+<section id="roadmap" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Hoja de ruta</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Siete bloques, en el orden en que se trabaja</h2>
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;gap:24px;background:#1E2029;border:2px solid #343748;border-radius:14px;padding:10px 24px"><div style="width:48px;height:48px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:28px;font-weight:700">1</p></div><p style="width:520px;font-size:32px;font-weight:700">Proyecto e interfaz</p><p style="flex:1;font-size:28px;color:#AEB1C6">Crear el proyecto y conocer los paneles</p></div>
+<div style="display:flex;align-items:center;gap:24px;background:#1E2029;border:2px solid #343748;border-radius:14px;padding:10px 24px"><div style="width:48px;height:48px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:28px;font-weight:700">2</p></div><p style="width:520px;font-size:32px;font-weight:700">Importar y secuencia</p><p style="flex:1;font-size:28px;color:#AEB1C6">Traer el material y montar la Timeline</p></div>
+<div style="display:flex;align-items:center;gap:24px;background:#1E2029;border:2px solid #343748;border-radius:14px;padding:10px 24px"><div style="width:48px;height:48px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:28px;font-weight:700">3</p></div><p style="width:520px;font-size:32px;font-weight:700">Edición básica</p><p style="flex:1;font-size:28px;color:#AEB1C6">Cortar, recortar y ajustar la imagen</p></div>
+<div style="display:flex;align-items:center;gap:24px;background:#1E2029;border:2px solid #343748;border-radius:14px;padding:10px 24px"><div style="width:48px;height:48px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:28px;font-weight:700">4</p></div><p style="width:520px;font-size:32px;font-weight:700">Efectos y transiciones</p><p style="flex:1;font-size:28px;color:#AEB1C6">Efectos, keyframes y fundidos entre planos</p></div>
+<div style="display:flex;align-items:center;gap:24px;background:#1E2029;border:2px solid #343748;border-radius:14px;padding:10px 24px"><div style="width:48px;height:48px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:28px;font-weight:700">5</p></div><p style="width:520px;font-size:32px;font-weight:700">Audio</p><p style="flex:1;font-size:28px;color:#AEB1C6">Igualar volumen y bajar la música bajo la voz</p></div>
+<div style="display:flex;align-items:center;gap:24px;background:#1E2029;border:2px solid #343748;border-radius:14px;padding:10px 24px"><div style="width:48px;height:48px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:28px;font-weight:700">6</p></div><p style="width:520px;font-size:32px;font-weight:700">Subtítulos</p><p style="flex:1;font-size:28px;color:#AEB1C6">Transcribir, crear y estilizar los subtítulos</p></div>
+<div style="display:flex;align-items:center;gap:24px;background:#F4B63F;border-radius:14px;padding:10px 24px"><div style="width:48px;height:48px;border-radius:50%;background:#14151B;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:28px;font-weight:700;color:#F4B63F">7</p></div><p style="width:520px;font-size:32px;font-weight:700;color:#14151B">Exportar</p><p style="flex:1;font-size:28px;color:#14151B">Sacar el archivo final</p></div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#8F93AB">Premiere Pro paso a paso</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#8F93AB;text-align:right">Documentación de Adobe Premiere</p>
+</section>
+<section id="s1_div" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:32px">
+<p style="position:absolute;right:128px;top:200px;width:420px;font-family:'Space Grotesk', Arial, sans-serif;font-size:400px;font-weight:700;line-height:1;color:transparent;-webkit-text-stroke:3px #A9A8FF;text-align:right">1</p>
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Bloque 1</p>
+<h1 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:112px;font-weight:700;line-height:1.05;width:1100px">Proyecto e interfaz</h1>
+<p style="font-size:36px;line-height:1.4;color:#AEB1C6;width:1000px">Crear el proyecto, reconocer los paneles y elegir el espacio de trabajo.</p>
+</section>
+<section id="nuevo_proyecto" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Bloque 1 · Proyecto</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Crear un proyecto nuevo</h2>
+<div style="display:flex;gap:48px;align-items:flex-start">
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">1</p></div><p style="flex:1;font-size:30px;line-height:1.35">En la pantalla de inicio (Home screen), pulsa <b>New Project</b>.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">2</p></div><p style="flex:1;font-size:30px;line-height:1.35">Escribe el nombre del proyecto y elige dónde guardar el archivo. Si tienes una plantilla, selecciónala aquí.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">3</p></div><p style="flex:1;font-size:30px;line-height:1.35">Pulsa el icono <b>Settings</b> para revisar General, Color, Scratch Disks e Ingest Settings.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">4</p></div><p style="flex:1;font-size:30px;line-height:1.35">Elige los vídeos y demás archivos. Se van reuniendo en la <b>Selection Tray</b>, abajo.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">5</p></div><p style="flex:1;font-size:30px;line-height:1.35">Pulsa <b>Create</b> para entrar en el proyecto con el material importado.</p></div>
+</div>
+<div style="width:620px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#4A49C9">Skip import mode</h3><p style="font-size:28px;line-height:1.4">Si lo marcas, te saltas la pantalla de importación y añades los medios desde el panel Project. Queda activo en los proyectos siguientes hasta que lo desmarques.</p></div>
+<div style="display:flex;flex-direction:column;gap:14px;background:#E7E4DA;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2">Nombre y carpeta</h3><p style="font-size:28px;line-height:1.4">Guarda el proyecto en una carpeta con los vídeos, para que el trabajo no se disperse.</p></div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Premiere Pro paso a paso · Bloque 1</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Adobe · Create new projects in Premiere</p>
+</section>
+<section id="interfaz" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Bloque 1 · Interfaz</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Los paneles que más vas a usar</h2>
+<div style="display:flex;gap:48px;align-items:flex-start">
+<div style="width:880px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;gap:12px;height:250px">
+<div style="flex:1;background:#1E2029;border:2px solid #343748;border-radius:12px;display:flex;align-items:center;justify-content:center"><p style="font-size:24px;font-weight:700;color:#A9A8FF">Project</p></div>
+<div style="flex:1;background:#1E2029;border:2px solid #343748;border-radius:12px;display:flex;align-items:center;justify-content:center;padding:8px"><p style="font-size:24px;font-weight:700;color:#A9A8FF;text-align:center">Source Monitor</p></div>
+<div style="flex:1;background:#1E2029;border:2px solid #343748;border-radius:12px;display:flex;align-items:center;justify-content:center;padding:8px"><p style="font-size:24px;font-weight:700;color:#A9A8FF;text-align:center">Program Monitor</p></div>
+<div style="flex:1;background:#1E2029;border:2px solid #343748;border-radius:12px;display:flex;align-items:center;justify-content:center"><p style="font-size:24px;font-weight:700;color:#A9A8FF">Properties</p></div>
+</div>
+<div style="display:flex;gap:12px;height:290px">
+<div style="width:110px;background:#1E2029;border:2px solid #343748;border-radius:12px;display:flex;align-items:flex-start;justify-content:center;padding:16px 8px"><p style="font-size:24px;font-weight:700;color:#A9A8FF">Tools</p></div>
+<div style="flex:1;background:#1E2029;border:2px solid #343748;border-radius:12px;display:flex;flex-direction:column;gap:12px;padding:16px">
+<p style="font-size:24px;font-weight:700;color:#F4B63F">Timeline</p>
+<div style="display:flex;gap:8px"><div style="flex:3;height:44px;background:#6D6CE6;border-radius:8px"></div><div style="flex:2;height:44px;background:#8E8DF5;border-radius:8px"></div><div style="flex:3;height:44px;background:#6D6CE6;border-radius:8px"></div></div>
+<div style="display:flex;gap:8px"><div style="flex:2;height:44px;background:#3A3F58;border-radius:8px"></div><div style="flex:4;height:44px;background:#3A3F58;border-radius:8px"></div></div>
+<div style="display:flex;gap:8px"><div style="flex:5;height:44px;background:#F4B63F;border-radius:8px"></div><div style="flex:3;height:44px;background:#F4B63F;border-radius:8px"></div></div>
+</div>
+</div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px">
+<p style="font-size:26px;line-height:1.4"><span style="color:#A9A8FF"><b>Project</b></span> · tus clips y secuencias, en vista de lista o de iconos.</p>
+<p style="font-size:26px;line-height:1.4"><span style="color:#A9A8FF"><b>Source Monitor</b></span> · previsualiza un clip y marca su In y su Out.</p>
+<p style="font-size:26px;line-height:1.4"><span style="color:#A9A8FF"><b>Program Monitor</b></span> · muestra la secuencia que estás montando.</p>
+<p style="font-size:26px;line-height:1.4"><span style="color:#A9A8FF"><b>Timeline</b></span> · donde se monta: clips, transiciones y efectos en pistas.</p>
+<p style="font-size:26px;line-height:1.4"><span style="color:#A9A8FF"><b>Tools</b></span> · herramientas de edición, cada una con su atajo.</p>
+<p style="font-size:26px;line-height:1.4"><span style="color:#A9A8FF"><b>Properties</b></span> · controles de vídeo, audio y texto de lo seleccionado.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#8F93AB">Premiere Pro paso a paso · Bloque 1</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#8F93AB;text-align:right">Adobe · Overview of workspaces</p>
+</section>
+<section id="workspaces" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Bloque 1 · Interfaz</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Espacios de trabajo</h2>
+<table style="font-size:28px;color:#17181F">
+<tr style="background:#E7E4DA"><th style="width:34%;font-weight:700">Workspace</th><th style="width:66%;font-weight:700">Cuándo usarlo</th></tr>
+<tr><td style="font-weight:700">Essentials</td><td>Con un solo monitor: todo a mano.</td></tr>
+<tr><td style="font-weight:700">Assembly</td><td>Primer montaje: panel Project grande.</td></tr>
+<tr><td style="font-weight:700">Captions and Graphics</td><td>Subtítulos y gráficos.</td></tr>
+<tr><td style="font-weight:700">Vertical</td><td>Vídeo vertical, con un solo monitor alternable.</td></tr>
+<tr><td style="font-weight:700">Learning</td><td>Tutoriales dentro del programa mientras editas.</td></tr>
+<tr><td style="font-weight:700">Review</td><td>Revisiones con Frame.io.</td></tr>
+<tr><td style="font-weight:700">Production</td><td>Trabajo en equipo en una Production.</td></tr>
+</table>
+<p style="font-size:28px;line-height:1.4;color:#4B4E60">Premiere trae 16 espacios de trabajo. Para guardar el tuyo: Window &gt; Workspaces &gt; Save as New Workspace.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Premiere Pro paso a paso · Bloque 1</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Adobe · Overview of workspaces</p>
+</section>
+<section id="herramientas" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Bloque 1 · Interfaz</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Panel Tools</h2>
+<table style="font-size:26px;color:#ECEAF4">
+<tr style="background:#1E2029"><th style="width:28%;font-weight:700">Herramienta</th><th style="width:10%;font-weight:700">Tecla</th><th style="width:62%;font-weight:700">Para qué sirve</th></tr>
+<tr><td style="font-weight:700">Selection</td><td style="font-family:'JetBrains Mono', 'Courier New', monospace">V</td><td>Seleccionar y mover. Es la herramienta por defecto.</td></tr>
+<tr><td style="font-weight:700">Track Select</td><td style="font-family:'JetBrains Mono', 'Courier New', monospace">A</td><td>Selecciona un clip y todo lo que tiene a su derecha.</td></tr>
+<tr><td style="font-weight:700">Ripple Edit</td><td style="font-family:'JetBrains Mono', 'Courier New', monospace">B</td><td>Recorta el In o el Out y cierra el hueco que deja.</td></tr>
+<tr><td style="font-weight:700">Razor</td><td style="font-family:'JetBrains Mono', 'Courier New', monospace">C</td><td>Corta un clip en dos. Con Shift corta todas las pistas.</td></tr>
+<tr><td style="font-weight:700">Slip</td><td style="font-family:'JetBrains Mono', 'Courier New', monospace">Y</td><td>Cambia qué parte del clip se ve sin cambiar su duración.</td></tr>
+<tr><td style="font-weight:700">Pen</td><td style="font-family:'JetBrains Mono', 'Courier New', monospace">P</td><td>Crea y selecciona keyframes.</td></tr>
+<tr><td style="font-weight:700">Hand</td><td style="font-family:'JetBrains Mono', 'Courier New', monospace">H</td><td>Desplaza la vista de la Timeline a izquierda o derecha.</td></tr>
+<tr><td style="font-weight:700">Type</td><td style="font-family:'JetBrains Mono', 'Courier New', monospace">T</td><td>Añade texto a la secuencia.</td></tr>
+</table>
+<p style="font-size:26px;line-height:1.4;color:#AEB1C6">Si el programa no responde como esperas, comprueba que la herramienta activa es Selection.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#8F93AB">Premiere Pro paso a paso · Bloque 1</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#8F93AB;text-align:right">Adobe · Tools panel options in Premiere</p>
+</section>
+<section id="s2_div" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:32px">
+<p style="position:absolute;right:128px;top:200px;width:420px;font-family:'Space Grotesk', Arial, sans-serif;font-size:400px;font-weight:700;line-height:1;color:transparent;-webkit-text-stroke:3px #A9A8FF;text-align:right">2</p>
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Bloque 2</p>
+<h1 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:112px;font-weight:700;line-height:1.05;width:1100px">Importar y secuencia</h1>
+<p style="font-size:36px;line-height:1.4;color:#AEB1C6;width:1000px">Traer el material, crear la secuencia y colocar los primeros clips.</p>
+</section>
+<section id="importar" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Bloque 2 · Importar</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Importar medios a un proyecto abierto</h2>
+<div style="display:flex;gap:48px;align-items:flex-start">
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">1</p></div><p style="flex:1;font-size:30px;line-height:1.35">Con el proyecto abierto, pulsa <b>Import</b> en la barra superior.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">2</p></div><p style="flex:1;font-size:30px;line-height:1.35">Selecciona los vídeos, audios e imágenes. Se reúnen en la <b>Selection Tray</b>.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">3</p></div><p style="flex:1;font-size:30px;line-height:1.35">Clic derecho sobre un archivo de la bandeja para quitarlo, o vacía la bandeja entera.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">4</p></div><p style="flex:1;font-size:30px;line-height:1.35">Revisa las <b>Import Settings</b> (diapositiva siguiente).</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">5</p></div><p style="flex:1;font-size:30px;line-height:1.35">Confirma. Los medios aparecen en el panel Project, o como secuencia nueva si esa opción está activa.</p></div>
+</div>
+<div style="width:620px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#4A49C9">Sin pantalla de importación</h3><p style="font-size:28px;line-height:1.4">Con Skip import mode activado, añades los medios directamente desde el panel Project.</p></div>
+<div style="display:flex;flex-direction:column;gap:14px;background:#E7E4DA;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2">Imágenes fijas</h3><p style="font-size:28px;line-height:1.4">Premiere también importa fotos y series numeradas de imágenes como un solo clip de vídeo.</p></div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Premiere Pro paso a paso · Bloque 2</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Adobe · Create new projects in Premiere</p>
+</section>
+<section id="import_settings" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Bloque 2 · Importar</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Import Settings</h2>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#1E2029;border:2px solid #343748;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#A9A8FF">Organize Media</h3><p style="font-size:28px;line-height:1.4">Crea un bin con el nombre que elijas y muestra ahí los medios. Los archivos no se copian a otro lugar.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#1E2029;border:2px solid #343748;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#A9A8FF">Copy media</h3><p style="font-size:28px;line-height:1.4">Copia desde una ubicación temporal, como una tarjeta de cámara. Puedes editar mientras copia; la verificación MD5 detecta archivos corruptos.</p></div>
+</div>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#1E2029;border:2px solid #343748;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#A9A8FF">Create new sequence</h3><p style="font-size:28px;line-height:1.4">Premiere toma la resolución y los fotogramas por segundo del primer archivo seleccionado. Desactivada, los medios solo van al panel Project.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#1E2029;border:2px solid #343748;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#A9A8FF">Automatic transcription</h3><p style="font-size:28px;line-height:1.4">Genera la transcripción nada más importar. Ahorra tiempo si después vas a crear subtítulos.</p></div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#8F93AB">Premiere Pro paso a paso · Bloque 2</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#8F93AB;text-align:right">Adobe · Create new projects in Premiere</p>
+</section>
+<section id="crear_secuencia" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Bloque 2 · Secuencia</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Crear una secuencia</h2>
+<div style="display:flex;gap:48px;align-items:flex-start">
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">1</p></div><p style="flex:1;font-size:30px;line-height:1.35">Importa el material al proyecto.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">2</p></div><p style="flex:1;font-size:30px;line-height:1.35">Arrastra un clip del panel Project hasta el icono <b>New Item</b>, en la parte inferior del panel.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">3</p></div><p style="flex:1;font-size:30px;line-height:1.35">Premiere crea la secuencia con los ajustes de ese clip y la abre en la Timeline.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">4</p></div><p style="flex:1;font-size:30px;line-height:1.35">Alternativa: menú <b>File &gt; New &gt; Sequence</b> y elige los ajustes a mano.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">5</p></div><p style="flex:1;font-size:30px;line-height:1.35">Para cambiar de secuencia, ábrela desde el panel Project.</p></div>
+</div>
+<div style="width:620px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#4A49C9">Varias secuencias</h3><p style="font-size:28px;line-height:1.4">Un proyecto puede tener una o más secuencias, cada una con sus propios ajustes.</p></div>
+<div style="display:flex;flex-direction:column;gap:14px;background:#E7E4DA;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2">Ajustes coherentes</h3><p style="font-size:28px;line-height:1.4">Resolución y fotogramas por segundo deben encajar con el material y con la entrega final.</p></div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Premiere Pro paso a paso · Bloque 2</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Adobe · Create a sequence</p>
+</section>
+<section id="anadir_clips" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Bloque 2 · Timeline</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Añadir y quitar clips</h2>
+<div style="display:flex;gap:48px;align-items:flex-start">
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#ECEAF4">1</p></div><p style="flex:1;font-size:30px;line-height:1.35">Selecciona un clip en el panel Project.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#ECEAF4">2</p></div><p style="flex:1;font-size:30px;line-height:1.35">Arrástralo hasta el panel <b>Timeline</b>.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#ECEAF4">3</p></div><p style="flex:1;font-size:30px;line-height:1.35">También vale arrastrarlo desde el Source Monitor, o soltarlo en el Program Monitor.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#ECEAF4">4</p></div><p style="flex:1;font-size:30px;line-height:1.35">Con el clip abierto en el Source Monitor, usa los botones <b>Insert</b> y <b>Overwrite</b>.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#ECEAF4">5</p></div><p style="flex:1;font-size:30px;line-height:1.35">Para quitar un clip, selecciónalo y pulsa <b>Delete</b>.</p></div>
+</div>
+<div style="width:620px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:14px;background:#1E2029;border:2px solid #343748;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#A9A8FF">Insert</h3><p style="font-size:28px;line-height:1.4">Coloca el clip y empuja hacia la derecha lo que había después.</p></div>
+<div style="display:flex;flex-direction:column;gap:14px;background:#2B2E3D;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2">Overwrite</h3><p style="font-size:28px;line-height:1.4">Coloca el clip encima y sustituye lo que hubiera en ese tramo.</p></div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#8F93AB">Premiere Pro paso a paso · Bloque 2</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#8F93AB;text-align:right">Adobe · Add or remove clips</p>
+</section>
+<section id="s3_div" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:32px">
+<p style="position:absolute;right:128px;top:200px;width:420px;font-family:'Space Grotesk', Arial, sans-serif;font-size:400px;font-weight:700;line-height:1;color:transparent;-webkit-text-stroke:3px #A9A8FF;text-align:right">3</p>
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Bloque 3</p>
+<h1 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:112px;font-weight:700;line-height:1.05;width:1100px">Edición básica</h1>
+<p style="font-size:36px;line-height:1.4;color:#AEB1C6;width:1000px">Cortar, recortar y ajustar la imagen de cada clip.</p>
+</section>
+<section id="cortar" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Bloque 3 · Cortes</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Cortar y recortar clips</h2>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#1E2029;border:2px solid #343748;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#A9A8FF">Razor · C</h3><p style="font-size:28px;line-height:1.4">Haz clic en el punto del clip donde quieras cortar. Con Shift cortas todas las pistas; con Alt (Windows) u Option (Mac), solo el audio o el vídeo.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#1E2029;border:2px solid #343748;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#A9A8FF">Ripple Edit · B</h3><p style="font-size:28px;line-height:1.4">Arrastra el final de un clip hacia dentro o hacia fuera. Los clips siguientes se desplazan y no queda hueco.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#1E2029;border:2px solid #343748;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#A9A8FF">Recorte directo</h3><p style="font-size:28px;line-height:1.4">Pasa el cursor por el borde del clip hasta que cambie el icono y arrástralo para mover el In o el Out.</p></div>
+</div>
+<div style="background:#2B2E3D;border-radius:20px;padding:32px 36px"><p style="font-size:28px;line-height:1.4">Recorta antes de aplicar transiciones: usan los fotogramas extra que quedan fuera del In y del Out.</p></div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#8F93AB">Premiere Pro paso a paso · Bloque 3</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#8F93AB;text-align:right">Adobe · Cut clips, Perform ripple edits</p>
+</section>
+<section id="ajustes_imagen" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Bloque 3 · Ajustes</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Posición, escala y opacidad</h2>
+<div style="display:flex;gap:48px;align-items:flex-start">
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">1</p></div><p style="flex:1;font-size:30px;line-height:1.35">Selecciona el clip en la Timeline.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">2</p></div><p style="flex:1;font-size:30px;line-height:1.35">Abre <b>Window &gt; Effect Controls</b> si el panel no está visible.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">3</p></div><p style="flex:1;font-size:30px;line-height:1.35">Despliega <b>Motion</b>: Position, Scale y Rotation.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">4</p></div><p style="flex:1;font-size:30px;line-height:1.35">Cambia un valor escribiéndolo o arrastrando sobre el número.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">5</p></div><p style="flex:1;font-size:30px;line-height:1.35">Despliega <b>Opacity</b> para cambiar la transparencia del clip.</p></div>
+</div>
+<div style="width:620px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#4A49C9">Atajo con Properties</h3><p style="font-size:28px;line-height:1.4">El panel Properties reúne los parámetros más usados del clip seleccionado.</p></div>
+<div style="display:flex;flex-direction:column;gap:14px;background:#E7E4DA;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2">Siguiente paso</h3><p style="font-size:28px;line-height:1.4">Cada valor de Effect Controls se puede animar con keyframes.</p></div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Premiere Pro paso a paso · Bloque 3</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Adobe · Effect Controls panel</p>
+</section>
+<section id="s4_div" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:32px">
+<p style="position:absolute;right:128px;top:200px;width:420px;font-family:'Space Grotesk', Arial, sans-serif;font-size:400px;font-weight:700;line-height:1;color:transparent;-webkit-text-stroke:3px #A9A8FF;text-align:right">4</p>
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Bloque 4</p>
+<h1 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:112px;font-weight:700;line-height:1.05;width:1100px">Efectos y transiciones</h1>
+<p style="font-size:36px;line-height:1.4;color:#AEB1C6;width:1000px">Aplicar efectos, animarlos con keyframes y unir planos con transiciones.</p>
+</section>
+<section id="efectos" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Bloque 4 · Efectos</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Aplicar un efecto a un clip</h2>
+<div style="display:flex;gap:48px;align-items:flex-start">
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#ECEAF4">1</p></div><p style="flex:1;font-size:30px;line-height:1.35">Con una secuencia abierta, selecciona un clip en la Timeline.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#ECEAF4">2</p></div><p style="flex:1;font-size:30px;line-height:1.35">Abre <b>Window &gt; Effects</b>.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#ECEAF4">3</p></div><p style="flex:1;font-size:30px;line-height:1.35">Busca el efecto por categoría o escribe su nombre en el buscador.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#ECEAF4">4</p></div><p style="flex:1;font-size:30px;line-height:1.35">Arrástralo y suéltalo sobre el clip de vídeo o de audio.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#ECEAF4">5</p></div><p style="flex:1;font-size:30px;line-height:1.35">Reproduce para verlo y ajústalo en <b>Effect Controls</b>.</p></div>
+</div>
+<div style="width:620px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:14px;background:#1E2029;border:2px solid #343748;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#A9A8FF">Ver qué lleva un clip</h3><p style="font-size:28px;line-height:1.4">Pasa el cursor sobre el icono de efectos del clip en la Timeline.</p></div>
+<div style="display:flex;flex-direction:column;gap:14px;background:#2B2E3D;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2">Si no se deja arrastrar</h3><p style="font-size:28px;line-height:1.4">Los efectos de audio no se aplican con Show Track Volume o Show Track Keyframes activos en la pista.</p></div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#8F93AB">Premiere Pro paso a paso · Bloque 4</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#8F93AB;text-align:right">Adobe · Apply video and audio effects</p>
+</section>
+<section id="keyframes" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Bloque 4 · Keyframes</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Animar una propiedad</h2>
+<div style="display:flex;gap:48px;align-items:flex-start">
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">1</p></div><p style="flex:1;font-size:30px;line-height:1.35">Selecciona el clip y abre <b>Effect Controls</b>.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">2</p></div><p style="flex:1;font-size:30px;line-height:1.35">Coloca el playhead donde debe empezar el cambio.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">3</p></div><p style="flex:1;font-size:30px;line-height:1.35">Activa <b>Toggle Animation</b>, el cronómetro de la propiedad (por ejemplo Scale).</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">4</p></div><p style="flex:1;font-size:30px;line-height:1.35">Mueve el playhead al punto final y cambia el valor: se crea el segundo keyframe.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">5</p></div><p style="flex:1;font-size:30px;line-height:1.35">Reproduce: Premiere calcula los valores intermedios (interpolación).</p></div>
+</div>
+<div style="width:620px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:16px;background:#E7E4DA;border-radius:20px;padding:24px">
+<svg aria-label="Dos keyframes unidos por una línea que sube de un valor inicial a un valor final" viewBox="0 0 572 200" style="width:572px;height:200px"><path d="M40 170 L532 170" stroke="#4B4E60" stroke-width="3" fill="none"/><path d="M100 150 L472 50" stroke="#4A49C9" stroke-width="6" fill="none"/><polygon points="100,128 122,150 100,172 78,150" fill="#F4B63F" stroke="#17181F" stroke-width="3"/><polygon points="472,28 494,50 472,72 450,50" fill="#F4B63F" stroke="#17181F" stroke-width="3"/></svg>
+<div style="display:flex;justify-content:space-between"><p style="font-size:24px;font-weight:700">Keyframe 1 · inicio</p><p style="font-size:24px;font-weight:700">Keyframe 2 · final</p></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#4A49C9">Verlos en la Timeline</h3><p style="font-size:28px;line-height:1.4">Pulsa la llave inglesa y elige Show Video Keyframes.</p></div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Premiere Pro paso a paso · Bloque 4</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Adobe · Add keyframes</p>
+</section>
+<section id="trans_aplicar" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Bloque 4 · Transiciones</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Añadir una transición entre dos clips</h2>
+<div style="display:flex;gap:48px;align-items:flex-start">
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#ECEAF4">1</p></div><p style="flex:1;font-size:30px;line-height:1.35">Recorta los clips antes: la transición usa los fotogramas extra de cada extremo.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#ECEAF4">2</p></div><p style="flex:1;font-size:30px;line-height:1.35">Abre <b>Window &gt; Effects</b> y despliega <b>Video Transitions</b>.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#ECEAF4">3</p></div><p style="flex:1;font-size:30px;line-height:1.35">Arrastra la transición al corte entre los dos clips.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#ECEAF4">4</p></div><p style="flex:1;font-size:30px;line-height:1.35">Arrastra el borde de la transición en la Timeline para cambiar su duración.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#ECEAF4">5</p></div><p style="flex:1;font-size:30px;line-height:1.35">Reproduce el corte para comprobar el resultado.</p></div>
+</div>
+<div style="width:620px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:14px;background:#1E2029;border:2px solid #343748;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#A9A8FF">Necesita handles</h3><p style="font-size:28px;line-height:1.4">Sin fotogramas extra, Premiere no puede solapar los dos planos.</p></div>
+<div style="display:flex;flex-direction:column;gap:14px;background:#2B2E3D;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2">Por defecto</h3><p style="font-size:28px;line-height:1.4">Cross Dissolve en vídeo y Constant Power en audio.</p></div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#8F93AB">Premiere Pro paso a paso · Bloque 4</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#8F93AB;text-align:right">Adobe · Video transitions in Premiere</p>
+</section>
+<section id="trans_defecto" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Bloque 4 · Transiciones</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Transiciones por defecto</h2>
+<table style="font-size:26px;color:#17181F">
+<tr style="background:#E7E4DA"><th style="width:34%;font-weight:700">Acción</th><th style="width:66%;font-weight:700">Cómo se hace</th></tr>
+<tr><td style="font-weight:700">Elegir la transición</td><td>Panel Effects, clic derecho &gt; Set Selected as Default Transition</td></tr>
+<tr><td style="font-weight:700">Fijar su duración</td><td>Preferences &gt; Timeline (Mac: Settings &gt; Timeline)</td></tr>
+<tr><td style="font-weight:700">Aplicarla a un corte</td><td style="font-family:'JetBrains Mono', 'Courier New', monospace">Ctrl/Cmd + D (vídeo)</td></tr>
+<tr><td style="font-weight:700">Vídeo y audio a la vez</td><td style="font-family:'JetBrains Mono', 'Courier New', monospace">Shift + D</td></tr>
+<tr><td style="font-weight:700">Varios clips</td><td>Selecciónalos y Sequence &gt; Apply Default Transitions to Selection</td></tr>
+<tr><td style="font-weight:700">Casi toda la secuencia</td><td>Sequence &gt; Automate to Sequence</td></tr>
+</table>
+<p style="font-size:28px;line-height:1.4;color:#4B4E60">Cambiar la transición por defecto afecta a todos los proyectos, pero no a las transiciones ya colocadas. Los atajos pueden variar según la versión.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Premiere Pro paso a paso · Bloque 4</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Adobe · Set and apply default transitions</p>
+</section>
+<section id="s5_div" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:32px">
+<p style="position:absolute;right:128px;top:200px;width:420px;font-family:'Space Grotesk', Arial, sans-serif;font-size:400px;font-weight:700;line-height:1;color:transparent;-webkit-text-stroke:3px #A9A8FF;text-align:right">5</p>
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Bloque 5</p>
+<h1 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:112px;font-weight:700;line-height:1.05;width:1100px">Audio</h1>
+<p style="font-size:36px;line-height:1.4;color:#AEB1C6;width:1000px">Etiquetar los clips, igualar el volumen y bajar la música cuando habla alguien.</p>
+</section>
+<section id="audio_tipos" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Bloque 5 · Audio</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Etiquetar el audio en Essential Sound</h2>
+<div style="display:flex;gap:48px;align-items:flex-start">
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#ECEAF4">1</p></div><p style="flex:1;font-size:30px;line-height:1.35">Selecciona los clips de audio en la Timeline.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#ECEAF4">2</p></div><p style="flex:1;font-size:30px;line-height:1.35">Abre <b>Window &gt; Essential Sound</b>.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#ECEAF4">3</p></div><p style="flex:1;font-size:30px;line-height:1.35">Asigna un tipo: <b>Dialogue</b>, <b>Music</b>, <b>SFX</b> o <b>Ambience</b>.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#ECEAF4">4</p></div><p style="flex:1;font-size:30px;line-height:1.35">El panel muestra entonces los grupos de ajustes propios de ese tipo.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#ECEAF4">5</p></div><p style="flex:1;font-size:30px;line-height:1.35">Etiquetar por pista es más rápido que hacerlo clip a clip.</p></div>
+</div>
+<div style="width:620px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:14px;background:#1E2029;border:2px solid #343748;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#A9A8FF">Dialogue</h3><p style="font-size:28px;line-height:1.4">Unificar el volumen, reducir ruido de fondo, comprimir y ecualizar.</p></div>
+<div style="display:flex;flex-direction:column;gap:14px;background:#2B2E3D;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2">Music y Ambience</h3><p style="font-size:28px;line-height:1.4">Pueden bajar solas cuando hay voz. Es el ducking.</p></div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#8F93AB">Premiere Pro paso a paso · Bloque 5</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#8F93AB;text-align:right">Adobe · Essential Sound panel</p>
+</section>
+<section id="audio_mezcla" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Bloque 5 · Audio</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Mezclar: tres ajustes que se notan</h2>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#4A49C9">Unificar el volumen</h3><p style="font-size:28px;line-height:1.4">En la sección Loudness, el botón Auto-Match iguala el volumen entre clips y evita saltos.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#4A49C9">Limpiar la voz</h3><p style="font-size:28px;line-height:1.4">Enhance Speech y los grupos de reparación y claridad mejoran el diálogo grabado.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#4A49C9">Colocar música y ambiente</h3><p style="font-size:28px;line-height:1.4">Clip Volume baja su nivel, y el ecualizador paramétrico ajusta frecuencias concretas.</p></div>
+</div>
+<div style="background:#E7E4DA;border-radius:20px;padding:32px 36px"><p style="font-size:28px;line-height:1.4">Si un ajuste no convence, Clear Audio Type devuelve el clip a su estado original. Los ajustes buenos se guardan como preset para usarlos en otros proyectos.</p></div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Premiere Pro paso a paso · Bloque 5</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Adobe · Essential Sound panel</p>
+</section>
+<section id="ducking" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Bloque 5 · Audio</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Bajar la música bajo la voz</h2>
+<div style="display:flex;gap:48px;align-items:flex-start">
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#ECEAF4">1</p></div><p style="flex:1;font-size:30px;line-height:1.35">Etiqueta la voz como <b>Dialogue</b> y la música como <b>Music</b>.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#ECEAF4">2</p></div><p style="flex:1;font-size:30px;line-height:1.35">Con la música seleccionada, activa <b>Ducking</b> en Essential Sound.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#ECEAF4">3</p></div><p style="flex:1;font-size:30px;line-height:1.35">Ajusta los parámetros (diapositiva siguiente).</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#ECEAF4">4</p></div><p style="flex:1;font-size:30px;line-height:1.35">Pulsa <b>Generate Keyframes</b>.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#ECEAF4">5</p></div><p style="flex:1;font-size:30px;line-height:1.35">Escucha y corrige a mano los keyframes que no te convenzan.</p></div>
+</div>
+<div style="width:620px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:14px;background:#1E2029;border:2px solid #343748;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#A9A8FF">Qué crea Premiere</h3><p style="font-size:28px;line-height:1.4">Un efecto Amplify en el clip, con los keyframes calculados en su ganancia.</p></div>
+<div style="display:flex;flex-direction:column;gap:14px;background:#2B2E3D;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2">Cuidado</h3><p style="font-size:28px;line-height:1.4">Volver a pulsar Generate Keyframes borra los cambios manuales.</p></div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#8F93AB">Premiere Pro paso a paso · Bloque 5</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#8F93AB;text-align:right">Adobe · Automatically duck audio</p>
+</section>
+<section id="ducking_params" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Bloque 5 · Audio</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Parámetros del ducking</h2>
+<table style="font-size:26px;color:#17181F">
+<tr style="background:#E7E4DA"><th style="width:24%;font-weight:700">Parámetro</th><th style="width:76%;font-weight:700">Qué controla</th></tr>
+<tr><td style="font-weight:700">Duck Against</td><td>Tipos de audio que hacen bajar la música: Dialogue, SFX, etc.</td></tr>
+<tr><td style="font-weight:700">Sensitivity</td><td>Umbral de activación. Valores medios hacen más ajustes entre pausas de voz.</td></tr>
+<tr><td style="font-weight:700">Duck Amount</td><td>Cuánto baja la música. Hacia la derecha, más reducción.</td></tr>
+<tr><td style="font-weight:700">Fade Duration</td><td>Rapidez del cambio: rápido con música y habla veloces, lento con locuciones.</td></tr>
+<tr><td style="font-weight:700">Fade Position</td><td>Dónde cae el fundido respecto al diálogo: fuera, dentro o en el centro.</td></tr>
+</table>
+<p style="font-size:28px;line-height:1.4;color:#4B4E60">Empieza con los valores por defecto, escucha el resultado y mueve primero Duck Amount.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Premiere Pro paso a paso · Bloque 5</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Adobe · Automatically duck audio</p>
+</section>
+<section id="s6_div" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:32px">
+<p style="position:absolute;right:128px;top:200px;width:420px;font-family:'Space Grotesk', Arial, sans-serif;font-size:400px;font-weight:700;line-height:1;color:transparent;-webkit-text-stroke:3px #A9A8FF;text-align:right">6</p>
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Bloque 6</p>
+<h1 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:112px;font-weight:700;line-height:1.05;width:1100px">Subtítulos</h1>
+<p style="font-size:36px;line-height:1.4;color:#AEB1C6;width:1000px">De la transcripción automática a unos subtítulos listos para exportar.</p>
+</section>
+<section id="subs_flujo" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Bloque 6 · Subtítulos</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">El flujo en cuatro pasos</h2>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#1E2029;border:2px solid #343748;border-radius:20px;padding:32px"><p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:40px;font-weight:700;color:#F4B63F">1</p><h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#A9A8FF">Transcribir</h3><p style="font-size:26px;line-height:1.4">Convierte el audio en texto con Speech to Text.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#1E2029;border:2px solid #343748;border-radius:20px;padding:32px"><p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:40px;font-weight:700;color:#F4B63F">2</p><h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#A9A8FF">Crear</h3><p style="font-size:26px;line-height:1.4">Genera los subtítulos en la Timeline a partir del texto.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#1E2029;border:2px solid #343748;border-radius:20px;padding:32px"><p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:40px;font-weight:700;color:#F4B63F">3</p><h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#A9A8FF">Revisar</h3><p style="font-size:26px;line-height:1.4">Corrige el texto y elige el aspecto.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#1E2029;border:2px solid #343748;border-radius:20px;padding:32px"><p style="font-family:'JetBrains Mono', 'Courier New', monospace;font-size:40px;font-weight:700;color:#F4B63F">4</p><h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#A9A8FF">Exportar</h3><p style="font-size:26px;line-height:1.4">Dentro del vídeo o en un archivo aparte.</p></div>
+</div>
+<div style="background:#2B2E3D;border-radius:20px;padding:32px 36px"><p style="font-size:28px;line-height:1.4">Adobe recomienda crear los subtítulos cuando la edición está casi terminada. La edición basada en texto no admite este flujo, así que se parte de la secuencia ya montada.</p></div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#8F93AB">Premiere Pro paso a paso · Bloque 6</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#8F93AB;text-align:right">Adobe · Captions overview</p>
+</section>
+<section id="transcribir" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Bloque 6 · Subtítulos</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Transcribir con Speech to Text</h2>
+<div style="display:flex;gap:48px;align-items:flex-start">
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">1</p></div><p style="flex:1;font-size:30px;line-height:1.35">Abre <b>Window &gt; Text</b> y ve a la pestaña <b>Transcript</b>.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">2</p></div><p style="flex:1;font-size:30px;line-height:1.35">Pulsa el icono de la pestaña y elige <b>Generate static transcript</b>.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">3</p></div><p style="flex:1;font-size:30px;line-height:1.35">Elige el <b>Language</b> del vídeo y descarga el paquete de idioma si lo pide.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">4</p></div><p style="flex:1;font-size:30px;line-height:1.35">Decide si separar a los hablantes con <b>Speaker labeling</b>.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">5</p></div><p style="flex:1;font-size:30px;line-height:1.35">Elige qué audio analizar y pulsa <b>Transcribe</b>.</p></div>
+</div>
+<div style="width:620px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#4A49C9">Audio analysis</h3><p style="font-size:28px;line-height:1.4">Transcribe los clips etiquetados como Dialogue, o el audio de una pista concreta.</p></div>
+<div style="display:flex;flex-direction:column;gap:14px;background:#E7E4DA;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2">Solo un tramo</h3><p style="font-size:28px;line-height:1.4">Activa la opción de transcribir de In a Out para limitarte a lo marcado.</p></div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Premiere Pro paso a paso · Bloque 6</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Adobe · Auto transcribe video</p>
+</section>
+<section id="crear_subs" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Bloque 6 · Subtítulos</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Crear subtítulos desde la transcripción</h2>
+<div style="display:flex;gap:48px;align-items:flex-start">
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#ECEAF4">1</p></div><p style="flex:1;font-size:30px;line-height:1.35">Cambia a <b>Window &gt; Workspaces &gt; Captions and Graphics</b>.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#ECEAF4">2</p></div><p style="flex:1;font-size:30px;line-height:1.35">Con la transcripción lista, elige <b>Captions &gt; Create captions from transcript</b>.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#ECEAF4">3</p></div><p style="flex:1;font-size:30px;line-height:1.35">Elige el <b>Caption preset</b> y el <b>Format</b>.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#ECEAF4">4</p></div><p style="flex:1;font-size:30px;line-height:1.35">Ajusta el estilo y el tiempo: caracteres por línea, duración y separación entre subtítulos.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#5857D6;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#ECEAF4">5</p></div><p style="flex:1;font-size:30px;line-height:1.35">Elige una o dos líneas y pulsa <b>Create captions</b>.</p></div>
+</div>
+<div style="width:620px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:14px;background:#1E2029;border:2px solid #343748;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#A9A8FF">Subtitle default</h3><p style="font-size:28px;line-height:1.4">Es el preset que sirve para la mayoría de los casos.</p></div>
+<div style="display:flex;flex-direction:column;gap:14px;background:#2B2E3D;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2">Resultado</h3><p style="font-size:28px;line-height:1.4">Los subtítulos se crean alineados con el diálogo del vídeo.</p></div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#8F93AB">Premiere Pro paso a paso · Bloque 6</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#8F93AB;text-align:right">Adobe · Create captions in Premiere</p>
+</section>
+<section id="subs_editar" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Bloque 6 · Subtítulos</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Revisar, estilizar y exportar</h2>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#4A49C9">Editar el texto</h3><p style="font-size:28px;line-height:1.4">Corrige errores en el panel Text o directamente sobre el Program Monitor.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#4A49C9">Dar estilo</h3><p style="font-size:28px;line-height:1.4">Cambia fuente, color y posición en el panel Properties, y guarda el estilo para reutilizarlo.</p></div>
+</div>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#4A49C9">Traducir</h3><p style="font-size:28px;line-height:1.4">Premiere traduce los subtítulos a otros idiomas y los guarda en una pista nueva.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#E7E4DA;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2">Exportar</h3><p style="font-size:28px;line-height:1.4">Grabados en la imagen, en un archivo .srt aparte o dentro de un archivo QuickTime o MXF.</p></div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Premiere Pro paso a paso · Bloque 6</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Adobe · Captions in Premiere</p>
+</section>
+<section id="s7_div" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:32px">
+<p style="position:absolute;right:128px;top:200px;width:420px;font-family:'Space Grotesk', Arial, sans-serif;font-size:400px;font-weight:700;line-height:1;color:transparent;-webkit-text-stroke:3px #A9A8FF;text-align:right">7</p>
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Bloque 7</p>
+<h1 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:112px;font-weight:700;line-height:1.05;width:1100px">Exportar</h1>
+<p style="font-size:36px;line-height:1.4;color:#AEB1C6;width:1000px">Sacar el archivo final, con una chuleta de atajos y una lista de control.</p>
+</section>
+<section id="exportar" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Bloque 7 · Exportar</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Exportar el vídeo</h2>
+<div style="display:flex;gap:48px;align-items:flex-start">
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">1</p></div><p style="flex:1;font-size:30px;line-height:1.35">Termina la edición y selecciona la secuencia en la Timeline.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">2</p></div><p style="flex:1;font-size:30px;line-height:1.35">Elige <b>File &gt; Export &gt; Media</b> o pulsa Ctrl/Cmd + M.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">3</p></div><p style="flex:1;font-size:30px;line-height:1.35">A la izquierda, elige el destino: tu disco (Media File), YouTube, Vimeo…</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">4</p></div><p style="flex:1;font-size:30px;line-height:1.35">Escribe nombre y ubicación, y elige el formato <b>H.264</b>.</p></div>
+<div style="display:flex;gap:24px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:#4A49C9;display:flex;align-items:center;justify-content:center;flex:none"><p style="font-size:30px;font-weight:700;color:#F4F2EC">5</p></div><p style="flex:1;font-size:30px;line-height:1.35">Preset <b>Match Source – Adaptive High Bitrate</b> y pulsa <b>Export</b>.</p></div>
+</div>
+<div style="width:620px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:14px;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2;color:#4A49C9">Media Encoder</h3><p style="font-size:28px;line-height:1.4">Con Send to Media Encoder, la exportación se hace en segundo plano. Útil en vídeos largos.</p></div>
+<div style="display:flex;flex-direction:column;gap:14px;background:#E7E4DA;border-radius:20px;padding:36px"><h3 style="font-size:34px;font-weight:700;line-height:1.2">Quick Export</h3><p style="font-size:28px;line-height:1.4">El icono de la esquina superior derecha exporta con nombre y preset.</p></div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Premiere Pro paso a paso · Bloque 7</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Adobe · Export video in Premiere</p>
+</section>
+<section id="atajos" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Chuleta</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Atajos de esta guía</h2>
+<div style="display:flex;gap:32px;align-items:flex-start">
+<table style="flex:1;font-size:26px;color:#ECEAF4;font-family:'JetBrains Mono', 'Courier New', monospace">
+<tr style="background:#1E2029"><th style="width:44%;font-weight:700">Atajo</th><th style="width:56%;font-weight:700">Acción</th></tr>
+<tr><td>V</td><td>Selection</td></tr>
+<tr><td>B</td><td>Ripple Edit</td></tr>
+<tr><td>C</td><td>Razor</td></tr>
+<tr><td>=</td><td>Acercar zoom</td></tr>
+<tr><td>\</td><td>Ver toda la secuencia</td></tr>
+</table>
+<table style="flex:1;font-size:26px;color:#ECEAF4;font-family:'JetBrains Mono', 'Courier New', monospace">
+<tr style="background:#1E2029"><th style="width:50%;font-weight:700">Atajo</th><th style="width:50%;font-weight:700">Acción</th></tr>
+<tr><td>Ctrl/Cmd+D</td><td>Transición de vídeo</td></tr>
+<tr><td>Shift+D</td><td>Vídeo y audio</td></tr>
+<tr><td>Ctrl/Cmd+M</td><td>Exportar</td></tr>
+<tr><td>Ctrl/Cmd+Z</td><td>Deshacer</td></tr>
+<tr><td>Delete</td><td>Quitar clip</td></tr>
+</table>
+</div>
+<p style="font-size:26px;line-height:1.4;color:#AEB1C6">Cmd en macOS, Ctrl en Windows. Delete en macOS, Backspace en Windows.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#8F93AB">Premiere Pro paso a paso · Chuleta</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#8F93AB;text-align:right">Adobe · Documentación de Premiere</p>
+</section>
+<section id="checklist" data-transition="fade" style="background:#F4F2EC;color:#17181F;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4A49C9">Antes de entregar</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Lista de control</h2>
+<div style="display:flex;gap:48px;align-items:flex-start">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;gap:20px;align-items:center;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:16px;padding:22px 28px"><div style="width:28px;height:28px;border-radius:8px;background:#4A49C9;flex:none"></div><p style="flex:1;font-size:30px;line-height:1.3">Proyecto guardado y material enlazado.</p></div>
+<div style="display:flex;gap:20px;align-items:center;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:16px;padding:22px 28px"><div style="width:28px;height:28px;border-radius:8px;background:#4A49C9;flex:none"></div><p style="flex:1;font-size:30px;line-height:1.3">Secuencia con los ajustes de la entrega.</p></div>
+<div style="display:flex;gap:20px;align-items:center;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:16px;padding:22px 28px"><div style="width:28px;height:28px;border-radius:8px;background:#4A49C9;flex:none"></div><p style="flex:1;font-size:30px;line-height:1.3">Cortes recortados y sin huecos.</p></div>
+<div style="display:flex;gap:20px;align-items:center;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:16px;padding:22px 28px"><div style="width:28px;height:28px;border-radius:8px;background:#4A49C9;flex:none"></div><p style="flex:1;font-size:30px;line-height:1.3">Transiciones con handles suficientes.</p></div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;gap:20px;align-items:center;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:16px;padding:22px 28px"><div style="width:28px;height:28px;border-radius:8px;background:#4A49C9;flex:none"></div><p style="flex:1;font-size:30px;line-height:1.3">Volumen igualado con Auto-Match.</p></div>
+<div style="display:flex;gap:20px;align-items:center;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:16px;padding:22px 28px"><div style="width:28px;height:28px;border-radius:8px;background:#4A49C9;flex:none"></div><p style="flex:1;font-size:30px;line-height:1.3">Música bajada bajo la voz.</p></div>
+<div style="display:flex;gap:20px;align-items:center;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:16px;padding:22px 28px"><div style="width:28px;height:28px;border-radius:8px;background:#4A49C9;flex:none"></div><p style="flex:1;font-size:30px;line-height:1.3">Subtítulos revisados de principio a fin.</p></div>
+<div style="display:flex;gap:20px;align-items:center;background:#FBFAF6;border:2px solid #DAD7CC;border-radius:16px;padding:22px 28px"><div style="width:28px;height:28px;border-radius:8px;background:#4A49C9;flex:none"></div><p style="flex:1;font-size:30px;line-height:1.3">Archivo exportado y visto entero en un reproductor.</p></div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#4B4E60">Premiere Pro paso a paso · Bloque 7</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#4B4E60;text-align:right">Resumen de la guía</p>
+</section>
+<section id="fuentes" data-transition="fade" style="background:#14151B;color:#ECEAF4;font-family:'DM Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<p style="font-size:24px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#A9A8FF">Fuentes</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:68px;font-weight:700;line-height:1.1">Documentación de Adobe consultada</h2>
+<div style="display:flex;gap:32px;align-items:flex-start">
+<table style="flex:1;font-size:26px;color:#ECEAF4">
+<tr style="background:#1E2029"><th style="font-weight:700">Proyecto, interfaz y edición</th></tr>
+<tr><td><a href="https://helpx.adobe.com/premiere/desktop/organize-media/create-projects/create-new-project.html">Create new projects</a></td></tr>
+<tr><td><a href="https://helpx.adobe.com/premiere/desktop/edit-projects/change-clip-sequence/create-a-sequence.html">Create a sequence</a></td></tr>
+<tr><td><a href="https://helpx.adobe.com/premiere/desktop/get-started/tour-the-workspace/what-are-workspaces.html">Overview of workspaces</a></td></tr>
+<tr><td><a href="https://helpx.adobe.com/premiere/desktop/get-started/tour-the-workspace/tools-panel-and-options-panel.html">Tools panel</a></td></tr>
+<tr><td><a href="https://helpx.adobe.com/premiere/desktop/edit-projects/intro-to-editing/add-or-remove-clips.html">Add or remove clips</a></td></tr>
+<tr><td><a href="https://helpx.adobe.com/premiere/desktop/edit-projects/trim-clips/cut-clips.html">Cut clips</a></td></tr>
+</table>
+<table style="flex:1;font-size:26px;color:#ECEAF4">
+<tr style="background:#1E2029"><th style="font-weight:700">Efectos, audio, subtítulos y exportación</th></tr>
+<tr><td><a href="https://helpx.adobe.com/premiere/desktop/add-video-effects/apply-video-effects/apply-effects.html">Apply effects</a></td></tr>
+<tr><td><a href="https://helpx.adobe.com/premiere/desktop/add-video-effects/apply-video-transitions/set-and-apply-default-transitions.html">Default transitions</a></td></tr>
+<tr><td><a href="https://helpx.adobe.com/premiere/desktop/add-audio-effects/adjust-volume-and-levels/audio-editing-with-essential-sound-panel.html">Essential Sound panel</a></td></tr>
+<tr><td><a href="https://helpx.adobe.com/premiere/desktop/add-audio-effects/adjust-volume-and-levels/automatically-duck-audio.html">Automatically duck audio</a></td></tr>
+<tr><td><a href="https://helpx.adobe.com/premiere/desktop/add-text-images/insert-captions/create-captions.html">Create captions</a></td></tr>
+<tr><td><a href="https://helpx.adobe.com/premiere/desktop/render-and-export/export-files/export-video.html">Export video</a></td></tr>
+</table>
+</div>
+<p style="font-size:26px;line-height:1.4;color:#AEB1C6">Páginas de helpx.adobe.com consultadas en octubre de 2026. Los menús pueden cambiar según la versión del programa.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#8F93AB">Premiere Pro paso a paso</p>
+<p style="position:absolute;right:128px;bottom:64px;width:760px;font-size:24px;color:#8F93AB;text-align:right">helpx.adobe.com/premiere</p>
+</section>
+</body>
+</html>

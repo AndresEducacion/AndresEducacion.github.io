@@ -476,5 +476,7 @@
     if ('ResizeObserver' in window) new ResizeObserver(() => renderGoals()).observe(stage);
   }
 
-  document.querySelectorAll('.tool-slot[data-tool="keyframes"]').forEach(mount);
+  // El escritorio llama a Keyframes.mount(slot) cuando abre una lección o la app del simulador
+  window.Keyframes = { mount: slot => { if (!slot.dataset.mounted) { slot.dataset.mounted = 1; mount(slot); } } };
+  document.querySelectorAll('.tool-slot[data-tool="keyframes"]').forEach(window.Keyframes.mount);
 })();

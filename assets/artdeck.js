@@ -51,28 +51,40 @@
     sec.classList.add('ad-slide');
   }
 
-  async function mount(box) {
-    const src = box.dataset.deck;
-    let doc;
-    try {
-      const r = await fetch(src);
+  // Descarga deck.html, carga sus fuentes y devuelve las diapositivas ya preparadas (sin colocar en la página)
+  const cache = new Map();
+  function load(src) {
+    const url = new URL(src, location.href).href;
+    if (!cache.has(url)) cache.set(url, (async () => {
+      const r = await fetch(url);
       if (!r.ok) throw new Error(r.status);
-      doc = new DOMParser().parseFromString(await r.text(), 'text/html');
-    } catch {
+      const doc = new DOMParser().parseFromString(await r.text(), 'text/html');
+      doc.querySelectorAll('link[rel="stylesheet"][href^="https://fonts.googleapis.com/"]').forEach(l => {
+        if (fonts.has(l.href)) return;
+        fonts.add(l.href);
+        const n = document.createElement('link');
+        n.rel = 'stylesheet';
+        n.href = l.href;
+        document.head.appendChild(n);
+      });
+      const slides = [...doc.body.querySelectorAll(':scope > section')].filter(s => !s.hasAttribute('hidden'));
+      slides.forEach(s => prepare(s, url));
+      return { title: doc.title || 'Presentación', slides: slides.map(s => s.outerHTML) };
+    })());
+    return cache.get(url);
+  }
+  // Una diapositiva nueva a partir del HTML que devuelve load()
+  const slideFrom = html => { const t = document.createElement('template'); t.innerHTML = html; return t.content.firstElementChild; };
+  window.ArtDeck = { load, slideFrom, W, H };
+
+  async function mount(box) {
+    let data;
+    try { data = await load(box.dataset.deck); } catch {
       box.innerHTML = '<p class="deck-err">No se han podido cargar las diapositivas.</p>';
       return;
     }
-    const base = new URL(src, location.href);
-    doc.querySelectorAll('link[rel="stylesheet"][href^="https://fonts.googleapis.com/"]').forEach(l => {
-      if (fonts.has(l.href)) return;
-      fonts.add(l.href);
-      const n = document.createElement('link');
-      n.rel = 'stylesheet';
-      n.href = l.href;
-      document.head.appendChild(n);
-    });
-    const slides = [...doc.body.querySelectorAll(':scope > section')].filter(s => !s.hasAttribute('hidden'));
-    const title = doc.title || 'Presentación';
+    const slides = data.slides.map(slideFrom);
+    const title = data.title;
     box.setAttribute('role', 'region');
     box.setAttribute('aria-label', title);
     box.innerHTML = `<div class="ad-stage" tabindex="0" aria-live="polite"><div class="ad-canvas"></div></div>
@@ -84,7 +96,7 @@
         <button type="button" data-fs>Pantalla completa</button>
       </div>`;
     const stage = box.querySelector('.ad-stage'), canvas = box.querySelector('.ad-canvas'), count = box.querySelector('.count');
-    slides.forEach(s => { prepare(s, base); canvas.appendChild(document.adoptNode(s)); });
+    slides.forEach(s => canvas.appendChild(s));
     const fit = () => canvas.style.setProperty('--k', stage.clientWidth / W);
     fit();
     if ('ResizeObserver' in window) new ResizeObserver(fit).observe(stage);
