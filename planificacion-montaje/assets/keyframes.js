@@ -334,7 +334,7 @@
       g.all = g.slide && g.spin && g.fade;
       slot.querySelectorAll('.kf-goals li').forEach(li => li.classList.toggle('ok', !!g[li.dataset.goal]));
       const done = Object.values(g).every(Boolean);
-      if (done && !S.done) msg('<strong>Rótulo completo.</strong> Entra deslizando, gira, aparece, crece y frena con suavidad: es lo que piden las prácticas 1 y 3 para el texto animado.');
+      if (done && !S.done) msg('<strong>Rótulo completo.</strong> Entra deslizando, gira, aparece, crece y frena con suavidad: así se anima un rótulo en Premiere.');
       S.done = done;
     }
 

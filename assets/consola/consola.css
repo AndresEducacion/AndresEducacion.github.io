@@ -1,0 +1,175 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Geist:wght@400;500;600&display=swap");
+/* consola — componentes (copia de components/bundle.css del sistema de diseño «consola»). Un aparato (chasis) con pantallas: el chasis es la navegación, la pantalla es el contenido.
+   Usa las variables de tokens.css. Todas las clases empiezan por cs- para no chocar con nada de la web. */
+
+/* ---------- Base ---------- */
+.cs-chassis{background:var(--chassis-000);color:var(--chassis-ink);font:400 16px/1.5 var(--font-sans);-webkit-font-smoothing:antialiased}
+.cs-screen{background:var(--screen-000);color:var(--phosphor);font:400 16px/26px var(--font-sans);-webkit-font-smoothing:antialiased}
+.cs-label{font:500 12px/16px var(--font-mono);letter-spacing:.01em}
+.cs-label-xs{font:500 10.5px/14px var(--font-mono);letter-spacing:.06em}
+.cs-led{font:500 26px/1 var(--font-led);letter-spacing:-.01em;color:var(--signal);font-variant-numeric:tabular-nums}
+.cs-chassis :focus-visible,.cs-screen :focus-visible{outline:2px solid var(--signal);outline-offset:2px}
+
+/* ---------- Tecla (icono de app, carpeta o acceso directo) ----------
+   <button class="cs-keycap" style="--cap:var(--cap-montaje)" data-kind="folder|app|link">
+     <span class="cs-keycap__face"><span class="cs-keycap__code">ut2</span>[svg]</span>
+     <span class="cs-keycap__name">Planos y cortes</span></button> */
+.cs-keycap{--size:56px;display:inline-flex;flex-direction:column;align-items:center;gap:8px;width:calc(var(--size) + 40px);padding:0;border:0;background:none;
+  color:var(--chassis-ink);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.cs-keycap__face{position:relative;display:grid;place-items:center;width:var(--size);height:var(--size);border-radius:var(--radius-key);
+  background:var(--cap,var(--chassis-200));color:var(--cap-ink);box-shadow:var(--shadow-key);transition:transform var(--dur-press),box-shadow var(--dur-press)}
+.cs-keycap__face svg{width:44%;height:44%;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.cs-keycap__code{position:absolute;left:7px;top:6px;font:500 10.5px/1 var(--font-mono);letter-spacing:.04em}
+.cs-keycap[data-kind="folder"] .cs-keycap__code{position:static;font:600 15px/1 var(--font-mono);letter-spacing:0}
+.cs-keycap__face svg.cs-keycap__arrow{position:absolute;right:6px;bottom:6px;width:11px;height:11px;stroke-width:2.4}
+.cs-keycap__name{max-width:100%;font:500 12px/1.3 var(--font-mono);text-align:center;text-wrap:balance}
+.cs-keycap:hover .cs-keycap__face{filter:brightness(1.04)}
+.cs-keycap:active .cs-keycap__face,.cs-keycap[aria-pressed="true"] .cs-keycap__face{transform:translateY(1px);box-shadow:var(--shadow-key-down)}
+/* Piloto: la app está abierta (dock) o hay algo nuevo */
+.cs-keycap__led{position:absolute;right:7px;top:7px;width:6px;height:6px;border-radius:50%;background:var(--screen-000);opacity:.35}
+.cs-keycap[data-on] .cs-keycap__led{background:var(--signal);opacity:1;box-shadow:0 0 6px var(--signal)}
+.cs-keycap:focus-visible{outline:none}
+.cs-keycap:focus-visible .cs-keycap__face{outline:2px solid var(--signal);outline-offset:3px}
+
+/* ---------- Placa (grupo de teclas, dock) ---------- */
+.cs-plate{padding:16px;border-radius:var(--radius-plate);background:var(--chassis-100);box-shadow:inset 0 0 0 1px var(--hairline)}
+.cs-plate__title{margin:0 0 2px;font:500 12px/16px var(--font-mono);color:var(--chassis-ink)}
+.cs-plate__title::before{content:"_"}
+.cs-plate__hint{margin:0 0 14px;font:400 12px/16px var(--font-mono);color:var(--chassis-mute)}
+.cs-keys{display:grid;grid-template-columns:repeat(var(--cols,2),auto);gap:16px 12px;margin:0;padding:0;list-style:none}
+
+/* ---------- Botón ----------
+   <button class="cs-btn cs-btn--key"><span data-t="abrir apuntes">abrir apuntes</span></button>
+   El texto sube y entra otra copia desde abajo al pasar por encima, como un rótulo de display. */
+.cs-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:4px;height:36px;padding:0 14px;overflow:hidden;border:1px solid currentColor;border-radius:var(--radius-0);
+  background:transparent;color:inherit;font:500 13px/16px var(--font-mono);cursor:pointer;text-decoration:none;white-space:nowrap}
+.cs-btn>span{display:block;transition:transform 160ms cubic-bezier(.6,0,.2,1)}
+.cs-btn>span::after{content:attr(data-t);position:absolute;left:0;right:0;top:100%;text-align:center}
+.cs-btn:hover>span{transform:translateY(-100%)}
+.cs-btn--key{border-color:var(--key);background:var(--key);color:var(--cap-ink)}
+.cs-btn--signal{border-color:var(--signal);color:var(--signal)}
+.cs-btn--ghost{border-color:transparent;padding:0 6px;text-decoration:underline;text-underline-offset:3px}
+.cs-btn:active{transform:translateY(1px)}
+.cs-btn[disabled]{opacity:.4;cursor:default}
+
+/* ---------- Etiqueta ---------- */
+.cs-tag{display:inline-block;padding:2px 6px;border-radius:var(--radius-0);background:var(--signal);color:var(--cap-ink);font:500 10.5px/14px var(--font-mono);letter-spacing:.06em;vertical-align:middle}
+.cs-tag--rec{background:var(--rec)}
+.cs-tag--key{background:var(--key)}
+.cs-tag--cap{background:var(--cap,var(--chassis-200))}
+.cs-tag--line{background:none;color:inherit;box-shadow:inset 0 0 0 1px currentColor}
+
+/* ---------- Ventana (una pantalla sobre el chasis) ---------- */
+.cs-window{display:flex;flex-direction:column;overflow:hidden;border-radius:var(--radius-bezel);background:var(--screen-000);color:var(--phosphor);box-shadow:var(--shadow-bezel)}
+.cs-window__bar{flex:none;display:flex;align-items:center;gap:10px;height:34px;padding:0 6px 0 12px;background:var(--screen-200);border-bottom:1px solid var(--screen-line);
+  font:500 12px/16px var(--font-mono);color:var(--phosphor)}
+.cs-window__title{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cs-window__title b{font-weight:500;color:var(--phosphor-mute)}
+.cs-window__dot{flex:none;width:10px;height:10px;border-radius:2px;background:var(--cap,var(--chassis-200))}
+.cs-window__ctl{display:flex;gap:2px}
+.cs-window__ctl button{display:grid;place-items:center;width:26px;height:24px;padding:0;border:0;background:none;color:var(--phosphor-mute);font:500 13px/1 var(--font-mono);cursor:pointer}
+.cs-window__ctl button:hover{background:var(--screen-line);color:var(--phosphor)}
+.cs-window__ctl [data-act="close"]:hover{background:var(--rec);color:var(--cap-ink)}
+.cs-window__body{position:relative;flex:1;min-height:0;overflow:auto}
+.cs-window:not(.is-active) .cs-window__bar{color:var(--phosphor-mute)}
+
+/* ---------- Cifra de pantalla ---------- */
+.cs-readout{display:inline-flex;align-items:baseline;gap:8px;padding:10px 12px;background:var(--screen-000);color:var(--signal);box-shadow:inset 0 0 0 1px var(--screen-line)}
+.cs-readout__value{font:600 64px/1 var(--font-led);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.cs-readout__unit{font:500 10.5px/14px var(--font-mono);letter-spacing:.06em;color:var(--phosphor-mute)}
+.cs-readout--rec{color:var(--rec)}
+.cs-readout--md .cs-readout__value{font-size:26px;font-weight:500;letter-spacing:-.01em}
+
+/* ---------- Medidor (progreso por segmentos, como un vúmetro) ----------
+   <div class="cs-meter" style="--value:.45" role="meter" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div> */
+.cs-meter{--seg:6px;--gap:2px;height:8px;background:linear-gradient(90deg,var(--signal) calc(var(--value,0)*100%),var(--screen-line) 0);
+  -webkit-mask:repeating-linear-gradient(90deg,#000 0 var(--seg),transparent 0 calc(var(--seg) + var(--gap)));
+  mask:repeating-linear-gradient(90deg,#000 0 var(--seg),transparent 0 calc(var(--seg) + var(--gap)))}
+.cs-meter--done{background:var(--key)}
+
+/* ---------- Nota (dentro de una pantalla) ---------- */
+.cs-note{margin:16px 0;padding:12px 16px 14px;background:var(--screen-100);box-shadow:inset 0 0 0 1px var(--screen-line);font-size:14px;line-height:21px}
+.cs-note>.cs-tag{margin-bottom:8px}
+.cs-note p{margin:0}
+
+/* ---------- Texto de lectura (apuntes) ---------- */
+.cs-doc{max-width:68ch;color:var(--phosphor)}
+.cs-doc h1{margin:0 0 12px;font:600 40px/44px var(--font-sans);letter-spacing:-.025em;text-wrap:balance}
+.cs-doc h2{display:flex;align-items:baseline;gap:14px;margin:48px 0 14px;font:600 26px/32px var(--font-sans);letter-spacing:-.015em}
+.cs-doc h2 .cs-sn{flex:none;font:500 20px/1 var(--font-led);color:var(--signal)}
+.cs-doc h3{margin:28px 0 8px;font:600 18px/24px var(--font-sans);letter-spacing:-.01em}
+.cs-doc p{margin:0 0 14px}
+.cs-doc ul{margin:0 0 16px;padding-left:18px;list-style:none}
+.cs-doc ul li{position:relative;margin:0 0 6px}
+.cs-doc ul li::before{content:"";position:absolute;left:-16px;top:10px;width:6px;height:6px;background:var(--signal)}
+.cs-doc strong{font-weight:600;color:var(--phosphor)}
+.cs-doc a{color:var(--signal);text-underline-offset:3px}
+.cs-doc code,.cs-doc kbd{padding:1px 5px;background:var(--screen-200);font:500 .86em var(--font-mono);color:var(--phosphor)}
+.cs-doc kbd{box-shadow:inset 0 -2px 0 var(--screen-line)}
+.cs-doc .cs-lead{font-size:18px;line-height:28px;color:var(--phosphor-mute)}
+.cs-doc table{width:100%;border-collapse:collapse;font-size:14px;line-height:21px}
+.cs-doc th{background:var(--screen-200);font:500 12px/16px var(--font-mono);text-align:left;color:var(--phosphor)}
+.cs-doc th,.cs-doc td{padding:9px 12px;border-bottom:1px solid var(--screen-line);vertical-align:top}
+
+/* ---------- Índice y filas (lista de apartados, entregas) ---------- */
+.cs-rows{margin:0;padding:0;list-style:none;border-top:1px solid var(--screen-line)}
+.cs-row{display:flex;align-items:baseline;gap:12px;width:100%;padding:10px 12px;border:0;border-bottom:1px solid var(--screen-line);background:none;color:var(--phosphor);
+  font:400 14px/20px var(--font-sans);text-align:left;cursor:pointer}
+.cs-row__n{flex:none;width:22px;font:500 12px/20px var(--font-mono);color:var(--phosphor-mute)}
+.cs-row:hover{background:var(--screen-100)}
+.cs-row[aria-current="true"]{background:var(--screen-100)}
+.cs-row[aria-current="true"] .cs-row__n{color:var(--signal)}
+.cs-row__end{margin-left:auto}
+
+/* ---------- Barra de menús (ordenador) ---------- */
+.cs-menubar{display:flex;align-items:center;gap:4px;height:32px;padding:0 10px;background:var(--screen-000);color:var(--phosphor);font:500 12px/16px var(--font-mono)}
+.cs-menubar__brand{display:flex;align-items:center;gap:8px;padding:0 10px 0 2px;font-weight:600;color:var(--phosphor);text-decoration:none}
+.cs-menubar__brand i{width:10px;height:10px;border-radius:2px;background:var(--cap,var(--key))}
+.cs-menubar__item{height:24px;padding:0 8px;border:0;background:none;color:var(--phosphor-mute);font:inherit;cursor:pointer}
+.cs-menubar__item::before{content:"_"}
+.cs-menubar__item:hover,.cs-menubar__item[aria-current="true"]{background:var(--phosphor);color:var(--screen-000)}
+.cs-menubar__end{margin-left:auto;display:flex;align-items:center;gap:12px}
+.cs-menubar__clock{font:500 13px/1 var(--font-led);color:var(--signal)}
+
+/* ---------- Dock ---------- */
+.cs-dock{display:inline-flex;align-items:flex-end;gap:10px;padding:10px 12px;border-radius:var(--radius-plate);background:var(--chassis-100);box-shadow:inset 0 0 0 1px var(--hairline),0 10px 30px rgba(0,0,0,.18)}
+.cs-dock .cs-keycap{--size:46px;width:auto}
+.cs-dock .cs-keycap__name{display:none}
+.cs-dock__sep{align-self:stretch;width:1px;margin:4px 2px;background:var(--hairline)}
+
+/* ---------- Móvil: barra de estado y widget ---------- */
+.cs-statusbar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:30px;padding:0 22px;color:var(--chassis-ink)}
+.cs-statusbar__time{font:600 15px/1 var(--font-led)}
+.cs-statusbar__name{font:500 11px/1 var(--font-mono);color:var(--chassis-mute)}
+.cs-statusbar__icons{justify-self:end;display:flex;gap:6px}
+.cs-widget{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;padding:10px;border-radius:var(--radius-plate);background:var(--chassis-100);box-shadow:inset 0 0 0 1px var(--hairline)}
+.cs-widget__screen{display:flex;flex-direction:column;justify-content:center;align-items:center;width:92px;height:92px;border-radius:10px;background:var(--screen-000);color:var(--rec)}
+.cs-widget__screen b{font:600 44px/1 var(--font-led);letter-spacing:-.04em}
+.cs-widget__screen small{font:500 10.5px/14px var(--font-mono);letter-spacing:.06em;color:var(--phosphor-mute)}
+.cs-widget__txt{display:flex;flex-direction:column;gap:2px;min-width:0}
+.cs-widget__txt small{font:500 11px/14px var(--font-mono);color:var(--chassis-mute)}
+.cs-widget__txt b{font:600 17px/22px var(--font-sans);letter-spacing:-.01em}
+
+/* ---------- Efectos de pantalla (con medida) ----------
+   .cs-scan     líneas de barrido: solo en zonas sin texto de lectura (visor, arranque, simulador, estados vacíos)
+   .cs-crt-on   encender una pantalla al abrir una ventana o app
+   .cs-crt-off  apagarla al cerrar
+   .cs-glitch   una sacudida RGB de 90ms: error, respuesta incorrecta, plazo cerrado. Nunca en bucle
+   .cs-cursor   cursor de bloque que parpadea: arranque y pantallas vacías */
+.cs-scan{position:relative;isolation:isolate}
+.cs-scan::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 3px),radial-gradient(120% 90% at 50% 50%,transparent 60%,rgba(0,0,0,.45) 100%)}
+@keyframes cs-crt-on{0%{transform:scale(1,.006);filter:brightness(3)}45%{transform:scale(1,.006);filter:brightness(3)}100%{transform:none;filter:none}}
+@keyframes cs-crt-off{0%{transform:none;filter:none}60%{transform:scale(1,.006);filter:brightness(3)}100%{transform:scale(0,.006);filter:brightness(3);opacity:0}}
+.cs-crt-on{animation:cs-crt-on var(--dur-crt-on) cubic-bezier(.2,.7,.2,1) both}
+.cs-crt-off{animation:cs-crt-off var(--dur-crt-off) ease-in both}
+@keyframes cs-glitch{0%{transform:translate(0);text-shadow:none}20%{transform:translate(-2px,1px);text-shadow:2px 0 var(--rec),-2px 0 var(--signal)}
+  40%{transform:translate(2px,-1px);clip-path:inset(20% 0 30% 0)}60%{transform:translate(-1px,0);clip-path:inset(60% 0 5% 0);text-shadow:-2px 0 var(--rec),2px 0 var(--signal)}
+  100%{transform:none;clip-path:none;text-shadow:none}}
+.cs-glitch{animation:cs-glitch var(--dur-glitch) steps(4,end) 1}
+@keyframes cs-blink{50%{opacity:0}}
+.cs-cursor{display:inline-block;width:.6em;height:1.05em;margin-left:2px;vertical-align:-.15em;background:currentColor;animation:cs-blink 1s steps(1) infinite}
+@media (prefers-reduced-motion:reduce){
+  .cs-crt-on,.cs-crt-off,.cs-glitch,.cs-cursor{animation:none!important}
+  .cs-btn>span,.cs-keycap__face{transition:none}
+}

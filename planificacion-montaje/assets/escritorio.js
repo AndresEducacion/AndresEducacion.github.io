@@ -1,26 +1,23 @@
-// Montaje como sistema de apps: en el ordenador, un escritorio con ventanas y dock; en el móvil, una pantalla de inicio
+// Montaje como sistema de apps: en el ordenador, un escritorio con ventanas y barra de menús; en el móvil, una pantalla de inicio
 // con apps a pantalla completa, como en iOS o Android. Todo el módulo vive aquí:
 //   Temas (explorador), Apuntes (lee lessons/*.html), Presentaciones (slides/*/deck.html con window.ArtDeck),
-//   Entregas y Keyframes (assets/keyframes.js).
-// Enlaces directos: #apuntes/ut2/escala, #presentaciones/premiere, #temas/transiciones, #entregas, #keyframes.
-// Lo que hace el alumno (diapositiva en la que se quedó, prácticas entregadas, casillas marcadas) se guarda en localStorage.
+//   y Keyframes (assets/keyframes.js). No lleva fechas de ningún curso: sirve igual cualquier año.
+// Enlaces directos: #apuntes/ut2/escala, #presentaciones/premiere, #temas/transiciones, #keyframes.
+// Lo que hace el alumno (diapositiva en la que se quedó, casillas marcadas) se guarda en localStorage.
 (() => {
   // c: color de la carpeta (sacado de su presentación), g: color del texto sobre ella
   const TEMAS = [
-    { id: 'ut2', code: 'UT2', label: 'UT2 Planos y cortes', title: 'Planos, cortes y reglas del montaje', c: '#F2B134', g: '#1B1F2B', span: 1120,
+    { id: 'ut2', code: 'UT2', label: 'UT2 Planos y cortes', title: 'Planos, cortes y reglas del montaje', c: 'var(--cap)', span: 1120,
       desc: 'Escala de planos, transiciones, tiempo, espacio y ritmo, tipos de montaje y reglas de corte de Murch y Dmytryk.' },
-    { id: 'premiere', code: 'PR1', label: 'Premiere paso a paso', title: 'Premiere Pro paso a paso', c: '#5857D6', g: '#ECEAF4', span: 1120,
+    { id: 'premiere', code: 'PR1', label: 'Premiere paso a paso', title: 'Premiere Pro paso a paso', c: '#958aff', span: 1120,
       desc: 'Del proyecto vacío a la exportación: interfaz, importación, edición, efectos, keyframes, audio y subtítulos.' },
-    { id: 'transiciones', code: 'PR2', label: 'Transiciones', title: 'Transiciones de vídeo y audio', c: '#A9A8FF', g: '#14151B', span: 1120,
-      desc: 'Cuándo usarlas, handles, modo A/B, Morph Cut, crossfades y fade handles, con un taller para la práctica 1.' },
-    { id: 'practicas', code: 'PR3', label: 'Premiere para las prácticas', title: 'Premiere Pro para las prácticas', c: '#8E8DF5', g: '#14151B', span: 1500,
-      desc: 'Cortar, banda sonora sincronizada, voz, texto animado, croma, Lumetri y exportación en H.264 HD 1080.' }
+    { id: 'transiciones', code: 'PR2', label: 'Transiciones', title: 'Transiciones de vídeo y audio', c: '#afa6ff', span: 1120,
+      desc: 'Cuándo usarlas, handles, modo A/B, Morph Cut, crossfades y fade handles.' }
   ];
   TEMAS.forEach(t => { t.lesson = `lessons/${t.id}.html`; t.deck = `slides/${t.id}/deck.html`; });
   const tema = id => TEMAS.find(t => t.id === id);
   const I = {
     slides: '<rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8M10 8l4 2-4 2z"/>',
-    calendar: '<rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M9 2.5v5M15 2.5v5"/>',
     folder: '<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
     doc: '<path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/>',
     book: '<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5M8 7h8M8 11h6"/>',
@@ -29,33 +26,25 @@
     check: '<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 12l3 3 5-6"/>',
     play: '<path d="M8 5l11 7-11 7z"/>',
     question: '<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.4 2.3c-.6.3-.9.8-.9 1.4V14M12 17.5v.01"/>',
-    tick: '<path d="M5 12l5 5 9-10"/>',
     home: '<path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-5h4v5"/>',
     grid: '<rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/>'
   };
   const svg = k => `<svg viewBox="0 0 24 24" aria-hidden="true">${I[k]}</svg>`;
   // Programas (ventanas en el ordenador, apps en el móvil)
   const APPS = {
-    explorer: { name: 'Temas', icon: 'folder', c: '#5857D6' },
-    reader: { name: 'Apuntes', icon: 'book', c: '#A9A8FF', g: '#14151B' },
-    viewer: { name: 'Presentaciones', icon: 'slides', c: '#F4B63F', g: '#14151B' },
-    dues: { name: 'Entregas', icon: 'calendar', c: '#F07A5A', g: '#14151B' },
-    kf: { name: 'Keyframes', icon: 'diamond', c: '#6D6CE6' }
+    explorer: { name: 'Temas', icon: 'folder' },
+    reader: { name: 'Apuntes', icon: 'book' },
+    viewer: { name: 'Presentaciones', icon: 'slides', c: 'var(--signal)' },
+    kf: { name: 'Keyframes', icon: 'diamond', c: 'var(--cap)' }
   };
   // Accesos directos: abren los apuntes en un apartado concreto
   const ACCESOS = [
-    { title: 'Atajos de Premiere', go: ['practicas', 'chuleta'], icon: 'keys', c: '#F4B63F', g: '#14151B', note: 'Chuleta de teclado' },
-    { title: 'Lista antes de entregar', go: ['practicas', 'exportar'], icon: 'check', c: '#A9A8FF', g: '#14151B', note: 'Las casillas se guardan en tu navegador' },
-    { title: 'Vídeos de referencia', go: ['ut2', 'videos'], icon: 'play', c: '#1B1F2B', g: '#F2B134', note: 'Match cut, elipsis, salto de eje…' },
-    { title: 'Repaso de la UT2', go: ['ut2', 'repaso'], icon: 'question', c: '#3A3F58', note: 'Preguntas para comprobar' }
+    { title: 'Atajos de Premiere', go: ['premiere', 'chuleta'], icon: 'keys', note: 'Chuleta de teclado' },
+    { title: 'Lista antes de entregar', go: ['premiere', 'control'], icon: 'check', note: 'Las casillas se guardan en tu navegador' },
+    { title: 'Vídeos de referencia', go: ['ut2', 'videos'], icon: 'play', note: 'Match cut, elipsis, salto de eje…' },
+    { title: 'Repaso de la UT2', go: ['ut2', 'repaso'], icon: 'question', note: 'Preguntas para comprobar' }
   ];
-  const ENTREGAS = [
-    { id: 'p1', code: 'P1', title: 'Montaje de un programa de cocina', meta: 'Individual, mínimo 1:30, 3 transiciones, texto animado y banda sonora', date: '2026-11-10' },
-    { id: 'p2', code: 'P2', title: 'Colas para televisión', meta: 'En grupo, mínimo 50 s, planos por corte y sonido ambiente aparte', date: '2026-11-21' },
-    { id: 'p3', code: 'P3', title: 'Promoción de una aerolínea', meta: 'Individual, de 20 a 30 s, 5 transiciones, efecto de vídeo y voz', date: '2026-12-01' },
-    { id: 'p4', code: 'P4', title: 'Escuela rusa', meta: 'Individual, Vertov, Kuleshov y Eisenstein con fotos del móvil, en PDF', date: '2026-12-12' }
-  ];
-  const MESES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+  ACCESOS.forEach(r => { r.d = TEMAS.find(t => t.id === r.go[0]).c; });
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -64,17 +53,23 @@
     get(k, d) { try { return JSON.parse(localStorage.getItem('mont-' + k)) ?? d; } catch { return d; } },
     set(k, v) { try { localStorage.setItem('mont-' + k, JSON.stringify(v)); } catch {} }
   };
-  const done = store.get('done', {});     // { p1: true } prácticas marcadas como entregadas
   const pos = store.get('pos', {});       // { ut2: 12 } diapositiva en la que se quedó cada presentación
 
-  // ---------- Fechas y hora ----------
-  const today = new Date(); today.setHours(0, 0, 0, 0);
-  const day = d => new Date(d + 'T00:00:00');
-  const daysTo = d => Math.round((day(d) - today) / 864e5);
-  const leftText = n => n < 0 ? 'Plazo cerrado' : n === 0 ? 'Hoy' : n === 1 ? 'Mañana' : `Faltan ${n} días`;
-  const dm = d => { const x = day(d); return { d: x.getDate(), m: MESES[x.getMonth()] }; };
-  const nextDue = () => ENTREGAS.filter(e => daysTo(e.date) >= 0 && !done[e.id]).sort((a, b) => a.date.localeCompare(b.date))[0];
-  $('[data-today]').textContent = today.toLocaleDateString('es-ES', { weekday: 'short', day: 'numeric', month: 'short' });
+  // ---------- Arranque: una línea que se abre y montaje_ok, la primera vez de cada sesión ----------
+  try {
+    if (!sessionStorage.getItem('mont-boot') && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      sessionStorage.setItem('mont-boot', '1');
+      const boot = document.createElement('div');
+      boot.className = 'boot';
+      boot.setAttribute('aria-hidden', 'true');
+      boot.innerHTML = '<span>montaje_ok</span>';
+      document.body.appendChild(boot);
+      setTimeout(() => boot.parentNode && boot.parentNode.removeChild(boot), 1000);
+    }
+  } catch {}
+
+  // ---------- Fecha y hora (barra de menús y barra de estado) ----------
+  $('[data-today]').textContent = new Date().toLocaleDateString('es-ES', { weekday: 'short', day: 'numeric', month: 'short' });
   const tick = () => { $('[data-clock]').textContent = new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' }); };
   tick();
   setInterval(tick, 20000);
@@ -106,8 +101,8 @@
     fit();
     if ('ResizeObserver' in window) new ResizeObserver(fit).observe(box);
   }
-  const appIco = ({ icon, c, g, cls = '', label = '' }) =>
-    `<span class="app-ico ${cls}" style="--c:${c};${g ? `--g:${g}` : ''}" aria-hidden="true">${cls.includes('folder') ? `<b>${esc(label)}</b>` : svg(icon)}</span>`;
+  const appIco = ({ icon, c, d, cls = '', label = '' }) =>
+    `<span class="app-ico ${cls}"${c || d ? ` style="${c ? `--c:${c};` : ''}${d ? `--d:${d}` : ''}"` : ''} aria-hidden="true">${cls.includes('folder') ? `<b>${esc(label)}</b>` : svg(icon)}</span>`;
 
   // ---------- Gestor de ventanas ----------
   // En el ordenador las ventanas se mueven, se minimizan y se apilan. En el móvil cada una ocupa la pantalla como una app,
@@ -129,17 +124,17 @@
     w.style.setProperty('--x', x + 'px');
     w.style.setProperty('--y', y + 'px');
   }
-  const syncPhone = () => document.body.classList.toggle('in-app', phone.matches && $$('.win').some(w => !w.hidden));
+  const syncPhone = () => document.body.classList.toggle('in-app', phone.matches && $$('.win').some(w => !w.hidden && !w.classList.contains('closing')));
   function openWin(app) {
     const w = wins[app];
-    const wasHidden = w.hidden;
+    const wasHidden = w.hidden || w.classList.contains('closing');
+    w.classList.toggle('closing', false);
     w.hidden = false;
     running.add(app);
     if (wasHidden) {
       if (!phone.matches && !w.dataset.placed) { place(w); w.dataset.placed = 1; }
       w.classList.add('opening');
-      w.getBoundingClientRect();
-      setTimeout(() => w.classList.remove('opening'), 20);
+      setTimeout(() => w.classList.remove('opening'), 260);
       if (phone.matches && !stack.includes(app)) { stack.push(app); history.pushState({ depth: stack.length }, ''); }
     }
     focusWin(w);
@@ -150,14 +145,17 @@
   }
   function closeWin(app, keep) {
     const w = wins[app];
-    if (document.fullscreenElement === w) document.exitFullscreen();
-    w.hidden = true;
+    if (app === 'viewer') setFs(false);
+    // Apagar la pantalla: se oculta cuando termina el efecto
+    w.classList.toggle('opening', false);
+    w.classList.add('closing');
+    setTimeout(() => { if (w.classList.contains('closing')) { w.hidden = true; w.classList.toggle('closing', false); syncPhone(); } }, 130);
     if (!keep) running.delete(app);
     const k = stack.indexOf(app);
     if (k >= 0) stack.splice(k, 1);
     paintDock();
     syncPhone();
-    const top = $$('.win:not([hidden])').sort((a, b) => (+b.style.getPropertyValue('--z')) - (+a.style.getPropertyValue('--z')))[0];
+    const top = $$('.win:not([hidden]):not(.closing)').sort((a, b) => (+b.style.getPropertyValue('--z')) - (+a.style.getPropertyValue('--z')))[0];
     if (top) focusWin(top);
     else history.replaceState(history.state, '', location.pathname);
   }
@@ -196,7 +194,9 @@
     });
   });
   addEventListener('keydown', e => {
-    if (e.key !== 'Escape' || document.fullscreenElement || e.target.closest('input, select, textarea, .kf-tool')) return;
+    if (e.key !== 'Escape' || fsElement() || e.target.closest('input, select, textarea, .kf-tool')) return;
+    // Pantalla completa simulada (navegadores sin la API): Escape sale de ella y no cierra la app
+    if (wins.viewer.classList.contains('fs')) { setFs(false); return; }
     const a = $('.win.active:not([hidden])');
     if (a) closeFromUI(a.dataset.app);
   });
@@ -217,12 +217,15 @@
   });
 
   // ---------- Menú, dock e iconos ----------
-  const MENU = ['explorer', 'reader', 'viewer', 'dues', 'kf'];
+  const MENU = ['explorer', 'reader', 'viewer', 'kf'];
   $('[data-menu]').innerHTML = MENU.map(a => `<button type="button" data-open="${a}">${APPS[a].name}</button>`).join('');
   const dock = $('[data-dock]');
   dock.innerHTML = MENU.map(a => `<button type="button" data-dock-app="${a}" data-tip="${APPS[a].name}" aria-label="${APPS[a].name}">${appIco(APPS[a])}</button>`).join('') +
-    `<span class="sep" aria-hidden="true"></span><a href="../index.html" class="dock-portal" data-tip="Portal de módulos" aria-label="Portal de módulos">${appIco({ icon: 'home', c: '#3A3F58' })}</a>`;
-  function paintDock() { $$('[data-dock-app]', dock).forEach(b => b.classList.toggle('run', running.has(b.dataset.dockApp))); }
+    `<span class="sep" aria-hidden="true"></span><a href="../index.html" class="dock-portal" data-tip="Portal de módulos" aria-label="Portal de módulos">${appIco({ icon: 'home' })}</a>`;
+  function paintDock() {
+    $$('[data-dock-app]', dock).forEach(b => b.classList.toggle('run', running.has(b.dataset.dockApp)));
+    $$('[data-open]', $('[data-menu]')).forEach(b => b.classList.toggle('run', running.has(b.dataset.open)));
+  }
   $$('[data-dock-app]', dock).forEach(b => b.addEventListener('click', () => {
     const app = b.dataset.dockApp, w = wins[app];
     if (!w.hidden && w.classList.contains('active') && !phone.matches) closeWin(app, true);   // como en un dock: un clic minimiza si ya está delante
@@ -230,8 +233,8 @@
   }));
   const ICONS = {
     temas: TEMAS.map(t => ({ label: t.label, html: appIco({ cls: 'folder', c: t.c, g: t.g, label: t.code }), run: () => launch('explorer', t.id) })),
-    programas: ['reader', 'viewer', 'dues', 'kf'].map(a => ({ label: APPS[a].name, html: appIco(APPS[a]), run: () => launch(a) })),
-    accesos: ACCESOS.map(r => ({ label: r.title, html: appIco({ icon: r.icon, c: r.c, g: r.g, cls: 'link' }), run: () => openLesson(...r.go) }))
+    programas: ['reader', 'viewer', 'kf'].map(a => ({ label: APPS[a].name, html: appIco(APPS[a]), run: () => launch(a) })),
+    accesos: ACCESOS.map(r => ({ label: r.title, html: appIco({ icon: r.icon, d: r.d, cls: 'link' }), run: () => openLesson(...r.go) }))
   };
   Object.entries(ICONS).forEach(([group, list]) => {
     $(`[data-icons="${group}"]`).innerHTML = list.map((ic, n) =>
@@ -247,8 +250,7 @@
   // ---------- Temas (explorador) ----------
   const exSide = $('[data-ex-side]'), exMain = $('[data-ex-main]'), exPath = $('[data-ex-path]');
   exSide.innerHTML = `<h3>Temas</h3>${TEMAS.map(t => `<button type="button" data-folder="${t.id}">${appIco({ cls: 'folder sm', c: t.c })}${esc(t.label)}</button>`).join('')}
-    <h3>Más</h3><button type="button" data-folder="accesos">${appIco({ icon: 'grid', c: '#3A3F58', cls: 'sm' })}Accesos directos</button>
-    <button type="button" data-open="dues">${appIco({ ...APPS.dues, cls: 'sm' })}Entregas</button>`;
+    <h3>Más</h3><button type="button" data-folder="accesos">${appIco({ icon: 'grid', cls: 'sm' })}Accesos directos</button>`;
   $$('[data-folder]', exSide).forEach(b => b.addEventListener('click', () => showFolder(b.dataset.folder)));
   let shownFolder = null;
   function showFolder(id) {
@@ -257,7 +259,7 @@
     if (id === 'accesos') {
       exPath.textContent = 'Montaje › Accesos directos';
       exMain.innerHTML = `<h2>Accesos directos</h2><p class="desc">Cada uno abre los apuntes justo en ese apartado.</p>
-        <ul class="files">${ACCESOS.map(r => `<li><button type="button" class="file" data-lesson="${r.go[0]}" data-sec="${r.go[1]}"><span class="prev" style="--c:${r.c};${r.g ? `--g:${r.g}` : ''}">${svg(r.icon)}</span>
+        <ul class="files">${ACCESOS.map(r => `<li><button type="button" class="file" data-lesson="${r.go[0]}" data-sec="${r.go[1]}"><span class="prev" style="--d:${r.d}">${svg(r.icon)}</span>
           <span><b>${esc(r.title)}</b><small>${esc(r.note)}</small></span></button></li>`).join('')}</ul>`;
       return;
     }
@@ -309,7 +311,7 @@
   });
   $$('[data-rd-tema]').forEach(b => b.addEventListener('click', () => openLesson(b.dataset.rdTema)));
 
-  // Prepara el contenido: enlaces, presentación, notas, títulos, listas de control, fechas y herramientas
+  // Prepara el contenido: enlaces, presentación, notas, títulos, listas de control y herramientas
   function prepare(main, id) {
     // Restos de la página antigua, por si llega una copia guardada en caché: ruta, paginación, cabecera y pie
     $$('.kicker, .pager, header, footer', main).forEach(el => el.remove());
@@ -369,13 +371,6 @@
       });
       update();
     });
-    // <span class="due" data-date="2026-11-10">: días que faltan
-    $$('.due[data-date]', main).forEach(el => {
-      const n = daysTo(el.dataset.date);
-      el.textContent = n < 0 ? 'plazo cerrado' : n === 0 ? 'hoy' : n === 1 ? 'mañana' : `faltan ${n} días`;
-      el.classList.toggle('past', n < 0);
-      el.classList.toggle('soon', n >= 0 && n <= 7);
-    });
   }
   rdDoc.addEventListener('click', e => {
     const d = e.target.closest('.deck-link');
@@ -403,7 +398,10 @@
       buildToc();
     }
     const target = sec && rdDoc.querySelector('#' + CSS.escape(sec));
-    rdMain.scrollTop = target ? target.getBoundingClientRect().top - rdMain.getBoundingClientRect().top + rdMain.scrollTop - 10 : 0;
+    // Con offsetTop y no con el rectángulo: mientras la ventana se enciende está escalada y el rectángulo engaña
+    let y = 0;
+    for (let el = target; el && el !== rdMain; el = el.offsetParent) y += el.offsetTop;
+    rdMain.scrollTop = target ? y - 10 : 0;
     // Si el destino está dentro de un apartado plegado o es una tarjeta, se resalta un momento
     if (target && !target.matches('section')) { target.classList.add('rd-flash'); setTimeout(() => target.classList.remove('rd-flash'), 1600); }
     spy();
@@ -469,9 +467,10 @@
     store.set('pos', pos);
   }
   $$('[data-go]', wins.viewer).forEach(b => b.addEventListener('click', () => show(i + Number(b.dataset.go))));
-  $('[data-vw-notes]').addEventListener('click', () => current && openLesson(current.id));
+  $('[data-vw-notes]').addEventListener('click', () => { if (!current) return; setFs(false); openLesson(current.id); });
   stage.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') show(i + 1);
+    if (e.key === 'f' || e.key === 'F') { if (!e.ctrlKey && !e.metaKey && !e.altKey) setFs(!vwWin.classList.contains('fs')); else return; }
+    else if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') show(i + 1);
     else if (e.key === 'ArrowLeft' || e.key === 'PageUp') show(i - 1);
     else if (e.key === 'Home') show(0);
     else if (e.key === 'End') show(slides.length - 1);
@@ -487,44 +486,55 @@
     show(i + (Math.abs(dx) > 40 ? (dx < 0 ? 1 : -1) : (e.clientX - r.left > r.width / 2 ? 1 : -1)));
     x0 = null;
   });
-  const fsBtn = $('[data-vw-fs]');
-  if (!wins.viewer.requestFullscreen) fsBtn.remove();
-  else fsBtn.addEventListener('click', () => document.fullscreenElement ? document.exitFullscreen() : wins.viewer.requestFullscreen());
-  document.addEventListener('fullscreenchange', () => setTimeout(fitViewer, 60));
+  // ---------- Pantalla completa ----------
+  // Solo la diapositiva, de borde a borde de la pantalla: sin barra de título, sin lista de presentaciones y sin el marco.
+  // Los controles aparecen encima al mover el ratón o tocar, y se esconden solos.
+  // Donde no hay API de pantalla completa (iPhone) se simula: la app tapa toda la ventana del navegador.
+  const vwWin = wins.viewer, fsBtn = $('[data-vw-fs]');
+  const FS_ICO = { on: 'M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5', off: 'M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5' };
+  const canFs = !!(vwWin.requestFullscreen || vwWin.webkitRequestFullscreen);
+  function setFs(on) {
+    const was = vwWin.classList.contains('fs');
+    if (on === was) return;
+    vwWin.classList.toggle('fs', on);
+    document.body.classList.toggle('vw-fs', on);
+    fsBtn.setAttribute('aria-label', on ? 'Salir de pantalla completa' : 'Pantalla completa');
+    $('path', fsBtn).setAttribute('d', on ? FS_ICO.off : FS_ICO.on);
+    if (on) {
+      if (canFs && !fsElement()) {
+        const p = (vwWin.requestFullscreen || vwWin.webkitRequestFullscreen).call(vwWin);
+        if (p && p.catch) p.catch(() => {});   // si el navegador lo niega, se queda la simulada
+      }
+      if (phone.matches) screen.orientation?.lock?.('landscape').catch(() => {});
+      stage.focus({ preventScroll: true });
+      wake();
+    } else {
+      if (fsElement()) (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+      screen.orientation?.unlock?.();
+      vwWin.classList.remove('awake');
+    }
+    fitViewer();
+  }
+  function fsElement() { return document.fullscreenElement || document.webkitFullscreenElement || null; }
+  // Al salir con Escape o con el gesto del sistema, la app vuelve a su ventana
+  const onFsChange = () => { if (!fsElement() && canFs) setFs(false); setTimeout(fitViewer, 60); };
+  document.addEventListener('fullscreenchange', onFsChange);
+  document.addEventListener('webkitfullscreenchange', onFsChange);
+  fsBtn.addEventListener('click', e => { e.stopPropagation(); setFs(!vwWin.classList.contains('fs')); });
+  // Controles que aparecen y se esconden
+  let sleepT = 0;
+  function wake() {
+    if (!vwWin.classList.contains('fs')) return;
+    vwWin.classList.add('awake');
+    clearTimeout(sleepT);
+    sleepT = setTimeout(() => { if (!$('.vw-bar', vwWin).matches(':hover')) vwWin.classList.remove('awake'); else wake(); }, 2500);
+  }
+  vwWin.addEventListener('pointermove', wake);
+  vwWin.addEventListener('pointerdown', wake);
   if ('ResizeObserver' in window) new ResizeObserver(fitViewer).observe(stage);
 
   // ---------- Keyframes ----------
   function mountKf() { const s = $('.tool-slot', wins.kf); if (s) window.Keyframes?.mount(s); }
-
-  // ---------- Entregas: ventana, barra de menús y widget del móvil ----------
-  function renderDues() {
-    $('[data-dues]').innerHTML = ENTREGAS.map(e => {
-      const n = daysTo(e.date), { d, m } = dm(e.date);
-      const cls = done[e.id] ? 'done' : n < 0 ? 'past' : n <= 7 ? 'soon' : '';
-      return `<li class="dl ${cls}">
-        <span class="due-date">${d}<small>${m}</small></span>
-        <span class="due-title"><button type="button" data-lesson="practicas" data-sec="${e.id}">${e.code}. ${esc(e.title)}</button></span>
-        <span class="due-left">${done[e.id] ? 'Entregada' : leftText(n)}</span>
-        <span class="due-meta">${esc(e.meta)}</span>
-        <button type="button" class="due-check" data-done="${e.id}" aria-pressed="${!!done[e.id]}">${svg('tick')}${done[e.id] ? 'La he entregado' : 'Marcar como entregada'}</button>
-      </li>`;
-    }).join('');
-    $$('[data-done]').forEach(b => b.addEventListener('click', () => {
-      done[b.dataset.done] = !done[b.dataset.done];
-      store.set('done', done);
-      renderAll();
-    }));
-  }
-  function renderNext() {
-    const nd = nextDue(), b = $('[data-next]'), w = $('[data-widget]');
-    b.hidden = w.hidden = !nd;
-    if (!nd) return;
-    const left = leftText(daysTo(nd.date)), { d, m } = dm(nd.date);
-    b.innerHTML = `<span class="long">${esc(nd.title)}</span><span class="short">${nd.code}</span><b>${left.toLowerCase()}</b>`;
-    w.innerHTML = `<span class="wg-date">${d}<small>${m}</small></span><span class="wg-txt"><small>Próxima entrega</small><b>${esc(nd.title)}</b><em>${left}</em></span>`;
-  }
-  function renderAll() { renderDues(); renderNext(); }
-  renderAll();
 
   // ---------- Enlaces directos (#apuntes/ut2/escala…) ----------
   function setHash(h) { history.replaceState(history.state, '', '#' + h); }
@@ -533,7 +543,6 @@
     if (app === 'apuntes') { openLesson(a, b); return true; }
     if (app === 'presentaciones') { launch('viewer', a); return true; }
     if (app === 'temas') { launch('explorer', a); return true; }
-    if (app === 'entregas') { launch('dues'); return true; }
     if (app === 'keyframes') { launch('kf'); return true; }
     return false;
   }

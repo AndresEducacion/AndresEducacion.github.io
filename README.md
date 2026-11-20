@@ -23,7 +23,7 @@ Portal central con el material didáctico de cada módulo.
 
 La clase fija el acento (`--acc`) y el icono (`--icon`, una máscara SVG lineal). El icono lo usan la marca de la barra superior y el icono de la cabecera, y `site.js` genera con él el favicon de la página. Cada página lleva además un favicon estático igual, por si no se ejecuta JavaScript.
 
-Montaje añade encima `planificacion-montaje/assets/mont.css` y `mont.js`: pasos numerados, teclas, esquemas de Timeline, escala de planos, listas de control que se guardan en el navegador y cuenta atrás de las entregas (`<span class="due" data-date="AAAA-MM-DD">`). Los `<div class="tool-slot" data-tool="…">` marcan dónde van las herramientas interactivas de cada lección; mientras están vacíos no se ven. La primera es `planificacion-montaje/assets/keyframes.js`, un simulador de Effect Controls que rellena los huecos `data-tool="keyframes"` (el texto del rótulo se elige con `data-text`).
+Montaje añade encima `planificacion-montaje/assets/mont.css` y `mont.js`: pasos numerados, teclas, esquemas de Timeline, escala de planos y listas de control que se guardan en el navegador. Los `<div class="tool-slot" data-tool="…">` marcan dónde van las herramientas interactivas de cada lección; mientras están vacíos no se ven. La primera es `planificacion-montaje/assets/keyframes.js`, un simulador de Effect Controls que rellena los huecos `data-tool="keyframes"` (el texto del rótulo se elige con `data-text`).
 
 ## Presentaciones
 

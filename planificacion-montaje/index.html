@@ -3,16 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#14151B">
+<meta name="theme-color" content="#ececea">
 <title>MONT | Planificación del montaje y postproducción</title>
-<meta name="description" content="Material de Montaje: planos, cortes y reglas del montaje, Premiere Pro paso a paso, transiciones y las prácticas del trimestre.">
+<meta name="description" content="Material de Montaje: planos, cortes y reglas del montaje, Premiere Pro paso a paso y transiciones de vídeo y audio.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2024%2024'%3E%3Crect%20x%3D'-1'%20y%3D'-1'%20width%3D'26'%20height%3D'26'%20rx%3D'5'%20fill%3D'%23191919'%2F%3E%3Cg%20fill%3D'none'%20stroke%3D'%239b7bff'%20stroke-width%3D'1.6'%20stroke-linecap%3D'round'%20stroke-linejoin%3D'round'%3E%3Crect%20x%3D'2.5'%20y%3D'2.5'%20width%3D'8.5'%20height%3D'6'%20rx%3D'.8'%2F%3E%3Crect%20x%3D'13'%20y%3D'2.5'%20width%3D'8.5'%20height%3D'6'%20rx%3D'.8'%2F%3E%3Cpath%20d%3D'M16.2%204l2.8%201.5-2.8%201.5z'%20fill%3D'%239b7bff'%2F%3E%3Crect%20x%3D'2.5'%20y%3D'13'%20width%3D'6.5'%20height%3D'3'%20rx%3D'.6'%2F%3E%3Crect%20x%3D'13'%20y%3D'13'%20width%3D'8.5'%20height%3D'3'%20rx%3D'.6'%2F%3E%3Crect%20x%3D'2.5'%20y%3D'18.5'%20width%3D'6.5'%20height%3D'3'%20rx%3D'.6'%2F%3E%3Crect%20x%3D'13'%20y%3D'18.5'%20width%3D'5'%20height%3D'3'%20rx%3D'.6'%2F%3E%3Cpath%20d%3D'M11%2012v10'%2F%3E%3Cpath%20d%3D'M9.5%2010.4h3L11%2012z'%20fill%3D'%239b7bff'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=JetBrains+Mono:wght@500;600&family=Space+Grotesk:wght@500;700&display=swap">
-<link rel="stylesheet" href="../assets/artdeck.css?v=20261113">
-<link rel="stylesheet" href="assets/escritorio.css?v=20261113">
-<link rel="stylesheet" href="assets/apuntes.css?v=20261113">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../assets/consola/tokens.css?v=20261123">
+<link rel="stylesheet" href="../assets/artdeck.css?v=20261123">
+<link rel="stylesheet" href="assets/escritorio.css?v=20261125">
+<link rel="stylesheet" href="assets/apuntes.css?v=20261125">
 </head>
 <body>
 <!-- Ordenador: barra de menús -->
@@ -20,7 +21,6 @@
   <a class="mb-brand" href="../index.html" title="Volver al portal de módulos"><i aria-hidden="true"></i>Montaje</a>
   <nav class="mb-menu" aria-label="Programas" data-menu></nav>
   <span class="mb-right">
-    <button type="button" class="mb-due" data-open="dues" data-next hidden></button>
     <span class="mb-date" data-today></span>
   </span>
 </header>
@@ -34,9 +34,6 @@
 <main class="desk" data-desk>
   <h1 class="sr-only">Planificación del montaje y postproducción</h1>
 
-  <!-- Móvil: widget con la próxima entrega -->
-  <button type="button" class="widget" data-open="dues" data-widget hidden></button>
-
   <!-- Iconos del escritorio, agrupados por lo que son -->
   <div class="groups">
     <section class="group" aria-labelledby="g-temas">
@@ -46,15 +43,15 @@
     </section>
     <section class="group" aria-labelledby="g-prog">
       <h2 id="g-prog">Programas</h2>
-      <p>Leer, ver las presentaciones, llevar las entregas y practicar</p>
+      <p>Leer, ver presentaciones y practicar</p>
       <ul class="icons cols-2" data-icons="programas"></ul>
     </section>
+    <section class="group" aria-labelledby="g-acc">
+      <h2 id="g-acc">Accesos directos</h2>
+      <p>Abren los apuntes justo en ese apartado</p>
+      <ul class="icons cols-2" data-icons="accesos"></ul>
+    </section>
   </div>
-  <section class="group group-right" aria-labelledby="g-acc">
-    <h2 id="g-acc">Accesos directos</h2>
-    <p>Abren los apuntes justo en ese apartado</p>
-    <ul class="icons cols-2" data-icons="accesos"></ul>
-  </section>
 
   <!-- Ventana: explorador de temas -->
   <section class="win" data-app="explorer" role="dialog" aria-labelledby="t-explorer" hidden style="--x:312px;--y:22px;--w:700px;--h:520px">
@@ -136,23 +133,6 @@
     </div>
   </section>
 
-  <!-- Ventana: entregas -->
-  <section class="win" data-app="dues" role="dialog" aria-labelledby="t-dues" hidden style="--x:480px;--y:90px;--w:440px;--h:470px">
-    <header class="win-bar">
-      <button type="button" class="win-back" data-win="close" aria-label="Volver al inicio"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>Inicio</button>
-      <span class="win-ico" aria-hidden="true"></span>
-      <h2 id="t-dues" class="win-title">Entregas</h2>
-      <span class="win-btns">
-        <button type="button" data-win="min" aria-label="Minimizar"><svg viewBox="0 0 24 24"><path d="M6 12h12"/></svg></button>
-        <button type="button" data-win="max" aria-label="Maximizar"><svg viewBox="0 0 24 24"><path d="M6 6h12v12H6z"/></svg></button>
-        <button type="button" data-win="close" aria-label="Cerrar"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg></button>
-      </span>
-    </header>
-    <div class="win-body">
-      <ol class="dues" data-dues></ol>
-    </div>
-  </section>
-
   <!-- Ventana: simulador de keyframes -->
   <section class="win" data-app="kf" role="dialog" aria-labelledby="t-kf" hidden style="--x:250px;--y:30px;--w:980px;--h:660px">
     <header class="win-bar">
@@ -167,7 +147,7 @@
     </header>
     <div class="win-body">
       <div class="doc kf-app">
-        <p>Anima un rótulo con Position, Scale, Rotation y Opacity como en el panel Effect Controls de Premiere, y completa los retos. Es lo que necesitas para el texto animado de las prácticas.</p>
+        <p>Anima un rótulo con Position, Scale, Rotation y Opacity como en el panel Effect Controls de Premiere, y completa los retos.</p>
         <div class="tool-slot" data-tool="keyframes" data-text="MONTAJE"></div>
         <p><button type="button" class="kf-more" data-lesson="premiere" data-sec="efectos">Leer cómo se hace en Premiere</button></p>
       </div>
@@ -179,8 +159,8 @@
 <nav class="dock" aria-label="Dock" data-dock></nav>
 <button type="button" class="home-ind" data-home aria-label="Volver al inicio"></button>
 
-<script src="../assets/artdeck.js?v=20261113"></script>
-<script src="assets/keyframes.js?v=20261113"></script>
-<script src="assets/escritorio.js?v=20261113" defer></script>
+<script src="../assets/artdeck.js?v=20261123"></script>
+<script src="assets/keyframes.js?v=20261125"></script>
+<script src="assets/escritorio.js?v=20261125" defer></script>
 </body>
 </html>

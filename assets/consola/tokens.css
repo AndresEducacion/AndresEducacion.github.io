@@ -1,0 +1,77 @@
+/* consola — variables del sistema de diseño (desde tokens.json del sistema «consola»), versión teenage engineering.
+   Claro y plano: chasis gris muy claro, ventanas de papel blanco, letra negra pequeña y el naranja como única señal.
+   El negro (--oled) solo para lo que es una pantalla de verdad: visor de diapositivas, widget, arranque.
+   <html data-theme="negro"> pasa el aparato a negro. */
+:root,[data-theme="aluminio"]{
+  --chassis-000:#ececea;
+  --chassis-100:#e2e2df;
+  --chassis-200:#d4d4d0;
+  --chassis-ink:#111111;
+  --chassis-mute:#6a6a66;
+  --hairline:#c4c4bf;
+  --screen-000:#fbfbfa;
+  --screen-100:#f3f3f1;
+  --screen-200:#ececea;
+  --screen-line:#dadad6;
+  --phosphor:#111111;
+  --phosphor-mute:#6a6a66;
+  --oled:#0b0b0b;
+  --oled-ink:#f2f2ee;
+  --key:#111111;
+  --key-ink:#ffffff;
+  --signal:#ff5a00;
+  --rec:#e8322a;
+  --cap-montaje:#7b6cff;
+  --cap-prtv:#ff6f9f;
+  --cap-isde:#3d7bf0;
+  --cap-deim:#2fb565;
+  --cap-sonido:#ffc400;
+  --cap-ink:#111111;
+  --shadow-key:inset 0 -2px 0 rgba(0,0,0,0.14), 0 1px 0 rgba(0,0,0,0.08);
+  --shadow-key-down:inset 0 1px 1px rgba(0,0,0,0.14);
+  --shadow-bezel:0 0 0 1px #111111;
+}
+[data-theme="negro"]{
+  --chassis-000:#0d0d0d;
+  --chassis-100:#171717;
+  --chassis-200:#262626;
+  --chassis-ink:#eeeeea;
+  --chassis-mute:#8c8c86;
+  --hairline:#2e2e2e;
+  --screen-000:#141414;
+  --screen-100:#1c1c1c;
+  --screen-200:#222222;
+  --screen-line:#323232;
+  --phosphor:#eeeeea;
+  --phosphor-mute:#8c8c86;
+  --oled:#000000;
+  --oled-ink:#f2f2ee;
+  --key:#eeeeea;
+  --key-ink:#111111;
+  --signal:#ff5a00;
+  --rec:#ff4038;
+  --shadow-key:inset 0 -2px 0 rgba(0,0,0,0.5), 0 1px 0 rgba(255,255,255,0.05);
+  --shadow-key-down:inset 0 1px 1px rgba(0,0,0,0.5);
+  --shadow-bezel:0 0 0 1px #3a3a3a;
+}
+:root{
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:12px;
+  --space-4:16px;
+  --space-6:24px;
+  --space-8:32px;
+  --space-12:48px;
+  --radius-0:0;
+  --radius-bezel:4px;
+  --radius-key:10px;
+  --radius-plate:14px;
+  --dur-press:60ms;
+  --dur-crt-on:180ms;
+  --dur-crt-off:120ms;
+  --dur-glitch:90ms;
+  --dur-boot:900ms;
+  --font-sans:Geist, system-ui, -apple-system, Segoe UI, sans-serif;
+  --font-mono:"Geist Mono", ui-monospace, Consolas, monospace;
+  --font-led:"Geist Mono", ui-monospace, Consolas, monospace;
+}
